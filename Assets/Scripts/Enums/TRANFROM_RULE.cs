@@ -4,7 +4,8 @@
     {
         WALL_FROM_BOUNDS = 0,
         WALL_FROM_ADJACENTS = 1,
-        FLOOR_FROM_ADJACENTS = 2,
-        FLOOR_FROM_BOUNDS = 3,
+        WALL_FOR_ROOM = 2,
+        FLOOR_FROM_ADJACENTS = 3,
+        FLOOR_FROM_BOUNDS = 4,
     }
 }

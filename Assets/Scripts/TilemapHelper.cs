@@ -15,6 +15,7 @@ namespace Assets.Scripts
         private readonly System.Random randomGenerator = new System.Random();
         private readonly TileItem[] TilesArray;
 
+        public TilemapHelper() { }
         public TilemapHelper(TileItem[] tilesArray) => TilesArray = tilesArray;
 
         /// <summary>
@@ -80,6 +81,57 @@ namespace Assets.Scripts
                 }
             }
             Debug.Log(str);
+        }
+
+        public bool IsNextToType(TILE_TYPE[] neighbors, TILE_TYPE type)
+        {
+            if (neighbors == null ||
+                neighbors.Length < 8)
+            {
+                return false;
+            }
+
+            int count = 0;
+            foreach(var neighbor in neighbors)
+            {
+                if (count != (int)TILE_POSITIONS.MIDDLE)
+                {
+                    if (neighbor == type)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+
+
+        public TILE_TYPE GetTileTypeFromSpriteName(string name)
+        {
+            var defaultType = TILE_TYPE.CORRIDOR;
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return defaultType;
+            }
+
+            if (name.Equals(TileName.Room.Value))
+            {
+                return TILE_TYPE.ROOM_1;
+            }
+            else if (name.Equals(TileName.Floor.Value))
+            {
+                return TILE_TYPE.CORRIDOR;
+            }
+            else if (name.Equals(TileName.Wall.Value))
+            {
+                return TILE_TYPE.WALL;
+            }
+            else
+            {
+                return defaultType;
+            }
         }
     }
 }

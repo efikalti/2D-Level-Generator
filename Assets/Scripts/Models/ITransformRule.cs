@@ -107,6 +107,57 @@ namespace Assets.Scripts.Models
             }
         }
     }
+    public class TransformToWallForRoom : ITransformRule
+    {
+        public Lazy<TilemapHelper> tileMapHelperLazy = new Lazy<TilemapHelper>();
+        public TILE_TYPE? Apply(TileBase[] neighbors)
+        {
+            if (neighbors.Length < 9)
+            {
+                return null;
+            }
+            // Get middle tile
+            var tile = neighbors[(int)TILE_POSITIONS.MIDDLE];
+
+            var tileType = tileMapHelperLazy.Value.GetTileTypeFromSpriteName(tile.name);
+            // Check if the tile is already a wall
+            if (tileType == TILE_TYPE.WALL)
+            {
+                return null;
+            }
+            // Check if the tile is not floor
+            if (tileType != TILE_TYPE.ROOM_1)
+            {
+                return null;
+            }
+
+            var neighborTypes = new TILE_TYPE[8];
+            int index = 0;
+            int count = 0;
+            foreach(var neighbor in neighbors)
+            {
+                if (count != (int)TILE_POSITIONS.MIDDLE)
+                {
+                    neighborTypes[index] = tileMapHelperLazy.Value.GetTileTypeFromSpriteName(neighbor.name);
+                    index++;
+                }
+                count++;
+            }
+
+            if (tileMapHelperLazy.Value.IsNextToType(neighborTypes, TILE_TYPE.CORRIDOR))
+            {
+                return TILE_TYPE.WALL;
+            }
+
+            return null;
+        }
+
+        public TILE_TYPE? Apply(Vector3Int position, BoundsInt bounds)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 
     public class TransformToRoomFromAdjacents : ITransformRule
     {

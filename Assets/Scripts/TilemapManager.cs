@@ -54,6 +54,7 @@ public class TilemapManager : MonoBehaviour
         // Initialize and fill the rules dictionary
         rules.Add(TRANFROM_RULE.WALL_FROM_BOUNDS, new TransformToTileFromBounds(TILE_TYPE.WALL));
         rules.Add(TRANFROM_RULE.WALL_FROM_ADJACENTS, new TransformToWallFromAdjacents());
+        rules.Add(TRANFROM_RULE.WALL_FOR_ROOM, new TransformToWallForRoom());
         rules.Add(TRANFROM_RULE.FLOOR_FROM_ADJACENTS, new TransformToRoomFromAdjacents());
         rules.Add(TRANFROM_RULE.FLOOR_FROM_BOUNDS, new TransformToTileFromBounds(TILE_TYPE.CORRIDOR));
 
@@ -92,6 +93,9 @@ public class TilemapManager : MonoBehaviour
 
         // Step 4. Add the rooms in the tilemap
         AddRoomsToMap(rooms);
+
+        // Step 5. Add walls to rooms
+        TransformTilemapArea(tilemapBounds, new TRANFROM_RULE[] { TRANFROM_RULE.WALL_FOR_ROOM });
     }
 
     /// <summary>
@@ -177,6 +181,14 @@ public class TilemapManager : MonoBehaviour
                 return tilemapHelper.GetTileByType(newTileType);
             }
         }
+        if (rule == TRANFROM_RULE.WALL_FOR_ROOM)
+        {
+            var newTileType = rules[TRANFROM_RULE.WALL_FOR_ROOM].Apply(neighbors);
+            if (newTileType != null)
+            {
+                return tilemapHelper.GetTileByType(newTileType);
+            }
+        }
         if (rule == TRANFROM_RULE.FLOOR_FROM_ADJACENTS)
         {
             var newTileType = rules[TRANFROM_RULE.FLOOR_FROM_ADJACENTS].Apply(neighbors);
@@ -204,7 +216,6 @@ public class TilemapManager : MonoBehaviour
     public void TransformTilemapArea(BoundsInt bounds, TRANFROM_RULE[] rules)
     {
         TileBase currentTile, newTile;
-        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
 
         Vector3Int position = new Vector3Int();
         for (int x = bounds.xMin; x < bounds.xMax; x++)
