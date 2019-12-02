@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
+using Assets.Scripts.Models.DataStructures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,10 @@ public class TilemapManager : MonoBehaviour
     private TileItem defaultTile;
 
     private System.Random randomGenerator = new System.Random();
+
+    private Graph TilemapGraph;
+
+    private const string defaultNodeName = "node";
 
     void Start()
     {
@@ -66,20 +71,17 @@ public class TilemapManager : MonoBehaviour
             }
         }
 
-        //AddRandomTiles();
-        //tilemapBounds = tilemap.cellBounds;
-
-        //ApplyRules();
+        // Create Graph object
+        TilemapGraph = new Graph();
 
         GenerateLevel();
     }
 
     public void GenerateLevel()
     {
-        // Step 1. Fill area with random tiles
+        // Step 1. Fill area with tiles
         FillAreaWithTile(tilemapBounds, defaultTile.Tile);
         tilemapBounds = tilemap.cellBounds;
-
 
         // Step 2. Transform tiles at bounds to walls
         TransformTilemapArea(tilemapBounds, new TRANFROM_RULE[] { TRANFROM_RULE.WALL_FROM_BOUNDS });
@@ -96,6 +98,9 @@ public class TilemapManager : MonoBehaviour
 
         // Step 5. Add walls to rooms
         TransformTilemapArea(tilemapBounds, new TRANFROM_RULE[] { TRANFROM_RULE.WALL_FOR_ROOM });
+
+        // Step 6. Map tilemap to graph
+        TilemapGraph = MapTilemapToGraph();
     }
 
     /// <summary>
@@ -406,5 +411,43 @@ public class TilemapManager : MonoBehaviour
                 break;
         }
         return availableTiles;
+    }
+
+    public Graph MapTilemapToGraph()
+    {
+        var graph = new Graph();
+
+        BoundsInt bounds = tilemap.cellBounds;
+        TileBase currentTile;
+
+        Vector3Int position = new Vector3Int();
+        Node node;
+        for (int x = bounds.xMin; x < bounds.xMax; x++)
+        {
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
+            {
+                position.x = x;
+                position.y = y;
+                currentTile = tilemap.GetTile(position);
+                if (currentTile != null)
+                {
+                    // Create node for current tile
+                    node = new Node(currentTile.name, tilemapHelper.GetTileTypeFromSpriteName(currentTile.name));
+                    // Add all neighboring tiles as links for this node
+                    var neighbors = GetTileNeighbors(position);
+                    foreach(var neighbor in neighbors)
+                    {
+                        if (neighbor != null)
+                        {
+                            node.AddLink(new Node(neighbor.name, tilemapHelper.GetTileTypeFromSpriteName(neighbor.name)));
+                        }
+                    }
+                    // Add node with its links to graph
+                    graph.AddNode(node);
+                }
+            }
+        }
+
+        return graph;
     }
 }
