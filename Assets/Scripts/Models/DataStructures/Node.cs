@@ -9,12 +9,15 @@ namespace Assets.Scripts.Models.DataStructures
 
         public TILE_TYPE Type;
 
-        public Dictionary<string, Node> Links;
+        public TILE_POSITIONS Position;
 
-        public Node(string name, TILE_TYPE type) {
+        public Dictionary<TILE_POSITIONS, Node> Links;
+
+        public Node(string name, TILE_POSITIONS position, TILE_TYPE type) {
             Name = name;
+            Position = position;
             Type = type;
-            Links = new Dictionary<string, Node>();
+            Links = new Dictionary<TILE_POSITIONS, Node>();
         }
 
         public void AddLink(Node node)
@@ -24,17 +27,17 @@ namespace Assets.Scripts.Models.DataStructures
                 return;
             }
 
-            if (Links.ContainsKey(node.Name))
+            if (Links.ContainsKey(node.Position))
             {
                 return;
             }
 
-            Links.Add(node.Name, node);
+            Links.Add(node.Position, node);
         }
 
-        public Node GetLink(string name)
+        public Node GetLink(TILE_POSITIONS position)
         {
-            if (Links.TryGetValue(name, out Node node))
+            if (Links.TryGetValue(position, out Node node))
             {
                 return node;
             }
