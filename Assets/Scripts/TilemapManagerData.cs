@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
+using Assets.Scripts.Reporting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,7 @@ namespace Assets.Scripts
 
         private const string defaultNodeName = "node";
 
+        private GraphParser graphParser;
 
         public void Setup()
         {
@@ -80,6 +82,9 @@ namespace Assets.Scripts
 
             // Create Graph object
             TilemapGraph = new Graph();
+
+            // Create GraphParser object
+            graphParser = new GraphParser();
 
             GenerateLevel();
         }

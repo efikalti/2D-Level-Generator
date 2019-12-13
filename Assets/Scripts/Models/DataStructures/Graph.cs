@@ -9,7 +9,7 @@ namespace Assets.Scripts.Models.DataStructures
     public class Graph
     {
 
-        private List<Node> Nodes { get; set; }
+        public List<Node> Nodes { get; set; }
 
         public Graph() {
             Nodes = new List<Node>();

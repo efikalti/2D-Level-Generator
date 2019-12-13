@@ -46,6 +46,9 @@ namespace Assets.Scripts
 
             // Step 6. Map tilemap to graph
             TilemapGraph = MapTilemapToGraph();
+
+            // Step 7. Write graph to file
+            graphParser.WriteGraph(TilemapGraph);
         }
 
         /// <summary>
