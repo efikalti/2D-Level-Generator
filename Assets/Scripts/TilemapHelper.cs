@@ -133,5 +133,33 @@ namespace Assets.Scripts
                 return defaultType;
             }
         }
+
+        public Vector3Int GetNeighborPosition(Vector3Int position, TILE_POSITIONS neighborPosition)
+        {
+
+            switch(neighborPosition)
+            {
+                case TILE_POSITIONS.DOWN_LEFT:
+                    return new Vector3Int(position.x - 1, position.y - 1, 0);
+                case TILE_POSITIONS.DOWN_MIDDLE:
+                    return new Vector3Int(position.x, position.y - 1, 0);
+                case TILE_POSITIONS.DOWN_RIGHT:
+                    return new Vector3Int(position.x + 1, position.y - 1, 0);
+                case TILE_POSITIONS.MIDDLE_LEFT:
+                    return new Vector3Int(position.x - 1, position.y, 0);
+                case TILE_POSITIONS.MIDDLE:
+                    return position;
+                case TILE_POSITIONS.MIDDLE_RIGHT:
+                    return new Vector3Int(position.x + 1, position.y, 0);
+                case TILE_POSITIONS.TOP_LEFT:
+                    return new Vector3Int(position.x - 1, position.y + 1, 0);
+                case TILE_POSITIONS.TOP_MIDDLE:
+                    return new Vector3Int(position.x, position.y + 1, 0);
+                case TILE_POSITIONS.TOP_RIGHT:
+                    return new Vector3Int(position.x + 1, position.y + 1, 0);
+                default:
+                    return position;
+            }
+        }
     }
 }

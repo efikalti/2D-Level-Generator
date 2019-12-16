@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Enums;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.Models.DataStructures
 {
@@ -9,13 +10,16 @@ namespace Assets.Scripts.Models.DataStructures
 
         public TILE_TYPE Type;
 
-        public TILE_POSITIONS Position;
+        public TILE_POSITIONS TilePosition;
 
         public Dictionary<TILE_POSITIONS, Node> Links;
 
-        public Node(string name, TILE_POSITIONS position, TILE_TYPE type) {
+        public Vector3Int Position;
+
+        public Node(string name, Vector3Int position, TILE_POSITIONS tilePosition, TILE_TYPE type) {
             Name = name;
             Position = position;
+            TilePosition = tilePosition;
             Type = type;
             Links = new Dictionary<TILE_POSITIONS, Node>();
         }
@@ -27,17 +31,17 @@ namespace Assets.Scripts.Models.DataStructures
                 return;
             }
 
-            if (Links.ContainsKey(node.Position))
+            if (Links.ContainsKey(node.TilePosition))
             {
                 return;
             }
 
-            Links.Add(node.Position, node);
+            Links.Add(node.TilePosition, node);
         }
 
-        public Node GetLink(TILE_POSITIONS position)
+        public Node GetLink(TILE_POSITIONS tilePosition)
         {
-            if (Links.TryGetValue(position, out Node node))
+            if (Links.TryGetValue(tilePosition, out Node node))
             {
                 return node;
             }

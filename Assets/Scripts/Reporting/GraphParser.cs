@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Models.DataStructures;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Models.DataStructures;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,20 +28,68 @@ namespace Assets.Scripts.Reporting
             string line;
 
             // Write graph content into file
-            using (StreamWriter w = File.CreateText(path))
+            using (StreamWriter streamWriter = File.CreateText(path))
             {
                 // Write column names
-                line = string.Format("{0},{1}", "Node ID", "Node Type");
-                w.WriteLine(line);
-                w.Flush();
+                line = string.Format("{0}, {1}, {2},", "Node ID", "Node Position", "Node Type");
+                // Get neighbor tiles position names
+                line += GetTilePositionsHeader();
+                streamWriter.WriteLine(line);
+                streamWriter.Flush();
 
-                foreach(var node in graph.Nodes)
+                foreach (var node in graph.Nodes)
                 {
-                    line = string.Format("{0},{1}", node.Name, node.Type.ToString());
-                    w.WriteLine(line);
-                    w.Flush();
+                    line = string.Format("{0}, {1}, {2},", node.Name, node.Position.ToString(), node.Type.ToString());
+                    line += WriteNodeLinks(node);
+                    streamWriter.WriteLine(line);
+                    streamWriter.Flush();
                 }
             }
+        }
+
+        public string WriteNodeLinks(Node node)
+        {
+            string line = string.Empty;
+            Node neighbor;
+            foreach(TILE_POSITIONS position in Enum.GetValues(typeof(TILE_POSITIONS)))
+            {
+                if (position != TILE_POSITIONS.MIDDLE)
+                {
+                    neighbor = node.GetLink(position);
+                    if (neighbor == null)
+                    {
+                        line += string.Format(" {0}", -1);
+                    }
+                    else
+                    {
+                        line += string.Format(" {0}", (int) neighbor.Type);
+                    }
+
+                    if (position != TILE_POSITIONS.TOP_RIGHT)
+                    {
+                        line += ",";
+                    }
+                }
+            }
+            return line;
+        }
+
+        public string GetTilePositionsHeader()
+        {
+            string line = string.Empty;
+            foreach (TILE_POSITIONS position in Enum.GetValues(typeof(TILE_POSITIONS)))
+            {
+                if (position != TILE_POSITIONS.MIDDLE)
+                {
+                    line += string.Format("{0}", position.ToString());
+
+                    if (position != TILE_POSITIONS.TOP_RIGHT)
+                    {
+                        line += ",";
+                    }
+                }
+            }
+            return line;
         }
     }
 }

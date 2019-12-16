@@ -380,7 +380,7 @@ namespace Assets.Scripts
                     if (currentTile != null)
                     {
                         // Create node for current tile
-                        node = new Node(currentTile.name, TILE_POSITIONS.MIDDLE, tilemapHelper.GetTileTypeFromSpriteName(currentTile.name));
+                        node = new Node(currentTile.name, new Vector3Int(x, y, 0), TILE_POSITIONS.MIDDLE, tilemapHelper.GetTileTypeFromSpriteName(currentTile.name));
                         
                         // Add all neighboring tiles as links for this node
                         var neighbors = GetTileNeighbors(position);
@@ -389,7 +389,8 @@ namespace Assets.Scripts
                             var neighbor = neighbors[index];
                             if (neighbor != null)
                             {
-                                node.AddLink(new Node(neighbor.name, (TILE_POSITIONS) index, tilemapHelper.GetTileTypeFromSpriteName(neighbor.name)));
+                                node.AddLink(new Node(neighbor.name, Vector3Int.zero, (TILE_POSITIONS)index, tilemapHelper.GetTileTypeFromSpriteName(neighbor.name)));
+
                             }
                         }
 
