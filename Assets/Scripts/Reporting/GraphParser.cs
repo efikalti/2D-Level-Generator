@@ -31,7 +31,7 @@ namespace Assets.Scripts.Reporting
             using (StreamWriter streamWriter = File.CreateText(path))
             {
                 // Write column names
-                line = string.Format("{0}, {1}, {2},", "Node ID", "Node Position", "Node Type");
+                line = string.Format("{0}, {1}, {2}, {3},", "Node ID", "Node x", "Node y", "Node Type");
                 // Get neighbor tiles position names
                 line += GetTilePositionsHeader();
                 streamWriter.WriteLine(line);
@@ -39,7 +39,7 @@ namespace Assets.Scripts.Reporting
 
                 foreach (var node in graph.Nodes)
                 {
-                    line = string.Format("{0}, {1}, {2},", node.Name, node.Position.ToString(), node.Type.ToString());
+                    line = string.Format("{0}, {1}, {2}, {3},", node.Name, node.Position.x, node.Position.y, (int)node.Type);
                     line += WriteNodeLinks(node);
                     streamWriter.WriteLine(line);
                     streamWriter.Flush();
@@ -67,7 +67,7 @@ namespace Assets.Scripts.Reporting
 
                     if (position != TILE_POSITIONS.TOP_RIGHT)
                     {
-                        line += ",";
+                        line += ", ";
                     }
                 }
             }

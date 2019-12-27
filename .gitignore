@@ -34,3 +34,9 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# GAN venv
+GAN/venv
+
+# CSV files
+Assets/Data
