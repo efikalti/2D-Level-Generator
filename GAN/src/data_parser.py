@@ -2,7 +2,7 @@ import os
 import pandas
 
 
-PATH = '../../Assets/Data/Graphs/'
+PATH = '../../Assets/Data/Output/'
 CSV_SUFFIX = '.csv'
 
 

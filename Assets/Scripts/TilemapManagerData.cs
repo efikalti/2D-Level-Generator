@@ -14,6 +14,8 @@ namespace Assets.Scripts
 {
     public partial class TilemapManager
     {
+        public bool GenerateNewLevel = true;
+
         public BoundsInt tilemapBounds;
         public TileItem[] TilesArray;
 
@@ -50,7 +52,7 @@ namespace Assets.Scripts
 
         private GraphParser graphParser;
 
-        public void Setup()
+        public void SetupTilemapGeneration()
         {
             // Create tilemap if it does not exist
             tilemap = GetComponent<Tilemap>();
@@ -87,6 +89,30 @@ namespace Assets.Scripts
             graphParser = new GraphParser();
 
             GenerateLevel();
+        }
+
+        public void SetupTilemapLoad()
+        {
+            // Create tilemap if it does not exist
+            tilemap = GetComponent<Tilemap>();
+            if (tilemap == null)
+            {
+                tilemap = transform.gameObject.AddComponent<Tilemap>();
+                transform.gameObject.AddComponent<TilemapRenderer>();
+            }
+
+            // Initialize TilemapHelper object
+            tilemapHelper = new TilemapHelper(TilesArray);
+
+            // Create GraphParser object
+            graphParser = new GraphParser();
+
+            // Load Graph object from file
+            TilemapGraph = graphParser.ReadGraph();
+
+            // Create tilemap from graph
+            LoadTilemapFromGraph(TilemapGraph);
+
         }
 
         public void InitTilemaps ()

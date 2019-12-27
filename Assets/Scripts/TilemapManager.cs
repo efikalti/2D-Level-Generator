@@ -12,9 +12,17 @@ namespace Assets.Scripts
 {
     public partial class TilemapManager : MonoBehaviour
     {
+
         void Start()
         {
-            Setup();
+            if (GenerateNewLevel)
+            {
+                SetupTilemapGeneration();
+            }
+            else
+            {
+                SetupTilemapLoad();
+            }
         }
 
         void Update()
@@ -408,6 +416,14 @@ namespace Assets.Scripts
             }
 
             return graph;
+        }
+
+        public void LoadTilemapFromGraph(Graph graph)
+        {
+            foreach(var node in graph.Nodes)
+            {
+                tilemap.SetTile(node.Position, tilemapHelper.GetTileByType(node.Type));
+            }
         }
     }
 }
