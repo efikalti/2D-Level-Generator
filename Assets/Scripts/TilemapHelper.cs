@@ -16,6 +16,8 @@ namespace Assets.Scripts
         private readonly TileItem[] TilesArray;
 
         public TilemapHelper() { }
+
+        // TODO: Remove from constructor tilesArray
         public TilemapHelper(TileItem[] tilesArray) => TilesArray = tilesArray;
 
         /// <summary>
@@ -105,8 +107,6 @@ namespace Assets.Scripts
 
             return false;
         }
-
-
 
         public TILE_TYPE GetTileTypeFromSpriteName(string name)
         {

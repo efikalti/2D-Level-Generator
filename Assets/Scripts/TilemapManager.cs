@@ -55,8 +55,11 @@ namespace Assets.Scripts
             // Step 6. Map tilemap to graph
             TilemapGraph = MapTilemapToGraph();
 
-            // Step 7. Write graph to file
-            graphParser.WriteGraph(TilemapGraph);
+            // Step 7. Write tilemap to file
+            graphParser.WriteTilemap(tilemap);
+
+            // TODO: Write and use graph for more details
+            //graphParser.WriteGraph(TilemapGraph);
         }
 
         /// <summary>
@@ -423,6 +426,14 @@ namespace Assets.Scripts
             foreach(var node in graph.Nodes)
             {
                 tilemap.SetTile(node.Position, tilemapHelper.GetTileByType(node.Type));
+            }
+        }
+
+        public void LoadTilemapFromList(List<TileObject> tiles)
+        {
+            foreach (var tile in tiles)
+            {
+                tilemap.SetTile(tile.Position, tilemapHelper.GetTileByType(tile.Type));
             }
         }
     }

@@ -4,17 +4,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Models.DataStructures
 {
-    public class Node
+    public class Node : TileObject
     {
         public string Name;
-
-        public TILE_TYPE Type;
 
         public TILE_POSITIONS TilePosition;
 
         public Dictionary<TILE_POSITIONS, Node> Links;
-
-        public Vector3Int Position;
 
         public Node(string name, Vector3Int position, TILE_POSITIONS tilePosition, TILE_TYPE type) {
             Name = name;

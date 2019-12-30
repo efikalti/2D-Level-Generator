@@ -2,11 +2,7 @@
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
 using Assets.Scripts.Reporting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -50,7 +46,7 @@ namespace Assets.Scripts
 
         private const string defaultNodeName = "node";
 
-        private GraphParser graphParser;
+        private DataParser graphParser;
 
         public void SetupTilemapGeneration()
         {
@@ -86,7 +82,7 @@ namespace Assets.Scripts
             TilemapGraph = new Graph();
 
             // Create GraphParser object
-            graphParser = new GraphParser();
+            graphParser = new DataParser();
 
             GenerateLevel();
         }
@@ -105,13 +101,13 @@ namespace Assets.Scripts
             tilemapHelper = new TilemapHelper(TilesArray);
 
             // Create GraphParser object
-            graphParser = new GraphParser();
+            graphParser = new DataParser();
 
-            // Load Graph object from file
-            TilemapGraph = graphParser.ReadGraph();
+            // Load Tilemap object from file
+            var TilemapList = graphParser.ReadTilemap();
 
             // Create tilemap from graph
-            LoadTilemapFromGraph(TilemapGraph);
+            LoadTilemapFromList(TilemapList);
 
         }
 
