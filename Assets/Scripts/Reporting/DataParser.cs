@@ -34,7 +34,7 @@ namespace Assets.Scripts.Reporting
             using (StreamWriter streamWriter = File.CreateText(path))
             {
                 // Write column names
-                line = string.Format("{0}, {1}, {2}, {3},", "Node ID", "Node x", "Node y", "Node Type");
+                line = string.Format("{0},{1},{2},{3},", "Node ID", "Node x", "Node y", "Node Type");
                 // Get neighbor tiles position names
                 line += GetTilePositionsHeader();
                 streamWriter.WriteLine(line);
@@ -42,7 +42,7 @@ namespace Assets.Scripts.Reporting
 
                 foreach (var node in graph.Nodes)
                 {
-                    line = string.Format("{0}, {1}, {2}, {3},", node.Name, node.Position.x, node.Position.y, (int)node.Type);
+                    line = string.Format("{0},{1},{2},{3},", node.Name, node.Position.x, node.Position.y, (int)node.Type);
                     line += WriteNodeLinks(node);
                     streamWriter.WriteLine(line);
                     streamWriter.Flush();
@@ -221,11 +221,11 @@ namespace Assets.Scripts.Reporting
                         if (tile != null)
                         {
                             typeId = (int)TilemapHelper.Value.GetTileTypeFromSpriteName(tile.name);
-                            line = string.Format("{0}, {1}, {2}", x, y, typeId);
+                            line = string.Format("{0},{1},{2}", x, y, typeId);
                         }
                         else
                         {
-                            line = string.Format("{0}, {1}, {2}", x, y, NullTile);
+                            line = string.Format("{0},{1},{2}", x, y, NullTile);
                         }
                         streamWriter.WriteLine(line);
                         streamWriter.Flush();

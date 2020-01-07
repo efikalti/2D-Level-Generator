@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1698c77a7170c4da511fc498da09f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GenerateNewLevel: 0
+  GenerateNewLevel: 1
   tilemapBounds:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 0, y: 0, z: 0}

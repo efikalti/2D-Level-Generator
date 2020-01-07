@@ -39,6 +39,7 @@ def get_training_data(dir_path):
 def main():
     data = get_training_data(PATH)
     print(data)
+    print(len(data))
 
 
 if __name__ == "__main__":

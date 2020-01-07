@@ -77,11 +77,11 @@ def build_discriminator(self):
     return Model(dungeon, validity)
 
 
-def train(self, epochs, batch_size=128, sample_interval=50):
-    (X_train, _), (_, _) = mnist.load_data()
-    X_train = X_train / 127.5 - 1.
-    X_train = np.expand_dims(X_train, axis=3)
-
+def train(self, data, epochs, batch_size=128, sample_interval=50):
+    # (X_train, _), (_, _) = mnist.load_data()
+    # X_train = X_train / 127.5 - 1.
+    # X_train = np.expand_dims(X_train, axis=3)
+    X_train = data
     valid = np.ones((batch_size, 1))
 
     fake = np.zeros((batch_size, 1))
