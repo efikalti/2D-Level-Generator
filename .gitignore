@@ -40,3 +40,6 @@ GAN/venv
 
 # CSV files
 Assets/Data
+
+# Python
+__pycache__/
