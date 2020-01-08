@@ -1,9 +1,9 @@
 import numpy as np
-from keras.layers import Input, Dense, Reshape, Flatten
-from keras.layers import BatchNormalization
+from keras.layers import Input, Dense, Reshape
+from keras.layers import BatchNormalization, ReLU
 from keras.layers.advanced_activations import LeakyReLU
 from keras.models import Sequential, Model
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 
 from file_parser import FileParser
 
@@ -45,13 +45,13 @@ class GAN():
         model = Sequential()
 
         model.add(Dense(256, input_dim=self.dungeon_dimension))
-        model.add(LeakyReLU(alpha=0.2))
+        model.add(ReLU())
         model.add(BatchNormalization(momentum=0.8))
         model.add(Dense(512))
-        model.add(LeakyReLU(alpha=0.2))
+        model.add(ReLU())
         model.add(BatchNormalization(momentum=0.8))
         model.add(Dense(1024))
-        model.add(LeakyReLU(alpha=0.2))
+        model.add(ReLU())
         model.add(BatchNormalization(momentum=0.8))
         model.add(Dense(np.prod(self.dungeon_shape), activation='tanh'))
         model.add(Reshape(self.dungeon_shape))
@@ -67,9 +67,9 @@ class GAN():
         model = Sequential()
         # model.add(Flatten(input_shape=self.dungeon_shape))
         model.add(Dense(512, input_dim=self.dungeon_dimension))
-        model.add(LeakyReLU(alpha=0.2))
+        model.add(ReLU())
         model.add(Dense(256))
-        model.add(LeakyReLU(alpha=0.2))
+        model.add(ReLU())
         model.add(Dense(1, activation='sigmoid'))
 
         model.summary()
@@ -80,9 +80,6 @@ class GAN():
         return Model(dungeon, validity)
 
     def train(self, data, epochs, batch_size=128, sample_interval=50):
-        # (X_train, _), (_, _) = mnist.load_data()
-        # X_train = X_train / 127.5 - 1.
-        # X_train = np.expand_dims(X_train, axis=3)
         X_train = np.array(data)
         valid = np.ones((batch_size, 1))
 
@@ -90,7 +87,8 @@ class GAN():
 
         for epoch in range(epochs):
             idx = np.random.randint(0, len(X_train), batch_size)
-            # sample = X_train[idx]
+            print("idx: ")
+            print(idx)
             sample = X_train[idx]
             noise = np.random.randint(low=0, high=3, size=(batch_size,
                                                            self.latent_dim))

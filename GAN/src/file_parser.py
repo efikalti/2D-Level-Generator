@@ -1,4 +1,6 @@
 import os
+import random
+import string
 from datetime import datetime
 
 import pandas as pd
@@ -33,7 +35,6 @@ class FileParser:
         for root, dir, file in os.walk(path):
             for f in file:
                 if f.endswith(self.csv_suffix):
-                    print(f)
                     files.append(os.path.join(root, f))
         return files
 
@@ -46,6 +47,7 @@ class FileParser:
     def get_new_file(self):
         path = self.output_path \
                + self.csv_prefix \
+               + self.random_string() \
                + datetime.now().strftime("%d-%m-%Y_%H-%M-%S") \
                + self.csv_suffix
         file = open(path, "w+")
@@ -55,3 +57,7 @@ class FileParser:
         file = self.get_new_file()
         pd.DataFrame(data).to_csv(path_or_buf=file, index=None, header=False)
         file.close()
+
+    def random_string(self):
+        return ''.join(random.choices(string.ascii_uppercase + string.digits,
+                                      k=4))

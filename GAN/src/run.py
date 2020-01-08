@@ -6,11 +6,8 @@ def main():
     file_parser = FileParser()
     data = file_parser.get_csv_data()
 
-    print(data)
-    print("Number of examples: " + str(len(data)))
-
     gan = GAN()
-    gan.train(data, epochs=100, batch_size=2, sample_interval=10)
+    gan.train(data, epochs=100, batch_size=2, sample_interval=50)
 
 
 if __name__ == "__main__":
