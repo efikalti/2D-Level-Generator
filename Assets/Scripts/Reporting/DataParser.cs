@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Reporting
 {
@@ -17,8 +18,16 @@ namespace Assets.Scripts.Reporting
         private const string BaseFilenameSuffix = ".csv";
         private const char CSVSeparator = ',';
         private const string NullTile = "-1";
+        private int CurrentFileIndex = -1;
+
+        private string[] files;
 
         private Lazy<TilemapHelper> TilemapHelper = new Lazy<TilemapHelper>();
+
+        public DataParser()
+        {
+            LoadInputFiles();
+        }
 
         public void WriteGraph(Graph graph)
         {
@@ -101,7 +110,7 @@ namespace Assets.Scripts.Reporting
             Graph graph = new Graph();
 
             // Get all files in input directory
-            var files = Directory.GetFiles(BaseInputPath, "*.csv");
+            files = Directory.GetFiles(BaseInputPath, "*.csv");
 
             if (files.Length < 1)
             {
@@ -235,29 +244,25 @@ namespace Assets.Scripts.Reporting
             }
         }
 
-        public List<TileObject> ReadTilemap()
+        public void LoadInputFiles()
         {
-            // Create new Graph
+            // Get all csv files in input directory
+            files = Directory.GetFiles(BaseInputPath, "*.csv");
+        }
+
+        public List<TileObject> LoadTilesFromFile(string filename)
+        {
+
+            // Create new List
             List<TileObject> tiles = new List<TileObject>();
 
-            // Get all files in input directory
-            var files = Directory.GetFiles(BaseInputPath, "*.csv");
-
-            if (files.Length < 1)
-            {
-                return tiles;
-            }
-
-            // Get first file of directory
-            string file = files[0];
-
-            if (string.IsNullOrWhiteSpace(file))
+            if (string.IsNullOrWhiteSpace(filename))
             {
                 return tiles;
             }
 
             TileObject tile;
-            using (var rd = new StreamReader(file))
+            using (var rd = new StreamReader(filename))
             {
                 while (!rd.EndOfStream)
                 {
@@ -270,6 +275,34 @@ namespace Assets.Scripts.Reporting
             }
 
             return tiles;
+        }
+
+        public List<TileObject> LoadNextFile()
+        {
+
+            CurrentFileIndex++;
+            if (CurrentFileIndex >= files.Length)
+            {
+                CurrentFileIndex = 0;
+            }
+            // Get current file from list
+            string file = files[CurrentFileIndex];
+
+            return LoadTilesFromFile(file);
+        }
+
+        public List<TileObject> LoadPreviousFile()
+        {
+            CurrentFileIndex--;
+            if (CurrentFileIndex < 0)
+            {
+                CurrentFileIndex = files.Length - 1;
+            }
+
+            // Get current file from list
+            string file = files[CurrentFileIndex];
+
+            return LoadTilesFromFile(file);
         }
     }
 }

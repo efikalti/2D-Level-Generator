@@ -87,8 +87,6 @@ class GAN():
 
         for epoch in range(epochs):
             idx = np.random.randint(0, len(X_train), batch_size)
-            print("idx: ")
-            print(idx)
             sample = X_train[idx]
             noise = np.random.randint(low=0, high=3, size=(batch_size,
                                                            self.latent_dim))
@@ -111,7 +109,6 @@ class GAN():
                                                        self.dungeon_dimension))
 
         gen_data = self.generator.predict(noise)
-        print("Generated after " + str(epoch) + " epochs. Writing to file")
         self.file_parser.write_to_csv(self.round_data(gen_data.flatten()))
 
     def round_data(self, data):
