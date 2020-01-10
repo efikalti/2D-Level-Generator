@@ -4,6 +4,7 @@ import string
 from datetime import datetime
 
 import pandas as pd
+import numpy as np
 
 import data_info
 
@@ -15,6 +16,17 @@ class FileParser:
         self.output_path = '../../Assets/Data/GAN_Output/'
         self.csv_suffix = '.csv'
         self.csv_prefix = 'gan_output-'
+        self.dungeon_dimension = data_info.DUNGEON_DIMENSION
+        self.number_of_lines = self.dungeon_dimension * self.dungeon_dimension
+        self.positions_array = np.empty([self.number_of_lines, 2], dtype=int)
+        self.setup_position_array()
+
+    def setup_position_array(self):
+        for x in range(0, self.dungeon_dimension):
+            for y in range(0, self.dungeon_dimension):
+                position = (x * self.dungeon_dimension) + y
+                self.positions_array[position][0] = x
+                self.positions_array[position][1] = y
 
     def get_csv_data(self, path=None):
         if path is None:
@@ -47,15 +59,17 @@ class FileParser:
     def get_new_file(self):
         path = self.output_path \
                + self.csv_prefix \
-               + self.random_string() \
                + datetime.now().strftime("%d-%m-%Y_%H-%M-%S") \
+               + self.random_string() \
                + self.csv_suffix
         file = open(path, "w+")
         return file
 
     def write_to_csv(self, data):
         file = self.get_new_file()
-        pd.DataFrame(data).to_csv(path_or_buf=file, index=None, header=False)
+        data_with_positions = np.insert(self.positions_array, 2, data, axis=1)
+        pd.DataFrame(data_with_positions).to_csv(path_or_buf=file, index=None,
+                                                 header=False)
         file.close()
 
     def random_string(self):

@@ -3,6 +3,7 @@ using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
 using Assets.Scripts.Reporting;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -12,12 +13,12 @@ namespace Assets.Scripts
     {
         public bool GenerateNewLevel = true;
 
-        public BoundsInt tilemapBounds;
         public TileItem[] TilesArray;
 
         public int numberOfRooms = 5;
 
         private Tilemap tilemap;
+        private BoundsInt tilemapBounds;
 
         // GameObjects for Tilemaps
         public GameObject Walls;

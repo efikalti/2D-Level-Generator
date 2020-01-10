@@ -169,9 +169,9 @@ namespace Assets.Scripts.Reporting
             }
 
             // Try parsing x,y coords and tile type
-            if (!int.TryParse(lineParts[1], out int x)
-                || !int.TryParse(lineParts[2], out int y)
-                || !int.TryParse(lineParts[3], out int type))
+            if (!int.TryParse(lineParts[0], out int x)
+                || !int.TryParse(lineParts[1], out int y)
+                || !int.TryParse(lineParts[2], out int type))
             {
                 return null;
             }

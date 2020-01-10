@@ -112,4 +112,10 @@ class GAN():
 
         gen_data = self.generator.predict(noise)
         print("Generated after " + str(epoch) + " epochs. Writing to file")
-        self.file_parser.write_to_csv(gen_data)
+        self.file_parser.write_to_csv(self.round_data(gen_data.flatten()))
+
+    def round_data(self, data):
+        for i in range(0, len(data)):
+            new_value = round(data[i]) + 1
+            data[i] = new_value
+        return data

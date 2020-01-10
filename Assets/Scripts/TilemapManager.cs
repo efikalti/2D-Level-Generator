@@ -1,5 +1,4 @@
-﻿using Assets.Scripts;
-using Assets.Scripts.Enums;
+﻿using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
 using System;
