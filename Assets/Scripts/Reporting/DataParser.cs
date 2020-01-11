@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Reporting
 {
-    class DataParser
+    public class DataParser
     {
         private const string BaseOutputPath = "./Assets/Data/Output/";
         private const string BaseInputPath = "./Assets/Data/Input/";
@@ -279,6 +279,10 @@ namespace Assets.Scripts.Reporting
 
         public List<TileObject> LoadNextFile()
         {
+            if (files.Length == 0)
+            {
+                return new List<TileObject>();
+            }
 
             CurrentFileIndex++;
             if (CurrentFileIndex >= files.Length)

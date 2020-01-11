@@ -10,11 +10,11 @@ public class UIManager : MonoBehaviour
 
     public Button Previous;
 
-    private TilemapManager tilemapManager;
+    private TilemapLoader tilemapLoader;
 
     public void Start()
     {
-        tilemapManager = GetComponent<TilemapManager>();
+        tilemapLoader = GetComponent<TilemapLoader>();
     }
 
     public void SetFilenameText(string name)
@@ -27,11 +27,11 @@ public class UIManager : MonoBehaviour
 
     public void NextDungeon()
     {
-        tilemapManager.LoadNextTilemapFromFile();
+        tilemapLoader.LoadNextTilemapFromFile();
     }
 
     public void PreviousDungeon()
     {
-        tilemapManager.LoadPreviousTilemapFromFile();
+        tilemapLoader.LoadPreviousTilemapFromFile();
     }
 }

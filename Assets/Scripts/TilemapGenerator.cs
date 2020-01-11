@@ -1,6 +1,8 @@
-﻿using Assets.Scripts.Enums;
+﻿using Assets.Scripts.Controllers.TilemapController;
+using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
+using Assets.Scripts.Reporting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +11,72 @@ using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts
 {
-    public partial class TilemapManager : MonoBehaviour
+    public class TilemapGenerator : TilemapControllerBase
     {
+        private BoundsInt tilemapBounds;
+
+        private readonly Dictionary<TRANFROM_RULE, ITransformRule> rules = new Dictionary<TRANFROM_RULE, ITransformRule>();
+
+        private TileItem defaultTile;
+
+        public int numberOfRooms = 5;
+
+        private readonly int sideSize = 30;
+        private readonly int neighborOffset = 1;
+        private readonly int neighborhoodSize = 3;
+
+        private Graph TilemapGraph;
+
+        private const string defaultNodeName = "node";
 
         void Start()
         {
-            if (GenerateNewLevel)
-            {
-                SetupTilemapGeneration();
-            }
-            else
-            {
-                SetupTilemapLoad();
-            }
+            SetupTilemapGeneration();
         }
 
         void Update()
         {
 
+        }
+
+
+        public void SetupTilemapGeneration()
+        {
+            // Create tilemap if it does not exist
+            tilemap = GetComponent<Tilemap>();
+            if (tilemap == null)
+            {
+                tilemap = transform.gameObject.AddComponent<Tilemap>();
+                transform.gameObject.AddComponent<TilemapRenderer>();
+            }
+
+            // Initialize TilemapHelper object
+            tilemapHelper = new TilemapHelper(TilesArray);
+            // Set tilemap bounds object to the value of sideSize x  sideSize x 0
+            tilemapBounds = new BoundsInt(Vector3Int.zero, new Vector3Int(sideSize, sideSize, 0));
+
+            // Initialize and fill the rules dictionary
+            rules.Add(TRANFROM_RULE.WALL_FROM_BOUNDS, new TransformToTileFromBounds(TILE_TYPE.WALL));
+            rules.Add(TRANFROM_RULE.WALL_FROM_ADJACENTS, new TransformToWallFromAdjacents());
+            rules.Add(TRANFROM_RULE.WALL_FOR_ROOM, new TransformToWallForRoom());
+            rules.Add(TRANFROM_RULE.FLOOR_FROM_ADJACENTS, new TransformToRoomFromAdjacents());
+            rules.Add(TRANFROM_RULE.FLOOR_FROM_BOUNDS, new TransformToTileFromBounds(TILE_TYPE.CORRIDOR));
+
+            foreach (var tile in TilesArray)
+            {
+                if (tile.TileType == TILE_TYPE.ROOM_1)
+                {
+                    defaultTile = tile;
+                }
+            }
+
+            // Create Graph object
+            TilemapGraph = new Graph();
+
+            // Create GraphParser object
+            fileParser = new DataParser();
+
+            GenerateLevel();
         }
 
         public void GenerateLevel()
@@ -418,40 +468,6 @@ namespace Assets.Scripts
             }
 
             return graph;
-        }
-
-        public void LoadTilemapFromGraph(Graph graph)
-        {
-            foreach(var node in graph.Nodes)
-            {
-                tilemap.SetTile(node.Position, tilemapHelper.GetTileByType(node.Type));
-            }
-        }
-
-        public void LoadTilemapFromList(List<TileObject> tiles)
-        {
-            foreach (var tile in tiles)
-            {
-                tilemap.SetTile(tile.Position, tilemapHelper.GetTileByType(tile.Type));
-            }
-        }
-
-        public void LoadNextTilemapFromFile()
-        {
-            var tiles = fileParser.LoadNextFile();
-            foreach (var tile in tiles)
-            {
-                tilemap.SetTile(tile.Position, tilemapHelper.GetTileByType(tile.Type));
-            }
-        }
-
-        public void LoadPreviousTilemapFromFile()
-        {
-            var tiles = fileParser.LoadPreviousFile();
-            foreach (var tile in tiles)
-            {
-                tilemap.SetTile(tile.Position, tilemapHelper.GetTileByType(tile.Type));
-            }
         }
     }
 }
