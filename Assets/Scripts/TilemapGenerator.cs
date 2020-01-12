@@ -4,6 +4,7 @@ using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
 using Assets.Scripts.Reporting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,6 +21,9 @@ namespace Assets.Scripts
         private TileItem defaultTile;
 
         public int numberOfRooms = 5;
+
+        public int numberOfDungeonsToGenerate = 1;
+        public int secondsToWaitingBetweenDungeons = 3;
 
         private readonly int sideSize = 30;
         private readonly int neighborOffset = 1;
@@ -75,12 +79,26 @@ namespace Assets.Scripts
 
             // Create GraphParser object
             fileParser = new DataParser();
+        }
 
-            GenerateLevel();
+        public void StartGenerating()
+        {
+            StartCoroutine(GenerateLevels());
+        }
+
+        public IEnumerator GenerateLevels()
+        {
+            WaitForSeconds wait = new WaitForSeconds(secondsToWaitingBetweenDungeons);
+            for (int i = 0; i < numberOfDungeonsToGenerate; i++)
+            {
+                GenerateLevel();
+                yield return wait;
+            }
         }
 
         public void GenerateLevel()
         {
+            print("Generating");
             // Step 1. Fill area with tiles
             FillAreaWithTile(tilemapBounds, defaultTile.Tile);
             tilemapBounds = tilemap.cellBounds;

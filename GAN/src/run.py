@@ -7,7 +7,7 @@ def main():
     data = file_parser.get_csv_data()
 
     gan = GAN()
-    gan.train(data, epochs=100000, batch_size=12, sample_interval=10000)
+    gan.train(data, epochs=100000, batch_size=48, sample_interval=10000)
 
 
 if __name__ == "__main__":

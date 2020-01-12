@@ -103,6 +103,7 @@ class GAN():
                   100*d_loss[1], g_loss))
             if epoch % sample_interval == 0:
                 self.sample_epoch(epoch)
+        self.sample_epoch(epoch)
 
     def sample_epoch(self, epoch):
         noise = np.random.randint(low=0, high=3, size=(1,
