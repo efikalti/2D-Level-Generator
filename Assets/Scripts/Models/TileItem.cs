@@ -7,7 +7,7 @@ namespace Assets.Scripts.Models
     [Serializable]
     public struct TileItem
     {
-        public TILE_TYPE TileType;
+        public TileType TileType;
         public TileBase Tile;
         public int Percentage;
     }

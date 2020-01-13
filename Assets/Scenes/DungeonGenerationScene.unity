@@ -179,7 +179,7 @@ MonoBehaviour:
     Tile: {fileID: 11400000, guid: a3d3669b43192004aa891f78ebdcf58d, type: 2}
     Percentage: 100
   numberOfRooms: 5
-  numberOfDungeonsToGenerate: 100
+  numberOfDungeonsToGenerate: 1
   secondsToWaitingBetweenDungeons: 3
 --- !u!483693784 &31190922
 TilemapRenderer:

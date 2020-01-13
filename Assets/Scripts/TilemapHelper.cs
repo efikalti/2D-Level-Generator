@@ -44,7 +44,7 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="tileType">The TILE_TYPE of the TileBase we want to find</param>
         /// <returns></returns>
-        public TileBase GetTileByType(TILE_TYPE? tileType)
+        public TileBase GetTileByType(TileType? tileType)
         {
             foreach (var tile in TilesArray)
             {
@@ -85,7 +85,7 @@ namespace Assets.Scripts
             Debug.Log(str);
         }
 
-        public bool IsNextToType(TILE_TYPE[] neighbors, TILE_TYPE type)
+        public bool IsNextToType(TileType[] neighbors, TileType type)
         {
             if (neighbors == null ||
                 neighbors.Length < 8)
@@ -96,7 +96,7 @@ namespace Assets.Scripts
             int count = 0;
             foreach(var neighbor in neighbors)
             {
-                if (count != (int)TILE_POSITIONS.MIDDLE)
+                if (count != (int)TilePositions.MIDDLE)
                 {
                     if (neighbor == type)
                     {
@@ -108,9 +108,9 @@ namespace Assets.Scripts
             return false;
         }
 
-        public TILE_TYPE GetTileTypeFromSpriteName(string name)
+        public TileType GetTileTypeFromSpriteName(string name)
         {
-            var defaultType = TILE_TYPE.CORRIDOR;
+            var defaultType = TileType.CORRIDOR;
             if (string.IsNullOrWhiteSpace(name))
             {
                 return defaultType;
@@ -118,15 +118,15 @@ namespace Assets.Scripts
 
             if (name.Equals(TileName.Room.Value))
             {
-                return TILE_TYPE.ROOM_1;
+                return TileType.ROOM;
             }
             else if (name.Equals(TileName.Floor.Value))
             {
-                return TILE_TYPE.CORRIDOR;
+                return TileType.CORRIDOR;
             }
             else if (name.Equals(TileName.Wall.Value))
             {
-                return TILE_TYPE.WALL;
+                return TileType.WALL;
             }
             else
             {
@@ -134,28 +134,28 @@ namespace Assets.Scripts
             }
         }
 
-        public Vector3Int GetNeighborPosition(Vector3Int position, TILE_POSITIONS neighborPosition)
+        public Vector3Int GetNeighborPosition(Vector3Int position, TilePositions neighborPosition)
         {
 
             switch(neighborPosition)
             {
-                case TILE_POSITIONS.DOWN_LEFT:
+                case TilePositions.DOWN_LEFT:
                     return new Vector3Int(position.x - 1, position.y - 1, 0);
-                case TILE_POSITIONS.DOWN_MIDDLE:
+                case TilePositions.DOWN_MIDDLE:
                     return new Vector3Int(position.x, position.y - 1, 0);
-                case TILE_POSITIONS.DOWN_RIGHT:
+                case TilePositions.DOWN_RIGHT:
                     return new Vector3Int(position.x + 1, position.y - 1, 0);
-                case TILE_POSITIONS.MIDDLE_LEFT:
+                case TilePositions.MIDDLE_LEFT:
                     return new Vector3Int(position.x - 1, position.y, 0);
-                case TILE_POSITIONS.MIDDLE:
+                case TilePositions.MIDDLE:
                     return position;
-                case TILE_POSITIONS.MIDDLE_RIGHT:
+                case TilePositions.MIDDLE_RIGHT:
                     return new Vector3Int(position.x + 1, position.y, 0);
-                case TILE_POSITIONS.TOP_LEFT:
+                case TilePositions.TOP_LEFT:
                     return new Vector3Int(position.x - 1, position.y + 1, 0);
-                case TILE_POSITIONS.TOP_MIDDLE:
+                case TilePositions.TOP_MIDDLE:
                     return new Vector3Int(position.x, position.y + 1, 0);
-                case TILE_POSITIONS.TOP_RIGHT:
+                case TilePositions.TOP_RIGHT:
                     return new Vector3Int(position.x + 1, position.y + 1, 0);
                 default:
                     return position;

@@ -6,11 +6,11 @@ namespace Assets.Scripts.Models
     public class TileObject
     {
         public Vector3Int Position;
-        public TILE_TYPE Type;
+        public TileType Type;
 
         public TileObject() { }
 
-        public TileObject(Vector3Int position, TILE_TYPE type) 
+        public TileObject(Vector3Int position, TileType type) 
         {
             Position = position;
             Type = type;

@@ -63,9 +63,9 @@ namespace Assets.Scripts.Reporting
         {
             string line = string.Empty;
             Node neighbor;
-            foreach (TILE_POSITIONS position in Enum.GetValues(typeof(TILE_POSITIONS)))
+            foreach (TilePositions position in Enum.GetValues(typeof(TilePositions)))
             {
-                if (position != TILE_POSITIONS.MIDDLE)
+                if (position != TilePositions.MIDDLE)
                 {
                     neighbor = node.GetLink(position);
                     if (neighbor == null)
@@ -77,7 +77,7 @@ namespace Assets.Scripts.Reporting
                         line += string.Format(" {0}", (int)neighbor.Type);
                     }
 
-                    if (position != TILE_POSITIONS.TOP_RIGHT)
+                    if (position != TilePositions.TOP_RIGHT)
                     {
                         line += ", ";
                     }
@@ -89,13 +89,13 @@ namespace Assets.Scripts.Reporting
         public string GetTilePositionsHeader()
         {
             string line = string.Empty;
-            foreach (TILE_POSITIONS position in Enum.GetValues(typeof(TILE_POSITIONS)))
+            foreach (TilePositions position in Enum.GetValues(typeof(TilePositions)))
             {
-                if (position != TILE_POSITIONS.MIDDLE)
+                if (position != TilePositions.MIDDLE)
                 {
                     line += string.Format("{0}", position.ToString());
 
-                    if (position != TILE_POSITIONS.TOP_RIGHT)
+                    if (position != TilePositions.TOP_RIGHT)
                     {
                         line += ",";
                     }
@@ -163,8 +163,8 @@ namespace Assets.Scripts.Reporting
             return new Node(
                 name: lineParts[0],
                 position: new Vector3Int(x, y, 0),
-                tilePosition: TILE_POSITIONS.MIDDLE,
-                type: (TILE_TYPE)type);
+                tilePosition: TilePositions.MIDDLE,
+                type: (TileType)type);
         }
 
         public TileObject ParseCSVLineToTile(string line)
@@ -188,7 +188,7 @@ namespace Assets.Scripts.Reporting
 
             return new TileObject(
                 position: new Vector3Int(x, y, 0),
-                type: (TILE_TYPE)type);
+                type: (TileType)type);
         }
 
         public void WriteTilemap(Tilemap tilemap)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Enums
 {
-    public enum TILE_POSITIONS
+    public enum TilePositions
     {
         DOWN_LEFT = 0,
         DOWN_MIDDLE = 1,

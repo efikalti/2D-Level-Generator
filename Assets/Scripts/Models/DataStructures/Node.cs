@@ -8,16 +8,16 @@ namespace Assets.Scripts.Models.DataStructures
     {
         public string Name;
 
-        public TILE_POSITIONS TilePosition;
+        public TilePositions TilePosition;
 
-        public Dictionary<TILE_POSITIONS, Node> Links;
+        public Dictionary<TilePositions, Node> Links;
 
-        public Node(string name, Vector3Int position, TILE_POSITIONS tilePosition, TILE_TYPE type) {
+        public Node(string name, Vector3Int position, TilePositions tilePosition, TileType type) {
             Name = name;
             Position = position;
             TilePosition = tilePosition;
             Type = type;
-            Links = new Dictionary<TILE_POSITIONS, Node>();
+            Links = new Dictionary<TilePositions, Node>();
         }
 
         public void AddLink(Node node)
@@ -35,7 +35,7 @@ namespace Assets.Scripts.Models.DataStructures
             Links.Add(node.TilePosition, node);
         }
 
-        public Node GetLink(TILE_POSITIONS tilePosition)
+        public Node GetLink(TilePositions tilePosition)
         {
             if (Links.TryGetValue(tilePosition, out Node node))
             {

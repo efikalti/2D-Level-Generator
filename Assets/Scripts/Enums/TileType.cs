@@ -1,10 +1,10 @@
 ﻿namespace Assets.Scripts.Enums
 {
-    public enum TILE_TYPE
+    public enum TileType
     {
         CORRIDOR,
         WALL,
-        ROOM_1,
+        ROOM,
         STAIRS,
     }
 }

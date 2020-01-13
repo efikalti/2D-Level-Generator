@@ -2,6 +2,7 @@
 using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
+using Assets.Scripts.Models.Evaluation.CA;
 using Assets.Scripts.Reporting;
 using System;
 using System.Collections;
@@ -16,7 +17,7 @@ namespace Assets.Scripts
     {
         private BoundsInt tilemapBounds;
 
-        private readonly Dictionary<TRANFROM_RULE, ITransformRule> rules = new Dictionary<TRANFROM_RULE, ITransformRule>();
+        private readonly Dictionary<TransformRule, ITransformRule> rules = new Dictionary<TransformRule, ITransformRule>();
 
         private TileItem defaultTile;
 
@@ -60,15 +61,15 @@ namespace Assets.Scripts
             tilemapBounds = new BoundsInt(Vector3Int.zero, new Vector3Int(sideSize, sideSize, 0));
 
             // Initialize and fill the rules dictionary
-            rules.Add(TRANFROM_RULE.WALL_FROM_BOUNDS, new TransformToTileFromBounds(TILE_TYPE.WALL));
-            rules.Add(TRANFROM_RULE.WALL_FROM_ADJACENTS, new TransformToWallFromAdjacents());
-            rules.Add(TRANFROM_RULE.WALL_FOR_ROOM, new TransformToWallForRoom());
-            rules.Add(TRANFROM_RULE.FLOOR_FROM_ADJACENTS, new TransformToRoomFromAdjacents());
-            rules.Add(TRANFROM_RULE.FLOOR_FROM_BOUNDS, new TransformToTileFromBounds(TILE_TYPE.CORRIDOR));
+            rules.Add(TransformRule.WALL_FROM_BOUNDS, new TransformToTileFromBounds(TileType.WALL));
+            rules.Add(TransformRule.WALL_FROM_ADJACENTS, new TransformToWallFromAdjacents());
+            rules.Add(TransformRule.WALL_FOR_ROOM, new TransformToWallForRoom());
+            rules.Add(TransformRule.FLOOR_FROM_ADJACENTS, new TransformToRoomFromAdjacents());
+            rules.Add(TransformRule.FLOOR_FROM_BOUNDS, new TransformToTileFromBounds(TileType.CORRIDOR));
 
             foreach (var tile in TilesArray)
             {
-                if (tile.TileType == TILE_TYPE.ROOM_1)
+                if (tile.TileType == TileType.ROOM)
                 {
                     defaultTile = tile;
                 }
@@ -104,11 +105,11 @@ namespace Assets.Scripts
             tilemapBounds = tilemap.cellBounds;
 
             // Step 2. Transform tiles at bounds to walls
-            TransformTilemapArea(tilemapBounds, new TRANFROM_RULE[] { TRANFROM_RULE.WALL_FROM_BOUNDS });
+            TransformTilemapArea(tilemapBounds, new TransformRule[] { TransformRule.WALL_FROM_BOUNDS });
 
             // Step 3. Transform tiles at next to walls to corridors
             var corridorBounds = new BoundsInt(tilemapBounds.xMin + 1, tilemapBounds.yMin + 1, 0, tilemapBounds.xMax - 2, tilemapBounds.yMax - 2, 0);
-            TransformTilemapArea(corridorBounds, new TRANFROM_RULE[] { TRANFROM_RULE.FLOOR_FROM_BOUNDS });
+            TransformTilemapArea(corridorBounds, new TransformRule[] { TransformRule.FLOOR_FROM_BOUNDS });
 
             // Step 3. Create rooms for this tilemap
             var rooms = CalculateRooms();
@@ -117,7 +118,7 @@ namespace Assets.Scripts
             AddRoomsToMap(rooms);
 
             // Step 5. Add walls to rooms
-            TransformTilemapArea(tilemapBounds, new TRANFROM_RULE[] { TRANFROM_RULE.WALL_FOR_ROOM });
+            TransformTilemapArea(tilemapBounds, new TransformRule[] { TransformRule.WALL_FOR_ROOM });
 
             // Step 6. Map tilemap to graph
             TilemapGraph = MapTilemapToGraph();
@@ -127,6 +128,11 @@ namespace Assets.Scripts
 
             // TODO: Write and use graph for more details
             //graphParser.WriteGraph(TilemapGraph);
+
+            // TODO Refactor
+            // Step 8. Evaluate generated Level
+            var evaluationRulesCA = new EvaluationRulesCA(tilemap);
+            evaluationRulesCA.EvaluateCALevel();
         }
 
         /// <summary>
@@ -172,11 +178,11 @@ namespace Assets.Scripts
         /// <param name="tile">The tile we want to apply the rules</param>
         /// <param name="position">The position of the tile on the tilemap</param>
         /// <returns></returns>
-        public TileBase ApplyRules(TileBase tile, Vector3Int position, TRANFROM_RULE[] rules, BoundsInt bounds)
+        public TileBase ApplyRules(TileBase tile, Vector3Int position, TransformRule[] rules, BoundsInt bounds)
         {
             var neighbors = GetTileNeighbors(position);
             TileBase newTile;
-            foreach (TRANFROM_RULE rule in rules)
+            foreach (TransformRule rule in rules)
             {
                 newTile = ApplyRule(rule, position, neighbors, bounds);
                 if (newTile != null)
@@ -194,43 +200,43 @@ namespace Assets.Scripts
         /// <param name="position">The position of the tile on the tilemap</param>
         /// <param name="neighbors">the tile's neighborhood, the 3x3 area around the tile as a 1D array</param>
         /// <returns></returns>
-        public TileBase ApplyRule(TRANFROM_RULE rule, Vector3Int position, TileBase[] neighbors, BoundsInt bounds)
+        public TileBase ApplyRule(TransformRule rule, Vector3Int position, TileBase[] neighbors, BoundsInt bounds)
         {
-            if (rule == TRANFROM_RULE.WALL_FROM_BOUNDS)
+            if (rule == TransformRule.WALL_FROM_BOUNDS)
             {
-                var newTileType = rules[TRANFROM_RULE.WALL_FROM_BOUNDS].Apply(position, bounds);
+                var newTileType = rules[TransformRule.WALL_FROM_BOUNDS].Apply(position, bounds);
                 if (newTileType != null)
                 {
                     return tilemapHelper.GetTileByType(newTileType);
                 }
             }
-            if (rule == TRANFROM_RULE.WALL_FROM_ADJACENTS)
+            if (rule == TransformRule.WALL_FROM_ADJACENTS)
             {
-                var newTileType = rules[TRANFROM_RULE.WALL_FROM_ADJACENTS].Apply(neighbors);
+                var newTileType = rules[TransformRule.WALL_FROM_ADJACENTS].Apply(neighbors);
                 if (newTileType != null)
                 {
                     return tilemapHelper.GetTileByType(newTileType);
                 }
             }
-            if (rule == TRANFROM_RULE.WALL_FOR_ROOM)
+            if (rule == TransformRule.WALL_FOR_ROOM)
             {
-                var newTileType = rules[TRANFROM_RULE.WALL_FOR_ROOM].Apply(neighbors);
+                var newTileType = rules[TransformRule.WALL_FOR_ROOM].Apply(neighbors);
                 if (newTileType != null)
                 {
                     return tilemapHelper.GetTileByType(newTileType);
                 }
             }
-            if (rule == TRANFROM_RULE.FLOOR_FROM_ADJACENTS)
+            if (rule == TransformRule.FLOOR_FROM_ADJACENTS)
             {
-                var newTileType = rules[TRANFROM_RULE.FLOOR_FROM_ADJACENTS].Apply(neighbors);
+                var newTileType = rules[TransformRule.FLOOR_FROM_ADJACENTS].Apply(neighbors);
                 if (newTileType != null)
                 {
                     return tilemapHelper.GetTileByType(newTileType);
                 }
             }
-            if (rule == TRANFROM_RULE.FLOOR_FROM_BOUNDS)
+            if (rule == TransformRule.FLOOR_FROM_BOUNDS)
             {
-                var newTileType = rules[TRANFROM_RULE.FLOOR_FROM_BOUNDS].Apply(position, bounds);
+                var newTileType = rules[TransformRule.FLOOR_FROM_BOUNDS].Apply(position, bounds);
                 if (newTileType != null)
                 {
                     return tilemapHelper.GetTileByType(newTileType);
@@ -244,7 +250,7 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="bounds">The bounded area of the tilemap to be transformed</param>
         /// <param name="rules">The list of rules to be applied to all the tiles in the bounded area</param>
-        public void TransformTilemapArea(BoundsInt bounds, TRANFROM_RULE[] rules)
+        public void TransformTilemapArea(BoundsInt bounds, TransformRule[] rules)
         {
             TileBase currentTile, newTile;
 
@@ -370,8 +376,8 @@ namespace Assets.Scripts
         public void AddRoomsToMap(List<RoomsList> rooms)
         {
             // Get tilebase tiles for the room and the corridor
-            TileBase roomTile = tilemapHelper.GetTileByType(TILE_TYPE.ROOM_1);
-            TileBase corridorTile = tilemapHelper.GetTileByType(TILE_TYPE.CORRIDOR);
+            TileBase roomTile = tilemapHelper.GetTileByType(TileType.ROOM);
+            TileBase corridorTile = tilemapHelper.GetTileByType(TileType.CORRIDOR);
 
             BoundsInt corridorBounds;
 
@@ -458,7 +464,7 @@ namespace Assets.Scripts
                     if (currentTile != null)
                     {
                         // Create node for current tile
-                        node = new Node(currentTile.name, new Vector3Int(x, y, 0), TILE_POSITIONS.MIDDLE, tilemapHelper.GetTileTypeFromSpriteName(currentTile.name));
+                        node = new Node(currentTile.name, new Vector3Int(x, y, 0), TilePositions.MIDDLE, tilemapHelper.GetTileTypeFromSpriteName(currentTile.name));
                         
                         // Add all neighboring tiles as links for this node
                         var neighbors = GetTileNeighbors(position);
@@ -467,7 +473,7 @@ namespace Assets.Scripts
                             var neighbor = neighbors[index];
                             if (neighbor != null)
                             {
-                                node.AddLink(new Node(neighbor.name, Vector3Int.zero, (TILE_POSITIONS)index, tilemapHelper.GetTileTypeFromSpriteName(neighbor.name)));
+                                node.AddLink(new Node(neighbor.name, Vector3Int.zero, (TilePositions)index, tilemapHelper.GetTileTypeFromSpriteName(neighbor.name)));
 
                             }
                         }

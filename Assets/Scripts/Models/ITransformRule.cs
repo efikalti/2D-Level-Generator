@@ -7,20 +7,20 @@ namespace Assets.Scripts.Models
 {
     public interface ITransformRule
     {
-        TILE_TYPE? Apply(TileBase[] neighbors);
-        TILE_TYPE? Apply(Vector3Int position, BoundsInt bounds);
+        TileType? Apply(TileBase[] neighbors);
+        TileType? Apply(Vector3Int position, BoundsInt bounds);
     }
 
     public class TransformToTileFromBounds : ITransformRule
     {
-        public TILE_TYPE type { get; set; }
+        public TileType type { get; set; }
 
-        public TransformToTileFromBounds(TILE_TYPE type)
+        public TransformToTileFromBounds(TileType type)
         {
             this.type = type;
         }
 
-        public TILE_TYPE? Apply(Vector3Int position, BoundsInt bounds)
+        public TileType? Apply(Vector3Int position, BoundsInt bounds)
         {
             if (bounds.x == position.x ||
                 bounds.y == position.y ||
@@ -32,7 +32,7 @@ namespace Assets.Scripts.Models
             return null;
         }
 
-        public TILE_TYPE? Apply(TileBase[] neighbors)
+        public TileType? Apply(TileBase[] neighbors)
         {
             throw new NotImplementedException();
         }
@@ -40,26 +40,26 @@ namespace Assets.Scripts.Models
     public class TransformToWallFromAdjacents : ITransformRule
     {
 
-        public TILE_TYPE? Apply(TileBase[] neighbors)
+        public TileType? Apply(TileBase[] neighbors)
         {
             if (neighbors.Length < 9)
             {
                 return null;
             }
             // Get middle tile
-            var tile = neighbors[(int)TILE_POSITIONS.MIDDLE];
+            var tile = neighbors[(int)TilePositions.MIDDLE];
             // Check if the tile is already a wall
-            if (GetTileTypeFromSpriteName(tile.name) == TILE_TYPE.WALL)
+            if (GetTileTypeFromSpriteName(tile.name) == TileType.WALL)
             {
                 return null;
             }
 
             // Get horizontal and vertical adjacent tiles
             var adjacents = new TileBase[4] {
-                neighbors[(int)TILE_POSITIONS.MIDDLE_LEFT],
-                neighbors[(int)TILE_POSITIONS.MIDDLE_RIGHT],
-                neighbors[(int)TILE_POSITIONS.TOP_MIDDLE],
-                neighbors[(int)TILE_POSITIONS.DOWN_MIDDLE]
+                neighbors[(int)TilePositions.MIDDLE_LEFT],
+                neighbors[(int)TilePositions.MIDDLE_RIGHT],
+                neighbors[(int)TilePositions.TOP_MIDDLE],
+                neighbors[(int)TilePositions.DOWN_MIDDLE]
             };
 
             int count = 0;
@@ -67,27 +67,27 @@ namespace Assets.Scripts.Models
             {
                 if (adjacentTile != null)
                 {
-                    count += GetTileTypeFromSpriteName(adjacentTile.name) == TILE_TYPE.WALL ?
+                    count += GetTileTypeFromSpriteName(adjacentTile.name) == TileType.WALL ?
                         1 : 0;
                 }
             }
 
             if (count >= 2)
             {
-                return TILE_TYPE.WALL;
+                return TileType.WALL;
             }
 
             return null;
         }
 
-        public TILE_TYPE? Apply(Vector3Int position, BoundsInt bounds)
+        public TileType? Apply(Vector3Int position, BoundsInt bounds)
         {
             throw new NotImplementedException();
         }
 
-        public TILE_TYPE GetTileTypeFromSpriteName(string name)
+        public TileType GetTileTypeFromSpriteName(string name)
         {
-            var defaultType = TILE_TYPE.CORRIDOR;
+            var defaultType = TileType.CORRIDOR;
             if (string.IsNullOrWhiteSpace(name))
             {
                 return defaultType;
@@ -95,11 +95,11 @@ namespace Assets.Scripts.Models
 
             if (name.Equals(TileName.Room))
             {
-                return TILE_TYPE.ROOM_1;
+                return TileType.ROOM;
             }
             else if(name.Equals(TileName.Floor))
             {
-                return TILE_TYPE.CORRIDOR;
+                return TileType.CORRIDOR;
             }
             else
             {
@@ -110,33 +110,33 @@ namespace Assets.Scripts.Models
     public class TransformToWallForRoom : ITransformRule
     {
         public Lazy<TilemapHelper> tileMapHelperLazy = new Lazy<TilemapHelper>();
-        public TILE_TYPE? Apply(TileBase[] neighbors)
+        public TileType? Apply(TileBase[] neighbors)
         {
             if (neighbors.Length < 9)
             {
                 return null;
             }
             // Get middle tile
-            var tile = neighbors[(int)TILE_POSITIONS.MIDDLE];
+            var tile = neighbors[(int)TilePositions.MIDDLE];
 
             var tileType = tileMapHelperLazy.Value.GetTileTypeFromSpriteName(tile.name);
             // Check if the tile is already a wall
-            if (tileType == TILE_TYPE.WALL)
+            if (tileType == TileType.WALL)
             {
                 return null;
             }
             // Check if the tile is not floor
-            if (tileType != TILE_TYPE.ROOM_1)
+            if (tileType != TileType.ROOM)
             {
                 return null;
             }
 
-            var neighborTypes = new TILE_TYPE[8];
+            var neighborTypes = new TileType[8];
             int index = 0;
             int count = 0;
             foreach(var neighbor in neighbors)
             {
-                if (count != (int)TILE_POSITIONS.MIDDLE)
+                if (count != (int)TilePositions.MIDDLE)
                 {
                     neighborTypes[index] = tileMapHelperLazy.Value.GetTileTypeFromSpriteName(neighbor.name);
                     index++;
@@ -144,15 +144,15 @@ namespace Assets.Scripts.Models
                 count++;
             }
 
-            if (tileMapHelperLazy.Value.IsNextToType(neighborTypes, TILE_TYPE.CORRIDOR))
+            if (tileMapHelperLazy.Value.IsNextToType(neighborTypes, TileType.CORRIDOR))
             {
-                return TILE_TYPE.WALL;
+                return TileType.WALL;
             }
 
             return null;
         }
 
-        public TILE_TYPE? Apply(Vector3Int position, BoundsInt bounds)
+        public TileType? Apply(Vector3Int position, BoundsInt bounds)
         {
             throw new NotImplementedException();
         }
@@ -162,7 +162,7 @@ namespace Assets.Scripts.Models
     public class TransformToRoomFromAdjacents : ITransformRule
     {
 
-        public TILE_TYPE? Apply(TileBase[] neighbors)
+        public TileType? Apply(TileBase[] neighbors)
         {
             if (neighbors.Length < 9)
             {
@@ -173,10 +173,10 @@ namespace Assets.Scripts.Models
             foreach (var neighbor in neighbors)
             {
                 if (neighbor != null &&
-                    count != (int)TILE_POSITIONS.MIDDLE)
+                    count != (int)TilePositions.MIDDLE)
                 {
                     var tileType = GetTileTypeFromSpriteName(neighbor.name);
-                    if (tileType == TILE_TYPE.ROOM_1)
+                    if (tileType == TileType.ROOM)
                     {
                         roomCount++;
                     }
@@ -185,19 +185,19 @@ namespace Assets.Scripts.Models
             }
             if (roomCount >= count / 2)
             {
-                return TILE_TYPE.ROOM_1;
+                return TileType.ROOM;
             }
             return null;
         }
 
-        public TILE_TYPE? Apply(Vector3Int position, BoundsInt bounds)
+        public TileType? Apply(Vector3Int position, BoundsInt bounds)
         {
             throw new NotImplementedException();
         }
 
-        public TILE_TYPE GetTileTypeFromSpriteName(string name)
+        public TileType GetTileTypeFromSpriteName(string name)
         {
-            var defaultType = TILE_TYPE.CORRIDOR;
+            var defaultType = TileType.CORRIDOR;
             if (string.IsNullOrWhiteSpace(name))
             {
                 return defaultType;
@@ -205,11 +205,11 @@ namespace Assets.Scripts.Models
 
             if (name.Equals(TileName.Room))
             {
-                return TILE_TYPE.ROOM_1;
+                return TileType.ROOM;
             }
             else if (name.Equals(TileName.Floor))
             {
-                return TILE_TYPE.CORRIDOR;
+                return TileType.CORRIDOR;
             }
             else
             {

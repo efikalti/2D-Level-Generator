@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Enums
 {
-    public enum TRANFROM_RULE
+    public enum TransformRule
     {
         WALL_FROM_BOUNDS = 0,
         WALL_FROM_ADJACENTS = 1,
