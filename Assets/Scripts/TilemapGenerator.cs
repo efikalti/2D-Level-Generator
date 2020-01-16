@@ -321,7 +321,6 @@ namespace Assets.Scripts
 
                 // Pick a random number in the room range, upper bound is exclusive so add one to take the correct range
                 int numberOfRooms = randomGenerator.Next(minNumberOfRooms, maxNumberOfRooms + 1);
-                Debug.Log($"Number of rooms: {numberOfRooms}");
 
                 // We require n-1 corridors between rooms, where n is the number of rooms
                 int corridors = numberOfRooms - 1;
@@ -399,7 +398,6 @@ namespace Assets.Scripts
 
                 corridorBounds = new BoundsInt(2, roomY, 0, roomList.MaxWidth, 1, 0);
                 roomY++;
-                Debug.Log($"roomList.MaxWidth: {roomList.MaxWidth}");
                 FillAreaWithTile(corridorBounds, corridorTile);
             }
         }

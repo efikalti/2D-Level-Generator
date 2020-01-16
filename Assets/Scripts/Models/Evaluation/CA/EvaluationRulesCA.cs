@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.Models.Evaluation.CA
@@ -17,8 +18,6 @@ namespace Assets.Scripts.Models.Evaluation.CA
         {
             // Evaluate bounds of tilemap are walls
             var boundsAreWallsResult = EvaluateBoundsAreOfType(Tilemap.cellBounds, Enums.TileType.WALL);
-            Debug.Log(Tilemap.cellBounds);
-            Debug.Log("Bounds are walls result: " + boundsAreWallsResult.Score);
 
 
             // Evaluate cells next to bounds of tilemap are corridors
@@ -29,13 +28,13 @@ namespace Assets.Scripts.Models.Evaluation.CA
 
             var corridorBounds = new BoundsInt(corridorsXMin, corridorsYMin, Tilemap.cellBounds.zMin, sizeX, sizeY, 0);
             var nextToBoundsAreCorridors = EvaluateBoundsAreOfType(corridorBounds, Enums.TileType.CORRIDOR);
-            Debug.Log(corridorBounds);
-            Debug.Log("Next to bounds are corridors result: " + nextToBoundsAreCorridors.Score);
+
+            EvaluateRooms();
         }
 
         public void EvaluateRooms()
         {
-
+            List<BoundsInt> roomAreas = new List<BoundsInt>();
             // Evaluate the area for rooms
             int corridorsXMin = Tilemap.cellBounds.xMin + 2;
             int corridorsYMin = Tilemap.cellBounds.yMin + 2;
@@ -43,37 +42,42 @@ namespace Assets.Scripts.Models.Evaluation.CA
             int sizeY = Tilemap.cellBounds.yMax - corridorsYMin - 2;
             var roomAreaBounds = new BoundsInt(corridorsXMin, corridorsYMin, Tilemap.cellBounds.zMin, sizeX, sizeY, 0);
 
+            int nextPositionToCheck = 0;
             Vector3Int position = new Vector3Int(0, 0, 0);
-            for(int x = roomAreaBounds.xMin; x< roomAreaBounds.xMax; x++)
+            for(int x = roomAreaBounds.xMin; x < roomAreaBounds.xMax; x++)
             {
                 position.x = x;
-                for(int y = roomAreaBounds.yMin; y< roomAreaBounds.yMax; y++)
+                for(int y = roomAreaBounds.yMin; y < roomAreaBounds.yMax; y++)
                 {
                     position.y = y;
 
                     if (IsTileOfType(position, Enums.TileType.WALL)) {
                         // Found wall tile
-
+                        if(IsRoom(position, roomAreaBounds, out BoundsInt roomBounds, out nextPositionToCheck))
+                        {
+                            Debug.Log("count");
+                            roomAreas.Add(roomBounds);
+                        }
                     }
                 }
             }
+
+            PrintRoomAreas(roomAreas);
         }
 
-        public bool IsRoom(Vector3Int startPosition, BoundsInt areaBounds)
+        public bool IsRoom(Vector3Int startPosition, BoundsInt areaBounds, out BoundsInt roomBounds, out int nextPositionToCheck)
         {
-            int xMin = startPosition.x;
-            int yMin = startPosition.y;
-            int xMax = xMin + 1;
-            int yMax = yMin + 1;
-            bool foundNotWall = false;
-            Vector3Int currentPosition = new Vector3Int(startPosition.x, startPosition.y, startPosition.z);
+            bool foundFloor = false;
+            Vector3Int currentPosition = new Vector3Int(startPosition.x, startPosition.y + 1, startPosition.z);
+
+            roomBounds = new BoundsInt();
 
             // Check vertical for the room bounds
-            while (yMax < areaBounds.yMax && !foundNotWall)
+            while (currentPosition.y <= areaBounds.yMax && !foundFloor)
             {
                 if(!IsTileOfType(currentPosition, Enums.TileType.WALL))
                 {
-                    foundNotWall = true;
+                    foundFloor = true;
                     currentPosition.y--;
                 }
                 else
@@ -81,22 +85,22 @@ namespace Assets.Scripts.Models.Evaluation.CA
                     currentPosition.y++;
                 }
             }
+            int roomBoundsY = currentPosition.y;
+            nextPositionToCheck = roomBoundsY + 1;
 
-            if (!foundNotWall)
+            if (!foundFloor || roomBoundsY == startPosition.y)
             {
                 return false;
             }
 
-            int roomBoundsY = currentPosition.y;
-
             // Check horizontal for the room bounds
-            foundNotWall = false;
+            foundFloor = false;
             currentPosition.x++;
-            while (xMax < areaBounds.xMax && !foundNotWall)
+            while (currentPosition.x <= areaBounds.xMax && !foundFloor)
             {
                 if (!IsTileOfType(currentPosition, Enums.TileType.WALL))
                 {
-                    foundNotWall = true;
+                    foundFloor = true;
                     currentPosition.x--;
                 }
                 else
@@ -104,17 +108,17 @@ namespace Assets.Scripts.Models.Evaluation.CA
                     currentPosition.x++;
                 }
             }
+            int roomBoundsX = currentPosition.x;
 
-            if (!foundNotWall)
+            if (!foundFloor || roomBoundsX == startPosition.x)
             {
                 return false;
             }
 
 
-            int roomBoundsX = currentPosition.x;
 
             // Check vertical with the bounds found for y
-            for(int y=startPosition.y; y<=roomBoundsY; y++)
+            for(int y=startPosition.y; y <= roomBoundsY; y++)
             {
                 currentPosition.y = y;
                 if (!IsTileOfType(currentPosition, Enums.TileType.WALL))
@@ -134,7 +138,26 @@ namespace Assets.Scripts.Models.Evaluation.CA
                 }
             }
 
+            if (Mathf.Abs(startPosition.x - roomBoundsX) == 1 || Mathf.Abs(startPosition.y - roomBoundsY) == 1)
+            {
+                return false;
+            }
+
+            roomBounds.SetMinMax(new Vector3Int(startPosition.x, startPosition.y, 0),
+                                 new Vector3Int(roomBoundsX, roomBoundsY, 0));
+
             return true;
+        }
+
+        private void PrintRoomAreas(List<BoundsInt> roomAreas)
+        {
+            Debug.Log($"Number of rooms: {roomAreas.Count}");
+            foreach (var area in roomAreas)
+            {
+                var str = $"Min: {area.min.ToString()}, Max: {area.max.ToString()}";
+                Debug.Log(str);
+            }
+
         }
 
     }
