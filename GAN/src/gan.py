@@ -6,6 +6,7 @@ from keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
 
 from file_parser import FileParser
+from evaluate import Evaluator
 
 
 class GAN():
@@ -40,6 +41,8 @@ class GAN():
                               optimizer=self.optimizer)
 
         self.file_parser = FileParser()
+
+        self.evaluator = Evaluator()
 
     def build_generator(self):
         model = Sequential()
