@@ -99,7 +99,6 @@ namespace Assets.Scripts
 
         public void GenerateLevel()
         {
-            print("Generating");
             // Step 1. Fill area with tiles
             FillAreaWithTile(tilemapBounds, defaultTile.Tile);
             tilemapBounds = tilemap.cellBounds;

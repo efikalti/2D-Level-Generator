@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enums;
+using UnityEngine;
 
 namespace Assets.Scripts.Models.Evaluation
 {
@@ -12,6 +13,11 @@ namespace Assets.Scripts.Models.Evaluation
         public EvaluationResult(int score)
         {
             Score = score;
+        }
+
+        public void PrintResult(string resultName = "")
+        {
+            Debug.Log($"Score for {resultName} is : {Score}");
         }
     }
 }
