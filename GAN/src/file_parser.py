@@ -2,6 +2,7 @@ import os
 import random
 import string
 from datetime import datetime
+from data_transform import DataTransformation
 
 import pandas as pd
 import numpy as np
@@ -20,6 +21,7 @@ class FileParser:
         self.number_of_lines = self.dungeon_dimension * self.dungeon_dimension
         self.positions_array = np.empty([self.number_of_lines, 2], dtype=int)
         self.setup_position_array()
+        self.data_transformation = DataTransformation()
 
     def setup_position_array(self):
         for x in range(0, self.dungeon_dimension):
@@ -65,7 +67,10 @@ class FileParser:
         file = open(path, "w+")
         return file
 
-    def write_to_csv(self, data):
+    def write_to_csv(self, data, transform=True):
+        if transform:
+            data = self.data_transformation.transform_single_to_original(data)
+
         file = self.get_new_file()
         data_with_positions = np.insert(self.positions_array, 2, data, axis=1)
         pd.DataFrame(data_with_positions).to_csv(path_or_buf=file, index=None,

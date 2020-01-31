@@ -130,8 +130,8 @@ namespace Assets.Scripts
 
             // TODO Refactor
             // Step 8. Evaluate generated Level
-            var evaluationRulesCA = new EvaluationRulesCA(tilemap);
-            evaluationRulesCA.EvaluateCALevel();
+            //var evaluationRulesCA = new EvaluationRulesCA(tilemap);
+            //evaluationRulesCA.EvaluateCALevel();
         }
 
         /// <summary>

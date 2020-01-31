@@ -13,7 +13,7 @@ namespace Assets.Scripts.Reporting
     public class DataParser
     {
         private const string BaseOutputPath = "./Assets/Data/Output/";
-        private const string BaseInputPath = "./Assets/Data/Input/";
+        private const string BaseInputPath = "./Assets/Data/GAN_Output/";
         private const string BaseFilename = "graph_";
         private const string BaseFilenameSuffix = ".csv";
         private const char CSVSeparator = ',';
@@ -252,7 +252,7 @@ namespace Assets.Scripts.Reporting
 
         public List<TileObject> LoadTilesFromFile(string filename)
         {
-
+            Debug.Log($"Loading: {filename}");
             // Create new List
             List<TileObject> tiles = new List<TileObject>();
 

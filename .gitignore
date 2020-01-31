@@ -37,6 +37,7 @@ sysinfo.txt
 
 # GAN venv
 GAN/venv
+GAN/test_data
 
 # CSV files
 Assets/Data
