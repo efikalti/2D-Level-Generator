@@ -7,7 +7,7 @@ DATA_TRANSFORMATIONS_TO_ORIGINAL = {-1: 0, 0: 1, 1: 2}
 FUZZY_LOGIC_TRANSFORMATIONS = {0: [0, 0.75], 1: [-0.24, 0.25],
                                2: [-0.75, 0]}
 FUZZY_LOGIC_TO_ORIGINAL = [
-    [-1, -0.25, -1],
-    [-0.24, 0.24, 0],
+    [-1, -0.24, -1],
+    [-0.24, 0.25, 0],
     [0.25, 1, 1]
 ]

@@ -28,7 +28,7 @@ class DataTransformation:
 
     def fuzzy_logic_transform_to_original(self, value):
         for original_range in di.FUZZY_LOGIC_TO_ORIGINAL:
-            if value >= original_range[0] and value <= original_range[1]:
+            if value >= original_range[0] and value < original_range[1]:
                 return original_range[2]
         return value
 
@@ -41,6 +41,7 @@ class DataTransformation:
             if transform_value:
                 if data[i] in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
                     data[i] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[data[i]]
+            print(str(value) + " -> " + str(data[i]))
         # Return data in original format
         return data
 

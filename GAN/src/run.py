@@ -12,7 +12,7 @@ def main():
     data = data_transformation.transform_multiple(data)
 
     gan = GAN()
-    gan.train(data, epochs=10000, batch_size=100, sample_interval=1000)
+    gan.train(data, epochs=1, batch_size=24, sample_interval=1000)
 
     #evaluator = Evaluator()
     #evaluator.evaluate_dungeon(data[0])
