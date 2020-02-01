@@ -6,6 +6,7 @@ from tensorflow.keras.optimizers import Adam
 from keras import backend as K
 from keras.layers.advanced_activations import LeakyReLU
 
+import matplotlib.pyplot as plt
 
 from file_parser import FileParser
 from evaluate import Evaluator
@@ -111,10 +112,36 @@ class GAN():
                   100*d_loss[1], g_loss), end='\r')
             if epoch % sample_interval == 0:
                 self.sample_epoch(epoch)
+                self.sample_images(epoch)
         self.sample_epoch(epoch)
+        self.sample_images(epoch)
 
     def sample_epoch(self, epoch):
         noise = np.random.normal(-1, 1, size=(1, self.dungeon_dimension))
 
         gen_data = self.generator.predict(noise)
         self.file_parser.write_to_csv(gen_data.flatten())
+
+    def sample_images(self, epoch):
+        r, c = 5, 5
+        noise = np.random.normal(-1, 1, (r * c, self.dungeon_dimension))
+        gen = self.generator.predict(noise)
+        gen = 0.5 * gen + 0.5
+
+        imgs = np.empty(shape=(r * c, 30, 30))
+        for count in range(r * c):
+            index = 0
+            for i in range(30):
+                for j in range(30):
+                    imgs[count][i][j] = gen[count][index]
+                    index += 1
+
+        fig, axs = plt.subplots(r, c)
+        cnt = 0
+        for i in range(r):
+            for j in range(c):
+                axs[i, j].imshow(imgs[cnt, :, :], cmap='gray')
+                axs[i, j].axis('off')
+                cnt += 1
+        fig.savefig("images/%d.png" % epoch)
+        plt.close()

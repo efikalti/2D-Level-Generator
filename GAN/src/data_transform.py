@@ -41,7 +41,6 @@ class DataTransformation:
             if transform_value:
                 if data[i] in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
                     data[i] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[data[i]]
-            print(str(value) + " -> " + str(data[i]))
         # Return data in original format
         return data
 
