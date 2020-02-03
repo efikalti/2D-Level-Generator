@@ -2,7 +2,6 @@
 using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
-using Assets.Scripts.Models.Evaluation.CA;
 using Assets.Scripts.Reporting;
 using System;
 using System.Collections;
@@ -22,9 +21,6 @@ namespace Assets.Scripts
         private TileItem defaultTile;
 
         public int numberOfRooms = 5;
-
-        public int numberOfDungeonsToGenerate = 1;
-        public int secondsToWaitingBetweenDungeons = 3;
 
         private readonly int sideSize = 30;
         private readonly int neighborOffset = 1;
@@ -78,26 +74,11 @@ namespace Assets.Scripts
             // Create Graph object
             TilemapGraph = new Graph();
 
-            // Create GraphParser object
+            // Create DataParser object
             fileParser = new DataParser();
         }
 
-        public void StartGenerating()
-        {
-            StartCoroutine(GenerateLevels());
-        }
-
-        public IEnumerator GenerateLevels()
-        {
-            WaitForSeconds wait = new WaitForSeconds(secondsToWaitingBetweenDungeons);
-            for (int i = 0; i < numberOfDungeonsToGenerate; i++)
-            {
-                GenerateLevel();
-                yield return wait;
-            }
-        }
-
-        public void GenerateLevel()
+        public override void GenerateLevel()
         {
             // Step 1. Fill area with tiles
             FillAreaWithTile(tilemapBounds, defaultTile.Tile);
@@ -156,20 +137,6 @@ namespace Assets.Scripts
             }
         }
 
-        /// <summary>
-        /// Fill the bounded tilemap area with one type of tile
-        /// </summary>
-        /// <param name="bounds">The bounded tilemap area to fill with this tile</param>
-        public void FillAreaWithTile(BoundsInt bounds, TileBase tile)
-        {
-            for (int x = bounds.xMin; x < bounds.xMax; x++)
-            {
-                for (int y = bounds.yMin; y < bounds.yMax; y++)
-                {
-                    tilemap.SetTile(new Vector3Int(x, y, 0), tile);
-                }
-            }
-        }
 
         /// <summary>
         /// Apply all the rules supplied in the arguments to the tile in this position

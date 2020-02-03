@@ -161,5 +161,34 @@ namespace Assets.Scripts
                     return position;
             }
         }
+
+        public TileBase GetTileBaseFromLeafType(QuadTreeLeafType type)
+        {
+            // TODO change array
+            switch(type)
+            {
+                case QuadTreeLeafType.ROOM:
+                    return TilesArray[1].Tile;
+                case QuadTreeLeafType.WALL:
+                    return TilesArray[2].Tile;
+                default:
+                    return TilesArray[2].Tile;
+            }
+        }
+
+        /// <summary>
+        /// Fill the bounded tilemap area with one type of tile
+        /// </summary>
+        /// <param name="bounds">The bounded tilemap area to fill with this tile</param>
+        public void FillAreaWithTile(BoundsInt bounds, TileBase tile, Tilemap tilemap)
+        {
+            for (int x = bounds.xMin; x < bounds.xMax; x++)
+            {
+                for (int y = bounds.yMin; y < bounds.yMax; y++)
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, 0), tile);
+                }
+            }
+        }
     }
 }

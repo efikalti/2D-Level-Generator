@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Controllers.TilemapController;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Models.DataStructures;
+using Assets.Scripts.Reporting;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -15,7 +16,7 @@ namespace Assets.Scripts
 
         private QuadTree<QuadTreeLeafType> quadTree;
 
-        private Queue<QuadTree<QuadTreeLeafType>> SplitQueue;
+        private Queue<QuadTree<QuadTreeLeafType>> TreeQueue;
 
         public void Start()
         {
@@ -39,30 +40,49 @@ namespace Assets.Scripts
             tilemapBounds = new BoundsInt(Vector3Int.zero, new Vector3Int(sideSize, sideSize, 0));
 
             // Initialize QuadTree
-            quadTree = new QuadTree<QuadTreeLeafType>(QuadTreeLeafType.WALL, tilemapBounds);
+            quadTree = new QuadTree<QuadTreeLeafType>(QuadTreeLeafType.WALL, tilemapBounds, 0);
 
             // Initialize queue for splitting the tree nodes, and add the root to the queue
-            SplitQueue = new Queue<QuadTree<QuadTreeLeafType>>();
-            SplitQueue.Enqueue(quadTree);
+            TreeQueue = new Queue<QuadTree<QuadTreeLeafType>>();
+            TreeQueue.Enqueue(quadTree);
+
+            // Create DataParser object
+            fileParser = new DataParser();
 
             GenerateLevel();
         }
 
 
-        public void GenerateLevel()
+        public override void GenerateLevel()
+        {
+            // Step 1. Create quad tree representing the dungeon
+            CreateDungeonTree();
+
+            // Step 2. Assign tile types to leafs of the Quad Tree
+            AssignTileTypesToLeafs();
+
+            // Step 3. Create tilemap from tree
+            CreateTilemapFromTree();
+
+            // Step 4. Write tilemap to file
+            fileParser.WriteTilemap(tilemap);
+
+        }
+
+        public void CreateDungeonTree()
         {
             int count = 0;
-            int maxCount = 50;
+            int maxCount = 10;
 
             double possibility = 1d;
 
-            while(SplitQueue.Count > 0)
+            while (TreeQueue.Count > 0)
             {
-                var node = SplitQueue.Dequeue();
+                var node = TreeQueue.Dequeue();
                 node.Split(possibility);
-                foreach(var child in node.Children)
+                foreach (var child in node.Children)
                 {
-                    SplitQueue.Enqueue(child);
+                    TreeQueue.Enqueue(child);
                 }
                 count++;
                 if (count == maxCount)
@@ -70,10 +90,29 @@ namespace Assets.Scripts
                     possibility = 0.5;
                 }
             }
+        }
 
-            // Write tilemap to file
-            fileParser.WriteTilemap(tilemap);
+        public void AssignTileTypesToLeafs()
+        {
 
+            var randomGenerator = new System.Random();
+
+            TreeQueue.Enqueue(quadTree);
+
+            while (TreeQueue.Count > 0)
+            {
+                var node = TreeQueue.Dequeue();
+                node.AssignTile(randomGenerator.NextDouble());
+                foreach (var child in node.Children)
+                {
+                    TreeQueue.Enqueue(child);
+                }
+            }
+        }
+
+        public void CreateTilemapFromTree()
+        {
+            quadTree.CreateTilemapFromLeafs(tilemap, tilemapHelper);
         }
     }
 }

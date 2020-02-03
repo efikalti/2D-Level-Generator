@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.Models.DataStructures
 {
@@ -14,16 +15,22 @@ namespace Assets.Scripts.Models.DataStructures
 
         public BoundsInt LeafBounds;
 
-        public QuadTree(QuadTreeLeafType type, BoundsInt bounds)
+        public double RoomPosibility;
+
+        public int Id;
+
+        public QuadTree(QuadTreeLeafType type, BoundsInt bounds, int id, double roomPosibility = 0.5)
         {
             Type = type;
             Children = new List<QuadTree<T>>();
             LeafBounds = bounds;
+            RoomPosibility = roomPosibility;
+            Id = id;
         }
 
-        public QuadTree<T> AddChild(QuadTreeLeafType child, BoundsInt bounds)
+        public QuadTree<T> AddChild(QuadTreeLeafType child, BoundsInt bounds, int id)
         {
-            QuadTree<T> childNode = new QuadTree<T>(child, bounds) { Parent = this };
+            QuadTree<T> childNode = new QuadTree<T>(child, bounds, id) { Parent = this };
             Children.Add(childNode);
             return childNode;
         }
@@ -62,18 +69,18 @@ namespace Assets.Scripts.Models.DataStructures
 
             if (possibilityToSplit < possibility)
             {
-
+                int id = Id + 1;
                 var topLeftBounds = CalculateTopLeftBounds();
-                AddChild(QuadTreeLeafType.WALL, topLeftBounds);
+                AddChild(QuadTreeLeafType.WALL, topLeftBounds, id++);
 
                 var topRightBounds = CalculateTopRightBounds();
-                AddChild(QuadTreeLeafType.WALL, topRightBounds);
+                AddChild(QuadTreeLeafType.WALL, topRightBounds, id++);
 
                 var bottomLeftBounds = CalculateBottomLeftBounds();
-                AddChild(QuadTreeLeafType.WALL, bottomLeftBounds);
+                AddChild(QuadTreeLeafType.WALL, bottomLeftBounds, id++);
 
                 var bottomRightBounds = CalculateBottomRightBounds();
-                AddChild(QuadTreeLeafType.WALL, bottomRightBounds);
+                AddChild(QuadTreeLeafType.WALL, bottomRightBounds, id++);
             }
         }
 
@@ -82,8 +89,8 @@ namespace Assets.Scripts.Models.DataStructures
             BoundsInt bounds = new BoundsInt();
             {
                 bounds.xMin = LeafBounds.xMin;
-                bounds.xMax = (LeafBounds.xMax - LeafBounds.xMin) / 2;
-                bounds.yMin = 1 + ((LeafBounds.yMax - LeafBounds.yMin) / 2);
+                bounds.xMax = (LeafBounds.xMax + LeafBounds.xMin) / 2;
+                bounds.yMin = ((LeafBounds.yMax + LeafBounds.yMin) / 2);
                 bounds.yMax = LeafBounds.yMax;
             }
             return bounds;
@@ -93,9 +100,9 @@ namespace Assets.Scripts.Models.DataStructures
         {
             BoundsInt bounds = new BoundsInt();
             {
-                bounds.xMin = 1 + ((LeafBounds.xMax - LeafBounds.xMin) / 2);
+                bounds.xMin = ((LeafBounds.xMax + LeafBounds.xMin) / 2);
                 bounds.xMax = LeafBounds.xMax;
-                bounds.yMin = 1 + ((LeafBounds.yMax - LeafBounds.yMin) / 2);
+                bounds.yMin = ((LeafBounds.yMax + LeafBounds.yMin) / 2);
                 bounds.yMax = LeafBounds.yMax;
             }
             return bounds;
@@ -106,9 +113,9 @@ namespace Assets.Scripts.Models.DataStructures
             BoundsInt bounds = new BoundsInt();
             {
                 bounds.xMin = LeafBounds.xMin;
-                bounds.xMax = (LeafBounds.xMax - LeafBounds.xMin) / 2;
+                bounds.xMax = (LeafBounds.xMax + LeafBounds.xMin) / 2;
                 bounds.yMin = LeafBounds.yMin;
-                bounds.yMax = (LeafBounds.yMax - LeafBounds.yMin) / 2;
+                bounds.yMax = (LeafBounds.yMax + LeafBounds.yMin) / 2;
             }
             return bounds;
         }
@@ -117,12 +124,52 @@ namespace Assets.Scripts.Models.DataStructures
         {
             BoundsInt bounds = new BoundsInt();
             {
-                bounds.xMin = 1 + ((LeafBounds.xMax - LeafBounds.xMin) / 2);
+                bounds.xMin = ((LeafBounds.xMax + LeafBounds.xMin) / 2);
                 bounds.xMax = LeafBounds.xMax;
                 bounds.yMin = LeafBounds.yMin;
-                bounds.yMax = (LeafBounds.yMax - LeafBounds.yMin) / 2;
+                bounds.yMax = (LeafBounds.yMax + LeafBounds.yMin) / 2;
             }
             return bounds;
+        }
+
+        public void AssignTile(double possibility)
+        {
+            if (Children.Count == 0)
+            {
+                if (possibility <= RoomPosibility)
+                {
+                    Type = QuadTreeLeafType.ROOM;
+                }
+            }
+        }
+
+        public void CreateTilemapFromLeafs(Tilemap tilemap, TilemapHelper tilemapHelper)
+        {
+            if (Children.Count == 0)
+            {
+                TileBase tile = tilemapHelper.GetTileBaseFromLeafType(Type);
+
+                tilemapHelper.FillAreaWithTile(this.LeafBounds, tile, tilemap);
+            }
+            else
+            {
+                foreach (var child in Children)
+                {
+                    child.CreateTilemapFromLeafs(tilemap, tilemapHelper);
+                }
+            }
+        }
+
+        public void Print()
+        {
+            Debug.Log($"Node {Id}, number of children: {Children.Count}, bounds: {LeafBounds.ToString()}, type: {Type}");
+            if (Children.Count > 0)
+            {
+                foreach (var child in Children)
+                {
+                    child.Print();
+                }
+            }
         }
     }
 }
