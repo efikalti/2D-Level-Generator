@@ -35,6 +35,9 @@ class GAN():
 
         # Create generator object
         self.generator = self.build_generator()
+        self.generator.compile(loss='mean_squared_error',
+                               optimizer=self.optimizer,
+                               metrics=['accuracy'])
 
         # Initialize noise input
         z = Input(shape=self.dungeon_shape)
@@ -48,6 +51,8 @@ class GAN():
         self.file_parser = FileParser()
 
         self.evaluator = Evaluator()
+
+        self.output_images = False
 
     def build_generator(self):
         model = Sequential()
@@ -87,6 +92,7 @@ class GAN():
 
     def train(self, data, epochs, batch_size=128, sample_interval=100):
         X_train = np.array(data)
+
         valid = np.ones((batch_size, 1))
 
         fake = np.zeros((batch_size, 1))
@@ -116,6 +122,26 @@ class GAN():
         self.sample_epoch(epoch)
         self.sample_images(epoch)
 
+    def train_generator(self, data, epochs, batch_size=128, sample_interval=100):
+        X_train = np.array(data)
+
+        for epoch in range(epochs):
+            idx = np.random.randint(0, len(X_train), batch_size)
+            sample = X_train[idx]
+
+            noise = np.random.normal(-1, 1, size=(batch_size,
+                                                  self.dungeon_dimension))
+            g_loss = self.generator.train_on_batch(noise, sample)
+
+            print("%d [G loss: %f, acc.: %.2f%%]" %
+                  (epoch, g_loss[0], g_loss[1]),
+                  end='\r')
+            if epoch % sample_interval == 0:
+                self.sample_epoch(epoch)
+                self.sample_images(epoch)
+        self.sample_epoch(epoch)
+        self.sample_images(epoch)
+
     def sample_epoch(self, epoch):
         noise = np.random.normal(-1, 1, size=(1, self.dungeon_dimension))
 
@@ -123,6 +149,9 @@ class GAN():
         self.file_parser.write_to_csv(gen_data.flatten())
 
     def sample_images(self, epoch):
+        if not self.output_images:
+            return
+
         r, c = 5, 5
         noise = np.random.normal(-1, 1, (r * c, self.dungeon_dimension))
         gen = self.generator.predict(noise)
