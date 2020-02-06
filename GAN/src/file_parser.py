@@ -12,9 +12,8 @@ import data_info
 
 class FileParser:
     def __init__(self):
-        # PATH = '../../Assets/Data/Output/'
-        self.input_path = '../../Assets/Data/Test/'
-        self.output_path = '../../Assets/Data/GAN_Output/'
+        self.input_path = data_info.INPUT_FOLDER
+        self.output_path = data_info.OUTPUT_FOLDER
         self.csv_suffix = '.csv'
         self.csv_prefix = 'gan_output-'
         self.dungeon_dimension = data_info.DUNGEON_DIMENSION

@@ -5,16 +5,17 @@ import data_info as di
 class DataTransformation:
 
     def __init__(self):
+        self.transform_value_enabled = True
+        self.fuzzy_logic_enabled = True
         pass
 
-    def transform_single(self, data, transform_value=True,
-                         add_fuzzy_logic=True):
+    def transform_single(self, data):
         for i in range(0, len(data)):
             original_value = data[i]
-            if transform_value:
+            if self.transform_value_enabled:
                 if original_value in di.DATA_TRANSFORMATIONS:
                     data[i] = di.DATA_TRANSFORMATIONS[original_value]
-            if add_fuzzy_logic:
+            if self.fuzzy_logic_enabled:
                 if original_value in di.FUZZY_LOGIC_TRANSFORMATIONS:
                     data[i] = self.fuzzy_logic_transform(
                         data[i],
@@ -32,14 +33,13 @@ class DataTransformation:
                 return original_range[2]
         return value
 
-    def transform_single_to_original(self, data, transform_value=True,
-                                     add_fuzzy_logic=True):
+    def transform_single_to_original(self, data):
         for i in range(0, len(data)):
             value = data[i]
-            if add_fuzzy_logic:
+            if self.fuzzy_logic_enabled:
                 data[i] = self.fuzzy_logic_transform_to_original(value)
-            if transform_value:
-                if data[i] in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
+            if self.transform_value_enabled:
+                if value in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
                     data[i] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[data[i]]
         # Return data in original format
         return data
