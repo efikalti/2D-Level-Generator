@@ -51,8 +51,6 @@ namespace Assets.Scripts
                 transform.gameObject.AddComponent<TilemapRenderer>();
             }
 
-            // Initialize TilemapHelper object
-            tilemapHelper = new TilemapHelper(TilesArray);
             // Set tilemap bounds object to the value of sideSize x  sideSize x 0
             tilemapBounds = new BoundsInt(Vector3Int.zero, new Vector3Int(sideSize, sideSize, 0));
 
@@ -63,13 +61,7 @@ namespace Assets.Scripts
             rules.Add(TransformRule.FLOOR_FROM_ADJACENTS, new TransformToRoomFromAdjacents());
             rules.Add(TransformRule.FLOOR_FROM_BOUNDS, new TransformToTileFromBounds(TileType.CORRIDOR));
 
-            foreach (var tile in TilesArray)
-            {
-                if (tile.TileType == TileType.ROOM)
-                {
-                    defaultTile = tile;
-                }
-            }
+            defaultTile = TilemapHelper.GetDefaultTile();
 
             // Create Graph object
             TilemapGraph = new Graph();
@@ -81,7 +73,7 @@ namespace Assets.Scripts
         public override void GenerateLevel()
         {
             // Step 1. Fill area with tiles
-            FillAreaWithTile(tilemapBounds, defaultTile.Tile);
+            FillAreaWithTile(tilemapBounds, defaultTile.Tilebase);
             tilemapBounds = tilemap.cellBounds;
 
             // Step 2. Transform tiles at bounds to walls
@@ -127,7 +119,7 @@ namespace Assets.Scripts
             {
                 for (int y = 0; y < bounds.yMax; y++)
                 {
-                    tile = tilemapHelper.GetRandomTile();
+                    tile = TilemapHelper.GetRandomTile();
 
                     if (tile != null)
                     {
@@ -173,7 +165,7 @@ namespace Assets.Scripts
                 var newTileType = rules[TransformRule.WALL_FROM_BOUNDS].Apply(position, bounds);
                 if (newTileType != null)
                 {
-                    return tilemapHelper.GetTileByType(newTileType);
+                    return TilemapHelper.GetTileByType(newTileType);
                 }
             }
             if (rule == TransformRule.WALL_FROM_ADJACENTS)
@@ -181,7 +173,7 @@ namespace Assets.Scripts
                 var newTileType = rules[TransformRule.WALL_FROM_ADJACENTS].Apply(neighbors);
                 if (newTileType != null)
                 {
-                    return tilemapHelper.GetTileByType(newTileType);
+                    return TilemapHelper.GetTileByType(newTileType);
                 }
             }
             if (rule == TransformRule.WALL_FOR_ROOM)
@@ -189,7 +181,7 @@ namespace Assets.Scripts
                 var newTileType = rules[TransformRule.WALL_FOR_ROOM].Apply(neighbors);
                 if (newTileType != null)
                 {
-                    return tilemapHelper.GetTileByType(newTileType);
+                    return TilemapHelper.GetTileByType(newTileType);
                 }
             }
             if (rule == TransformRule.FLOOR_FROM_ADJACENTS)
@@ -197,7 +189,7 @@ namespace Assets.Scripts
                 var newTileType = rules[TransformRule.FLOOR_FROM_ADJACENTS].Apply(neighbors);
                 if (newTileType != null)
                 {
-                    return tilemapHelper.GetTileByType(newTileType);
+                    return TilemapHelper.GetTileByType(newTileType);
                 }
             }
             if (rule == TransformRule.FLOOR_FROM_BOUNDS)
@@ -205,7 +197,7 @@ namespace Assets.Scripts
                 var newTileType = rules[TransformRule.FLOOR_FROM_BOUNDS].Apply(position, bounds);
                 if (newTileType != null)
                 {
-                    return tilemapHelper.GetTileByType(newTileType);
+                    return TilemapHelper.GetTileByType(newTileType);
                 }
             }
             return null;
@@ -341,8 +333,8 @@ namespace Assets.Scripts
         public void AddRoomsToMap(List<RoomsList> rooms)
         {
             // Get tilebase tiles for the room and the corridor
-            TileBase roomTile = tilemapHelper.GetTileByType(TileType.ROOM);
-            TileBase corridorTile = tilemapHelper.GetTileByType(TileType.CORRIDOR);
+            TileBase roomTile = TilemapHelper.GetTileByType(TileType.ROOM);
+            TileBase corridorTile = TilemapHelper.GetTileByType(TileType.CORRIDOR);
 
             BoundsInt corridorBounds;
 
@@ -428,7 +420,7 @@ namespace Assets.Scripts
                     if (currentTile != null)
                     {
                         // Create node for current tile
-                        node = new Node(currentTile.name, new Vector3Int(x, y, 0), TilePositions.MIDDLE, tilemapHelper.GetTileTypeFromSpriteName(currentTile.name));
+                        node = new Node(currentTile.name, new Vector3Int(x, y, 0), TilePositions.MIDDLE, TilemapHelper.GetTileTypeFromSpriteName(currentTile.name));
                         
                         // Add all neighboring tiles as links for this node
                         var neighbors = GetTileNeighbors(position);
@@ -437,7 +429,7 @@ namespace Assets.Scripts
                             var neighbor = neighbors[index];
                             if (neighbor != null)
                             {
-                                node.AddLink(new Node(neighbor.name, Vector3Int.zero, (TilePositions)index, tilemapHelper.GetTileTypeFromSpriteName(neighbor.name)));
+                                node.AddLink(new Node(neighbor.name, Vector3Int.zero, (TilePositions)index, TilemapHelper.GetTileTypeFromSpriteName(neighbor.name)));
 
                             }
                         }

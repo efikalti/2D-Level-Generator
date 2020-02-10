@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 31190923}
   - component: {fileID: 31190922}
   - component: {fileID: 31190924}
+  - component: {fileID: 31190921}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -153,6 +154,24 @@ Transform:
   m_Father: {fileID: 1935047172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &31190921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31190919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1698c77a7170c4da511fc498da09f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Walls: {fileID: 0}
+  Floors: {fileID: 0}
+  Corridors: {fileID: 0}
+  numberOfDungeonsToGenerate: 1
+  secondsToWaitingBetweenDungeons: 3
+  numberOfRooms: 5
 --- !u!483693784 &31190922
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -243,7 +262,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31190919}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec266a315f144d443b8f921664f963a2, type: 3}
   m_Name: 
@@ -251,16 +270,6 @@ MonoBehaviour:
   Walls: {fileID: 0}
   Floors: {fileID: 0}
   Corridors: {fileID: 0}
-  TilesArray:
-  - TileType: 0
-    Tile: {fileID: 11400000, guid: 4b392dfc33513ec48a3e447bd1aaab34, type: 2}
-    Percentage: 20
-  - TileType: 2
-    Tile: {fileID: 11400000, guid: b53f17e6d0fd1c04ea120f7e069d7fd3, type: 2}
-    Percentage: 70
-  - TileType: 1
-    Tile: {fileID: 11400000, guid: a3d3669b43192004aa891f78ebdcf58d, type: 2}
-    Percentage: 100
   numberOfDungeonsToGenerate: 1
   secondsToWaitingBetweenDungeons: 3
 --- !u!1 &170076733

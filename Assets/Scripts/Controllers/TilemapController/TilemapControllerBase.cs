@@ -13,9 +13,6 @@ namespace Assets.Scripts.Controllers.TilemapController
         public GameObject Floors;
         public GameObject Corridors;
 
-        // Array with tile assignments
-        public TileItem[] TilesArray;
-
         // Tilemap main object
         protected Tilemap tilemap;
 
@@ -24,8 +21,6 @@ namespace Assets.Scripts.Controllers.TilemapController
         protected Tilemap WallTilemap;
         protected Tilemap FloorTilemap;
         protected Tilemap CorridorTilemap;
-
-        protected TilemapHelper tilemapHelper;
 
         protected System.Random randomGenerator = new System.Random();
 

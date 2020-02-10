@@ -9,7 +9,7 @@ namespace Assets.Scripts.Models.DataStructures
     class QuadTree<T> : IEnumerable<QuadTree<T>>
     {
 
-        public QuadTreeLeafType Type { get; set; }
+        public TileType Type { get; set; }
         public QuadTree<T> Parent { get; set; }
         public ICollection<QuadTree<T>> Children { get; set; }
 
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Models.DataStructures
 
         public int Id;
 
-        public QuadTree(QuadTreeLeafType type, BoundsInt bounds, int id, double roomPosibility = 0.5)
+        public QuadTree(TileType type, BoundsInt bounds, int id, double roomPosibility = 0.5)
         {
             Type = type;
             Children = new List<QuadTree<T>>();
@@ -28,7 +28,7 @@ namespace Assets.Scripts.Models.DataStructures
             Id = id;
         }
 
-        public QuadTree<T> AddChild(QuadTreeLeafType child, BoundsInt bounds, int id)
+        public QuadTree<T> AddChild(TileType child, BoundsInt bounds, int id)
         {
             QuadTree<T> childNode = new QuadTree<T>(child, bounds, id) { Parent = this };
             Children.Add(childNode);
@@ -71,16 +71,16 @@ namespace Assets.Scripts.Models.DataStructures
             {
                 int id = Id + 1;
                 var topLeftBounds = CalculateTopLeftBounds();
-                AddChild(QuadTreeLeafType.WALL, topLeftBounds, id++);
+                AddChild(TileType.WALL, topLeftBounds, id++);
 
                 var topRightBounds = CalculateTopRightBounds();
-                AddChild(QuadTreeLeafType.WALL, topRightBounds, id++);
+                AddChild(TileType.WALL, topRightBounds, id++);
 
                 var bottomLeftBounds = CalculateBottomLeftBounds();
-                AddChild(QuadTreeLeafType.WALL, bottomLeftBounds, id++);
+                AddChild(TileType.WALL, bottomLeftBounds, id++);
 
                 var bottomRightBounds = CalculateBottomRightBounds();
-                AddChild(QuadTreeLeafType.WALL, bottomRightBounds, id++);
+                AddChild(TileType.WALL, bottomRightBounds, id++);
             }
         }
 
@@ -138,24 +138,24 @@ namespace Assets.Scripts.Models.DataStructures
             {
                 if (possibility <= RoomPosibility)
                 {
-                    Type = QuadTreeLeafType.ROOM;
+                    Type = TileType.ROOM;
                 }
             }
         }
 
-        public void CreateTilemapFromLeafs(Tilemap tilemap, TilemapHelper tilemapHelper)
+        public void CreateTilemapFromLeafs(Tilemap tilemap)
         {
             if (Children.Count == 0)
             {
-                TileBase tile = tilemapHelper.GetTileBaseFromLeafType(Type);
+                TileBase tile = TilemapHelper.GetTileByType(Type);
 
-                tilemapHelper.FillAreaWithTile(this.LeafBounds, tile, tilemap);
+                TilemapHelper.FillAreaWithTile(this.LeafBounds, tile, tilemap);
             }
             else
             {
                 foreach (var child in Children)
                 {
-                    child.CreateTilemapFromLeafs(tilemap, tilemapHelper);
+                    child.CreateTilemapFromLeafs(tilemap);
                 }
             }
         }

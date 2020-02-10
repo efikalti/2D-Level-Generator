@@ -7,7 +7,6 @@ namespace Assets.Scripts.Models.Evaluation
 {
     public abstract class EvaluationRules
     {
-        protected TilemapHelper TilemapHelper;
         protected Tilemap Tilemap;
         protected List<BoundsInt> Rooms;
         protected List<EvaluationResult> Results;

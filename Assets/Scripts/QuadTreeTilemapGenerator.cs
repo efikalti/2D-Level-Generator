@@ -34,13 +34,11 @@ namespace Assets.Scripts
                 transform.gameObject.AddComponent<TilemapRenderer>();
             }
 
-            // Initialize TilemapHelper object
-            tilemapHelper = new TilemapHelper(TilesArray);
             // Set tilemap bounds object to the value of sideSize x  sideSize x 0
             tilemapBounds = new BoundsInt(Vector3Int.zero, new Vector3Int(sideSize, sideSize, 0));
 
             // Initialize QuadTree
-            quadTree = new QuadTree<QuadTreeLeafType>(QuadTreeLeafType.WALL, tilemapBounds, 0);
+            quadTree = new QuadTree<QuadTreeLeafType>(TileType.WALL, tilemapBounds, 0);
 
             // Initialize queue for splitting the tree nodes, and add the root to the queue
             TreeQueue = new Queue<QuadTree<QuadTreeLeafType>>();
@@ -112,7 +110,7 @@ namespace Assets.Scripts
 
         public void CreateTilemapFromTree()
         {
-            quadTree.CreateTilemapFromLeafs(tilemap, tilemapHelper);
+            quadTree.CreateTilemapFromLeafs(tilemap);
         }
     }
 }

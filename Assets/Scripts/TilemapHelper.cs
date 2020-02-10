@@ -2,41 +2,49 @@
 using Assets.Scripts.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts
 {
-    public class TilemapHelper
+    public static class TilemapHelper
     {
-        private readonly System.Random randomGenerator = new System.Random();
-        private readonly TileItem[] TilesArray;
+        private static readonly System.Random randomGenerator = new System.Random();
+        private static List<TileItem> _tilesArray = null;
 
-        public TilemapHelper() { }
+        private static List<TileItem> TilesArray => _tilesArray ?? SetupTilesArray();
 
-        // TODO: Remove from constructor tilesArray
-        public TilemapHelper(TileItem[] tilesArray) => TilesArray = tilesArray;
+        private static List<TileItem> SetupTilesArray()
+        {
+            var tilePaths = Configuration.TileBasePaths;
+            _tilesArray = new List<TileItem>();
+            foreach(var path in tilePaths)
+            {
+                var tileBase = (TileBase)AssetDatabase.LoadAssetAtPath(path, typeof(TileBase));
+                if (tileBase != null)
+                {
+                    var tileItem = new TileItem
+                    {
+                        Tilebase = tileBase,
+                        TileType = GetTileTypeFromSpriteName(tileBase.name)
+                    };
+                    _tilesArray.Add(tileItem);
+                }
+            }
+            return _tilesArray;
+        }
 
         /// <summary>
         /// Returns a random tile from the TilesArray according
         /// The random tile is selected according to the tile type frequency
         /// </summary>
         /// <returns></returns>
-        public TileBase GetRandomTile()
+        public static TileBase GetRandomTile()
         {
-            int percentage = randomGenerator.Next(1, 100);
-            foreach (TileItem tileItem in TilesArray)
-            {
-                if (tileItem.Percentage >= percentage)
-                {
-                    return tileItem.Tile;
-                }
-            }
+            int index = randomGenerator.Next(0, TilesArray.Count);
 
-            return null;
+            return TilesArray[index].Tilebase;
         }
 
         /// <summary>
@@ -44,13 +52,13 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="tileType">The TILE_TYPE of the TileBase we want to find</param>
         /// <returns></returns>
-        public TileBase GetTileByType(TileType? tileType)
+        public static TileBase GetTileByType(TileType? tileType)
         {
             foreach (var tile in TilesArray)
             {
                 if (tile.TileType == tileType)
                 {
-                    return tile.Tile;
+                    return tile.Tilebase;
                 }
             }
             return null;
@@ -62,7 +70,7 @@ namespace Assets.Scripts
         /// </summary>
         /// <param name="position">The center tile position</param>
         /// <param name="neighbors">The 1D array containing the 3x3 tile neighborhood</param>
-        public void PrintTileNeighborhood(Vector3Int position, TileBase[] neighbors)
+        public static void PrintTileNeighborhood(Vector3Int position, TileBase[] neighbors)
         {
             int count = 0;
             string str = $"Neighborhood of tile {position.ToString()} {Environment.NewLine}";
@@ -85,7 +93,7 @@ namespace Assets.Scripts
             Debug.Log(str);
         }
 
-        public bool IsNextToType(TileType[] neighbors, TileType type)
+        public static bool IsNextToType(TileType[] neighbors, TileType type)
         {
             if (neighbors == null ||
                 neighbors.Length < 8)
@@ -108,7 +116,7 @@ namespace Assets.Scripts
             return false;
         }
 
-        public TileType GetTileTypeFromSpriteName(string name)
+        public static TileType GetTileTypeFromSpriteName(string name)
         {
             var defaultType = TileType.CORRIDOR;
             if (string.IsNullOrWhiteSpace(name))
@@ -134,7 +142,7 @@ namespace Assets.Scripts
             }
         }
 
-        public Vector3Int GetNeighborPosition(Vector3Int position, TilePositions neighborPosition)
+        public static Vector3Int GetNeighborPosition(Vector3Int position, TilePositions neighborPosition)
         {
 
             switch(neighborPosition)
@@ -162,25 +170,11 @@ namespace Assets.Scripts
             }
         }
 
-        public TileBase GetTileBaseFromLeafType(QuadTreeLeafType type)
-        {
-            // TODO change array
-            switch(type)
-            {
-                case QuadTreeLeafType.ROOM:
-                    return TilesArray[1].Tile;
-                case QuadTreeLeafType.WALL:
-                    return TilesArray[2].Tile;
-                default:
-                    return TilesArray[2].Tile;
-            }
-        }
-
         /// <summary>
         /// Fill the bounded tilemap area with one type of tile
         /// </summary>
         /// <param name="bounds">The bounded tilemap area to fill with this tile</param>
-        public void FillAreaWithTile(BoundsInt bounds, TileBase tile, Tilemap tilemap)
+        public static void FillAreaWithTile(BoundsInt bounds, TileBase tile, Tilemap tilemap)
         {
             for (int x = bounds.xMin; x < bounds.xMax; x++)
             {
@@ -189,6 +183,18 @@ namespace Assets.Scripts
                     tilemap.SetTile(new Vector3Int(x, y, 0), tile);
                 }
             }
+        }
+
+        public static TileItem GetDefaultTile()
+        {
+            foreach (var tile in TilesArray)
+            {
+                if (tile.TileType == TileType.ROOM)
+                {
+                    return tile;
+                }
+            }
+            return null;
         }
     }
 }

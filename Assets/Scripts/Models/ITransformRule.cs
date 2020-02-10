@@ -109,7 +109,6 @@ namespace Assets.Scripts.Models
     }
     public class TransformToWallForRoom : ITransformRule
     {
-        public Lazy<TilemapHelper> tileMapHelperLazy = new Lazy<TilemapHelper>();
         public TileType? Apply(TileBase[] neighbors)
         {
             if (neighbors.Length < 9)
@@ -119,7 +118,7 @@ namespace Assets.Scripts.Models
             // Get middle tile
             var tile = neighbors[(int)TilePositions.MIDDLE];
 
-            var tileType = tileMapHelperLazy.Value.GetTileTypeFromSpriteName(tile.name);
+            var tileType = TilemapHelper.GetTileTypeFromSpriteName(tile.name);
             // Check if the tile is already a wall
             if (tileType == TileType.WALL)
             {
@@ -138,13 +137,13 @@ namespace Assets.Scripts.Models
             {
                 if (count != (int)TilePositions.MIDDLE)
                 {
-                    neighborTypes[index] = tileMapHelperLazy.Value.GetTileTypeFromSpriteName(neighbor.name);
+                    neighborTypes[index] = TilemapHelper.GetTileTypeFromSpriteName(neighbor.name);
                     index++;
                 }
                 count++;
             }
 
-            if (tileMapHelperLazy.Value.IsNextToType(neighborTypes, TileType.CORRIDOR))
+            if (TilemapHelper.IsNextToType(neighborTypes, TileType.CORRIDOR))
             {
                 return TileType.WALL;
             }

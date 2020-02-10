@@ -4,11 +4,14 @@ using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.Models
 {
-    [Serializable]
-    public struct TileItem
+    public class TileItem
     {
-        public TileType TileType;
-        public TileBase Tile;
-        public int Percentage;
+        public TileType TileType { get; set; }
+        public TileBase Tilebase { get; set; }
+
+        public TileItem()
+        {
+
+        }
     }
 }

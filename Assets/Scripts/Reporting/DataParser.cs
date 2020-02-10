@@ -22,8 +22,6 @@ namespace Assets.Scripts.Reporting
 
         private string[] files;
 
-        private Lazy<TilemapHelper> TilemapHelper = new Lazy<TilemapHelper>();
-
         public DataParser()
         {
             LoadInputFiles();
@@ -229,7 +227,7 @@ namespace Assets.Scripts.Reporting
                         tile = tilemap.GetTile(position);
                         if (tile != null)
                         {
-                            typeId = (int)TilemapHelper.Value.GetTileTypeFromSpriteName(tile.name);
+                            typeId = (int)TilemapHelper.GetTileTypeFromSpriteName(tile.name);
                             line = string.Format("{0},{1},{2}", x, y, typeId);
                         }
                         else

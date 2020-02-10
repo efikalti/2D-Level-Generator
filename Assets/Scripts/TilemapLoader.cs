@@ -25,9 +25,6 @@ namespace Assets.Scripts
                 transform.gameObject.AddComponent<TilemapRenderer>();
             }
 
-            // Initialize TilemapHelper object
-            tilemapHelper = new TilemapHelper(TilesArray);
-
             // Create GraphParser object
             fileParser = new DataParser();
             fileParser.LoadInputFiles();
@@ -79,7 +76,7 @@ namespace Assets.Scripts
         {
             foreach (var node in graph.Nodes)
             {
-                tilemap.SetTile(node.Position, tilemapHelper.GetTileByType(node.Type));
+                tilemap.SetTile(node.Position, TilemapHelper.GetTileByType(node.Type));
             }
         }
 
@@ -87,7 +84,7 @@ namespace Assets.Scripts
         {
             foreach (var tile in tiles)
             {
-                tilemap.SetTile(tile.Position, tilemapHelper.GetTileByType(tile.Type));
+                tilemap.SetTile(tile.Position, TilemapHelper.GetTileByType(tile.Type));
             }
         }
 
@@ -96,7 +93,7 @@ namespace Assets.Scripts
             var tiles = fileParser.LoadNextFile();
             foreach (var tile in tiles)
             {
-                tilemap.SetTile(tile.Position, tilemapHelper.GetTileByType(tile.Type));
+                tilemap.SetTile(tile.Position, TilemapHelper.GetTileByType(tile.Type));
             }
         }
 
@@ -105,7 +102,7 @@ namespace Assets.Scripts
             var tiles = fileParser.LoadPreviousFile();
             foreach (var tile in tiles)
             {
-                tilemap.SetTile(tile.Position, tilemapHelper.GetTileByType(tile.Type));
+                tilemap.SetTile(tile.Position, TilemapHelper.GetTileByType(tile.Type));
             }
         }
     }

@@ -8,7 +8,6 @@ namespace Assets.Scripts.Models.Evaluation.CA
     {
         public EvaluationRulesCA(Tilemap tilemap)
         {
-            TilemapHelper = new TilemapHelper();
             Tilemap = tilemap;
             Results = new List<EvaluationResult>();
         }

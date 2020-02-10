@@ -13,9 +13,9 @@ namespace Assets.Scripts.Models
 
         public string Value { get; set; }
 
-        public static TileName Floor { get { return new TileName("DungeonGroundGreyTiles"); } }
-        public static TileName Wall { get { return new TileName("DungeonWallsTiles"); } }
-        public static TileName Room { get { return new TileName("DungeonGroundBeigeTiles"); } }
+        public static TileName Floor { get { return new TileName("CorridorTile"); } }
+        public static TileName Wall { get { return new TileName("WallTile"); } }
+        public static TileName Room { get { return new TileName("RoomTile"); } }
         
     }
 }

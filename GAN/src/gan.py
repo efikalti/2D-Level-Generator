@@ -53,7 +53,8 @@ class GAN():
         validity = self.discriminator(dungeon_generator)
         self.combined = Model(z, validity)
         self.combined.compile(loss='binary_crossentropy',
-                              optimizer=self.optimizer)
+                              optimizer=self.optimizer,
+                              metrics=['accuracy'])
 
         self.file_parser = FileParser()
 
