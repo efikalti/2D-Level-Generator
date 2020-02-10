@@ -41,7 +41,7 @@ GAN/test_data
 GAN/src/images
 
 # CSV files
-Assets/Data
+Data
 
 # Python
 __pycache__/

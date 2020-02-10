@@ -12,8 +12,8 @@ namespace Assets.Scripts.Reporting
 {
     public class DataParser
     {
-        private const string BaseOutputPath = "./Assets/Data/Output/";
-        private const string BaseInputPath = "./Assets/Data/GAN_Output/";
+        private const string BaseOutputPath = "Data/GAN_Input/";
+        private const string BaseInputPath = "Data/GAN_Output/";
         private const string BaseFilename = "graph_";
         private const string BaseFilenameSuffix = ".csv";
         private const char CSVSeparator = ',';

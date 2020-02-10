@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 31190920}
   - component: {fileID: 31190923}
   - component: {fileID: 31190922}
-  - component: {fileID: 31190924}
   - component: {fileID: 31190921}
   m_Layer: 0
   m_Name: Tilemap
@@ -255,23 +254,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &31190924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 31190919}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec266a315f144d443b8f921664f963a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Walls: {fileID: 0}
-  Floors: {fileID: 0}
-  Corridors: {fileID: 0}
-  numberOfDungeonsToGenerate: 1
-  secondsToWaitingBetweenDungeons: 3
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,7 +576,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 31190924}
+      - m_Target: {fileID: 31190921}
         m_MethodName: StartGenerating
         m_Mode: 1
         m_Arguments:

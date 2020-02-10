@@ -23,5 +23,5 @@ FUZZY_LOGIC_TO_ORIGINAL = [
 NOISE = {"min": -1, "max": 1}
 
 # Folder paths
-INPUT_FOLDER = '../../Assets/Data/Test/'
-OUTPUT_FOLDER = '../../Assets/Data/GAN_Output/'
+INPUT_FOLDER = '../../Data/Test/'
+OUTPUT_FOLDER = '../../Data/GAN_Output/'
