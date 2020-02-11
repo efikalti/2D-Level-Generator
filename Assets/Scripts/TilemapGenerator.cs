@@ -14,6 +14,8 @@ namespace Assets.Scripts
 {
     public class TilemapGenerator : TilemapControllerBase
     {
+        public bool IsEvaluationEnabled = false;
+
         private BoundsInt tilemapBounds;
 
         private readonly Dictionary<TransformRule, ITransformRule> rules = new Dictionary<TransformRule, ITransformRule>();
@@ -25,10 +27,6 @@ namespace Assets.Scripts
         private readonly int sideSize = 30;
         private readonly int neighborOffset = 1;
         private readonly int neighborhoodSize = 3;
-
-        private Graph TilemapGraph;
-
-        private const string defaultNodeName = "node";
 
         void Start()
         {
@@ -63,9 +61,6 @@ namespace Assets.Scripts
 
             defaultTile = TilemapHelper.GetDefaultTile();
 
-            // Create Graph object
-            TilemapGraph = new Graph();
-
             // Create DataParser object
             fileParser = new DataParser();
         }
@@ -92,19 +87,15 @@ namespace Assets.Scripts
             // Step 5. Add walls to rooms
             TransformTilemapArea(tilemapBounds, new TransformRule[] { TransformRule.WALL_FOR_ROOM });
 
-            // Step 6. Map tilemap to graph
-            TilemapGraph = MapTilemapToGraph();
-
-            // Step 7. Write tilemap to file
+            // Step 6. Write tilemap to file
             fileParser.WriteTilemap(tilemap);
 
-            // TODO: Write and use graph for more details
-            //graphParser.WriteGraph(TilemapGraph);
-
-            // TODO Refactor
-            // Step 8. Evaluate generated Level
-            var evaluationRulesCA = new EvaluationRulesCA(tilemap);
-            evaluationRulesCA.EvaluateCALevel();
+            // Step 8. Evaluate generated Level (Optional, default is disabled)
+            if (IsEvaluationEnabled)
+            {
+                var evaluationRulesCA = new EvaluationRulesCA(tilemap);
+                evaluationRulesCA.EvaluateCALevel();
+            }
         }
 
         /// <summary>
