@@ -2,9 +2,9 @@
 using Assets.Scripts.Enums;
 using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
+using Assets.Scripts.Models.Evaluation.CA;
 using Assets.Scripts.Reporting;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -103,8 +103,8 @@ namespace Assets.Scripts
 
             // TODO Refactor
             // Step 8. Evaluate generated Level
-            //var evaluationRulesCA = new EvaluationRulesCA(tilemap);
-            //evaluationRulesCA.EvaluateCALevel();
+            var evaluationRulesCA = new EvaluationRulesCA(tilemap);
+            evaluationRulesCA.EvaluateCALevel();
         }
 
         /// <summary>

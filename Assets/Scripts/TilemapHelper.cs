@@ -124,15 +124,15 @@ namespace Assets.Scripts
                 return defaultType;
             }
 
-            if (name.Equals(TileName.Room.Value))
+            if (name.Equals(Configuration.RoomTileName))
             {
                 return TileType.ROOM;
             }
-            else if (name.Equals(TileName.Floor.Value))
+            else if (name.Equals(Configuration.CorridorTileName))
             {
                 return TileType.CORRIDOR;
             }
-            else if (name.Equals(TileName.Wall.Value))
+            else if (name.Equals(Configuration.WallTileName))
             {
                 return TileType.WALL;
             }
@@ -195,6 +195,18 @@ namespace Assets.Scripts
                 }
             }
             return null;
+        }
+
+        public static bool IsTileOfType(string name, TileType type)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return false;
+            }
+
+            var tileType = GetTileTypeFromSpriteName(name);
+
+            return tileType == type;
         }
     }
 }

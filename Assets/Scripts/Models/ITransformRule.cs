@@ -49,7 +49,7 @@ namespace Assets.Scripts.Models
             // Get middle tile
             var tile = neighbors[(int)TilePositions.MIDDLE];
             // Check if the tile is already a wall
-            if (GetTileTypeFromSpriteName(tile.name) == TileType.WALL)
+            if (TilemapHelper.GetTileTypeFromSpriteName(tile.name) == TileType.WALL)
             {
                 return null;
             }
@@ -67,7 +67,7 @@ namespace Assets.Scripts.Models
             {
                 if (adjacentTile != null)
                 {
-                    count += GetTileTypeFromSpriteName(adjacentTile.name) == TileType.WALL ?
+                    count += TilemapHelper.GetTileTypeFromSpriteName(adjacentTile.name) == TileType.WALL ?
                         1 : 0;
                 }
             }
@@ -83,28 +83,6 @@ namespace Assets.Scripts.Models
         public TileType? Apply(Vector3Int position, BoundsInt bounds)
         {
             throw new NotImplementedException();
-        }
-
-        public TileType GetTileTypeFromSpriteName(string name)
-        {
-            var defaultType = TileType.CORRIDOR;
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return defaultType;
-            }
-
-            if (name.Equals(TileName.Room))
-            {
-                return TileType.ROOM;
-            }
-            else if(name.Equals(TileName.Floor))
-            {
-                return TileType.CORRIDOR;
-            }
-            else
-            {
-                return defaultType;
-            }
         }
     }
     public class TransformToWallForRoom : ITransformRule
@@ -202,13 +180,17 @@ namespace Assets.Scripts.Models
                 return defaultType;
             }
 
-            if (name.Equals(TileName.Room))
+            if (name.Equals(Configuration.RoomTileName))
             {
                 return TileType.ROOM;
             }
-            else if (name.Equals(TileName.Floor))
+            else if (name.Equals(Configuration.CorridorTileName))
             {
                 return TileType.CORRIDOR;
+            }
+            else if (name.Equals(Configuration.WallTileName))
+            {
+                return TileType.WALL;
             }
             else
             {

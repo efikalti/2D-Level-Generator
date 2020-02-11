@@ -21,21 +21,10 @@ namespace Assets.Scripts.Models.Evaluation
             Debug.Log("Total room score: " + totalScore);
         }
 
-        protected bool IsTileOfType(Vector3Int position, TileType type)
-        {
-            if (position == null)
-            {
-                return false;
-            }
-
-            var tileType = TilemapHelper.GetTileTypeFromSpriteName(Tilemap.GetTile(position).name);
-
-            return tileType == type;
-        }
-
         protected int EvaluateTileType(Vector3Int position, TileType type)
         {
-            if (IsTileOfType(position, type))
+            var tile = Tilemap.GetTile(position);
+            if (TilemapHelper.IsTileOfType(tile?.name, type))
             {
                 return +1;
             }
@@ -109,126 +98,9 @@ namespace Assets.Scripts.Models.Evaluation
             return sum;
         }
 
-        protected List<BoundsInt> FindRooms()
-        {
-            List<BoundsInt> roomAreas = new List<BoundsInt>();
-            // Evaluate the area for rooms
-            int corridorsXMin = Tilemap.cellBounds.xMin + 2;
-            int corridorsYMin = Tilemap.cellBounds.yMin + 2;
-            int sizeX = Tilemap.cellBounds.xMax - corridorsXMin - 2;
-            int sizeY = Tilemap.cellBounds.yMax - corridorsYMin - 2;
-            var roomAreaBounds = new BoundsInt(corridorsXMin, corridorsYMin, Tilemap.cellBounds.zMin, sizeX, sizeY, 0);
-
-            int nextPositionToCheck = 0;
-            Vector3Int position = new Vector3Int(0, 0, 0);
-            for (int x = roomAreaBounds.xMin; x < roomAreaBounds.xMax; x++)
-            {
-                position.x = x;
-                for (int y = roomAreaBounds.yMin; y < roomAreaBounds.yMax; y++)
-                {
-                    position.y = y;
-
-                    if (IsTileOfType(position, Enums.TileType.WALL))
-                    {
-                        // Found wall tile
-                        if (IsRoom(position, roomAreaBounds, out BoundsInt roomBounds, out nextPositionToCheck))
-                        {
-                            roomAreas.Add(roomBounds);
-                        }
-                    }
-                }
-            }
-
-            return roomAreas;
-        }
-
-        protected bool IsRoom(Vector3Int startPosition, BoundsInt areaBounds, out BoundsInt roomBounds, out int nextPositionToCheck)
-        {
-            bool foundFloor = false;
-            Vector3Int currentPosition = new Vector3Int(startPosition.x, startPosition.y + 1, startPosition.z);
-
-            roomBounds = new BoundsInt();
-
-            // Check vertical for the room bounds
-            while (currentPosition.y <= areaBounds.yMax && !foundFloor)
-            {
-                if (!IsTileOfType(currentPosition, Enums.TileType.WALL))
-                {
-                    foundFloor = true;
-                    currentPosition.y--;
-                }
-                else
-                {
-                    currentPosition.y++;
-                }
-            }
-            int roomBoundsY = currentPosition.y;
-            nextPositionToCheck = roomBoundsY + 1;
-
-            if (!foundFloor || roomBoundsY == startPosition.y)
-            {
-                return false;
-            }
-
-            // Check horizontal for the room bounds
-            foundFloor = false;
-            currentPosition.x++;
-            while (currentPosition.x <= areaBounds.xMax && !foundFloor)
-            {
-                if (!IsTileOfType(currentPosition, Enums.TileType.WALL))
-                {
-                    foundFloor = true;
-                    currentPosition.x--;
-                }
-                else
-                {
-                    currentPosition.x++;
-                }
-            }
-            int roomBoundsX = currentPosition.x;
-
-            if (!foundFloor || roomBoundsX == startPosition.x)
-            {
-                return false;
-            }
-
-
-
-            // Check vertical with the bounds found for y
-            for (int y = startPosition.y; y <= roomBoundsY; y++)
-            {
-                currentPosition.y = y;
-                if (!IsTileOfType(currentPosition, Enums.TileType.WALL))
-                {
-                    return false;
-                }
-            }
-
-            // Check horizontal with the bounds found for y
-            currentPosition.y = startPosition.y;
-            for (int x = startPosition.x; x <= roomBoundsX; x++)
-            {
-                currentPosition.x = x;
-                if (!IsTileOfType(currentPosition, Enums.TileType.WALL))
-                {
-                    return false;
-                }
-            }
-
-            if (Mathf.Abs(startPosition.x - roomBoundsX) == 1 || Mathf.Abs(startPosition.y - roomBoundsY) == 1)
-            {
-                return false;
-            }
-
-            roomBounds.SetMinMax(new Vector3Int(startPosition.x, startPosition.y, 0),
-                                 new Vector3Int(roomBoundsX, roomBoundsY, 0));
-
-            return true;
-        }
-
         protected EvaluationResult EvaluateRooms()
         {
-            Rooms = FindRooms();
+            Rooms = RoomHelper.FindRooms(Tilemap);
 
             int score = 0;
 
