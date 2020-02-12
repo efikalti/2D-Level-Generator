@@ -6,7 +6,7 @@ class DataTransformation:
 
     def __init__(self):
         self.transform_value_enabled = True
-        self.fuzzy_logic_enabled = True
+        self.fuzzy_logic_enabled = False
         pass
 
     def transform_single(self, data):

@@ -168,8 +168,9 @@ MonoBehaviour:
   Walls: {fileID: 0}
   Floors: {fileID: 0}
   Corridors: {fileID: 0}
-  numberOfDungeonsToGenerate: 1
+  numberOfDungeonsToGenerate: 100
   secondsToWaitingBetweenDungeons: 3
+  IsEvaluationEnabled: 0
   numberOfRooms: 5
 --- !u!483693784 &31190922
 TilemapRenderer:

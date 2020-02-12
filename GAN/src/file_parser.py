@@ -21,6 +21,22 @@ class FileParser:
         self.positions_array = np.empty([self.number_of_lines, 2], dtype=int)
         self.setup_position_array()
         self.data_transformation = DataTransformation()
+        self.image_folder = data_info.IMAGE_FOLDER
+        self.results_filename = self.output_path + "results.txt"
+
+    def create_output_folder(self):
+        now = datetime.now()
+        # dd_mm_YY_H_M_S
+        dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
+        new_path = data_info.OUTPUT_FOLDER + "folder-" + dt_string + "/"
+        if not os.path.exists(new_path):
+            os.makedirs(new_path)
+        self.output_path = new_path
+        self.results_filename = self.output_path + "results.txt"
+        new_image_path = new_path + "/Images/"
+        if not os.path.exists(new_image_path):
+            os.makedirs(new_image_path)
+        self.image_folder = new_image_path
 
     def setup_position_array(self):
         for x in range(0, self.dungeon_dimension):
@@ -79,3 +95,19 @@ class FileParser:
     def random_string(self):
         return ''.join(random.choices(string.ascii_uppercase + string.digits,
                                       k=4))
+
+    def write_results(self, results):
+        file = open(self.results_filename, "a+")
+
+        for str_result in results:
+            file.write(str_result + "\r\r\n\n")
+
+        file.close()
+
+    def write_results_from_stream(self, stream):
+        file = open(self.results_filename, "a+")
+
+        str_result = stream.getvalue()
+        file.write(str_result + "\n\n")
+
+        file.close()

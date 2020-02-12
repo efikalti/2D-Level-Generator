@@ -5,6 +5,7 @@ from keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
 from keras import backend as K
 from keras.layers.advanced_activations import LeakyReLU
+from io import StringIO
 
 import matplotlib.pyplot as plt
 
@@ -24,6 +25,8 @@ class GAN():
         self.epochs = epochs
         self.batch_size = batch_size
         self.sample_interval = sample_interval
+
+        self.str_outputs = []
 
         # Define dungeon dimensions
         self.dungeon_dimension = DUNGEON_DIMENSION * DUNGEON_DIMENSION
@@ -57,10 +60,12 @@ class GAN():
                               metrics=['accuracy'])
 
         self.file_parser = FileParser()
+        self.file_parser.create_output_folder()
+        self.report_models()
 
         self.evaluator = Evaluator()
 
-        self.output_images = False
+        self.output_images = True
 
     def build_generator(self):
         model = Sequential()
@@ -76,8 +81,6 @@ class GAN():
         model.add(BatchNormalization(momentum=0.8))
         model.add(Dense(np.prod(self.dungeon_shape), activation="tanh"))
 
-        model.summary()
-
         noise = Input(shape=self.dungeon_shape)
         dungeon = model(noise)
 
@@ -90,8 +93,6 @@ class GAN():
         model.add(Dense(256))
         model.add(LeakyReLU(alpha=0.2))
         model.add(Dense(1, activation="sigmoid"))
-
-        model.summary()
 
         dungeon = Input(shape=self.dungeon_shape)
         validity = model(dungeon)
@@ -201,10 +202,23 @@ class GAN():
                 axs[i, j].imshow(imgs[cnt, :, :], cmap='gray')
                 axs[i, j].axis('off')
                 cnt += 1
-        fig.savefig("images/%d.png" % epoch)
+        fig.savefig(self.file_parser.image_folder + "%d.png" % epoch)
         plt.close()
 
     def print_epoch_result(self, epoch, result):
-        print("%d [Loss: %f, Acc.: %.2f%%]" %
-              (epoch, result[0], result[1]),
-              end='\r')
+        str_results = "%d [Loss: %f, Acc.: %.2f%%]" % (epoch,
+                                                       result[0], result[1])
+        print(str_results, end='\r')
+        self.str_outputs.append(str_results)
+
+    def write_results(self):
+        self.file_parser.write_results(self.str_outputs)
+
+    def report_models(self):
+        stream = StringIO()
+
+        self.discriminator.summary(print_fn=lambda x: stream.write(x + '\n\n'))
+        self.generator.summary(print_fn=lambda x: stream.write(x + '\n\n'))
+        self.combined.summary(print_fn=lambda x: stream.write(x + '\n\n'))
+
+        self.file_parser.write_results_from_stream(stream)
