@@ -7,7 +7,6 @@ class DataTransformation:
     def __init__(self):
         self.transform_value_enabled = True
         self.fuzzy_logic_enabled = False
-        pass
 
     def transform_single(self, data):
         for i in range(0, len(data)):
@@ -35,12 +34,12 @@ class DataTransformation:
 
     def transform_single_to_original(self, data):
         for i in range(0, len(data)):
-            value = data[i]
+            value = round(data[i])
             if self.fuzzy_logic_enabled:
                 data[i] = self.fuzzy_logic_transform_to_original(value)
             if self.transform_value_enabled:
                 if value in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
-                    data[i] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[data[i]]
+                    data[i] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[value]
         # Return data in original format
         return data
 

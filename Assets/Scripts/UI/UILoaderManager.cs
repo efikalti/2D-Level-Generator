@@ -36,12 +36,14 @@ public class UILoaderManager : MonoBehaviour
 
         if (Next != null)
         {
+            Next.onClick.RemoveAllListeners();
             Next.onClick.AddListener(NextDungeon);
         }
 
 
         if (Previous != null)
         {
+            Previous.onClick.RemoveAllListeners();
             Previous.onClick.AddListener(PreviousDungeon);
         }
 

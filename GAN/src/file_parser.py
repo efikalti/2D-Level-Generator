@@ -11,9 +11,8 @@ import data_info
 
 
 class FileParser:
-    def __init__(self):
+    def __init__(self, output_path=None):
         self.input_path = data_info.INPUT_FOLDER
-        self.output_path = data_info.OUTPUT_FOLDER
         self.csv_suffix = '.csv'
         self.csv_prefix = 'gan_output-'
         self.dungeon_dimension = data_info.DUNGEON_DIMENSION
@@ -22,6 +21,13 @@ class FileParser:
         self.setup_position_array()
         self.data_transformation = DataTransformation()
         self.image_folder = data_info.IMAGE_FOLDER
+
+        if output_path == None:
+            self.create_output_folder()
+        else:
+            self.output_path = output_path
+            self.image_folder = self.output_path + "/Images/"
+
         self.results_filename = self.output_path + "results.txt"
 
     def create_output_folder(self):
@@ -32,11 +38,16 @@ class FileParser:
         if not os.path.exists(new_path):
             os.makedirs(new_path)
         self.output_path = new_path
-        self.results_filename = self.output_path + "results.txt"
+        self.results_filename = self.output_path + "results_" + dt_string + ".txt"
+
         new_image_path = new_path + "/Images/"
         if not os.path.exists(new_image_path):
             os.makedirs(new_image_path)
         self.image_folder = new_image_path
+
+        model_path = new_path + data_info.MODEL_FOLDER
+        if not os.path.exists(model_path):
+            os.makedirs(model_path)
 
     def setup_position_array(self):
         for x in range(0, self.dungeon_dimension):
@@ -111,3 +122,24 @@ class FileParser:
         file.write(str_result + "\n\n")
 
         file.close()
+
+    def save_model(self, model, filename):
+        model_filename = self.output_path + data_info.MODEL_FOLDER + filename + ".json"
+        weights_filename = self.output_path + data_info.MODEL_FOLDER + filename + ".h5"
+        # serialize model to JSON
+        model_json = model.to_json()
+        with open(model_filename, "w") as json_file:
+            json_file.write(model_json)
+        # serialize weights to HDF5
+        model.save_weights(weights_filename)
+
+    def load_model(self, path, filename):
+        model_filename = path + data_info.MODEL_FOLDER + filename + ".json"
+        weights_filename = path + data_info.MODEL_FOLDER + filename + ".h5"
+        # load json and create model
+        json_file = open(model_filename, 'r')
+        loaded_model_json = json_file.read()
+        json_file.close()
+        loaded_model = model_from_json(loaded_model_json)
+        # load weights into new model
+        loaded_model.load_weights(weights_filename)

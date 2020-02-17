@@ -20,7 +20,8 @@ def relu_advanced(x):
 
 
 class GAN():
-    def __init__(self, epochs=10000, batch_size=128, sample_interval=1000):
+    def __init__(self, epochs=10000, batch_size=128, sample_interval=1000,
+                 output_folder=None, file_parser=None, create_models=True):
         # Define training parameters
         self.epochs = epochs
         self.batch_size = batch_size
@@ -32,6 +33,19 @@ class GAN():
         self.dungeon_dimension = DUNGEON_DIMENSION * DUNGEON_DIMENSION
         self.dungeon_shape = (self.dungeon_dimension, )
 
+        if file_parser == None:
+            self.file_parser = FileParser()
+        else:
+            self.file_parser = file_parser
+
+        self.evaluator = Evaluator()
+
+        self.output_images = True
+
+        if create_models:
+            self.setup_new_models()
+
+    def setup_new_models(self):
         # Define optimizer with parameters
         self.optimizer = Adam(0.0002, 0.5)
 
@@ -58,14 +72,6 @@ class GAN():
         self.combined.compile(loss='binary_crossentropy',
                               optimizer=self.optimizer,
                               metrics=['accuracy'])
-
-        self.file_parser = FileParser()
-        self.file_parser.create_output_folder()
-        self.report_models()
-
-        self.evaluator = Evaluator()
-
-        self.output_images = True
 
     def build_generator(self):
         model = Sequential()
@@ -123,9 +129,8 @@ class GAN():
 
             g_loss = self.combined.train_on_batch(noise, valid)
 
-            self.print_epoch_result(epoch, g_loss)
-
             if epoch % self.sample_interval == 0:
+                self.print_epoch_result(epoch, g_loss)
                 self.sample_epoch(epoch)
 
     def train_generator(self, data):
@@ -139,9 +144,8 @@ class GAN():
 
             g_loss = self.generator.train_on_batch(noise, sample)
 
-            self.print_epoch_result(epoch, g_loss)
-
             if epoch % self.sample_interval == 0:
+                self.print_epoch_result(epoch, g_loss)
                 self.sample_epoch(epoch)
 
     def train_discriminator(self, data):
@@ -159,9 +163,8 @@ class GAN():
             d_loss_fake = self.discriminator.train_on_batch(gen_output, fake)
             d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
 
-            self.print_epoch_result(epoch, d_loss)
-
             if epoch % self.sample_interval == 0:
+                self.print_epoch_result(epoch, d_loss)
                 self.sample_epoch(epoch)
 
     def get_noise(self, number_of_samples):
@@ -214,11 +217,11 @@ class GAN():
     def write_results(self):
         self.file_parser.write_results(self.str_outputs)
 
-    def report_models(self):
-        stream = StringIO()
 
-        self.discriminator.summary(print_fn=lambda x: stream.write(x + '\n\n'))
-        self.generator.summary(print_fn=lambda x: stream.write(x + '\n\n'))
-        self.combined.summary(print_fn=lambda x: stream.write(x + '\n\n'))
+    def save_models(self):
+        self.file_parser.save_model(self.generator, "generator")
+        self.file_parser.save_model(self.discriminator, "discriminator")
 
-        self.file_parser.write_results_from_stream(stream)
+    def load_models(self, path):
+        self.generator = self.file_parser.load_model(path, "generator")
+        self.discriminator = self.file_parser.load_model(path, "discriminator")
