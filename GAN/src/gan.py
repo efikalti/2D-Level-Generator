@@ -21,7 +21,8 @@ def relu_advanced(x):
 
 class GAN():
     def __init__(self, epochs=10000, batch_size=128, sample_interval=1000,
-                 output_folder=None, file_parser=None, create_models=True):
+                 output_folder=None, file_parser=None, create_models=True,
+                 train_discriminator=False):
         # Define training parameters
         self.epochs = epochs
         self.batch_size = batch_size
@@ -33,7 +34,9 @@ class GAN():
         self.dungeon_dimension = DUNGEON_DIMENSION * DUNGEON_DIMENSION
         self.dungeon_shape = (self.dungeon_dimension, )
 
-        if file_parser == None:
+        self.train_discriminator = train_discriminator
+
+        if not file_parser:
             self.file_parser = FileParser()
         else:
             self.file_parser = file_parser
@@ -51,6 +54,9 @@ class GAN():
 
         # Create descriminator object
         self.discriminator = self.build_discriminator()
+
+        self.discriminator.trainable = self.train_discriminator
+
         # Parameterize descriminator
         self.discriminator.compile(loss='binary_crossentropy',
                                    optimizer=self.optimizer,
@@ -79,12 +85,31 @@ class GAN():
         model.add(Dense(256, input_dim=self.dungeon_dimension))
         model.add(LeakyReLU(alpha=0.2))
         model.add(BatchNormalization(momentum=0.8))
+
         model.add(Dense(512))
         model.add(LeakyReLU(alpha=0.2))
         model.add(BatchNormalization(momentum=0.8))
+
         model.add(Dense(1024))
         model.add(LeakyReLU(alpha=0.2))
         model.add(BatchNormalization(momentum=0.8))
+
+        model.add(Dense(1024))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(BatchNormalization(momentum=0.8))
+
+        model.add(Dense(1024))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(BatchNormalization(momentum=0.8))
+
+        model.add(Dense(1024))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(BatchNormalization(momentum=0.8))
+
+        model.add(Dense(1024))
+        model.add(LeakyReLU(alpha=0.2))
+        model.add(BatchNormalization(momentum=0.8))
+
         model.add(Dense(np.prod(self.dungeon_shape), activation="tanh"))
 
         noise = Input(shape=self.dungeon_shape)
@@ -94,11 +119,21 @@ class GAN():
 
     def build_discriminator(self):
         model = Sequential()
+
         model.add(Dense(512, input_dim=self.dungeon_dimension))
         model.add(LeakyReLU(alpha=0.2))
+
         model.add(Dense(256))
         model.add(LeakyReLU(alpha=0.2))
-        model.add(Dense(1, activation="sigmoid"))
+
+        model.add(Dense(1024))
+        model.add(LeakyReLU(alpha=0.2))
+
+        model.add(Dense(256))
+        model.add(LeakyReLU(alpha=0.2))
+
+        model.add(Dense(1, input_dim=self.dungeon_dimension,
+                        activation="sigmoid"))
 
         dungeon = Input(shape=self.dungeon_shape)
         validity = model(dungeon)
@@ -112,8 +147,6 @@ class GAN():
         valid = np.ones((batch_size, 1))
 
         fake = np.zeros((batch_size, 1))
-
-        self.discriminator.trainable = False
 
         for epoch in range(self.epochs):
             idx = np.random.randint(0, len(X_train), batch_size)

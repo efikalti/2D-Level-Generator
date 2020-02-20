@@ -4,9 +4,11 @@ using UnityEngine.UI;
 
 public class UILoaderManager : MonoBehaviour
 {
-    private Button Next;
+    private Button NextButton;
 
-    private Button Previous;
+    private Button PreviousButton;
+
+    private InputField FolderInputField;
 
     private TilemapLoader TilemapLoader;
 
@@ -14,6 +16,7 @@ public class UILoaderManager : MonoBehaviour
     {
         SetupTilemapLoader();
         SetupButtons();
+        SetupInputField();
     }
 
     private void SetupButtons()
@@ -25,28 +28,48 @@ public class UILoaderManager : MonoBehaviour
             {
                 if (button.name == "NextButton")
                 {
-                    Next = button;
+                    NextButton = button;
                 }
                 else if (button.name == "PreviousButton")
                 {
-                    Previous = button;
+                    PreviousButton = button;
                 }
             }
         }
 
-        if (Next != null)
+        if (NextButton != null)
         {
-            Next.onClick.RemoveAllListeners();
-            Next.onClick.AddListener(NextDungeon);
+            NextButton.onClick.RemoveAllListeners();
+            NextButton.onClick.AddListener(NextDungeon);
         }
 
 
-        if (Previous != null)
+        if (PreviousButton != null)
         {
-            Previous.onClick.RemoveAllListeners();
-            Previous.onClick.AddListener(PreviousDungeon);
+            PreviousButton.onClick.RemoveAllListeners();
+            PreviousButton.onClick.AddListener(PreviousDungeon);
         }
 
+    }
+
+    private void SetupInputField()
+    {
+        var inputFields = FindObjectsOfType<InputField>();
+        if (inputFields.Length > 0)
+        {
+            foreach (var field in inputFields)
+            {
+                if (field.name == "FolderInputField")
+                {
+                    FolderInputField = field;
+                }
+            }
+        }
+
+        if (FolderInputField != null)
+        {
+            FolderInputField.onEndEdit.AddListener(delegate { LoadInputFiles(); });
+        }
     }
 
     private void SetupTilemapLoader()
@@ -66,5 +89,11 @@ public class UILoaderManager : MonoBehaviour
     void PreviousDungeon()
     {
         TilemapLoader.LoadPreviousTilemapFromFile();
+    }
+
+    void LoadInputFiles()
+    {
+        Debug.Log(FolderInputField.text);
+        TilemapLoader.LoadInputFiles(FolderInputField.text);
     }
 }

@@ -27,13 +27,6 @@ namespace Assets.Scripts
 
             // Create GraphParser object
             fileParser = new DataParser();
-            fileParser.LoadInputFiles();
-
-            // Load Tilemap object from file
-            var TilemapList = fileParser.LoadNextFile();
-
-            // Create tilemap from graph
-            LoadTilemapFromList(TilemapList);
 
         }
 
@@ -104,6 +97,11 @@ namespace Assets.Scripts
             {
                 tilemap.SetTile(tile.Position, TilemapHelper.GetTileByType(tile.Type));
             }
+        }
+
+        public void LoadInputFiles(string folder)
+        {
+            fileParser.LoadInputFiles(folder);
         }
     }
 }

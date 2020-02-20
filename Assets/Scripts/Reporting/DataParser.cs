@@ -24,8 +24,8 @@ namespace Assets.Scripts.Reporting
 
         public DataParser()
         {
-            LoadInputFiles();
         }
+
 
         public void WriteGraph(Graph graph)
         {
@@ -242,10 +242,22 @@ namespace Assets.Scripts.Reporting
             }
         }
 
-        public void LoadInputFiles()
+        public void LoadInputFiles(string folder)
         {
-            // Get all csv files in input directory
-            files = Directory.GetFiles(BaseInputPath, "*.csv");
+            if (string.IsNullOrWhiteSpace(folder))
+            {
+                return;
+            }
+
+            Debug.Log($"Loading folder: {folder}");
+            var inputPath = BaseInputPath + folder;
+
+            if (Directory.Exists(inputPath))
+            {
+                // Get all csv files in that folder
+                files = Directory.GetFiles(inputPath, "*.csv");
+            }
+
         }
 
         public List<TileObject> LoadTilesFromFile(string filename)
