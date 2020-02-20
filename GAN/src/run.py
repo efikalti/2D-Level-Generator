@@ -14,16 +14,13 @@ def main():
     data_transformation = DataTransformation()
     data = data_transformation.transform_multiple(data)
 
-    gan = GAN(epochs=50000, batch_size=32, sample_interval=1000,
+    gan = GAN(epochs=10000, batch_size=64, sample_interval=1000,
               file_parser=file_parser)
     gan.train_generator(data)
 
-    gan.sample_epoch(50000)
-
     gan.epochs = 10000
+    gan.sample_interval = 1000
     gan.train(data)
-
-    gan.sample_epoch(10000)
 
     gan.write_results()
     gan.save_models()

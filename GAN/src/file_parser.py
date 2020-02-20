@@ -3,6 +3,7 @@ import random
 import string
 from datetime import datetime
 from data_transform import DataTransformation
+from keras.models import model_from_json
 
 import pandas as pd
 import numpy as np
@@ -22,7 +23,7 @@ class FileParser:
         self.data_transformation = DataTransformation()
         self.image_folder = data_info.IMAGE_FOLDER
 
-        if output_path == None:
+        if output_path is None:
             self.create_output_folder()
         else:
             self.output_path = output_path
@@ -38,7 +39,8 @@ class FileParser:
         if not os.path.exists(new_path):
             os.makedirs(new_path)
         self.output_path = new_path
-        self.results_filename = self.output_path + "results_" + dt_string + ".txt"
+        self.results_filename = str(self.output_path + "results_"
+                                    + dt_string + ".txt")
 
         new_image_path = new_path + "/Images/"
         if not os.path.exists(new_image_path):
@@ -124,8 +126,10 @@ class FileParser:
         file.close()
 
     def save_model(self, model, filename):
-        model_filename = self.output_path + data_info.MODEL_FOLDER + filename + ".json"
-        weights_filename = self.output_path + data_info.MODEL_FOLDER + filename + ".h5"
+        model_filename = str(self.output_path + data_info.MODEL_FOLDER
+                             + filename + ".json")
+        weights_filename = str(self.output_path + data_info.MODEL_FOLDER
+                               + filename + ".h5")
         # serialize model to JSON
         model_json = model.to_json()
         with open(model_filename, "w") as json_file:

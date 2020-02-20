@@ -1,11 +1,10 @@
 import numpy as np
-from keras.layers import Input, Dense
+from keras.layers import Input, Dense  # , Dropout
 from keras.layers import BatchNormalization
 from keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
 from keras import backend as K
 from keras.layers.advanced_activations import LeakyReLU
-from io import StringIO
 
 import matplotlib.pyplot as plt
 
@@ -80,67 +79,105 @@ class GAN():
                               metrics=['accuracy'])
 
     def build_generator(self):
-        model = Sequential()
+        self.str_outputs.append("Generator model - Sequential")
+        self.model = None
+        self.model = Sequential()
 
-        model.add(Dense(256, input_dim=self.dungeon_dimension))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(BatchNormalization(momentum=0.8))
+        self.add_layer(Dense(units=256, input_dim=self.dungeon_dimension),
+                       "Dense, units=256, input_dim="
+                       + str(self.dungeon_dimension))
 
-        model.add(Dense(512))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(BatchNormalization(momentum=0.8))
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
 
-        model.add(Dense(1024))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(BatchNormalization(momentum=0.8))
+        self.add_layer(BatchNormalization(momentum=0.8),
+                       "BatchNormalization, momentum=0.8")
 
-        model.add(Dense(1024))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(BatchNormalization(momentum=0.8))
+        self.add_layer(Dense(units=512), "Dense, units=1024")
 
-        model.add(Dense(1024))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(BatchNormalization(momentum=0.8))
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
 
-        model.add(Dense(1024))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(BatchNormalization(momentum=0.8))
+        self.add_layer(BatchNormalization(momentum=0.8),
+                       "BatchNormalization, momentum=0.8")
 
-        model.add(Dense(1024))
-        model.add(LeakyReLU(alpha=0.2))
-        model.add(BatchNormalization(momentum=0.8))
+        self.add_layer(Dense(units=1024), "Dense, units=1024")
 
-        model.add(Dense(np.prod(self.dungeon_shape), activation="tanh"))
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
+
+        self.add_layer(BatchNormalization(momentum=0.8),
+                       "BatchNormalization, momentum=0.8")
+
+        self.add_layer(Dense(units=1024), "Dense, units=1024")
+
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
+
+        self.add_layer(BatchNormalization(momentum=0.8),
+                       "BatchNormalization, momentum=0.8")
+
+        self.add_layer(Dense(units=1024), "Dense, units=1024")
+
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
+
+        self.add_layer(BatchNormalization(momentum=0.8),
+                       "BatchNormalization, momentum=0.8")
+
+        self.add_layer(Dense(units=1024), "Dense, units=1024")
+
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
+
+        self.add_layer(BatchNormalization(momentum=0.8),
+                       "BatchNormalization, momentum=0.8")
+
+        self.add_layer(Dense(units=1024), "Dense, units=1024")
+
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
+
+        self.add_layer(BatchNormalization(momentum=0.8),
+                       "BatchNormalization, momentum=0.8")
+
+        self.add_layer(Dense(np.prod(self.dungeon_shape), activation="tanh"),
+                       "Dense, activation=tanh")
 
         noise = Input(shape=self.dungeon_shape)
-        dungeon = model(noise)
+        dungeon = self.model(noise)
 
         return Model(noise, dungeon)
 
     def build_discriminator(self):
-        model = Sequential()
+        self.str_outputs.append("Discriminator model - Sequential")
+        self.model = None
+        self.model = Sequential()
 
-        model.add(Dense(512, input_dim=self.dungeon_dimension))
-        model.add(LeakyReLU(alpha=0.2))
+        self.add_layer(Dense(units=512, input_dim=self.dungeon_dimension),
+                       "Dense, units=512, input_dim="
+                       + str(self.dungeon_dimension))
 
-        model.add(Dense(256))
-        model.add(LeakyReLU(alpha=0.2))
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
 
-        model.add(Dense(1024))
-        model.add(LeakyReLU(alpha=0.2))
+        # model.add(Dropout(0.3))
 
-        model.add(Dense(256))
-        model.add(LeakyReLU(alpha=0.2))
+        self.add_layer(Dense(units=256), "Dense, units=256")
 
-        model.add(Dense(1, input_dim=self.dungeon_dimension,
-                        activation="sigmoid"))
+        self.add_layer(LeakyReLU(alpha=0.2), "LeakyReLU, alpha=0.2")
+
+        # model.add(Dropout(0.3))
+
+        self.add_layer(Dense(1, input_dim=self.dungeon_dimension,
+                             activation="sigmoid"),
+                       "Dense, units=1, input_dim="
+                       + str(self.dungeon_dimension)
+                       + " activation=sigmoid")
 
         dungeon = Input(shape=self.dungeon_shape)
-        validity = model(dungeon)
+        validity = self.model(dungeon)
 
         return Model(dungeon, validity)
 
+    def add_layer(self, layer, layer_info):
+        self.model.add(layer)
+        self.str_outputs.append(layer_info)
+
     def train(self, data):
+        self.add_train_info("Combined training.")
         X_train = np.array(data)
         batch_size = self.batch_size
 
@@ -148,7 +185,7 @@ class GAN():
 
         fake = np.zeros((batch_size, 1))
 
-        for epoch in range(self.epochs):
+        for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(X_train), batch_size)
             sample = X_train[idx]
 
@@ -164,12 +201,13 @@ class GAN():
 
             if epoch % self.sample_interval == 0:
                 self.print_epoch_result(epoch, g_loss)
-                self.sample_epoch(epoch)
+                self.sample_epoch(epoch, file_prefix="combined_")
 
     def train_generator(self, data):
+        self.add_train_info("Generator training.")
         X_train = np.array(data)
 
-        for epoch in range(self.epochs):
+        for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
 
@@ -179,14 +217,15 @@ class GAN():
 
             if epoch % self.sample_interval == 0:
                 self.print_epoch_result(epoch, g_loss)
-                self.sample_epoch(epoch)
+                self.sample_epoch(epoch, file_prefix="generator_")
 
     def train_discriminator(self, data):
+        self.add_train_info("Discriminator training.")
         X_train = np.array(data)
         valid = np.ones((self.batch_size, 1))
         fake = np.zeros((self.batch_size, 1))
 
-        for epoch in range(self.epochs):
+        for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
             noise = self.get_noise(self.batch_size)
@@ -198,18 +237,18 @@ class GAN():
 
             if epoch % self.sample_interval == 0:
                 self.print_epoch_result(epoch, d_loss)
-                self.sample_epoch(epoch)
+                self.sample_epoch(epoch, file_prefix="discriminator_")
 
     def get_noise(self, number_of_samples):
-        return np.random.normal(NOISE["min"], NOISE["max"],
-                                size=(number_of_samples,
-                                      self.dungeon_dimension))
+        return np.random.randint(NOISE["min"], NOISE["max"] + 1,
+                                 size=(number_of_samples,
+                                       self.dungeon_dimension))
 
     # Sample functions
-    def sample_epoch(self, epoch):
+    def sample_epoch(self, epoch, file_prefix=""):
         self.sample_dungeon(epoch)
         if self.output_images:
-            self.sample_images(epoch)
+            self.sample_images(epoch, file_prefix)
 
     def sample_dungeon(self, epoch):
         noise = self.get_noise(1)
@@ -217,11 +256,11 @@ class GAN():
         gen_data = self.generator.predict(noise)
         self.file_parser.write_to_csv(gen_data.flatten())
 
-    def sample_images(self, epoch):
-        r, c = 5, 5
+    def sample_images(self, epoch, file_prefix=""):
+        r, c = 2, 2
         noise = self.get_noise(r * c)
         gen = self.generator.predict(noise)
-        gen = 0.5 * gen + 0.5
+        gen = 0.5 * gen + 1
 
         imgs = np.empty(shape=(r * c, 30, 30))
         for count in range(r * c):
@@ -238,7 +277,8 @@ class GAN():
                 axs[i, j].imshow(imgs[cnt, :, :], cmap='gray')
                 axs[i, j].axis('off')
                 cnt += 1
-        fig.savefig(self.file_parser.image_folder + "%d.png" % epoch)
+        fig.savefig(self.file_parser.image_folder + file_prefix
+                                                  + "%d.png" % epoch)
         plt.close()
 
     def print_epoch_result(self, epoch, result):
@@ -247,9 +287,14 @@ class GAN():
         print(str_results, end='\r')
         self.str_outputs.append(str_results)
 
+    def add_train_info(self, train_info):
+        self.str_outputs.append(
+         train_info + "  Epochs: " + str(self.epochs)
+         + "  Batch size: " + str(self.batch_size)
+         + "  Sample interval: " + str(self.sample_interval))
+
     def write_results(self):
         self.file_parser.write_results(self.str_outputs)
-
 
     def save_models(self):
         self.file_parser.save_model(self.generator, "generator")
