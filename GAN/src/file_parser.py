@@ -17,6 +17,7 @@ class FileParser:
         self.csv_suffix = '.csv'
         self.csv_prefix = 'gan_output-'
         self.dungeon_dimension = data_info.DUNGEON_DIMENSION
+        self.results_folder = data_info.RESULTS_FOLDER
         self.number_of_lines = self.dungeon_dimension * self.dungeon_dimension
         self.positions_array = np.empty([self.number_of_lines, 2], dtype=int)
         self.setup_position_array()
@@ -36,20 +37,24 @@ class FileParser:
         # dd_mm_YY_H_M_S
         dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
         new_path = data_info.OUTPUT_FOLDER + "folder-" + dt_string + "/"
-        if not os.path.exists(new_path):
-            os.makedirs(new_path)
+        self.create_folder(new_path)
         self.output_path = new_path
         self.results_filename = str(self.output_path + "results_"
                                     + dt_string + ".txt")
 
         new_image_path = new_path + "/Images/"
-        if not os.path.exists(new_image_path):
-            os.makedirs(new_image_path)
+        self.create_folder(new_image_path)
         self.image_folder = new_image_path
 
         model_path = new_path + data_info.MODEL_FOLDER
-        if not os.path.exists(model_path):
-            os.makedirs(model_path)
+        self.create_folder(model_path)
+
+        results_path = new_path + data_info.RESULTS_FOLDER
+        self.create_folder(results_path)
+
+    def create_folder(self, folder_path):
+        if not os.path.exists(folder_path):
+            os.makedirs(folder_path)
 
     def setup_position_array(self):
         for x in range(0, self.dungeon_dimension):
@@ -88,6 +93,7 @@ class FileParser:
 
     def get_new_file(self):
         path = self.output_path \
+               + self.results_folder \
                + self.csv_prefix \
                + datetime.now().strftime("%d-%m-%Y_%H-%M-%S") \
                + self.random_string() \
@@ -113,7 +119,7 @@ class FileParser:
         file = open(self.results_filename, "a+")
 
         for str_result in results:
-            file.write(str_result + "\r\r\n\n")
+            file.write(str_result + "\n")
 
         file.close()
 
