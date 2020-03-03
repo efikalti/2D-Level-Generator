@@ -15,7 +15,7 @@ class FileParser:
     def __init__(self, output_path=None):
         self.input_path = data_info.INPUT_FOLDER
         self.csv_suffix = '.csv'
-        self.csv_prefix = 'gan_output-'
+        self.csv_prefix = 'output-'
         self.dungeon_dimension = data_info.DUNGEON_DIMENSION
         self.results_folder = data_info.RESULTS_FOLDER
         self.number_of_lines = self.dungeon_dimension * self.dungeon_dimension
@@ -91,21 +91,22 @@ class FileParser:
     def get_tile_type(self, data):
         return data[data_info.TILE_TYPE_COLUMN].values.tolist()
 
-    def get_new_file(self):
+    def get_new_file(self, file_prefix=""):
         path = self.output_path \
-               + self.results_folder \
-               + self.csv_prefix \
-               + datetime.now().strftime("%d-%m-%Y_%H-%M-%S") \
-               + self.random_string() \
-               + self.csv_suffix
+            + self.results_folder \
+            + file_prefix \
+            + self.csv_prefix \
+            + datetime.now().strftime("%d-%m-%Y_%H-%M-%S") \
+            + self.random_string() \
+            + self.csv_suffix
         file = open(path, "w+")
         return file
 
-    def write_to_csv(self, data, transform=True):
+    def write_to_csv(self, data, transform=True, file_prefix=""):
         if transform:
             data = self.data_transformation.transform_single_to_original(data)
 
-        file = self.get_new_file()
+        file = self.get_new_file(file_prefix)
         data_with_positions = np.insert(self.positions_array, 2, data, axis=1)
         pd.DataFrame(data_with_positions).to_csv(path_or_buf=file, index=None,
                                                  header=False)

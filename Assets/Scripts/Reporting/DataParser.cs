@@ -14,6 +14,7 @@ namespace Assets.Scripts.Reporting
     {
         private const string BaseOutputPath = "Data/GAN_Input/";
         private const string BaseInputPath = "Data/GAN_Output/";
+        private const string ResultsFolder = "/Results/";
         private const string BaseFilename = "graph_";
         private const string BaseFilenameSuffix = ".csv";
         private const char CSVSeparator = ',';
@@ -250,7 +251,7 @@ namespace Assets.Scripts.Reporting
             }
 
             Debug.Log($"Loading folder: {folder}");
-            var inputPath = BaseInputPath + folder;
+            var inputPath = BaseInputPath + folder + ResultsFolder;
 
             if (Directory.Exists(inputPath))
             {

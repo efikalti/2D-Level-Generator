@@ -1,5 +1,6 @@
 import numpy as np
-from keras.layers import Input, Dense, BatchNormalization, Dropout
+from keras.layers import Input, Dense, Dropout, Flatten, Conv2DTranspose
+from keras.layers import BatchNormalization, Conv2D, Reshape
 from keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
 from keras import backend as K
@@ -17,7 +18,7 @@ def relu_advanced(x):
     return K.relu(x, max_value=2)
 
 
-class GAN():
+class GAN_CNN():
     def __init__(self, epochs=50000, batch_size=128, sample_interval=1000,
                  output_folder=None, file_parser=None, create_models=True,
                  train_discriminator=False, output_images=False,
@@ -33,11 +34,13 @@ class GAN():
         self.gen_loss = gen_loss
         self.com_loss = com_loss
 
+        self.latent_size = 100
+
         self.str_outputs = []
 
         # Define dungeon dimensions
-        self.dungeon_dimension = DUNGEON_DIMENSION * DUNGEON_DIMENSION
-        self.dungeon_shape = (self.dungeon_dimension, )
+        self.dungeon_dimension = DUNGEON_DIMENSION
+        self.dungeon_shape = (DUNGEON_DIMENSION, DUNGEON_DIMENSION, 1)
 
         self.train_discriminator = train_discriminator
 
@@ -103,38 +106,32 @@ class GAN():
         self.str_outputs.append("\nGenerator model - Sequential")
         self.model = None
         self.model = Sequential()
+        latent_size = self.latent_size
+        units = 900
 
-        self.add_layer(Dense(units=256, input_dim=self.dungeon_dimension))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(Dense(units=units, activation='relu', input_shape=self.dungeon_shape))
 
-        self.add_layer(Dense(units=512))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(Dropout(rate=0.3))
+        self.add_layer(Reshape(target_shape=(30, 30, 1)))
 
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
+        # upsample to (7, 7, ...)
+        self.add_layer(Conv2DTranspose(192, 5, strides=1, padding='valid',
+                                       activation='relu',
+                                       kernel_initializer='glorot_normal'))
+        self.add_layer(BatchNormalization())
 
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(Dropout(rate=0.3))
+        # upsample to (14, 14, ...)
+        self.add_layer(Conv2DTranspose(96, 5, strides=2, padding='same',
+                                       activation='relu',
+                                       kernel_initializer='glorot_normal'))
+        self.add_layer(BatchNormalization())
 
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
+        # upsample to (28, 28, ...)
+        self.add_layer(Conv2DTranspose(1, 5, strides=2, padding='same',
+                                       activation='tanh',
+                                       kernel_initializer='glorot_normal'))
 
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(Dropout(rate=0.3))
-
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
-
-        self.add_layer(Dense(np.prod(self.dungeon_shape), activation="tanh"))
-
-        noise = Input(shape=self.dungeon_shape)
+        # this is the z space commonly referred to in GAN papers
+        noise = Input(shape=(latent_size, ))
         dungeon = self.model(noise)
 
         return Model(noise, dungeon)
@@ -144,20 +141,24 @@ class GAN():
         self.model = None
         self.model = Sequential()
 
-        self.add_layer(Dense(units=512, input_dim=self.dungeon_dimension))
+        self.add_layer(Conv2D(32, 3, padding='same', strides=2,
+                       input_shape=self.dungeon_shape))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(Dropout(0.3))
 
-        self.add_layer(LeakyReLU(alpha=0.2))
+        self.add_layer(Conv2D(64, 3, padding='same', strides=1))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(Dropout(0.3))
 
-        # model.add(Dropout(0.3))
+        self.add_layer(Conv2D(128, 3, padding='same', strides=2))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(Dropout(0.3))
 
-        self.add_layer(Dense(units=256))
+        self.add_layer(Conv2D(256, 3, padding='same', strides=1))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(Dropout(0.3))
 
-        self.add_layer(LeakyReLU(alpha=0.2))
-
-        # model.add(Dropout(0.3))
-
-        self.add_layer(Dense(1, input_dim=self.dungeon_dimension,
-                             activation="sigmoid"))
+        self.add_layer(Flatten())
 
         dungeon = Input(shape=self.dungeon_shape)
         validity = self.model(dungeon)
@@ -236,8 +237,7 @@ class GAN():
 
     def get_noise(self, number_of_samples):
         return np.random.randint(NOISE["min"], NOISE["max"] + 1,
-                                 size=(number_of_samples,
-                                       self.dungeon_dimension))
+                                 size=(number_of_samples, self.latent_size))
 
     # Sample functions
     def sample_epoch(self, epoch, file_prefix=""):
@@ -249,8 +249,8 @@ class GAN():
         noise = self.get_noise(1)
 
         gen_data = self.generator.predict(noise)
-        prefix = str(file_prefix + str(epoch) + "_")
-        self.file_parser.write_to_csv(gen_data.flatten(), file_prefix=prefix)
+        self.file_parser.write_to_csv(gen_data.flatten(),
+                                      file_prefix + "_" + str(epoch) + "_")
 
     def sample_images(self, epoch, file_prefix=""):
         r, c = 2, 2
