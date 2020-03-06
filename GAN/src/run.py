@@ -17,9 +17,9 @@ def train_cnn(data):
         matrix = file_parser.data_transformation.transform_to_matrix(sample)
         transformed_data.append(matrix)
 
-    gan = GAN_CNN(epochs=50000, batch_size=64, sample_interval=1000,
+    gan = GAN_CNN(epochs=1000, batch_size=64, sample_interval=1000,
                   file_parser=file_parser, train_discriminator=True)
-    gan.train_generator(transformed_data)
+    #gan.train_generator(transformed_data)
 
     gan.train(transformed_data)
 

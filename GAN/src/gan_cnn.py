@@ -34,7 +34,7 @@ class GAN_CNN():
         self.gen_loss = gen_loss
         self.com_loss = com_loss
 
-        self.latent_size = 100
+        self.latent_size = 900
 
         self.str_outputs = []
 
@@ -90,7 +90,7 @@ class GAN_CNN():
         self.str_outputs.append("Generator optimizer : Adam(0.0002, 0.5)")
 
         # Initialize noise input
-        z = Input(shape=self.dungeon_shape)
+        z = Input(shape=(self.latent_size,))
 
         dungeon_generator = self.generator(z)
         validity = self.discriminator(dungeon_generator)
@@ -106,32 +106,33 @@ class GAN_CNN():
         self.str_outputs.append("\nGenerator model - Sequential")
         self.model = None
         self.model = Sequential()
-        latent_size = self.latent_size
-        units = 900
 
-        self.add_layer(Dense(units=units, activation='relu', input_shape=self.dungeon_shape))
+        self.add_layer(Dense(units=900, input_shape=(self.latent_size,)))
+        self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
-        self.add_layer(Reshape(target_shape=(30, 30, 1)))
+        self.add_layer(Conv2D(32, 3, padding='same', strides=2))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(Dropout(0.3))
 
-        # upsample to (7, 7, ...)
-        self.add_layer(Conv2DTranspose(192, 5, strides=1, padding='valid',
-                                       activation='relu',
-                                       kernel_initializer='glorot_normal'))
-        self.add_layer(BatchNormalization())
+        self.add_layer(Conv2D(64, 3, padding='same', strides=1))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(Dropout(0.3))
 
-        # upsample to (14, 14, ...)
-        self.add_layer(Conv2DTranspose(96, 5, strides=2, padding='same',
-                                       activation='relu',
-                                       kernel_initializer='glorot_normal'))
-        self.add_layer(BatchNormalization())
+        self.add_layer(Conv2D(128, 3, padding='same', strides=2))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(Dropout(0.3))
 
-        # upsample to (28, 28, ...)
-        self.add_layer(Conv2DTranspose(1, 5, strides=2, padding='same',
-                                       activation='tanh',
-                                       kernel_initializer='glorot_normal'))
+        self.add_layer(Conv2D(256, 3, padding='same', strides=1))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(Dropout(0.3))
+
+        self.add_layer(Flatten())
+        self.add_layer(Dense(units=900))
+
+        self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
         # this is the z space commonly referred to in GAN papers
-        noise = Input(shape=(latent_size, ))
+        noise = Input(shape=(self.latent_size,))
         dungeon = self.model(noise)
 
         return Model(noise, dungeon)
@@ -158,7 +159,7 @@ class GAN_CNN():
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(Dropout(0.3))
 
-        self.add_layer(Flatten())
+        self.add_layer(Dense(1, activation="sigmoid"))
 
         dungeon = Input(shape=self.dungeon_shape)
         validity = self.model(dungeon)
@@ -184,12 +185,13 @@ class GAN_CNN():
         for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(X_train), batch_size)
             sample = X_train[idx]
+            print(sample.shape)
 
             noise = self.get_noise(batch_size)
 
-            gen_imgs = self.generator.predict(noise)
+            dungeon = self.generator.predict(noise)
             self.discriminator.train_on_batch(sample, valid)
-            self.discriminator.train_on_batch(gen_imgs, fake)
+            self.discriminator.train_on_batch(dungeon, fake)
 
             noise = self.get_noise(batch_size)
 
