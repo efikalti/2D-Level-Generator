@@ -8,8 +8,7 @@ from keras.layers.advanced_activations import LeakyReLU
 
 import matplotlib.pyplot as plt
 
-from file_parser import FileParser
-from evaluate import Evaluator
+from data_io.file_writer import FileWriter
 
 from data_info import NOISE, DUNGEON_DIMENSION
 
@@ -20,7 +19,7 @@ def relu_advanced(x):
 
 class GAN_CNN():
     def __init__(self, epochs=50000, batch_size=128, sample_interval=1000,
-                 output_folder=None, file_parser=None, create_models=True,
+                 output_folder=None, create_models=True,
                  d_trainable=False, output_images=False,
                  gen_loss='mean_squared_error',
                  dis_loss='mean_squared_error',
@@ -44,17 +43,12 @@ class GAN_CNN():
 
         self.d_trainable = d_trainable
 
-        if not file_parser:
-            self.file_parser = FileParser()
-        else:
-            self.file_parser = file_parser
-        self.file_parser.create_output_folder(folder_name="cnn_gan")
-        tr = self.file_parser.data_transformation.transform_value_enabled
-        fl = self.file_parser.data_transformation.fuzzy_logic_enabled
+        self.file_writer = FileWriter()
+        self.file_writer.create_output_folder(folder_name="cnn_gan-")
+        tr = self.file_writer.data_transformation.transform_value_enabled
+        fl = self.file_writer.data_transformation.fuzzy_logic_enabled
         self.str_outputs.append("Data transformation : " + str(tr))
         self.str_outputs.append("Fuzzy Logic         : " + str(fl))
-
-        self.evaluator = Evaluator()
 
         self.output_images = output_images
 
@@ -253,7 +247,7 @@ class GAN_CNN():
         noise = self.get_noise(1)
 
         gen_data = self.generator.predict(noise)
-        self.file_parser.write_to_csv(gen_data.flatten(),
+        self.file_writer.write_to_csv(gen_data.flatten(),
                                       file_prefix + "_" + str(epoch) + "_")
 
     def sample_images(self, epoch, file_prefix=""):
@@ -277,7 +271,7 @@ class GAN_CNN():
                 axs[i, j].imshow(imgs[cnt, :, :], cmap='gray')
                 axs[i, j].axis('off')
                 cnt += 1
-        fig.savefig(self.file_parser.image_folder + file_prefix
+        fig.savefig(self.file_writer.image_folder + file_prefix
                                                   + "%d.png" % epoch)
         plt.close()
 
@@ -294,12 +288,12 @@ class GAN_CNN():
          + "  Sample interval: " + str(self.sample_interval))
 
     def write_results(self):
-        self.file_parser.write_results(self.str_outputs)
+        self.file_writer.write_results(self.str_outputs)
 
     def save_models(self):
-        self.file_parser.save_model(self.generator, "generator")
-        self.file_parser.save_model(self.discriminator, "discriminator")
+        self.file_writer.save_model(self.generator, "generator")
+        self.file_writer.save_model(self.discriminator, "discriminator")
 
     def load_models(self, path):
-        self.generator = self.file_parser.load_model(path, "generator")
-        self.discriminator = self.file_parser.load_model(path, "discriminator")
+        self.generator = self.file_writer.load_model(path, "generator")
+        self.discriminator = self.file_writer.load_model(path, "discriminator")

@@ -3,7 +3,7 @@ import sys
 import getopt
 
 from data_io.file_reader import FileReader
-from gan import GAN
+from gan import DENSE_GAN
 from gan_cnn import GAN_CNN
 from data_transform import DataTransformation
 
@@ -37,8 +37,8 @@ def train_cnn(data, args):
 # Function to create and train a dense gan network
 def train_dense(data, args):
     # Create network with the provided parameters
-    gan = GAN(epochs=args["epochs"], batch_size=args["batch"],
-              sample_interval=args["sample"], train_discriminator=True)
+    gan = DENSE_GAN(epochs=args["epochs"], batch_size=args["batch"],
+                    sample_interval=args["sample"], train_discriminator=True)
     gan.train_generator(data)
 
     gan.train(data)
@@ -98,11 +98,11 @@ def main(argv):
     if (args["model"] == "dense"):
         pass
         # Train dense model
-        #train_dense(data, args)
+        train_dense(data, args)
     elif (args["model"] == "cnn"):
         pass
         # Train cnn model
-        #train_cnn(data, args)
+        train_cnn(data, args)
 
 
 if __name__ == "__main__":
