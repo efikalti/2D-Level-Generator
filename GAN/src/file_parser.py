@@ -3,7 +3,6 @@ import random
 import string
 from datetime import datetime
 from data_transform import DataTransformation
-from keras.models import model_from_json
 
 import pandas as pd
 import numpy as np
@@ -14,7 +13,6 @@ import data_info
 class FileParser:
     def __init__(self, output_path=None):
         self.input_path = data_info.INPUT_FOLDER
-        self.csv_suffix = '.csv'
         self.csv_prefix = 'output-'
         self.dungeon_dimension = data_info.DUNGEON_DIMENSION
         self.results_folder = data_info.RESULTS_FOLDER
@@ -58,34 +56,6 @@ class FileParser:
                 position = (x * self.dungeon_dimension) + y
                 self.positions_array[position][0] = x
                 self.positions_array[position][1] = y
-
-    def get_csv_data(self, path=None):
-        if path is None:
-            path = self.input_path
-
-        data = []
-        csv_files = self.find_csv_files(path)
-        for file in csv_files:
-            df = self.read_csv_file(file)
-            data.append(self.get_tile_type(df))
-        return data
-
-    def find_csv_files(self, path=None):
-        if path is None:
-            path = self.input_path
-
-        files = []
-        for root, dir, file in os.walk(path):
-            for f in file:
-                if f.endswith(self.csv_suffix):
-                    files.append(os.path.join(root, f))
-        return files
-
-    def read_csv_file(self, file):
-        return pd.read_csv(file, header=data_info.HEADER_LINE)
-
-    def get_tile_type(self, data):
-        return data[data_info.TILE_TYPE_COLUMN].values.tolist()
 
     def get_new_file(self, file_prefix=""):
         path = self.output_path \
@@ -139,14 +109,3 @@ class FileParser:
             json_file.write(model_json)
         # serialize weights to HDF5
         model.save_weights(weights_filename)
-
-    def load_model(self, path, filename):
-        model_filename = path + data_info.MODEL_FOLDER + filename + ".json"
-        weights_filename = path + data_info.MODEL_FOLDER + filename + ".h5"
-        # load json and create model
-        json_file = open(model_filename, 'r')
-        loaded_model_json = json_file.read()
-        json_file.close()
-        loaded_model = model_from_json(loaded_model_json)
-        # load weights into new model
-        loaded_model.load_weights(weights_filename)

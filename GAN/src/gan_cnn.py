@@ -1,6 +1,6 @@
 import numpy as np
-from keras.layers import Input, Dense, Dropout, Flatten, Conv2DTranspose
-from keras.layers import BatchNormalization, Conv2D, Reshape
+from keras.layers import Input, Dense, Dropout, Flatten
+from keras.layers import Conv2D, Reshape
 from keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
 from keras import backend as K

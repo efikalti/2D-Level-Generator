@@ -2,7 +2,7 @@ import numpy as np
 import sys
 import getopt
 
-from file_parser import FileParser
+from data_io.file_reader import FileReader
 from gan import GAN
 from gan_cnn import GAN_CNN
 from data_transform import DataTransformation
@@ -11,7 +11,7 @@ from data_transform import DataTransformation
 np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
 
 # FileParser object to load input data and write results
-file_parser = FileParser()
+file_reader = FileReader()
 
 
 # Function to create and train a cnn gan network
@@ -19,13 +19,12 @@ def train_cnn(data, args):
     # Transform data to matrix, cnn expects a ndim matrix of data not an array
     transformed_data = []
     for sample in data:
-        matrix = file_parser.data_transformation.transform_to_matrix(sample)
+        matrix = file_reader.data_transformation.transform_to_matrix(sample)
         transformed_data.append(matrix)
 
     # Create network with the provided parameters
     gan = GAN_CNN(epochs=args["epochs"], batch_size=args["batch"],
-                  sample_interval=args["sample"],
-                  file_parser=file_parser, d_trainable=True)
+                  sample_interval=args["sample"], d_trainable=True)
     # gan.train_generator(transformed_data)
 
     gan.train_discriminator(transformed_data)
@@ -39,8 +38,7 @@ def train_cnn(data, args):
 def train_dense(data, args):
     # Create network with the provided parameters
     gan = GAN(epochs=args["epochs"], batch_size=args["batch"],
-              sample_interval=args["sample"],
-              file_parser=file_parser, train_discriminator=True)
+              sample_interval=args["sample"], train_discriminator=True)
     gan.train_generator(data)
 
     gan.train(data)
@@ -87,18 +85,24 @@ def parse_args(argv):
 
 
 def main(argv):
+    # Parse cmd arguments
     args = parse_args(argv)
-    data = file_parser.get_csv_data()
 
+    # Load csv data into array
+    data = file_reader.get_csv_data()
+
+    # Transform data
     data_transformation = DataTransformation()
     data = data_transformation.transform_multiple(data)
 
     if (args["model"] == "dense"):
+        pass
         # Train dense model
-        train_dense(data, args)
+        #train_dense(data, args)
     elif (args["model"] == "cnn"):
+        pass
         # Train cnn model
-        train_cnn(data, args)
+        #train_cnn(data, args)
 
 
 if __name__ == "__main__":

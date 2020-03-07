@@ -1,8 +1,8 @@
 import numpy as np
+
 from keras.layers import Input, Dense, BatchNormalization, Dropout
 from keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
-from keras import backend as K
 from keras.layers.advanced_activations import LeakyReLU
 
 import matplotlib.pyplot as plt
@@ -13,13 +13,9 @@ from evaluate import Evaluator
 from data_info import NOISE, DUNGEON_DIMENSION
 
 
-def relu_advanced(x):
-    return K.relu(x, max_value=2)
-
-
 class GAN():
     def __init__(self, epochs=50000, batch_size=128, sample_interval=1000,
-                 output_folder=None, file_parser=None, create_models=True,
+                 output_folder=None, create_models=True,
                  train_discriminator=False, output_images=False,
                  gen_loss='mean_squared_error',
                  dis_loss='mean_squared_error',
@@ -29,23 +25,24 @@ class GAN():
         self.batch_size = batch_size
         self.sample_interval = sample_interval
 
+        # Define loss parameters
         self.dis_loss = dis_loss
         self.gen_loss = gen_loss
         self.com_loss = com_loss
 
+        # Array to keep information to print in results file
         self.str_outputs = []
 
-        # Define dungeon dimensions
+        # Define dungeon dimensions for dense model
         self.dungeon_dimension = DUNGEON_DIMENSION * DUNGEON_DIMENSION
         self.dungeon_shape = (self.dungeon_dimension, )
 
+        # Boolean value defining whether the discriminator will be trained
         self.train_discriminator = train_discriminator
 
-        if not file_parser:
-            self.file_parser = FileParser()
-        else:
-            self.file_parser = file_parser
+        self.file_parser = FileParser()
         self.file_parser.create_output_folder(folder_name="dense_gan")
+
         tr = self.file_parser.data_transformation.transform_value_enabled
         fl = self.file_parser.data_transformation.fuzzy_logic_enabled
         self.str_outputs.append("Data transformation : " + str(tr))
