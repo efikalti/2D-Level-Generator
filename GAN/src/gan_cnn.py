@@ -21,7 +21,7 @@ def relu_advanced(x):
 class GAN_CNN():
     def __init__(self, epochs=50000, batch_size=128, sample_interval=1000,
                  output_folder=None, file_parser=None, create_models=True,
-                 train_discriminator=False, output_images=False,
+                 d_trainable=False, output_images=False,
                  gen_loss='mean_squared_error',
                  dis_loss='mean_squared_error',
                  com_loss='mean_squared_error'):
@@ -42,12 +42,13 @@ class GAN_CNN():
         self.dungeon_dimension = DUNGEON_DIMENSION
         self.dungeon_shape = (DUNGEON_DIMENSION, DUNGEON_DIMENSION, 1)
 
-        self.train_discriminator = train_discriminator
+        self.d_trainable = d_trainable
 
         if not file_parser:
             self.file_parser = FileParser()
         else:
             self.file_parser = file_parser
+        self.file_parser.create_output_folder(folder_name="cnn_gan")
         tr = self.file_parser.data_transformation.transform_value_enabled
         fl = self.file_parser.data_transformation.fuzzy_logic_enabled
         self.str_outputs.append("Data transformation : " + str(tr))
@@ -67,9 +68,9 @@ class GAN_CNN():
         # Create descriminator object
         self.discriminator = self.build_discriminator()
 
-        self.discriminator.trainable = self.train_discriminator
+        self.discriminator.trainable = self.d_trainable
         self.str_outputs.append("\nDiscriminator trainable = "
-                                + str(self.train_discriminator))
+                                + str(self.d_trainable))
 
         # Parameterize descriminator
         self.discriminator.compile(loss=self.dis_loss,
@@ -227,6 +228,7 @@ class GAN_CNN():
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
             noise = self.get_noise(self.batch_size)
+            print(sample.shape)
 
             gen_output = self.generator.predict(noise)
             d_loss_real = self.discriminator.train_on_batch(sample, valid)

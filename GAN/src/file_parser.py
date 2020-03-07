@@ -24,21 +24,17 @@ class FileParser:
         self.data_transformation = DataTransformation()
         self.image_folder = data_info.IMAGE_FOLDER
 
-        if output_path is None:
-            self.create_output_folder()
-        else:
-            self.output_path = output_path
-            self.image_folder = self.output_path + "/Images/"
+        self.output_path = output_path
 
-        self.results_filename = self.output_path + "results.txt"
-
-    def create_output_folder(self):
+    def create_output_folder(self, folder_name="folder-"):
         now = datetime.now()
         # dd_mm_YY_H_M_S
         dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
-        new_path = data_info.OUTPUT_FOLDER + "folder-" + dt_string + "/"
+        new_path = data_info.OUTPUT_FOLDER + folder_name + dt_string + "/"
         self.create_folder(new_path)
         self.output_path = new_path
+        self.image_folder = self.output_path + "/Images/"
+        self.results_filename = self.output_path + "results.txt"
         self.results_filename = str(self.output_path + "results_"
                                     + dt_string + ".txt")
 

@@ -45,6 +45,7 @@ class GAN():
             self.file_parser = FileParser()
         else:
             self.file_parser = file_parser
+        self.file_parser.create_output_folder(folder_name="dense_gan")
         tr = self.file_parser.data_transformation.transform_value_enabled
         fl = self.file_parser.data_transformation.fuzzy_logic_enabled
         self.str_outputs.append("Data transformation : " + str(tr))
