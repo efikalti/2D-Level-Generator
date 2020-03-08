@@ -33,7 +33,7 @@ class GAN_CNN():
         self.gen_loss = gen_loss
         self.com_loss = com_loss
 
-        self.latent_size = 900
+        self.latent_size = DUNGEON_DIMENSION * DUNGEON_DIMENSION
 
         self.str_outputs = []
 
@@ -87,8 +87,8 @@ class GAN_CNN():
         # Initialize noise input
         z = Input(shape=(self.latent_size,))
 
-        dungeon_generator = self.generator(z)
-        validity = self.discriminator(dungeon_generator)
+        validity = self.discriminator(self.generator(z))
+        print(validity)
         self.combined = Model(z, validity)
         self.combined.compile(loss=self.com_loss,
                               optimizer=self.optimizer,
@@ -138,7 +138,7 @@ class GAN_CNN():
         self.model = Sequential()
 
         self.add_layer(Conv2D(32, 3, padding='same', strides=2,
-                       input_shape=self.dungeon_shape))
+                              input_shape=self.dungeon_shape))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(Dropout(0.3))
 
@@ -146,14 +146,7 @@ class GAN_CNN():
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(128, 3, padding='same', strides=2))
-        self.add_layer(LeakyReLU(0.2))
-        self.add_layer(Dropout(0.3))
-
-        self.add_layer(Conv2D(256, 3, padding='same', strides=1))
-        self.add_layer(LeakyReLU(0.2))
-        self.add_layer(Dropout(0.3))
-
+        self.add_layer(Flatten())
         self.add_layer(Dense(1, activation="sigmoid"))
 
         dungeon = Input(shape=self.dungeon_shape)
@@ -180,7 +173,6 @@ class GAN_CNN():
         for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(X_train), batch_size)
             sample = X_train[idx]
-            print(sample.shape)
 
             noise = self.get_noise(batch_size)
 
@@ -222,7 +214,6 @@ class GAN_CNN():
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
             noise = self.get_noise(self.batch_size)
-            print(sample.shape)
 
             gen_output = self.generator.predict(noise)
             d_loss_real = self.discriminator.train_on_batch(sample, valid)

@@ -4,6 +4,8 @@ from keras.models import model_from_json
 
 import pandas as pd
 
+from data_transform import DataTransformation
+
 
 class FileReader:
     def __init__(self):
@@ -11,6 +13,9 @@ class FileReader:
         self.input_path = data_info.INPUT_FOLDER
         # CSV file suffix, used to find all csv files in a folder
         self.csv_suffix = '.csv'
+
+        # Instantiate DataTransformation object
+        self.data_transformation = DataTransformation()
 
     # Function that loads the data from a csv file, ignoring headers
     def read_csv_file(self, file):

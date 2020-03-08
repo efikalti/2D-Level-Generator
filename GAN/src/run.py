@@ -25,9 +25,9 @@ def train_cnn(data, args):
     # Create network with the provided parameters
     gan = GAN_CNN(epochs=args["epochs"], batch_size=args["batch"],
                   sample_interval=args["sample"], d_trainable=True)
-    # gan.train_generator(transformed_data)
+    gan.train_generator(transformed_data)
 
-    gan.train_discriminator(transformed_data)
+    gan.train(transformed_data)
 
     # Save results including the trained model and weights
     gan.write_results()

@@ -83,9 +83,9 @@ class DENSE_GAN():
 
         # Initialize noise input
         z = Input(shape=self.dungeon_shape)
+        validity = self.discriminator(self.generator(z))
 
-        dungeon_generator = self.generator(z)
-        validity = self.discriminator(dungeon_generator)
+        print(validity)
         self.combined = Model(z, validity)
         self.combined.compile(loss=self.com_loss,
                               optimizer=self.optimizer,
