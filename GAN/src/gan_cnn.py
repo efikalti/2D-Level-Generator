@@ -1,5 +1,5 @@
 import numpy as np
-from keras.layers import Input, Dense, Dropout, Flatten
+from keras.layers import Input, Dense, Dropout, Flatten, BatchNormalization
 from keras.layers import Conv2D, Reshape
 from keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
@@ -107,22 +107,27 @@ class GAN_CNN():
 
         self.add_layer(Conv2D(32, 3, padding='same', strides=2))
         self.add_layer(LeakyReLU(0.2))
+        self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
         self.add_layer(Conv2D(64, 3, padding='same', strides=1))
         self.add_layer(LeakyReLU(0.2))
+        self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
         self.add_layer(Conv2D(128, 3, padding='same', strides=2))
         self.add_layer(LeakyReLU(0.2))
+        self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
         self.add_layer(Conv2D(256, 3, padding='same', strides=1))
         self.add_layer(LeakyReLU(0.2))
+        self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
         self.add_layer(Flatten())
         self.add_layer(Dense(units=900))
+        self.add_layer(BatchNormalization(momentum=0.8))
 
         self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
@@ -238,8 +243,8 @@ class GAN_CNN():
         noise = self.get_noise(1)
 
         gen_data = self.generator.predict(noise)
-        self.file_writer.write_to_csv(gen_data.flatten(),
-                                      file_prefix + "_" + str(epoch) + "_")
+        prefix = str(file_prefix + str(epoch) + "_")
+        self.file_writer.write_to_csv(gen_data.flatten(), file_prefix=prefix)
 
     def sample_images(self, epoch, file_prefix=""):
         r, c = 2, 2

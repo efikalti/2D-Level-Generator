@@ -1,0 +1,82 @@
+\documentclass[12pt]{report}
+
+% package to activate greek language 
+\usepackage[greek,english]{babel}
+\usepackage{indentfirst}
+
+% DOCUMENT LAYOUT
+\usepackage{geometry} 
+\geometry{a4paper, textwidth=5.5in, textheight=8.5in, marginparsep=7pt, marginparwidth=.6in}
+\setlength\parindent{8mm}
+\setlength\parskip{5mm}
+
+% FONTS
+\usepackage{xltxtra}
+\usepackage[table]{xcolor}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{libertine}
+
+% package to handle graphics
+\usepackage{graphicx}
+% package to handle multiple figures in a minipage
+\usepackage{subfigure}
+%package to activate XeTeX font manager
+\usepackage{fontspec}
+
+% PDF SETUP
+% ---- FILL IN HERE THE DOC TITLE AND AUTHOR
+\usepackage[driverfallback=dvipdfmx, bookmarks, colorlinks, breaklinks, pdftitle={Efi Kaltirimidou},pdfauthor={efikalti}]{hyperref}  
+\hypersetup{linkcolor=blue,citecolor=blue,filecolor=black,urlcolor=blue} 
+
+% change captions especially for greek language - if the document is in ENGLISH, they should vanish
+\addto\captionsenglish{%
+  \renewcommand\prefacename{Πρόλογος}%
+  \renewcommand\refname{Αναφορές}%
+  \renewcommand\abstractname{Περίληψη}%
+  \renewcommand\bibname{Βιβλιογραφία}%
+  \renewcommand\chaptername{Κεφάλαιο}%
+  \renewcommand\appendixname{Παράρτημα}%
+  \renewcommand\contentsname{Περιεχόμενα}%
+  \renewcommand\listfigurename{Κατάλογος Σχημάτων}%
+  \renewcommand\listtablename{Κατάλογος Πινάκων}%
+  \renewcommand\indexname{Ευρετήριο}%
+  \renewcommand\figurename{Σχήμα}%
+  \renewcommand\tablename{Πίνακας}%
+  \renewcommand\partname{Μέρος}%
+  \renewcommand\enclname{Συνημμένα}%
+  \renewcommand\ccname{Κοινοποίηση}%
+  \renewcommand\headtoname{Προς}%
+  \renewcommand\pagename{Σελίδα}%
+  \renewcommand\seename{βλέπε}%
+  \renewcommand\alsoname{βλέπε επίσης}%
+  \renewcommand\proofname{Απόδειξη}%
+  }
+
+%%%%%%%%% END OF PREAMBLE %%%%%%%%%%%%
+
+\begin{document}
+
+% make title out of \author, \title, \date  specified in the preamble
+\input{thesis_title}
+
+\include{blank_page}
+
+
+% Create table of contents
+\tableofcontents
+\include{blank_page}
+
+% Intro
+\input{thesis_intro}
+
+
+% Procedural Content Generation
+\input{pcg}
+\include{blank_page}
+
+
+% API
+\input{api}
+\include{blank_page}
+
+\end{document}

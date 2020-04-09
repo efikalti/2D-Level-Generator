@@ -1,0 +1,18 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Procedural Content Generation}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Game Content}{6}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Παιχνίδια που χρησιμοποιούν PCG}{7}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Τεχνικά χαρακτηριστικά}{7}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Εκδόσεις}{8}{subsection.1.3.1}%
+\contentsline {section}{\numberline {1.4}Λειτουργίες Frontent}{9}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Σενάρια χρήσης - Use cases}{9}{section.1.5}%
+\contentsline {subsection}{\numberline {1.5.1}Είσοδος - Login}{9}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}Έλεγχος εργασιών - View jobs}{15}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.3}Υποβολή νέας εργασίας - Submit job}{18}{subsection.1.5.3}%
+\contentsline {chapter}{\numberline {2}Service layer - Restful API}{22}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Περιγραφή}{23}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Σχεδίαση του API}{23}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Είδη APIs}{23}{section.2.3}%
+\contentsline {section}{\numberline {2.4}REST - RESTful API}{24}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Χαρακτηριστικά του REST}{24}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Από URL σε HTTP}{25}{subsection.2.4.2}%

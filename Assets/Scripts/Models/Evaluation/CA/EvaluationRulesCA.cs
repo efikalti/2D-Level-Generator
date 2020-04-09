@@ -31,11 +31,12 @@ namespace Assets.Scripts.Models.Evaluation.CA
             Results.Add(nextToBoundsAreCorridorsResult);
             nextToBoundsAreCorridorsResult.PrintResult(nameof(nextToBoundsAreCorridorsResult));
 
+            // Evaluate number of rooms
             var numberOfRoomsResult = EvaluateRooms();
             Results.Add(numberOfRoomsResult);
             numberOfRoomsResult.PrintResult(nameof(numberOfRoomsResult));
 
-
+            // Εvaluate tiles inside of rooms
             var roomAreasResult = EvaluateRoomAreas();
             Results.Add(roomAreasResult);
             roomAreasResult.PrintResult(nameof(roomAreasResult));
