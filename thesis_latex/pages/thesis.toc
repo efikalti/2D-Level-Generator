@@ -9,9 +9,10 @@
 \contentsline {subsection}{\numberline {1.5.2}Δημιουργηκότητα - πρωτοτυπία}{10}{subsection.1.5.2}%
 \contentsline {subsection}{\numberline {1.5.3}Aξιοπιστία}{10}{subsection.1.5.3}%
 \contentsline {subsection}{\numberline {1.5.4}Παραμετροποιησιμότητα}{11}{subsection.1.5.4}%
-\contentsline {section}{\numberline {1.6}Λειτουργίες Frontent}{12}{section.1.6}%
-\contentsline {section}{\numberline {1.7}Σενάρια χρήσης - Use cases}{12}{section.1.7}%
-\contentsline {subsection}{\numberline {1.7.1}Είσοδος - Login}{12}{subsection.1.7.1}%
+\contentsline {section}{\numberline {1.6}Procedural Content Generation για 2D επίπεδα}{12}{section.1.6}%
+\contentsline {subsection}{\numberline {1.6.1}Εισαγωγή}{12}{subsection.1.6.1}%
+\contentsline {section}{\numberline {1.7}Σενάρια χρήσης - Use cases}{13}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Είσοδος - Login}{13}{subsection.1.7.1}%
 \contentsline {subsection}{\numberline {1.7.2}Έλεγχος εργασιών - View jobs}{18}{subsection.1.7.2}%
 \contentsline {subsection}{\numberline {1.7.3}Υποβολή νέας εργασίας - Submit job}{21}{subsection.1.7.3}%
 \contentsline {chapter}{\numberline {2}Service layer - Restful API}{25}{chapter.2}%
