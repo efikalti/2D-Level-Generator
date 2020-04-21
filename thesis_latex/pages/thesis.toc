@@ -15,3 +15,9 @@
 \contentsline {subsection}{\numberline {1.6.3}Agent-based}{15}{subsection.1.6.3}%
 \contentsline {subsection}{\numberline {1.6.4}Cellular Automata}{16}{subsection.1.6.4}%
 \contentsline {subsection}{\numberline {1.6.5}Generative Grammars}{17}{subsection.1.6.5}%
+\contentsline {section}{\numberline {1.7}Αξιολόγηση (Evaluation)}{18}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Πόσο σημαντική είναι η αξιολογήση}{19}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Χαρακτηριστικά Αξιολόγησης}{20}{subsection.1.7.2}%
+\contentsline {subsection}{\numberline {1.7.3}Είδη Αξιολόγησης}{21}{subsection.1.7.3}%
+\contentsline {chapter}{\numberline {2}Procedural Content Generation with Unity}{24}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Game Engines}{25}{section.2.1}%
