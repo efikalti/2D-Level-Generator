@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Models;
-using Assets.Scripts.Reporting;
+﻿using Assets.Scripts.Reporting;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;

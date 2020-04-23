@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7350 64-bit)  (format=lualatex 2020.4.6)  22 APR 2020 21:26
+This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7350 64-bit)  (format=lualatex 2020.4.6)  23 APR 2020 19:32
  restricted system commands enabled.
 **thesis.tex
 (./thesis.tex
@@ -1213,7 +1213,7 @@ LaTeX Info: Redefining \nameref on input line 57.
 
 \openout3 = thesis.out
  (./thesis_title.tex
-<../images/aristotle_logo.png, id=107, 278.54062pt x 209.28188pt>
+<../images/aristotle_logo.png, id=115, 278.54062pt x 209.28188pt>
 File: ../images/aristotle_logo.png Graphic file (type png)
 <use ../images/aristotle_logo.png>
 Package luatex.def Info: ../images/aristotle_logo.png  used on input line 7.
@@ -1354,7 +1354,7 @@ Overfull \hbox (12.78212pt too wide) in paragraph at lines 10--11
 ύσει. 
  []
 
-<../images/no-mans-sky.jpg, id=161, 712.52113pt x 400.02972pt>
+<../images/no-mans-sky.jpg, id=171, 712.52113pt x 400.02972pt>
 File: ../images/no-mans-sky.jpg Graphic file (type jpg)
 <use ../images/no-mans-sky.jpg>
 Package luatex.def Info: ../images/no-mans-sky.jpg  used on input line 14.
@@ -2258,44 +2258,91 @@ e(0)/m/n/12 καθώς η συγγραφέας
  []
 
 [26]
-Overfull \hbox (24.82942pt too wide) in paragraph at lines 48--49
+Overfull \hbox (24.82942pt too wide) in paragraph at lines 57--58
 []\TU/LinLibertine(0)/m/n/12 Πριν από το στάδιο του σχεδ
 ιασμού είχαμε κάνει μια έρευνα πάνω στο αν
 τικείμενο
  []
 
 
-Overfull \hbox (3.93922pt too wide) in paragraph at lines 48--49
+Overfull \hbox (3.93922pt too wide) in paragraph at lines 57--58
 \TU/LinLibertine(0)/m/n/12 αλγόριθμους που μπορούν να 
 εφαρμοστούν είναι ιδιαίτερα εκτενής και α
 ναλυτική,
  []
 
 
-Overfull \hbox (11.48727pt too wide) in paragraph at lines 50--51
+Overfull \hbox (11.48727pt too wide) in paragraph at lines 59--60
 \TU/LinLibertine(0)/m/it/12 dataset \TU/LinLibertine(0)/m/n/12 μας, ώστ
 ε να πετύχουμε το καλύτερο δυνατό αποτέλεσ
 μα με την εκπαίδευση. 
  []
 
-
-Overfull \hbox (26.62547pt too wide) in paragraph at lines 54--55
+[27]
+Overfull \hbox (26.62547pt too wide) in paragraph at lines 63--64
 []\TU/LinLibertine(0)/m/n/12 Ταυτόχρονα αυτό μας έδωσε 
 την δυνατότητα να ερευνήσουμε σε ακόμα μεγ
 αλύερο
  []
 
 
-Overfull \hbox (0.27376pt too wide) in paragraph at lines 54--55
+Overfull \hbox (0.27376pt too wide) in paragraph at lines 63--64
 \TU/LinLibertine(0)/m/n/12 από μία οπτική τον \TU/LinLibertine(0
 )/m/it/12 dataset gen-er-a-tor \TU/LinLibertine(0)/m/n/12 του \TU/LinLiberti
 ne(0)/m/it/12 Ma-chine Learn-ing \TU/LinLibertine(0)/m/n/12 μοντέλου. 
 Παράλληλα
  []
 
-) [27] [28]
+
+Overfull \hbox (19.41417pt too wide) in paragraph at lines 67--68
+\TU/LinLibertine(0)/m/n/12 εκπαίδευση του MLPG χρησιμοπο
+ιήθηκε dataset με σταθερό και ίδιο μέγεθος επι
+πέδου
+ []
+
+
+Overfull \hbox (4.32544pt too wide) in paragraph at lines 76--77
+[]\TU/LinLibertine(0)/m/n/12 Με αυτά τα τρία είδη tiles θέλ
+ουμε να καταστευάσουμε επίπεδα που περιέχ
+ουν
+ []
+
+
+Overfull \hbox (4.43523pt too wide) in paragraph at lines 76--77
+\TU/LinLibertine(0)/m/n/12 έναν αριθμό από δωμάτια, τα 
+οποία περιτρυγιρίζονται από τοίχους και σ
+υνδέονται
+ []
+
+
+Overfull \hbox (18.38121pt too wide) in paragraph at lines 76--77
+\TU/LinLibertine(0)/m/n/12 γενικός στόχος των συστημάτ
+ων PCG και MLPG που προσπαθούμε να υλοποιήσουμ
+ε. 
+ []
+
+
+Overfull \hbox (28.16844pt too wide) in paragraph at lines 81--82
+[]\TU/LinLibertine(0)/m/n/12 Το σύστημα PCG αποτελείται α
+πό πολλά υποσυστήματα, τα οποία θα αναλύσο
+υμε
+ []
+
+[28]
+Overfull \hbox (14.06316pt too wide) in paragraph at lines 87--88
+[]\TU/LinLibertine(0)/m/n/12 Παρέχει μεθόδους για την α
+ποθήκευση των δημιουργημένων επιπέδων
+ []
+
+
+Overfull \hbox (2.62314pt too wide) in paragraph at lines 89--90
+[]\TU/LinLibertine(0)/m/n/12 Είναι υπεύθυνο για την αξι
+ολόγηση ενός επιπέδου με βάση
+ []
+
+) [29]
 \openout2 = blank_page.aux
- (./blank_page.tex) [29
+ (./blank_page.tex) [30
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
@@ -2304,29 +2351,36 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
 (./blank_page.aux) (./blank_page.aux) (./blank_page.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 81.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 81.
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: FAB8A15361C14CBBADEC76E934C51658;5466.
+
+
+Package rerunfilecheck Warning: File `thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis.out':
+(rerunfilecheck)             Before: 1E9A0AC6952E3A894DA7EA42BF428C6F;5889
+(rerunfilecheck)             After:  63AB231A1D5A71BF07A1DE7C6673C768;6048.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 81.
 )
 
 Here is how much of LuaTeX's memory you used:
- 24149 strings out of 480994
+ 24155 strings out of 480994
  100000,794899 words of node,token memory allocated
  484 words of node memory still in use:
    4 hlist, 1 vlist, 1 rule, 3 glue, 3 kern, 1 penalty, 1 glyph, 10 attribute, 5
 6 glue_spec, 6 attribute_list, 2 write nodes
-   avail lists: 2:527,3:88,4:70,5:282,6:34,7:3654,8:19,9:126,10:12,11:42
- 40975 multiletter control sequences out of 65536+200000
- 81 fonts using 18424583 bytes
+   avail lists: 2:527,3:88,4:70,5:285,6:34,7:3654,8:19,9:126,10:12,11:42
+ 40977 multiletter control sequences out of 65536+200000
+ 81 fonts using 18424539 bytes
  61i,8n,106p,2072b,467s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/opentype/public/libertin
 e/LinLibertine_RI.otf><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/op
 entype/public/libertine/LinLibertine_RB.otf><C:/Users/edour/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/opentype/public/libertine/LinLibertine_R.otf><C:/Users/edour
 /AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (30 pages, 304996 bytes).
+Output written on thesis.pdf (31 pages, 311344 bytes).
 
-PDF statistics: 294 PDF objects out of 1000 (max. 8388607)
- 58 named destinations out of 1000 (max. 131072)
- 209 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 310 PDF objects out of 1000 (max. 8388607)
+ 62 named destinations out of 1000 (max. 131072)
+ 225 words of extra memory for PDF output out of 10000 (max. 100000000)
 
