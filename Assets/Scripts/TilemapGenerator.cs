@@ -90,7 +90,7 @@ namespace Assets.Scripts
             // Step 6. Write tilemap to file
             fileParser.WriteTilemap(tilemap);
 
-            // Step 8. Evaluate generated Level (Optional, default is disabled)
+            // Step 7. Evaluate generated Level (Optional, default is disabled)
             if (IsEvaluationEnabled)
             {
                 var evaluationRulesCA = new EvaluationRulesCA(tilemap);

@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7350 64-bit)  (format=lualatex 2020.4.6)  23 APR 2020 19:32
+This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7350 64-bit)  (format=lualatex 2020.4.6)  24 APR 2020 23:07
  restricted system commands enabled.
 **thesis.tex
 (./thesis.tex
@@ -1213,7 +1213,7 @@ LaTeX Info: Redefining \nameref on input line 57.
 
 \openout3 = thesis.out
  (./thesis_title.tex
-<../images/aristotle_logo.png, id=115, 278.54062pt x 209.28188pt>
+<../images/aristotle_logo.png, id=127, 278.54062pt x 209.28188pt>
 File: ../images/aristotle_logo.png Graphic file (type png)
 <use ../images/aristotle_logo.png>
 Package luatex.def Info: ../images/aristotle_logo.png  used on input line 7.
@@ -1354,7 +1354,7 @@ Overfull \hbox (12.78212pt too wide) in paragraph at lines 10--11
 ύσει. 
  []
 
-<../images/no-mans-sky.jpg, id=171, 712.52113pt x 400.02972pt>
+<../images/no-mans-sky.jpg, id=186, 712.52113pt x 400.02972pt>
 File: ../images/no-mans-sky.jpg Graphic file (type jpg)
 <use ../images/no-mans-sky.jpg>
 Package luatex.def Info: ../images/no-mans-sky.jpg  used on input line 14.
@@ -2340,9 +2340,23 @@ Overfull \hbox (2.62314pt too wide) in paragraph at lines 89--90
 ολόγηση ενός επιπέδου με βάση
  []
 
-) [29]
+
+Overfull \hbox (33.88834pt too wide) in paragraph at lines 93--94
+[]\TU/LinLibertine(0)/m/n/12 Ως βασικός αλγόριθμος για 
+το σύστημα δημιουργίας επιπέδων 2D χρησιμο
+ποιήθηκε
+ []
+
+[29]
+Overfull \hbox (22.6658pt too wide) in paragraph at lines 97--98
+\TU/LinLibertine(0)/m/n/12 κάποια εμφανή καθυστέριση σ
+τον χρήστη. Για την δημιυργία του \TU/LinLibertine(0
+)/m/it/12 dataset \TU/LinLibertine(0)/m/n/12 υλοποιήθηκε
+ []
+
+) [30]
 \openout2 = blank_page.aux
- (./blank_page.tex) [30
+ (./blank_page.tex) [31
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
@@ -2351,36 +2365,29 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
 (./blank_page.aux) (./blank_page.aux) (./blank_page.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 81.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 81.
-
-
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: 1E9A0AC6952E3A894DA7EA42BF428C6F;5889
-(rerunfilecheck)             After:  63AB231A1D5A71BF07A1DE7C6673C768;6048.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 2729AF98FC8AABB26B1A531E63703F19;6436.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 81.
 )
 
 Here is how much of LuaTeX's memory you used:
- 24155 strings out of 480994
+ 24169 strings out of 480994
  100000,794899 words of node,token memory allocated
  484 words of node memory still in use:
    4 hlist, 1 vlist, 1 rule, 3 glue, 3 kern, 1 penalty, 1 glyph, 10 attribute, 5
 6 glue_spec, 6 attribute_list, 2 write nodes
-   avail lists: 2:527,3:88,4:70,5:285,6:34,7:3654,8:19,9:126,10:12,11:42
- 40977 multiletter control sequences out of 65536+200000
- 81 fonts using 18424539 bytes
+   avail lists: 2:527,3:88,4:70,5:286,6:34,7:3654,8:19,9:126,10:12,11:42
+ 40980 multiletter control sequences out of 65536+200000
+ 81 fonts using 18424451 bytes
  61i,8n,106p,2072b,467s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/opentype/public/libertin
 e/LinLibertine_RI.otf><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/op
 entype/public/libertine/LinLibertine_RB.otf><C:/Users/edour/AppData/Local/Progra
 ms/MiKTeX 2.9/fonts/opentype/public/libertine/LinLibertine_R.otf><C:/Users/edour
 /AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (31 pages, 311344 bytes).
+Output written on thesis.pdf (32 pages, 316958 bytes).
 
-PDF statistics: 310 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 131072)
- 225 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 337 PDF objects out of 1000 (max. 8388607)
+ 73 named destinations out of 1000 (max. 131072)
+ 249 words of extra memory for PDF output out of 10000 (max. 100000000)
 
