@@ -56,7 +56,7 @@ namespace Assets.Scripts
             rules.Add(TransformRule.WALL_FROM_BOUNDS, new TransformToTileFromBounds(TileType.WALL));
             rules.Add(TransformRule.WALL_FROM_ADJACENTS, new TransformToWallFromAdjacents());
             rules.Add(TransformRule.WALL_FOR_ROOM, new TransformToWallForRoom());
-            rules.Add(TransformRule.FLOOR_FROM_ADJACENTS, new TransformToRoomFromAdjacents());
+            rules.Add(TransformRule.ROOM_FROM_ADJACENTS, new TransformToRoomFromAdjacents());
             rules.Add(TransformRule.FLOOR_FROM_BOUNDS, new TransformToTileFromBounds(TileType.CORRIDOR));
 
             defaultTile = TilemapHelper.GetDefaultTile();
@@ -175,9 +175,9 @@ namespace Assets.Scripts
                     return TilemapHelper.GetTileByType(newTileType);
                 }
             }
-            if (rule == TransformRule.FLOOR_FROM_ADJACENTS)
+            if (rule == TransformRule.ROOM_FROM_ADJACENTS)
             {
-                var newTileType = rules[TransformRule.FLOOR_FROM_ADJACENTS].Apply(neighbors);
+                var newTileType = rules[TransformRule.ROOM_FROM_ADJACENTS].Apply(neighbors);
                 if (newTileType != null)
                 {
                     return TilemapHelper.GetTileByType(newTileType);
