@@ -38,22 +38,20 @@ namespace Assets.Scripts.Reporting
             string line;
 
             // Write graph content into file
-            using (StreamWriter streamWriter = File.CreateText(path))
+            using StreamWriter streamWriter = File.CreateText(path);
+            // Write column names
+            line = string.Format("{0},{1},{2},{3},", "Node ID", "Node x", "Node y", "Node Type");
+            // Get neighbor tiles position names
+            line += GetTilePositionsHeader();
+            streamWriter.WriteLine(line);
+            streamWriter.Flush();
+
+            foreach (var node in graph.Nodes)
             {
-                // Write column names
-                line = string.Format("{0},{1},{2},{3},", "Node ID", "Node x", "Node y", "Node Type");
-                // Get neighbor tiles position names
-                line += GetTilePositionsHeader();
+                line = string.Format("{0},{1},{2},{3},", node.Name, node.Position.x, node.Position.y, (int)node.Type);
+                line += WriteNodeLinks(node);
                 streamWriter.WriteLine(line);
                 streamWriter.Flush();
-
-                foreach (var node in graph.Nodes)
-                {
-                    line = string.Format("{0},{1},{2},{3},", node.Name, node.Position.x, node.Position.y, (int)node.Type);
-                    line += WriteNodeLinks(node);
-                    streamWriter.WriteLine(line);
-                    streamWriter.Flush();
-                }
             }
         }
 
@@ -203,42 +201,39 @@ namespace Assets.Scripts.Reporting
             string line;
 
             // Write tilemap content into file
-            using (StreamWriter streamWriter = File.CreateText(path))
+            using StreamWriter streamWriter = File.CreateText(path);
+            // Write tilemap dimensions 
+            line = string.Format("{0}, {1}", bounds.xMax - bounds.xMin, bounds.yMax - bounds.yMin);
+            streamWriter.WriteLine(line);
+            streamWriter.Flush();
+
+            // Write column names
+            line = string.Format("{0},{1},{2}", "Tile X", "Tile Y", "Tile Type");
+            streamWriter.WriteLine(line);
+            streamWriter.Flush();
+
+            int typeId;
+            TileBase tile;
+            Vector3Int position = Vector3Int.zero;
+            for (int x = bounds.xMin; x < bounds.xMax; x++)
             {
-                // Write tilemap dimensions 
-                line = string.Format("{0}, {1}", bounds.xMax - bounds.xMin, bounds.yMax - bounds.yMin);
-                streamWriter.WriteLine(line);
-                streamWriter.Flush();
-
-                // Write column names
-                line = string.Format("{0},{1},{2}", "Tile X", "Tile Y", "Tile Type");
-                streamWriter.WriteLine(line);
-                streamWriter.Flush();
-
-                int typeId;
-                TileBase tile;
-                Vector3Int position = Vector3Int.zero;
-                for (int x = bounds.xMin; x < bounds.xMax; x++)
+                for (int y = bounds.yMin; y < bounds.yMax; y++)
                 {
-                    for (int y = bounds.yMin; y < bounds.yMax; y++)
+                    position.x = x;
+                    position.y = y;
+                    tile = tilemap.GetTile(position);
+                    if (tile != null)
                     {
-                        position.x = x;
-                        position.y = y;
-                        tile = tilemap.GetTile(position);
-                        if (tile != null)
-                        {
-                            typeId = (int)TilemapHelper.GetTileTypeFromSpriteName(tile.name);
-                            line = string.Format("{0},{1},{2}", x, y, typeId);
-                        }
-                        else
-                        {
-                            line = string.Format("{0},{1},{2}", x, y, NullTile);
-                        }
-                        streamWriter.WriteLine(line);
-                        streamWriter.Flush();
+                        typeId = (int)TilemapHelper.GetTileTypeFromSpriteName(tile.name);
+                        line = string.Format("{0},{1},{2}", x, y, typeId);
                     }
+                    else
+                    {
+                        line = string.Format("{0},{1},{2}", x, y, NullTile);
+                    }
+                    streamWriter.WriteLine(line);
+                    streamWriter.Flush();
                 }
-
             }
         }
 
