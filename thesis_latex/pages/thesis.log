@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7350 64-bit)  (format=lualatex 2020.4.6)  5 MAY 2020 20:23
+This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7350 64-bit)  (format=lualatex 2020.4.6)  3 JUN 2020 20:36
  restricted system commands enabled.
 **thesis.tex
 (./thesis.tex
@@ -874,6 +874,70 @@ e.cfg")
 \subfig@top=\skip56
 \subfig@bottom=\skip57
 )
+("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amsmath.st
+y"
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip58
+
+For additional information on amsmath, use the `?' option.
+
+("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amstext.st
+y"
+Package: amstext 2000/06/29 v2.01 AMS text
+
+("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amsgen.sty
+"
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks21
+\ex@=\dimen153
+))
+("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amsbsy.sty
+"
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen154
+)
+("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/amsmath/amsopn.sty
+"
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count267
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count268
+\leftroot@=\count269
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count270
+\DOTSCASE@=\count271
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box48
+\strutbox@=\box49
+\big@size=\dimen155
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count272
+\c@MaxMatrixCols=\count273
+\dotsspace@=\muskip16
+\c@parentequation=\count274
+\dspbrk@lvl=\count275
+\tag@help=\toks22
+\row@=\count276
+\column@=\count277
+\maxfields@=\count278
+\andhelp@=\toks23
+\eqnshift@=\dimen156
+\alignsep@=\dimen157
+\tagshift@=\dimen158
+\tagwidth@=\dimen159
+\totwidth@=\dimen160
+\lineht@=\dimen161
+\@envbody=\toks24
+\multlinegap=\skip59
+\multlinetaggap=\skip60
+\mathdisplay@stack=\toks25
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/hyperref/hyperref.
 sty"
 Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
@@ -894,7 +958,7 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-\pdftexcmds@toks=\toks21
+\pdftexcmds@toks=\toks26
 )
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/generic/kvsetkeys/kvsetk
 eys.sty"
@@ -924,9 +988,9 @@ Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 s.sty"
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
-\@linkdim=\dimen153
-\Hy@linkcounter=\count267
-\Hy@pagecounter=\count268
+\@linkdim=\dimen162
+\Hy@linkcounter=\count279
+\Hy@pagecounter=\count280
 
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/hyperref/pd1enc.de
 f"
@@ -940,7 +1004,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 s.sty"
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count269
+\Hy@SavedSpaceFactor=\count281
 Package hyperref Info: Option `bookmarks' set `true' on input line 4421.
 Package hyperref Info: Option `colorlinks' set `true' on input line 4421.
 Package hyperref Info: Option `breaklinks' set `true' on input line 4421.
@@ -951,13 +1015,13 @@ Package hyperref Info: Plain pages OFF on input line 4562.
 Package hyperref Info: Backreferencing OFF on input line 4567.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4800.
-\c@Hy@tempcnt=\count270
+\c@Hy@tempcnt=\count282
  ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/url/url.sty"
-\Urlmuskip=\muskip16
+\Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5159.
-\XeTeXLinkMargin=\dimen154
+\XeTeXLinkMargin=\dimen163
 
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/generic/bitset/bitset.st
 y"
@@ -968,9 +1032,9 @@ tcalc.sty"
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 
 ))
-\Fld@menulength=\count271
-\Field@Width=\dimen155
-\Fld@charsize=\dimen156
+\Fld@menulength=\count283
+\Field@Width=\dimen164
+\Fld@charsize=\dimen165
 Package hyperref Info: Hyper figures OFF on input line 6430.
 Package hyperref Info: Link nesting OFF on input line 6435.
 Package hyperref Info: Hyper index ON on input line 6438.
@@ -985,9 +1049,9 @@ LaTeX Info: Redefining \pageref on input line 6504.
 i.sty"
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count272
-\c@Item=\count273
-\c@Hfootnote=\count274
+\Hy@abspage=\count284
+\c@Item=\count285
+\c@Hfootnote=\count286
 )
 Package hyperref Info: Driver (autodetected): hluatex.
 
@@ -1009,8 +1073,8 @@ d.sty"
 Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
 Package atveryend Info: \enddocument detected (standard20110627).
 )
-\Fld@listcount=\count275
-\c@bookmark@seq@number=\count276
+\Fld@listcount=\count287
+\c@bookmark@seq@number=\count288
 
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/rerunfilecheck/rer
 unfilecheck.sty"
@@ -1023,46 +1087,46 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 6.
 )
-\Hy@SectionHShift=\skip58
+\Hy@SectionHShift=\skip61
 ) (./thesis.aux (./blank_page.aux) (./blank_page.aux)
 (./blank_page.aux) (./blank_page.aux) (./blank_page.aux))
 \openout1 = thesis.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 57
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 62
 .
 
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/base/ts1cmr.fd"
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 57.
-LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 57
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 62.
+LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 62
 .
 
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/cbfonts-fd/lgrcmr.
 fd"
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
@@ -1104,83 +1168,82 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 57.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 57.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 57.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 57.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 57.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 57.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 57.
-LaTeX Font Info:    Redeclaring math accent \check on input line 57.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 57.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 57.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 57.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 57.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 57.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 62.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 62.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 62.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 62.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 62.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 62.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 62.
+LaTeX Font Info:    Redeclaring math accent \check on input line 62.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 62.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 62.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 62.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 62.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 62.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 57.
+(Font)              `operators' in the math version `normal' on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/LinLibertine(0)/m/n on input line 57.
+(Font)                  OT1/cmr/m/n --> TU/LinLibertine(0)/m/n on input line 62.
 
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 57.
+(Font)              `operators' in the math version `bold' on input line 62.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/LinLibertine(0)/m/n on input line 57
+(Font)                  OT1/cmr/bx/n --> TU/LinLibertine(0)/m/n on input line 62
 .
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  TU/LinLibertine(0)/m/n --> TU/LinLibertine(0)/m/n on inp
-ut line 57.
+ut line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/LinLibertine(0)/m/it on input line 5
-7.
+(Font)                  OT1/cmr/m/it --> TU/LinLibertine(0)/m/it on input line 6
+2.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/LinLibertine(0)/b/n on input line 57
+(Font)                  OT1/cmr/bx/n --> TU/LinLibertine(0)/b/n on input line 62
 .
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/LinBiolinum(0)/m/n on input line 57.
+(Font)                  OT1/cmss/m/n --> TU/LinBiolinum(0)/m/n on input line 62.
 
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/LinLibertine(5)/m/n on input line 57
+(Font)                  OT1/cmtt/m/n --> TU/LinLibertine(5)/m/n on input line 62
 .
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  TU/LinLibertine(0)/m/n --> TU/LinLibertine(0)/b/n on inp
-ut line 57.
+ut line 62.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/LinLibertine(0)/b/it on input line 
-57.
+62.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/LinBiolinum(0)/b/n on input line 57
+(Font)                  OT1/cmss/bx/n --> TU/LinBiolinum(0)/b/n on input line 62
 .
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/LinLibertine(5)/b/n on input line 57
+(Font)                  OT1/cmtt/m/n --> TU/LinLibertine(5)/b/n on input line 62
 .
 
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/context/base/mkii/supp-p
 df.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count277
-\scratchdimen=\dimen157
-\scratchbox=\box48
-\nofMPsegments=\count278
-\nofMParguments=\count279
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count280
-\MPscratchDim=\dimen158
-\MPnumerator=\count281
-\makeMPintoPDFobject=\count282
-\everyMPtoPDFconversion=\toks23
+\scratchcounter=\count289
+\scratchdimen=\dimen166
+\scratchbox=\box50
+\nofMPsegments=\count290
+\nofMParguments=\count291
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count292
+\MPscratchDim=\dimen167
+\MPnumerator=\count293
+\makeMPintoPDFobject=\count294
+\everyMPtoPDFconversion=\toks28
 )
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/epstopdf-pkg/epsto
 pdf-base.sty"
@@ -1188,8 +1251,8 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 5.
 )
-\AtBeginShipoutBox=\box49
-Package hyperref Info: Link coloring ON on input line 57.
+\AtBeginShipoutBox=\box51
+Package hyperref Info: Link coloring ON on input line 62.
 
 ("C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/tex/latex/hyperref/nameref.s
 ty"
@@ -1203,17 +1266,17 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ettitlestring.sty"
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count283
+\c@section@level=\count295
 )
-LaTeX Info: Redefining \ref on input line 57.
-LaTeX Info: Redefining \pageref on input line 57.
-LaTeX Info: Redefining \nameref on input line 57.
+LaTeX Info: Redefining \ref on input line 62.
+LaTeX Info: Redefining \pageref on input line 62.
+LaTeX Info: Redefining \nameref on input line 62.
  (./thesis.out) (./thesis.out)
 \@outlinefile=\write3
 
 \openout3 = thesis.out
  (./thesis_title.tex
-<../images/aristotle_logo.png, id=163, 278.54062pt x 209.28188pt>
+<../images/aristotle_logo.png, id=175, 278.54062pt x 209.28188pt>
 File: ../images/aristotle_logo.png Graphic file (type png)
 <use ../images/aristotle_logo.png>
 Package luatex.def Info: ../images/aristotle_logo.png  used on input line 7.
@@ -1222,12 +1285,6 @@ LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 (Font)              scaled to size 8.0pt on input line 8.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 (Font)              scaled to size 6.0pt on input line 8.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 8.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 8.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 8.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 (Font)              scaled to size 14.4pt on input line 42.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/sc' will be
@@ -1271,9 +1328,9 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 
 ]
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 24.88pt on input line 65.
+(Font)              scaled to size 24.88pt on input line 70.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/n' will be
-(Font)              scaled to size 24.88pt on input line 65.
+(Font)              scaled to size 24.88pt on input line 70.
  (./thesis.toc
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/n' will be
 (Font)              scaled to size 12.0pt on input line 2.
@@ -1354,7 +1411,7 @@ Overfull \hbox (12.78212pt too wide) in paragraph at lines 10--11
 ύσει. 
  []
 
-<../images/no-mans-sky.jpg, id=236, 712.52113pt x 400.02972pt>
+<../images/no-mans-sky.jpg, id=251, 712.52113pt x 400.02972pt>
 File: ../images/no-mans-sky.jpg Graphic file (type jpg)
 <use ../images/no-mans-sky.jpg>
 Package luatex.def Info: ../images/no-mans-sky.jpg  used on input line 14.
@@ -2631,7 +2688,7 @@ Overfull \hbox (29.05118pt too wide) in paragraph at lines 65--66
 ς
  []
 
-
+[39]
 Overfull \hbox (0.59335pt too wide) in paragraph at lines 70--71
 []\TU/LinLibertine(0)/m/n/12 Τις μεθόδους της Μηχανικής 
 Μάθησης μπορούμε να τις κατηγοριοποιήσουμ
@@ -2645,7 +2702,7 @@ Overfull \hbox (4.77287pt too wide) in paragraph at lines 70--71
 ημονικό
  []
 
-[39]
+
 Overfull \hbox (34.5289pt too wide) in paragraph at lines 74--75
 \TU/LinLibertine(0)/m/n/12 που αντιστοιχούν σε μαθηματ
 ικές αναπαραστάσεις των δεδομένων. Η εκπαί
@@ -2672,42 +2729,182 @@ Overfull \hbox (8.89915pt too wide) in paragraph at lines 76--77
 να
  []
 
-) [40]
+[40]
+Overfull \hbox (49.62988pt too wide) in paragraph at lines 89--90
+\TU/LinLibertine(0)/m/n/12 μοντέλα πρόβλεψης με δενδρι
+κή αναπαράσταση. Χρησιμοποιούν τα χαρακτη
+ριστικά
+ []
+
+
+Overfull \hbox (15.55917pt too wide) in paragraph at lines 89--90
+\TU/LinLibertine(0)/m/n/12 των δεδομένων εισόδου για ν
+α περιηγηθούν μέσα στο δέντρο μέχρι να φτά
+σουν
+ []
+
+
+Overfull \hbox (44.42593pt too wide) in paragraph at lines 89--90
+\TU/LinLibertine(0)/m/n/12 σε κάποιο αποτέλεσμα-ρίζα. Κ
+ατά την εκπαίδευση του μοντέλου τα χαρακτη
+ριστικά
+ []
+
+
+Overfull \hbox (11.0592pt too wide) in paragraph at lines 89--90
+\TU/LinLibertine(0)/m/n/12 των δεδομένων εκπαίδευσης χ
+ωρίζονται με συγκεκριμένες μεθόδους, ανάλ
+ογα
+ []
+
+
+Overfull \hbox (12.24582pt too wide) in paragraph at lines 91--92
+\TU/LinLibertine(0)/m/n/12 μαθηματική μέθοδο διαχωρισ
+μού των δεδομένων σε δύο ομάδες. Χρησιμοπο
+ιεί
+ []
+
+
+Overfull \hbox (15.38318pt too wide) in paragraph at lines 93--94
+\TU/LinLibertine(0)/m/n/12 έχουν φτιαχτεί με έμνευση τ
+ον ανρθώπινο εγκέφαλο και τον τρόπο λειτου
+ργίας
+ []
+
+
+Overfull \hbox (8.48323pt too wide) in paragraph at lines 93--94
+\TU/LinLibertine(0)/m/n/12 την επεξεργάζονται και βγάζ
+ουν ένα αποτέλεσμα που μπορεί να είναι είσ
+οδος
+ []
+
+
+Overfull \hbox (26.04727pt too wide) in paragraph at lines 100--101
+\TU/LinLibertine(0)/m/n/12 στα πρωτοποριακά αποτελέσμ
+ατα που παρουσιάζουν σε πολλά προβλήματα τ
+εχνητής
+ []
+
+[41]
+Overfull \hbox (12.37521pt too wide) in paragraph at lines 107--108
+\TU/LinLibertine(0)/m/n/12 περισσότερες είσοδους, οι ο
+ποίες περνάνε από την συνάρτηση ενεργοποί
+ησης
+ []
+
+
+Overfull \hbox (7.37119pt too wide) in paragraph at lines 107--108
+\TU/LinLibertine(0)/m/n/12 ενεργοποίησης περνάει στην 
+συνάρτηση εξόδου που είναι και το αποτέλεσ
+μα
+ []
+
+
+Overfull \hbox (13.04214pt too wide) in paragraph at lines 109--110
+[]\TU/LinLibertine(0)/m/n/12 Η συνάρτηση ενεργοποίησης 
+έχει ως σκοπό να εναρμονίσει
+ []
+
+
+Overfull \hbox (2.54324pt too wide) in paragraph at lines 109--110
+\TU/LinLibertine(0)/m/n/12 διακόπτης του νευρώνα, ο οπο
+ίος για συγκεκριμένες τιμές παράγει μηδεν
+ική
+ []
+
+
+Overfull \hbox (6.08324pt too wide) in paragraph at lines 111--112
+\TU/LinLibertine(0)/m/n/12 εκπαίδευση για να φτιαχτεί 
+ένα νευρωνικό που να παράγει τα αποτελέσμα
+τα
+ []
+
+
+Overfull \hbox (11.53923pt too wide) in paragraph at lines 113--114
+\TU/LinLibertine(0)/m/n/12 και είναι ένα από τα κομμάτι
+α που καθορίζουν την αρχιτεκτονική του δικ
+τύου.
+ []
+
+
+Overfull \hbox (24.7552pt too wide) in paragraph at lines 113--114
+\TU/LinLibertine(0)/m/n/12 Οι συνδέσεις δεν αλλάζουν κ
+ατά την εκπαίδευση αλλά μπορούν να ”αποκο
+πούν”
+ []
+
+[42]
+Overfull \hbox (27.39784pt too wide) in paragraph at lines 121--122
+\TU/LinLibertine(0)/m/n/12 και την ιεραρχία τους καθώς 
+και τον αριθμό των εισόδων τους. Υπάρχουν μ
+εθοδολογίες
+ []
+
+
+Overfull \hbox (10.34723pt too wide) in paragraph at lines 127--128
+[]\TU/LinLibertine(0)/m/n/12 Όπως περιέχετε και στο όνο
+μα, αυτό το επίπεδο εφαρμόζει
+ []
+
+
+Overfull \hbox (40.2139pt too wide) in paragraph at lines 129--130
+\TU/LinLibertine(0)/m/n/12 κάποιες από τις τιμές εισόδ
+ου σε 0. Αυτό έχει ως αποτέλεσμα την ”απενε
+ργοποίηση”
+ []
+
+[43]
+Overfull \hbox (2.38316pt too wide) in paragraph at lines 140--141
+\TU/LinLibertine(0)/m/n/12 διορθώνονται με βάση το σφά
+λμα που τους αναλογεί και η εκπαίδευση συν
+εχίζετε.
+ []
+
+) [44]
 \openout2 = blank_page.aux
- (./blank_page.tex) [41
+ (./blank_page.tex) [45
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 83.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 83.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 88.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 88.
  (./thesis.aux (./blank_page.aux)
 (./blank_page.aux) (./blank_page.aux) (./blank_page.aux) (./blank_page.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 83.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 83.
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 4F2498916768583AB1BCB31DE540895A;8697.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 83.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 88.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 88.
+
+
+Package rerunfilecheck Warning: File `thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis.out':
+(rerunfilecheck)             Before: 2A808F6A882F364C791171B37B3E40D0;9285
+(rerunfilecheck)             After:  6CD81AC4109DF5618F8188368F7E15E0;9423.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 88.
 )
 
 Here is how much of LuaTeX's memory you used:
- 24228 strings out of 480994
+ 24863 strings out of 480994
  100000,794899 words of node,token memory allocated
- 484 words of node memory still in use:
-   4 hlist, 1 vlist, 1 rule, 3 glue, 3 kern, 1 penalty, 1 glyph, 10 attribute, 5
-6 glue_spec, 6 attribute_list, 2 write nodes
-   avail lists: 2:692,3:115,4:92,5:291,6:45,7:3654,8:24,9:162,10:12,11:42
- 40992 multiletter control sequences out of 65536+200000
- 82 fonts using 18699063 bytes
- 61i,8n,106p,2072b,467s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 565 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 penalty, 1 glyph, 15 attribute, 5
+9 glue_spec, 9 attribute_list, 2 write nodes
+   avail lists: 2:692,3:115,4:92,5:294,6:45,7:3654,8:33,9:162,10:12,11:60
+ 41584 multiletter control sequences out of 65536+200000
+ 84 fonts using 18822783 bytes
+ 61i,8n,106p,2072b,472s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/opentype/public/libertin
 e/LinLibertine_RBI.otf><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/o
 pentype/public/libertine/LinLibertine_RI.otf><C:/Users/edour/AppData/Local/Progr
 ams/MiKTeX 2.9/fonts/opentype/public/libertine/LinLibertine_RB.otf><C:/Users/edo
 ur/AppData/Local/Programs/MiKTeX 2.9/fonts/opentype/public/libertine/LinLibertin
 e_R.otf><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (42 pages, 354082 bytes).
+fonts/cm/cmmi12.pfb><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmr12.pfb><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on thesis.pdf (46 pages, 389564 bytes).
 
-PDF statistics: 431 PDF objects out of 1000 (max. 8388607)
- 92 named destinations out of 1000 (max. 131072)
- 321 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 472 PDF objects out of 1000 (max. 8388607)
+ 100 named destinations out of 1000 (max. 131072)
+ 345 words of extra memory for PDF output out of 10000 (max. 100000000)
 
