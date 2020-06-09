@@ -6,19 +6,19 @@
 \contentsline {section}{\numberline {1.4}Προβλήματα του PCG}{10}{section.1.4}%
 \contentsline {section}{\numberline {1.5}Επιθυμητά Χαρακτηριστικά του PCG}{11}{section.1.5}%
 \contentsline {subsection}{\numberline {1.5.1}Ταχύτητα - Πολυπλοκότητα}{11}{subsection.1.5.1}%
-\contentsline {subsection}{\numberline {1.5.2}Δημιουργικότητα - πρωτοτυπία}{11}{subsection.1.5.2}%
+\contentsline {subsection}{\numberline {1.5.2}Δημιουργικότητα - πρωτοτυπία}{12}{subsection.1.5.2}%
 \contentsline {subsection}{\numberline {1.5.3}Aξιοπιστία}{12}{subsection.1.5.3}%
-\contentsline {subsection}{\numberline {1.5.4}Παραμετροποιησιμότητα}{12}{subsection.1.5.4}%
-\contentsline {section}{\numberline {1.6}Procedural Content Generation για 2D επίπεδα}{13}{section.1.6}%
+\contentsline {subsection}{\numberline {1.5.4}Παραμετροποιησιμότητα}{13}{subsection.1.5.4}%
+\contentsline {section}{\numberline {1.6}Procedural Content Generation για 2D επίπεδα}{14}{section.1.6}%
 \contentsline {subsection}{\numberline {1.6.1}Εισαγωγή}{14}{subsection.1.6.1}%
-\contentsline {subsection}{\numberline {1.6.2}Space Partitioning}{14}{subsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.6.2}Space Partitioning}{15}{subsection.1.6.2}%
 \contentsline {subsection}{\numberline {1.6.3}Agent-based}{16}{subsection.1.6.3}%
 \contentsline {subsection}{\numberline {1.6.4}Cellular Automata}{17}{subsection.1.6.4}%
-\contentsline {subsection}{\numberline {1.6.5}Generative Grammars}{18}{subsection.1.6.5}%
-\contentsline {section}{\numberline {1.7}Αξιολόγηση (Evaluation)}{19}{section.1.7}%
+\contentsline {subsection}{\numberline {1.6.5}Generative Grammars}{19}{subsection.1.6.5}%
+\contentsline {section}{\numberline {1.7}Αξιολόγηση (Evaluation)}{20}{section.1.7}%
 \contentsline {subsection}{\numberline {1.7.1}Πόσο σημαντική είναι η αξιολογήση}{20}{subsection.1.7.1}%
 \contentsline {subsection}{\numberline {1.7.2}Χαρακτηριστικά Αξιολόγησης}{21}{subsection.1.7.2}%
-\contentsline {subsection}{\numberline {1.7.3}Είδη Αξιολόγησης}{22}{subsection.1.7.3}%
+\contentsline {subsection}{\numberline {1.7.3}Είδη Αξιολόγησης}{23}{subsection.1.7.3}%
 \contentsline {chapter}{\numberline {2}Procedural Content Generation with Unity}{25}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Game Engines}{26}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Unity Game Engine}{28}{section.2.2}%
