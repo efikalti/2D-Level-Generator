@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  9 JUN 2020 22:32
+This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  10 JUN 2020 22:06
  restricted system commands enabled.
 **pcg.tex
 (./pcg.tex
@@ -486,9 +486,29 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 39--41
 []Η
  []
 
+\citation{pcgieee}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.42 ...ενο αποτέλεσμα.  \cite{pcgieee}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `pcgieee' on page  undefined on input line 42.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 42--43
 []Το
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 42--43
+[[]] 
  []
 
 
@@ -667,7 +687,7 @@ and I'll forget about whatever was undefined.
 <write> ... Warning: Citation `\@citeb ' on page \thepage 
                                                   \space undefined\on@line .
 l.61 ... PCG αλγορίθμων. \cite{challenges}
-                                                  
+                                                   \cite{desirableproperties}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -677,9 +697,30 @@ and I'll forget about whatever was undefined.
 
 LaTeX Warning: Citation `challenges' on page  undefined on input line 61.
 
+\citation{desirableproperties}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.61 ...\cite{challenges} \cite{desirableproperties}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `desirableproperties' on page  undefined on input line 6
+1.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 60--62
 []Προβλήματα
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 60--62
+[[]]
  []
 
 
@@ -759,9 +800,50 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+\citation{challenges}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.74 ... στο παιχνίδι.  \cite{challenges}
+                                                   \cite{desirableproperties}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `challenges' on page  undefined on input line 74.
+
+\citation{desirableproperties}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.74 ...\cite{challenges} \cite{desirableproperties}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `desirableproperties' on page  undefined on input line 7
+4.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 73--75
 []Επιθυμητά
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 73--75
+[[]]
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 73--75
+[[]] 
  []
 
 ! Undefined control sequence.
@@ -802,9 +884,29 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 82--83
 []Παρόλαυτα
  []
 
+\citation{bannerlord}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.84 ...nt and Blade II Bannerlord \cite{bannerlord}
+                                                   υπάρχει η πιθα...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `bannerlord' on page  undefined on input line 84.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 84--85
 []Για
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 84--85
+[[]]
  []
 
 ! Undefined control sequence.
@@ -840,9 +942,30 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 90--91
 []Παραμετροποιησιμότητα
  []
 
+\citation{oxygennotincluded}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.92 ...σεις τους. \cite{oxygennotincluded}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `oxygennotincluded' on page  undefined on input line 92.
+
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 92--93
 []Για
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 92--93
+[[]] 
  []
 
 ! Undefined control sequence.
@@ -883,9 +1006,69 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+\citation{pcgieee}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.106 ...γράφετε και στα \cite{pcgieee}
+                                                   \cite{pcgig}, το PCG γ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `pcgieee' on page  undefined on input line 106.
+
+\citation{pcgig}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.106 ... και στα \cite{pcgieee} \cite{pcgig}
+                                                  , το PCG για την δ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `pcgig' on page  undefined on input line 106.
+
+\citation{pcgig}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.106 ...ου επιπέδου. Στο \cite{pcgig}
+                                                   γίνετε μια ανά...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `pcgig' on page  undefined on input line 106.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 105--107
 []Εισαγωγή
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 105--107
+[[]]
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 105--107
+[[]],
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 105--107
+[[]]
  []
 
 
@@ -922,10 +1105,21 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.110 ...οντέλου αναπαράστασης]
-                                                   Αποτελεί τον α...
+                                                   Ο αλγόριθμος π...
 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (19.60002pt too wide) in paragraph at lines 110--111
+\TU/lmr/m/it/10 μ󰀀ο󰀀ν󰀀τ󰀀έ󰀀λ󰀀ο󰀀
+ []
+
+
+Overfull \hbox (36.40004pt too wide) in paragraph at lines 110--111
+\TU/lmr/m/it/10 α󰀀ν󰀀α󰀀π󰀀α󰀀ρ󰀀ά󰀀σ󰀀τ󰀀α󰀀σ
+󰀀η󰀀ς󰀀
+ []
 
 
 ! LaTeX Error: Lonely \item--perhaps a missing list environment.
@@ -935,7 +1129,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.111 ... μοντέλο αναπαράστασης]
-                                                   Αυτή η μέθοδος...
+                                                   Ο αλγόριθμος π...
 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -954,8 +1148,30 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
+Overfull \hbox (19.60002pt too wide) in paragraph at lines 111--113
+\TU/lmr/m/it/10 μ󰀀ο󰀀ν󰀀τ󰀀έ󰀀λ󰀀ο󰀀
+ []
+
+
+Overfull \hbox (36.40004pt too wide) in paragraph at lines 111--113
+\TU/lmr/m/it/10 α󰀀ν󰀀α󰀀π󰀀α󰀀ρ󰀀ά󰀀σ󰀀τ󰀀α󰀀σ
+󰀀η󰀀ς󰀀
+ []
+
+
+Overfull \hbox (19.60002pt too wide) in paragraph at lines 111--113
+\TU/lmr/m/it/10 μ󰀀έ󰀀θ󰀀ο󰀀δ󰀀ο󰀀ς󰀀
+ []
+
+
+Overfull \hbox (30.80003pt too wide) in paragraph at lines 111--113
+\TU/lmr/m/it/10 δ󰀀η󰀀μ󰀀ι󰀀ο󰀀υ󰀀ρ󰀀γ󰀀ί󰀀α󰀀ς
+󰀀\nullfont .
+ []
+
+
 Overfull \hbox (20.0pt too wide) in paragraph at lines 114--115
-[]Θα
+[]Παρακάτω
  []
 
 
@@ -978,7 +1194,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.117 ...ισμός χώρου (Space Partitioning)]
+l.117 ...ρισμό χώρου (Space Partitioning)]
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1002,8 +1218,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.119     \item[$\bullet$ Cellular Automata]
-                                          
+l.119 ...\item[$\bullet$ PCG με Cellular Automata]
+                                                  
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -1041,14 +1257,74 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+\citation{pcgspacepart}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.124 ...ένα  επίπεδο. \cite{pcgspacepart}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `pcgspacepart' on page  undefined on input line 124.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 123--125
 []Space
  []
 
 
+Overfull \hbox (5.43pt too wide) in paragraph at lines 123--125
+[[]] 
+ []
+
+\citation{bsp}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.126 ... Binary Space Partitioning (BSP) \cite{bsp}
+                                                   και παραλλαγέ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `bsp' on page  undefined on input line 126.
+
+\citation{octree}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.126 ...ν να βρεθούν εδώ \cite{octree}
+                                                  .
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `octree' on page  undefined on input line 126.
+
+
 Overfull \hbox (20.0pt too wide) in paragraph at lines 126--127
 []Ένας
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 126--127
+[[]]
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 126--127
+[[]]. 
  []
 
 
@@ -1118,9 +1394,29 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+\citation{agents}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.140 ...ω ενός πράκτορα \cite{agents}
+                                                  . Οι πράκτορες ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `agents' on page  undefined on input line 140.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 139--141
 []Agent-
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 139--141
+[[]].
  []
 
 
@@ -1215,9 +1511,29 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+\citation{cellular}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.157 ...κός: Cellular Automaton) \cite{cellular}
+                                                   έχουν χρησιμο...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `cellular' on page  undefined on input line 157.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 156--158
 []Cellular
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 156--158
+[[]]
  []
 
 
@@ -1251,7 +1567,7 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.163   \item[$\bullet$ Grid]
-                            To NxM grid αντιπροσωπείευ το ε...
+                            To NxM grid αντιπροσωπεύει το ε...
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -1362,9 +1678,29 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+\citation{grammars}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.179 ...ς Πληροφορικής \cite{grammars}
+                                                  , αποτελούνται...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `grammars' on page  undefined on input line 179.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 178--180
 []Generative
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 178--180
+[[]],
  []
 
 
@@ -1401,6 +1737,21 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+\citation{pcgevaluation}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.197 ...ν, των Evaluators. \cite{pcgevaluation}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `pcgevaluation' on page  undefined on input line 197.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 196--198
 []Αξιολόγηση
@@ -1409,6 +1760,11 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 196--198
 
 Overfull \hbox (14.00002pt too wide) in paragraph at lines 196--198
 \TU/lmr/bx/n/10 κ󰀀α󰀀λ󰀀ο󰀀ύ󰀀
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 196--198
+[[]] 
  []
 
 ! Undefined control sequence.
@@ -1420,9 +1776,30 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+\citation{genericevaluation}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.200 ...ο σύστημα \cite{genericevaluation}
+                                                  . Ένας Evaluator έχε...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `genericevaluation' on page  undefined on input line 200
+.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 199--201
 []Πόσο
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 199--201
+[[]].
  []
 
 
@@ -1531,9 +1908,29 @@ Overfull \hbox (8.40001pt too wide) in paragraph at lines 214--215
 \TU/lmr/bx/n/10 κ󰀀α󰀀ι󰀀
  []
 
+\citation{styletransfer}
+! Undefined control sequence.
+<write> ... Warning: Citation `\@citeb ' on page \thepage 
+                                                  \space undefined\on@line .
+l.216 ...ου (style transfer) \cite{styletransfer}
+                                                  , μπορεί κανείς...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+LaTeX Warning: Citation `styletransfer' on page  undefined on input line 216.
+
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 216--217
 []Όπως
+ []
+
+
+Overfull \hbox (5.43pt too wide) in paragraph at lines 216--217
+[[]],
  []
 
 
@@ -1685,11 +2082,11 @@ Overfull \hbox (20.0pt too wide) in paragraph at lines 233--234
 
 Here is how much of LuaTeX's memory you used:
  27 strings out of 480883
- 305230,319454 words of node,token memory allocated 256589 words of node memory still in use:
-   367 hlist, 15 disc, 99 local_par, 1 dir, 5856 glue, 14 kern, 257 penalty, 299
-24 glyph, 240 attribute, 39 glue_spec, 240 attribute_list nodes
-   avail lists: 1:1,2:5,4:174,5:3,7:36,10:173
+ 305230,319454 words of node,token memory allocated 260005 words of node memory still in use:
+   420 hlist, 15 disc, 99 local_par, 1 dir, 5918 glue, 16 kern, 272 penalty, 302
+50 glyph, 282 attribute, 39 glue_spec, 282 attribute_list nodes
+   avail lists: 2:5,4:173,5:3,7:36,10:172
  17761 multiletter control sequences out of 65536+200000
  27 fonts using 3522083 bytes
- 17i,2n,19p,2057b,98s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 17i,2n,19p,2052b,98s stack positions out of 5000i,500n,10000p,200000b,50000s
 !  ==> Fatal error occurred, no output PDF file produced!
