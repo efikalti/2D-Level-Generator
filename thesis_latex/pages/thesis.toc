@@ -34,17 +34,17 @@
 \contentsline {section}{\numberline {2.5}Δημιουργία Συνόλου Δεδομένων (\textit {Dataset})}{32}{section.2.5}%
 \contentsline {chapter}{\numberline {3}Machine Learning}{35}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Machine Learning \& Games}{36}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Machine Learning στα Video Games}{37}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Machine Learning στα Video Games}{36}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Video Games που χρησιμοποιούν Μηχανική Μάθηση}{37}{subsection.3.2.1}%
 \contentsline {section}{\numberline {3.3}Ορολογία Μηχανικής Μάθησης}{38}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Κατηγορίες Μηχανικής Μάθησης}{39}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Μέθοδοι Supervised learning}{40}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.4}Κατηγορίες Μηχανικής Μάθησης}{38}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Μέθοδοι Supervised learning}{39}{subsection.3.4.1}%
 \contentsline {section}{\numberline {3.5}Artificial Neural Networks (ANN)}{40}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Χαρακτηριστικά ενός ANN}{41}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Επίπεδα}{42}{subsection.3.5.2}%
-\contentsline {subsection}{\numberline {3.5.3}Backpropagation}{43}{subsection.3.5.3}%
+\contentsline {subsection}{\numberline {3.5.1}Χαρακτηριστικά ενός ANN}{40}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Επίπεδα}{41}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Backpropagation}{42}{subsection.3.5.3}%
 \contentsline {section}{\numberline {3.6}Generative Adversarial Networks (GANs)}{43}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Μοντέλο GAN}{44}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.1}Μοντέλο GAN}{43}{subsection.3.6.1}%
 \contentsline {subsection}{\numberline {3.6.2}Εκπαίδευση}{44}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Αποτελέσματα και αποδόσεις}{45}{subsection.3.6.3}%
-\contentsline {chapter}{\numberline {4}Βιβλιογραφία}{47}{chapter.4}%
+\contentsline {subsection}{\numberline {3.6.3}Αποτελέσματα και αποδόσεις}{44}{subsection.3.6.3}%
+\contentsline {chapter}{\numberline {4}Βιβλιογραφία}{46}{chapter.4}%
