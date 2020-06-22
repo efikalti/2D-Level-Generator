@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  18 JUN 2020 23:06
+This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  22 JUN 2020 22:40
  restricted system commands enabled.
 **thesis.tex
 (./thesis.tex
@@ -1295,7 +1295,7 @@ LaTeX Info: Redefining \nameref on input line 63.
 
 \openout3 = thesis.out
  (./thesis_title.tex
-<../images/aristotle_logo.png, id=251, 278.54062pt x 209.28188pt>
+<../images/aristotle_logo.png, id=255, 278.54062pt x 209.28188pt>
 File: ../images/aristotle_logo.png Graphic file (type png)
 <use ../images/aristotle_logo.png>
 Package luatex.def Info: ../images/aristotle_logo.png  used on input line 7.
@@ -1427,7 +1427,7 @@ Overfull \hbox (29.3272pt too wide) in paragraph at lines 11--12
 
 
 ]
-<../images/no-mans-sky.jpg, id=360, 712.52113pt x 400.02972pt>
+<../images/no-mans-sky.jpg, id=365, 712.52113pt x 400.02972pt>
 File: ../images/no-mans-sky.jpg Graphic file (type jpg)
 <use ../images/no-mans-sky.jpg>
 Package luatex.def Info: ../images/no-mans-sky.jpg  used on input line 15.
@@ -3056,153 +3056,181 @@ Overfull \hbox (5.7142pt too wide) in paragraph at lines 51--52
  []
 
 
-Overfull \hbox (13.9672pt too wide) in paragraph at lines 63--64
-\TU/LinLibertine(0)/m/n/12 παρόλο που η βιβλιογραφία π
-άνω στους αλγόριθμους που μπορούν να εφαρμ
-οστούν
+Overfull \hbox (17.56146pt too wide) in paragraph at lines 64--65
+[]\TU/LinLibertine(0)/m/n/12 Το δεύτερο κομμάτι αφορά τ
+ο είδος του μοντέλου που θέλουμε να εκπαιδ
+εύσουμε.
  []
 
 [49]
-Overfull \hbox (11.48727pt too wide) in paragraph at lines 65--66
-\TU/LinLibertine(0)/m/it/12 dataset \TU/LinLibertine(0)/m/n/12 μας, ώστ
-ε να πετύχουμε το καλύτερο δυνατό αποτέλεσ
-μα με την εκπαίδευση. 
+Overfull \hbox (0.8112pt too wide) in paragraph at lines 69--70
+\TU/LinLibertine(0)/m/n/12 στάδιο προσθέτει πολυπλοκό
+τητα χωρίς να παρουσιάζει κάποια εμφανή δι
+αφορά
  []
 
 
-Overfull \hbox (2.6112pt too wide) in paragraph at lines 67--68
-\TU/LinLibertine(0)/m/n/12 δημιουργία του dataset θα γινότ
-αν είτε από τους σχεδιαστές, θα συγκεντρών
-οντας
+Overfull \hbox (5.57121pt too wide) in paragraph at lines 69--70
+\TU/LinLibertine(0)/m/n/12 στα αποτελέσματα των μοντέλ
+ων, δεν χρησιμοποιήθηκε στις τελικές εκπαι
+δεύσεις.
  []
 
 
-Overfull \hbox (31.91748pt too wide) in paragraph at lines 69--70
-[]\TU/LinLibertine(0)/m/n/12 Ταυτόχρονα αυτό μας έδωσε 
-την δυνατότητα να ερευνήσουμε σε ακόμα μεγ
-αλύτερο
+Overfull \hbox (16.9404pt too wide) in paragraph at lines 73--74
+[]\TU/LinLibertine(0)/m/n/12 Η αντίθετη διαδικασία πρέπ
+ει να εκτελεστεί για τα αποτελέσματα των μ
+οντέλων
  []
 
 
-Overfull \hbox (0.27376pt too wide) in paragraph at lines 69--70
-\TU/LinLibertine(0)/m/n/12 από μία οπτική τον \TU/LinLibertine(0
-)/m/it/12 dataset gen-er-a-tor \TU/LinLibertine(0)/m/n/12 του \TU/LinLiberti
-ne(0)/m/it/12 Ma-chine Learn-ing \TU/LinLibertine(0)/m/n/12 μοντέλου. 
-Παράλληλα
+Overfull \hbox (0.3618pt too wide) in paragraph at lines 86--87
+\TU/LinLibertine(0)/m/n/12 δειγματοληψία από το μοντέλ
+ο. Επίσης μια δειγματοληψία γίνετε μόλις τ
+ελειώσει
  []
 
 [50]
-Overfull \hbox (5.10544pt too wide) in paragraph at lines 82--83
-[]\TU/LinLibertine(0)/m/n/12 Με αυτά τα τρία είδη tiles θέλ
-ουμε να κατασκευάσουμε επίπεδα που περιέχ
-ουν
+Overfull \hbox (23.38705pt too wide) in paragraph at lines 90--91
+\TU/LinLibertine(5)/m/n/12 56FGAE.csv \TU/LinLibertine(0)/m/n/12 είναι έ
+να δείγμα που δημιουργήθηκε από τον Gen-er-a-tor 
+σε συνεργασία
  []
 
 
-Overfull \hbox (18.38121pt too wide) in paragraph at lines 82--83
-\TU/LinLibertine(0)/m/n/12 γενικός στόχος των συστημάτ
-ων PCG και MLPG που προσπαθούμε να υλοποιήσουμ
-ε. 
+Overfull \hbox (14.35522pt too wide) in paragraph at lines 95--96
+\TU/LinLibertine(0)/m/n/12 βάρη του σε ειδικά αρχεία ώσ
+τε να μπορούμε οποιαδήποτε στιγμή να τα φο
+ρτώσουμε
  []
 
 
-Overfull \hbox (28.16844pt too wide) in paragraph at lines 87--88
+Overfull \hbox (38.55501pt too wide) in paragraph at lines 99--100
+\TU/LinLibertine(0)/m/n/12 φάκελο \TU/LinLibertine(5)/m/n/12 model_data \
+TU/LinLibertine(0)/m/n/12 στα αρχεία \TU/LinLibertine(0)/m/it/12 gen-er
+-a-tor.json \TU/LinLibertine(0)/m/n/12 και \TU/LinLibertine(0)/m/it/12 dis-cr
+im-i-na-tor.json \TU/LinLibertine(0)/m/n/12 αντίστοιχα. 
+ []
+
+
+Overfull \hbox (2.3351pt too wide) in paragraph at lines 100--101
+[]\TU/LinLibertine(0)/m/n/12 Σε αντίστοιχα αρχεία \TU/LinLibe
+rtine(0)/m/it/12 gen-er-a-tor.h5 \TU/LinLibertine(0)/m/n/12 και \TU/LinLiber
+tine(0)/m/it/12 dis-crim-i-na-tor.h5
+ []
+
+[51]
+Overfull \hbox (0.88313pt too wide) in paragraph at lines 101--102
+[]\TU/LinLibertine(0)/m/n/12 Στο αρχείο \TU/LinLibertine(0)/m/it/12 re-
+sults.txt \TU/LinLibertine(0)/m/n/12 αποθηκεύονται οι τελι
+κές
+ []
+
+
+Overfull \hbox (20.44725pt too wide) in paragraph at lines 101--102
+\TU/LinLibertine(0)/m/n/12 μετρήσεις και αποτελέσματα 
+της απόδοσης του κάθε μοντέλου μαζί με διά
+φορες
+ []
+
+
+Overfull \hbox (28.16844pt too wide) in paragraph at lines 108--109
 []\TU/LinLibertine(0)/m/n/12 Το σύστημα PCG αποτελείται α
 πό πολλά υποσυστήματα, τα οποία θα αναλύσο
 υμε
  []
 
 
-Overfull \hbox (14.06316pt too wide) in paragraph at lines 93--94
+Overfull \hbox (14.06316pt too wide) in paragraph at lines 114--115
 []\TU/LinLibertine(0)/m/n/12 Παρέχει μεθόδους για την α
 ποθήκευση των δημιουργημένων επιπέδων
  []
 
 
-Overfull \hbox (2.62314pt too wide) in paragraph at lines 95--96
+Overfull \hbox (2.62314pt too wide) in paragraph at lines 116--117
 []\TU/LinLibertine(0)/m/n/12 Είναι υπεύθυνο για την αξι
 ολόγηση ενός επιπέδου με βάση
  []
 
-[51]
-Overfull \hbox (33.88834pt too wide) in paragraph at lines 99--100
+
+Overfull \hbox (33.88834pt too wide) in paragraph at lines 120--121
 []\TU/LinLibertine(0)/m/n/12 Ως βασικός αλγόριθμος για 
 το σύστημα δημιουργίας επιπέδων 2D χρησιμο
 ποιήθηκε
  []
 
-
-Overfull \hbox (31.61781pt too wide) in paragraph at lines 103--104
+[52]
+Overfull \hbox (31.61781pt too wide) in paragraph at lines 124--125
 \TU/LinLibertine(0)/m/n/12 κάποια εμφανή καθυστέρηση σ
 τον χρήστη. Για την δημιουργία του \TU/LinLibertine
 (0)/m/it/12 dataset \TU/LinLibertine(0)/m/n/12 υλοποιήθηκε
  []
 
 
-Overfull \hbox (26.8702pt too wide) in paragraph at lines 103--104
+Overfull \hbox (26.8702pt too wide) in paragraph at lines 124--125
 \TU/LinLibertine(0)/m/n/12 η επιλογή ο αλγόριθμος PCG να 
 τρέξει για έναν αριθμό επαναλήψεων, προκαθ
 ορισμένο
  []
 
-[52]
-Overfull \hbox (8.919pt too wide) in paragraph at lines 123--124
+[53]
+Overfull \hbox (8.919pt too wide) in paragraph at lines 144--145
 []\TU/LinLibertine(0)/m/n/12 Υλοποιήθηκαν δύο κατηγορί
 ες κανόνων. H πρώτη κατηγορία περιέχει κανό
 νες
  []
 
 
-Overfull \hbox (3.8631pt too wide) in paragraph at lines 133--134
+Overfull \hbox (3.8631pt too wide) in paragraph at lines 154--155
 []\TU/LinLibertine(0)/m/n/12 Κανόνας μετατροπής σε \TU/LinLi
 bertine(0)/b/n/12 Cor-ri-dor \TU/LinLibertine(0)/m/n/12 των tiles που ε
 ίναι
  []
 
-[53]
-Overfull \hbox (18.00977pt too wide) in paragraph at lines 134--135
+
+Overfull \hbox (18.00977pt too wide) in paragraph at lines 155--156
 \TU/LinLibertine(0)/b/n/12 Neu-mann Neigh-bor-hood\TU/LinLibertine(0)/m/n/12 . 
 Αυτός ο κανόνας ελέγχει όλα τα tiles της γειτ
 ονιάς
  []
 
-
-Overfull \hbox (0.8991pt too wide) in paragraph at lines 136--137
+[54]
+Overfull \hbox (0.8991pt too wide) in paragraph at lines 157--158
 []\TU/LinLibertine(0)/m/n/12 Κανόνας μετατροπής σε \TU/LinLi
 bertine(0)/b/n/12 Room \TU/LinLibertine(0)/m/n/12 των tiles με βάση
  []
 
 
-Overfull \hbox (43.63524pt too wide) in paragraph at lines 140--141
+Overfull \hbox (43.63524pt too wide) in paragraph at lines 161--162
 \TU/LinLibertine(0)/m/n/12 εφαρμογής τελικά αντικατασ
 τάθηκαν από τους άλλους κανόνες και δεν χρ
 ησιμοποιούνται
  []
 
 
-Overfull \hbox (25.84988pt too wide) in paragraph at lines 143--144
+Overfull \hbox (25.84988pt too wide) in paragraph at lines 164--165
 \TU/LinLibertine(0)/m/n/12 στο \TU/LinLibertine(0)/m/it/12 Unity Game En-gine
 \TU/LinLibertine(0)/m/n/12 . Αυτό το επίπεδο πρέπει να α
 ναπαρασταθεί και να αποθηκευτεί
  []
 
 
-Overfull \hbox (27.03918pt too wide) in paragraph at lines 150--151
+Overfull \hbox (27.03918pt too wide) in paragraph at lines 171--172
 []\TU/LinLibertine(0)/m/n/12 Αντιπροσωπεύει ακέραιο θε
 τικό αριθμό ή μηδέν και δείχνει την συντετ
 αγμένη
  []
 
-[54]
-Overfull \hbox (25.9112pt too wide) in paragraph at lines 151--152
+
+Overfull \hbox (25.9112pt too wide) in paragraph at lines 172--173
 []\TU/LinLibertine(0)/m/n/12 Αντιπροσωπεύει ακέραιο θε
 τικό αριθμό ή μηδέν και δείχνει την συντετ
 αγμένη
  []
 
-) [55]
+[55]) [56]
 \openout2 = blank_page.aux
- (./blank_page.tex) [56
+ (./blank_page.tex) [57
 
 ] (./bibliography.tex
 Κεφάλαιο 5.
@@ -3216,13 +3244,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 11--13
 \TU/LinLibertine(5)/m/n/12 http://pc.gamespy.com/pc/ftl-faster-than-
  []
 
-[57
+[58
 
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'cite.types
 ofcontent'
-] [58]
+] [59]
 Underfull \hbox (badness 10000) in paragraph at lines 70--72
 \TU/LinLibertine(5)/m/n/12 https://docs.unity3d.com/Manual/class-
  []
@@ -3233,7 +3261,7 @@ Overfull \hbox (129.51854pt too wide) in paragraph at lines 73--75
 manual/class-
  []
 
-[59]
+[60]
 Overfull \hbox (6.63866pt too wide) in paragraph at lines 93--95
 \TU/LinLibertine(5)/m/n/12 https://developer.ibm.com/technologies/artificial-
  []
@@ -3245,7 +3273,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 93--95
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 98.
- [60
+ [61
 warning  (pdf backend): ignoring duplicate destination with the name 'cite.bandw
 '
 ]
@@ -3255,7 +3283,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 98.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 98.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 98.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 4F0B528D9513DD30C29F43CF37EDE6D4;13454.
+(rerunfilecheck)             Checksum: F32A572387424581437253B6A22F4972;13877.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -3264,13 +3292,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 98.
 )
 
 Here is how much of LuaTeX's memory you used:
- 25240 strings out of 480883
+ 25244 strings out of 480883
  100000,953878 words of node,token memory allocated
  561 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 1 dir, 3 glue, 4 kern, 1 penalty, 1 glyph, 13 attri
 bute, 59 glue_spec, 8 attribute_list, 1 write nodes
-   avail lists: 2:698,3:116,4:94,5:280,6:45,7:2965,8:34,9:165,10:12,11:177
- 41952 multiletter control sequences out of 65536+200000
+   avail lists: 2:698,3:116,4:94,5:281,6:45,7:2965,8:34,9:165,10:12,11:177
+ 41954 multiletter control sequences out of 65536+200000
  85 fonts using 18983291 bytes
  61i,8n,106p,2067b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/opentype/public/libertin
@@ -3283,9 +3311,9 @@ libertine/LinLibertine_R.otf><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/edour/AppData/Local/Programs/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/edour/AppData/Loca
 l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (61 pages, 475802 bytes).
+Output written on thesis.pdf (62 pages, 477048 bytes).
 
-PDF statistics: 773 PDF objects out of 1000 (max. 8388607)
- 185 named destinations out of 1000 (max. 131072)
- 497 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 770 PDF objects out of 1000 (max. 8388607)
+ 187 named destinations out of 1000 (max. 131072)
+ 505 words of extra memory for PDF output out of 10000 (max. 100000000)
 
