@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  22 JUN 2020 22:40
+This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  28 JUN 2020 21:36
  restricted system commands enabled.
 **thesis.tex
 (./thesis.tex
@@ -1108,6 +1108,9 @@ LaTeX Warning: Label `typesofcontent' multiply defined.
 
 
 LaTeX Warning: Label `bandw' multiply defined.
+
+
+LaTeX Warning: Label `batch' multiply defined.
 
 )
 \openout1 = thesis.aux
@@ -3134,156 +3137,254 @@ Overfull \hbox (20.44725pt too wide) in paragraph at lines 101--102
  []
 
 
-Overfull \hbox (28.16844pt too wide) in paragraph at lines 108--109
-[]\TU/LinLibertine(0)/m/n/12 Το σύστημα PCG αποτελείται α
-πό πολλά υποσυστήματα, τα οποία θα αναλύσο
-υμε
+Overfull \hbox (13.4378pt too wide) in paragraph at lines 107--108
+\TU/LinLibertine(0)/m/n/12 στην κατανόηση και υλοποίησ
+η. Αναφέρετε ως μοντέλο Dense επειδή η επεξερ
+γασία
  []
 
 
-Overfull \hbox (14.06316pt too wide) in paragraph at lines 114--115
-[]\TU/LinLibertine(0)/m/n/12 Παρέχει μεθόδους για την α
-ποθήκευση των δημιουργημένων επιπέδων
+Overfull \hbox (32.9832pt too wide) in paragraph at lines 110--111
+\TU/LinLibertine(0)/m/n/12 πρώτα 21 μπορούν να χωριστού
+ν σε τριάδες καθώς ακολουθούν μια κοινή αρ
+χιτεκτονική
  []
 
 
-Overfull \hbox (2.62314pt too wide) in paragraph at lines 116--117
-[]\TU/LinLibertine(0)/m/n/12 Είναι υπεύθυνο για την αξι
-ολόγηση ενός επιπέδου με βάση
+Overfull \hbox (13.95465pt too wide) in paragraph at lines 116--116
+ []\TU/LinLibertine(5)/m/n/12 Dense(units=256, input_dim=self.dungeon_dimension)
+[] 
  []
 
 
-Overfull \hbox (33.88834pt too wide) in paragraph at lines 120--121
+Overfull \hbox (3.88615pt too wide) in paragraph at lines 122--123
+\TU/LinLibertine(0)/m/it/12 ReLU \TU/LinLibertine(0)/m/n/12 που αναλύ
+σαμε με την διαφορά ότι στην περίπτωση μη ε
+νεργοποίησης
+ []
+
+
+Overfull \hbox (27.4958pt too wide) in paragraph at lines 122--123
+\TU/LinLibertine(0)/m/n/12 της \TU/LinLibertine(0)/m/it/12 ReLU \TU/LinLiber
+tine(0)/m/n/12 αλλά επιστρέφει ως έξοδο μια μικρή 
+τιμή. Η συνάρτηση ενεργοποίησης
+ []
+
+[52]
+Overfull \hbox (28.23918pt too wide) in paragraph at lines 128--129
+[]\TU/LinLibertine(0)/m/n/12 To al-pha είναι μια παράμετρος 
+που μπορεί να οριστεί σε κάθε επίπεδο LeakyReLU.
+ []
+
+
+Overfull \hbox (4.16714pt too wide) in paragraph at lines 137--138
+\TU/LinLibertine(0)/m/n/12 του Batch-Nor-mal-iza-tion το οποίο όπ
+ως αναφέρει και το όνομα κανονικοποιεί
+ []
+
+
+Overfull \hbox (1.4272pt too wide) in paragraph at lines 143--144
+\TU/LinLibertine(0)/m/n/12 την απόδοση του νευρωνικού 
+και να αυξήσει την ταχύτητα της εκπαίδευση
+ς
+ []
+
+
+Overfull \hbox (36.99463pt too wide) in paragraph at lines 151--151
+ []\TU/LinLibertine(5)/m/n/12 Dense(np.prod(self.dungeon_shape), activation="tan
+h")[] 
+ []
+
+
+Overfull \hbox (18.6072pt too wide) in paragraph at lines 153--154
+[]\TU/LinLibertine(0)/m/n/12 Σε αντίθεση με τα υπόλοιπα 
+επίπεδα Dense που έχουν την γραμμική συνάρτη
+ση
+ []
+
+
+Overfull \hbox (6.74718pt too wide) in paragraph at lines 153--154
+\TU/LinLibertine(0)/m/n/12 ως συνάρτηση ενεργοποίησης, 
+το συγκεκριμένο επίπεδο έχει την υπερβολι
+κή
+ []
+
+
+Overfull \hbox (33.88834pt too wide) in paragraph at lines 157--158
 []\TU/LinLibertine(0)/m/n/12 Ως βασικός αλγόριθμος για 
 το σύστημα δημιουργίας επιπέδων 2D χρησιμο
 ποιήθηκε
  []
 
-[52]
-Overfull \hbox (31.61781pt too wide) in paragraph at lines 124--125
+[53]
+Overfull \hbox (31.61781pt too wide) in paragraph at lines 161--162
 \TU/LinLibertine(0)/m/n/12 κάποια εμφανή καθυστέρηση σ
 τον χρήστη. Για την δημιουργία του \TU/LinLibertine
 (0)/m/it/12 dataset \TU/LinLibertine(0)/m/n/12 υλοποιήθηκε
  []
 
 
-Overfull \hbox (26.8702pt too wide) in paragraph at lines 124--125
+Overfull \hbox (26.8702pt too wide) in paragraph at lines 161--162
 \TU/LinLibertine(0)/m/n/12 η επιλογή ο αλγόριθμος PCG να 
 τρέξει για έναν αριθμό επαναλήψεων, προκαθ
 ορισμένο
  []
 
-[53]
-Overfull \hbox (8.919pt too wide) in paragraph at lines 144--145
+[54]
+Overfull \hbox (8.919pt too wide) in paragraph at lines 181--182
 []\TU/LinLibertine(0)/m/n/12 Υλοποιήθηκαν δύο κατηγορί
 ες κανόνων. H πρώτη κατηγορία περιέχει κανό
 νες
  []
 
 
-Overfull \hbox (3.8631pt too wide) in paragraph at lines 154--155
+Overfull \hbox (3.8631pt too wide) in paragraph at lines 191--192
 []\TU/LinLibertine(0)/m/n/12 Κανόνας μετατροπής σε \TU/LinLi
 bertine(0)/b/n/12 Cor-ri-dor \TU/LinLibertine(0)/m/n/12 των tiles που ε
 ίναι
  []
 
 
-Overfull \hbox (18.00977pt too wide) in paragraph at lines 155--156
+Overfull \hbox (18.00977pt too wide) in paragraph at lines 192--193
 \TU/LinLibertine(0)/b/n/12 Neu-mann Neigh-bor-hood\TU/LinLibertine(0)/m/n/12 . 
 Αυτός ο κανόνας ελέγχει όλα τα tiles της γειτ
 ονιάς
  []
 
-[54]
-Overfull \hbox (0.8991pt too wide) in paragraph at lines 157--158
+[55]
+Overfull \hbox (0.8991pt too wide) in paragraph at lines 194--195
 []\TU/LinLibertine(0)/m/n/12 Κανόνας μετατροπής σε \TU/LinLi
 bertine(0)/b/n/12 Room \TU/LinLibertine(0)/m/n/12 των tiles με βάση
  []
 
 
-Overfull \hbox (43.63524pt too wide) in paragraph at lines 161--162
+Overfull \hbox (43.63524pt too wide) in paragraph at lines 198--199
 \TU/LinLibertine(0)/m/n/12 εφαρμογής τελικά αντικατασ
 τάθηκαν από τους άλλους κανόνες και δεν χρ
 ησιμοποιούνται
  []
 
 
-Overfull \hbox (25.84988pt too wide) in paragraph at lines 164--165
+Overfull \hbox (25.84988pt too wide) in paragraph at lines 201--202
 \TU/LinLibertine(0)/m/n/12 στο \TU/LinLibertine(0)/m/it/12 Unity Game En-gine
 \TU/LinLibertine(0)/m/n/12 . Αυτό το επίπεδο πρέπει να α
 ναπαρασταθεί και να αποθηκευτεί
  []
 
 
-Overfull \hbox (27.03918pt too wide) in paragraph at lines 171--172
+Overfull \hbox (27.03918pt too wide) in paragraph at lines 208--209
 []\TU/LinLibertine(0)/m/n/12 Αντιπροσωπεύει ακέραιο θε
 τικό αριθμό ή μηδέν και δείχνει την συντετ
 αγμένη
  []
 
 
-Overfull \hbox (25.9112pt too wide) in paragraph at lines 172--173
+Overfull \hbox (25.9112pt too wide) in paragraph at lines 209--210
 []\TU/LinLibertine(0)/m/n/12 Αντιπροσωπεύει ακέραιο θε
 τικό αριθμό ή μηδέν και δείχνει την συντετ
 αγμένη
  []
 
-[55]) [56]
+[56]) [57]
 \openout2 = blank_page.aux
- (./blank_page.tex) [57
+ (./blank_page.tex) [58
 
 ] (./bibliography.tex
 Κεφάλαιο 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--8
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
 \TU/LinLibertine(5)/m/n/12 https://www.gdcvault.com/play/1019981/The-Future-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--13
+Underfull \hbox (badness 10000) in paragraph at lines 9--11
 \TU/LinLibertine(5)/m/n/12 http://pc.gamespy.com/pc/ftl-faster-than-
  []
 
-[58
+[59
 
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'cite.types
 ofcontent'
-] [59]
-Underfull \hbox (badness 10000) in paragraph at lines 70--72
+] [60]
+Underfull \hbox (badness 10000) in paragraph at lines 68--70
 \TU/LinLibertine(5)/m/n/12 https://docs.unity3d.com/Manual/class-
  []
 
 
-Overfull \hbox (129.51854pt too wide) in paragraph at lines 73--75
+Overfull \hbox (129.51854pt too wide) in paragraph at lines 71--73
 \TU/LinLibertine(5)/m/n/12 https://docs.unity3d.com/Packages/com.unity.ugui@1.0/
 manual/class-
  []
 
-[60]
-Overfull \hbox (6.63866pt too wide) in paragraph at lines 93--95
+[61]
+Overfull \hbox (6.63866pt too wide) in paragraph at lines 91--93
 \TU/LinLibertine(5)/m/n/12 https://developer.ibm.com/technologies/artificial-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--95
+Underfull \hbox (badness 10000) in paragraph at lines 91--93
 \TU/LinLibertine(5)/m/n/12 intelligence/articles/machine-learning-and-
+ []
+
+
+Underfull \hbox (badness 7777) in paragraph at lines 111--113
+\TU/LinLibertine(0)/m/n/12 Keras. \TU/LinLibertine(5)/m/n/12 https://towardsdata
+science.com/writing-your-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--113
+\TU/LinLibertine(5)/m/n/12 first-generative-adversarial-network-with-keras-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 114--116
+\TU/LinLibertine(5)/m/n/12 https://medium.com/datadriveninvestor/generative-
+ []
+
+[62
+warning  (pdf backend): ignoring duplicate destination with the name 'cite.bandw
+'
+]
+Underfull \hbox (badness 10000) in paragraph at lines 117--119
+\TU/LinLibertine(0)/m/n/12 (GANs). \TU/LinLibertine(5)/m/n/12 https://github.com
+/eriklindernoren/Keras-
+ []
+
+
+Overfull \hbox (67.20267pt too wide) in paragraph at lines 120--122
+[]\TU/LinLibertine(0)/m/n/12 Keras Dense Layer. \TU/LinLibertine(5)/m/n/12 https
+://keras.io/api/layers/core_layers/dense 
+ []
+
+
+Overfull \hbox (177.5416pt too wide) in paragraph at lines 123--125
+[]\TU/LinLibertine(0)/m/n/12 Keras LeakyReLU Layer. \TU/LinLibertine(5)/m/n/12 
+https://keras.io/api/layers/activation_layers/leaky_relu 
+ []
+
+
+warning  (pdf backend): ignoring duplicate destination with the name 'cite.batch
+'
+
+Overfull \hbox (311.8945pt too wide) in paragraph at lines 126--128
+[]\TU/LinLibertine(0)/m/n/12 Keras Batch-Nor-mal-iza-tion Layer. \TU/LinLiberti
+ne(5)/m/n/12 https://keras.io/api/layers/normalization_layers/batch_normalizatio
+n 
  []
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 98.
- [61
-warning  (pdf backend): ignoring duplicate destination with the name 'cite.bandw
-'
-]
+ [63]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 98.
  (./thesis.aux (./blank_page.aux) (./blank_page.aux) (./blank_page.aux)
 (./blank_page.aux) (./blank_page.aux) (./blank_page.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 98.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 98.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: F32A572387424581437253B6A22F4972;13877.
+(rerunfilecheck)             Checksum: A102265D60953B3CF09F8FB96E7BC607;13867.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -3292,13 +3393,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 98.
 )
 
 Here is how much of LuaTeX's memory you used:
- 25244 strings out of 480883
+ 25256 strings out of 480883
  100000,953878 words of node,token memory allocated
  561 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 1 dir, 3 glue, 4 kern, 1 penalty, 1 glyph, 13 attri
 bute, 59 glue_spec, 8 attribute_list, 1 write nodes
-   avail lists: 2:698,3:116,4:94,5:281,6:45,7:2965,8:34,9:165,10:12,11:177
- 41954 multiletter control sequences out of 65536+200000
+   avail lists: 2:698,3:116,4:94,5:284,6:45,7:2965,8:34,9:165,10:12,11:197
+ 41959 multiletter control sequences out of 65536+200000
  85 fonts using 18983291 bytes
  61i,8n,106p,2067b,510s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/opentype/public/libertin
@@ -3311,9 +3412,9 @@ libertine/LinLibertine_R.otf><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/edour/AppData/Local/Programs/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/edour/AppData/Loca
 l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (62 pages, 477048 bytes).
+Output written on thesis.pdf (64 pages, 486584 bytes).
 
-PDF statistics: 770 PDF objects out of 1000 (max. 8388607)
- 187 named destinations out of 1000 (max. 131072)
+PDF statistics: 796 PDF objects out of 1000 (max. 8388607)
+ 194 named destinations out of 1000 (max. 131072)
  505 words of extra memory for PDF output out of 10000 (max. 100000000)
 
