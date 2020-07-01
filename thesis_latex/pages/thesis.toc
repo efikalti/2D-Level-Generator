@@ -61,4 +61,10 @@
 \contentsline {section}{\numberline {4.5}Μοντέλο CNN GAN}{55}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}Αρχιτεκτονική Generator}{55}{subsection.4.5.1}%
 \contentsline {subsection}{\numberline {4.5.2}Αρχιτεκτονική Discriminator}{57}{subsection.4.5.2}%
-\contentsline {chapter}{\numberline {5}Βιβλιογραφία}{59}{chapter.5}%
+\contentsline {section}{\numberline {4.6}Εκπαίδευση GAN}{58}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Μεταβλητές εκπαίδευσης}{58}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Είσοδος εκπαίδευσης Generator}{59}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Λειτουργία Generator}{59}{subsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.6.4}Είσοδος εκπαίδευσης Discriminator}{59}{subsection.4.6.4}%
+\contentsline {section}{\numberline {4.7}Αποτελέσματα}{60}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Βιβλιογραφία}{62}{chapter.5}%

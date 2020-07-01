@@ -18,7 +18,7 @@ def relu_advanced(x):
 
 
 class GAN_CNN():
-    def __init__(self, epochs=50000, batch_size=128, sample_interval=1000,
+    def __init__(self, epochs=10000, batch_size=64, sample_interval=1000,
                  output_folder=None, create_models=True,
                  d_trainable=False, output_images=False,
                  fuzzy=False, transform=True):
