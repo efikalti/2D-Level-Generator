@@ -145,19 +145,30 @@ namespace Assets.Scripts
         public static Vector3Int GetNeighborPosition(Vector3Int position, TilePositions neighborPosition)
         {
 
-            return neighborPosition switch
+            switch(neighborPosition)
             {
-                TilePositions.DOWN_LEFT => new Vector3Int(position.x - 1, position.y - 1, 0),
-                TilePositions.DOWN_MIDDLE => new Vector3Int(position.x, position.y - 1, 0),
-                TilePositions.DOWN_RIGHT => new Vector3Int(position.x + 1, position.y - 1, 0),
-                TilePositions.MIDDLE_LEFT => new Vector3Int(position.x - 1, position.y, 0),
-                TilePositions.MIDDLE => position,
-                TilePositions.MIDDLE_RIGHT => new Vector3Int(position.x + 1, position.y, 0),
-                TilePositions.TOP_LEFT => new Vector3Int(position.x - 1, position.y + 1, 0),
-                TilePositions.TOP_MIDDLE => new Vector3Int(position.x, position.y + 1, 0),
-                TilePositions.TOP_RIGHT => new Vector3Int(position.x + 1, position.y + 1, 0),
-                _ => position,
-            };
+                case TilePositions.DOWN_LEFT:
+                    return new Vector3Int(position.x - 1, position.y - 1, 0);
+                case TilePositions.DOWN_MIDDLE:
+                    return new Vector3Int(position.x, position.y - 1, 0);
+                case TilePositions.DOWN_RIGHT:
+                    return new Vector3Int(position.x + 1, position.y - 1, 0);
+                case TilePositions.MIDDLE_LEFT:
+                    return new Vector3Int(position.x - 1, position.y, 0);
+                case TilePositions.MIDDLE:
+                    return position;
+                case TilePositions.MIDDLE_RIGHT:
+                    return new Vector3Int(position.x + 1, position.y, 0);
+                case TilePositions.TOP_LEFT:
+                    return new Vector3Int(position.x - 1, position.y + 1, 0);
+                case TilePositions.TOP_MIDDLE:
+                    return new Vector3Int(position.x, position.y + 1, 0);
+                case TilePositions.TOP_RIGHT:
+                    return new Vector3Int(position.x + 1, position.y + 1, 0);
+                default:
+                    return position;
+
+            }
         }
 
         /// <summary>

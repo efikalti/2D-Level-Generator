@@ -38,7 +38,7 @@ namespace Assets.Scripts.Reporting
             string line;
 
             // Write graph content into file
-            using StreamWriter streamWriter = File.CreateText(path);
+            StreamWriter streamWriter = File.CreateText(path);
             // Write column names
             line = string.Format("{0},{1},{2},{3},", "Node ID", "Node x", "Node y", "Node Type");
             // Get neighbor tiles position names
@@ -53,6 +53,9 @@ namespace Assets.Scripts.Reporting
                 streamWriter.WriteLine(line);
                 streamWriter.Flush();
             }
+
+            streamWriter.Close();
+            streamWriter.Dispose();
         }
 
         public string WriteNodeLinks(Node node)
@@ -201,7 +204,7 @@ namespace Assets.Scripts.Reporting
             string line;
 
             // Write tilemap content into file
-            using StreamWriter streamWriter = File.CreateText(path);
+            StreamWriter streamWriter = File.CreateText(path);
             // Write tilemap dimensions 
             line = string.Format("{0}, {1}", bounds.xMax - bounds.xMin, bounds.yMax - bounds.yMin);
             streamWriter.WriteLine(line);
@@ -235,6 +238,9 @@ namespace Assets.Scripts.Reporting
                     streamWriter.Flush();
                 }
             }
+
+            streamWriter.Close();
+            streamWriter.Dispose();
         }
 
         public void LoadInputFiles(string folder)
