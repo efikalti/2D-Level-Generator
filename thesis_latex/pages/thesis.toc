@@ -66,5 +66,14 @@
 \contentsline {subsection}{\numberline {4.6.2}Είσοδος εκπαίδευσης Generator}{59}{subsection.4.6.2}%
 \contentsline {subsection}{\numberline {4.6.3}Λειτουργία Generator}{59}{subsection.4.6.3}%
 \contentsline {subsection}{\numberline {4.6.4}Είσοδος εκπαίδευσης Discriminator}{59}{subsection.4.6.4}%
-\contentsline {section}{\numberline {4.7}Αποτελέσματα}{60}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Βιβλιογραφία}{62}{chapter.5}%
+\contentsline {section}{\numberline {4.7}Αποτελέσματα μοντέλου CNN}{60}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Αποτελέσματα του Generator του CNN δικτύου, με προσθήκη θορύβου}{60}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Αποτελέσματα του Generator του CNN δικτύου, χωρίς προσθήκη θορύβου}{61}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}Αποτελέσματα του Generator και του Discriminator του CNN δικτύου, με προσθήκη θορύβου}{62}{subsection.4.7.3}%
+\contentsline {subsection}{\numberline {4.7.4}Αποτελέσματα του Generator και του Discriminator του CNN δικτύου, χωρίς προσθήκη θορύβου}{63}{subsection.4.7.4}%
+\contentsline {section}{\numberline {4.8}Αποτελέσματα μοντέλου Dense}{64}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Αποτελέσματα του Generator του Dense δικτύου, με προσθήκη θορύβου}{64}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Αποτελέσματα του Generator του Dense δικτύου, χωρίς προσθήκη θορύβου}{65}{subsection.4.8.2}%
+\contentsline {subsection}{\numberline {4.8.3}Αποτελέσματα του Generator και του Discriminator του Dense δικτύου, με προσθήκη θορύβου}{66}{subsection.4.8.3}%
+\contentsline {subsection}{\numberline {4.8.4}Αποτελέσματα του Generator και του Discriminator του Dense δικτύου, χωρίς προσθήκη θορύβου}{67}{subsection.4.8.4}%
+\contentsline {chapter}{\numberline {5}Βιβλιογραφία}{69}{chapter.5}%

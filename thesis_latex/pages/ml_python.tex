@@ -318,8 +318,248 @@ Dense(1, activation="sigmoid")
 Για να εκπαιδευτεί ο Discriminator παίρνει ως είσοδο τα επίπεδα και ελέγχει την έξοδο του εάν ταιριάζει με την αντίστοιχη τιμή για αυτό το επίπεδο με το διάνυσμα των πραγματικών τιμών. Ομοίως διορθώνει τα βάρη του στις περιπτώσεις λάθους εάν έχουμε ενεργοποιήσει την μεταβλητή train\_discriminato.
 
 
-\section{Αποτελέσματα}
+\section{Αποτελέσματα μοντέλου CNN}
+
+\subsection{Αποτελέσματα του Generator του CNN δικτύου, με προσθήκη θορύβου}
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/generator_1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/generator_3000.png}
+  \caption{Επίπεδο μετά από 3000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/generator_7000.png}
+  \caption{Επίπεδο μετά από 7000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/generator_10000.png}
+  \caption{Επίπεδο μετά από 10000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, με προσθήκη θορύβου στα δεδομένα εισόδου.}
+\label{fig:fig}
+\end{figure}
+
+\subsection{Αποτελέσματα του Generator του CNN δικτύου, χωρίς προσθήκη θορύβου}
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/generator_1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/generator_3000.png}
+  \caption{Επίπεδο μετά από 3000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/generator_7000.png}
+  \caption{Επίπεδο μετά από 7000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/generator_10000.png}
+  \caption{Επίπεδο μετά από 10000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, χωρίς προσθήκη θορύβου στα δεδομένα εισόδου.}
+\label{fig:fig}
+\end{figure}
+
+\subsection{Αποτελέσματα του Generator και του Discriminator του CNN δικτύου, με προσθήκη θορύβου}
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/combined_1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/combined_3000.png}
+  \caption{Επίπεδο μετά από 3000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/combined_7000.png}
+  \caption{Επίπεδο μετά από 7000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/combined_10000.png}
+  \caption{Επίπεδο μετά από 10000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator με το μοντέλο του Discriminator, με προσθήκη θορύβου στα δεδομένα εισόδου.}
+\label{fig:fig}
+\end{figure}
+
+\subsection{Αποτελέσματα του Generator και του Discriminator του CNN δικτύου, χωρίς προσθήκη θορύβου}
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/combined_1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/combined_3000.png}
+  \caption{Επίπεδο μετά από 3000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/combined_7000.png}
+  \caption{Επίπεδο μετά από 7000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/combined_10000.png}
+  \caption{Επίπεδο μετά από 10000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator με το μοντέλο του Discriminator, χωρίς προσθήκη θορύβου στα δεδομένα εισόδου.}
+\label{fig:fig}
+\end{figure}
 
 
+\section{Αποτελέσματα μοντέλου Dense}
 
+\subsection{Αποτελέσματα του Generator του Dense δικτύου, με προσθήκη θορύβου}
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/generator_1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/generator_3000.png}
+  \caption{Επίπεδο μετά από 3000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/generator_7000.png}
+  \caption{Επίπεδο μετά από 7000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/generator_10000.png}
+  \caption{Επίπεδο μετά από 10000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, με προσθήκη θορύβου στα δεδομένα εισόδου.}
+\label{fig:fig}
+\end{figure}
+
+\subsection{Αποτελέσματα του Generator του Dense δικτύου, χωρίς προσθήκη θορύβου}
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_3000.png}
+  \caption{Επίπεδο μετά από 3000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_7000.png}
+  \caption{Επίπεδο μετά από 7000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_10000.png}
+  \caption{Επίπεδο μετά από 10000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, χωρίς προσθήκη θορύβου στα δεδομένα εισόδου.}
+\label{fig:fig}
+\end{figure}
+
+\subsection{Αποτελέσματα του Generator και του Discriminator του Dense δικτύου, με προσθήκη θορύβου}
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/combined_1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/combined_3000.png}
+  \caption{Επίπεδο μετά από 3000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/combined_7000.png}
+  \caption{Επίπεδο μετά από 7000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/combined_10000.png}
+  \caption{Επίπεδο μετά από 10000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator με το μοντέλο του Discriminator, με προσθήκη θορύβου στα δεδομένα εισόδου.}
+\label{fig:fig}
+\end{figure}
+
+\subsection{Αποτελέσματα του Generator και του Discriminator του Dense δικτύου, χωρίς προσθήκη θορύβου}
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_3000.png}
+  \caption{Επίπεδο μετά από 3000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_7000.png}
+  \caption{Επίπεδο μετά από 7000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_10000.png}
+  \caption{Επίπεδο μετά από 10000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, χωρίς προσθήκη θορύβου στα δεδομένα εισόδου.}
+\label{fig:fig}
+\end{figure}
 
