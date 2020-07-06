@@ -315,42 +315,18 @@ Dense(1, activation="sigmoid")
 \subsection{Είσοδος εκπαίδευσης Discriminator}
 Για την εκπαίδευση του Discriminator δίνουμε ως είσοδο έναν πίνακα και ένα διάνυσμα. Ο πίνακας περιέχει τα δείγματα που θέλουμε να αξιολογήσει ως τεχνητά από τον Generator ή από το dataset και το διάνυσμα έχει δυαδικές τιμές που δηλώνουν την πραγματική προέλευση του κάθε δείγματος με τις τιμές 0 και 1.
 \par
-Για να εκπαιδευτεί ο Discriminator παίρνει ως είσοδο τα επίπεδα και ελέγχει την έξοδο του εάν ταιριάζει με την αντίστοιχη τιμή για αυτό το επίπεδο με το διάνυσμα των πραγματικών τιμών. Ομοίως διορθώνει τα βάρη του στις περιπτώσεις λάθους εάν έχουμε ενεργοποιήσει την μεταβλητή train\_discriminato.
+Για να εκπαιδευτεί ο Discriminator παίρνει ως είσοδο τα επίπεδα και ελέγχει την έξοδο του εάν ταιριάζει με την αντίστοιχη τιμή για αυτό το επίπεδο με το διάνυσμα των πραγματικών τιμών. Ομοίως διορθώνει τα βάρη του στις περιπτώσεις λάθους εάν έχουμε ενεργοποιήσει την μεταβλητή train\_discriminator.
+
+\section{Εκπαίδευση μοντέλου}
+\par
+Η εκπαίδευση του GAN μοντέλου, γίνετε σε δύο στάδιο. Στο πρώτο στάδιο εκπαιδεύεται το μοντέλο του Generator με το υπάρχον dataset χωρίς την ανατροφοδότηση από το μοντέλο του Discriminator. Όπως φαίνεται και από τον πίνακα 4.1, το μοντέλο του Generator με τις ορισμένες παραμέτρους μπορεί να φτάσει μέχρι ένα συγκεκριμένο ποσοστό ακρίβειας και σφάλματος χωρίς να βελτιώνετε παραπάνω.
+\par
+Στο δεύτερο στάδιο της εκπαίδευση, εκπαιδεύουμε και τα δύο μοντέλα, τον Generator και τον Discriminator μαζί σε συνεργασία και όπως φαίνεται από τον πίνακα 4.2 πετυχαίνουμε πολύ καλύτερα επίπεδα ακρίβειας και χαμηλότερο σφάλμα, όπως επιβεβαιώνουν και οι εικόνες από τα επίπεδα που παράχθηκαν από το δεύτερο στάδιο της εκπαίδευσης.
 
 
 \section{Αποτελέσματα μοντέλου CNN}
 
-\subsection{Αποτελέσματα του Generator του CNN δικτύου, με προσθήκη θορύβου}
-\begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/generator_1000.png}
-  \caption{Επίπεδο μετά από 1000 εποχές}
-  \label{fig:sfig1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/generator_3000.png}
-  \caption{Επίπεδο μετά από 3000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/generator_7000.png}
-  \caption{Επίπεδο μετά από 7000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/generator_10000.png}
-  \caption{Επίπεδο μετά από 10000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, με προσθήκη θορύβου στα δεδομένα εισόδου.}
-\label{fig:fig}
-\end{figure}
-
-\subsection{Αποτελέσματα του Generator του CNN δικτύου, χωρίς προσθήκη θορύβου}
+\subsection{Αποτελέσματα του Generator του CNN δικτύου}
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
   \centering
@@ -380,37 +356,25 @@ Dense(1, activation="sigmoid")
 \label{fig:fig}
 \end{figure}
 
-\subsection{Αποτελέσματα του Generator και του Discriminator του CNN δικτύου, με προσθήκη θορύβου}
-\begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/combined_1000.png}
-  \caption{Επίπεδο μετά από 1000 εποχές}
-  \label{fig:sfig1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/combined_3000.png}
-  \caption{Επίπεδο μετά από 3000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/combined_7000.png}
-  \caption{Επίπεδο μετά από 7000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan-with-fuzzy/combined_10000.png}
-  \caption{Επίπεδο μετά από 10000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator με το μοντέλο του Discriminator, με προσθήκη θορύβου στα δεδομένα εισόδου.}
-\label{fig:fig}
-\end{figure}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
+1000		   & 1.112154        & 0.35\%            \\ \hline
+2000		   & 0.814016        & 0.40\%            \\ \hline
+3000		   & 0.572094        & 0.48\%            \\ \hline
+4000		   & 0.439945        & 0.56\%            \\ \hline
+5000		   & 0.378878        & 0.62\%            \\ \hline
+6000		   & 0.329374        & 0.67\%            \\ \hline
+7000		   & 0.320769        & 0.67\%            \\ \hline
+8000		   & 0.306775        & 0.67\%            \\ \hline
+9000		   & 0.311993        & 0.67\%            \\ \hline
+10000		   & 0.316760        & 0.67\%            \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Generator} \label{tab:title}
 
-\subsection{Αποτελέσματα του Generator και του Discriminator του CNN δικτύου, χωρίς προσθήκη θορύβου}
+\subsection{Αποτελέσματα του Generator και του Discriminator του CNN δικτύου}
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
   \centering
@@ -440,40 +404,27 @@ Dense(1, activation="sigmoid")
 \label{fig:fig}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
+1000		   & 0.239428        & 0.67\%            \\ \hline
+2000		   & 0.225229        & 0.73\%            \\ \hline
+3000		   & 0.179896        & 0.89\%            \\ \hline
+4000		   & 0.190461        & 0.84\%            \\ \hline
+5000		   & 0.181195        & 0.91\%            \\ \hline
+6000		   & 0.181408        & 0.92\%            \\ \hline
+7000		   & 0.181004        & 0.91\%            \\ \hline
+8000		   & 0.191332        & 0.86\%            \\ \hline
+9000		   & 0.185095        & 0.89\%            \\ \hline
+10000		   & 0.190194        & 0.84\%            \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Generator και του Discriminator} \label{tab:title}
 
 \section{Αποτελέσματα μοντέλου Dense}
 
-\subsection{Αποτελέσματα του Generator του Dense δικτύου, με προσθήκη θορύβου}
-\begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/generator_1000.png}
-  \caption{Επίπεδο μετά από 1000 εποχές}
-  \label{fig:sfig1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/generator_3000.png}
-  \caption{Επίπεδο μετά από 3000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/generator_7000.png}
-  \caption{Επίπεδο μετά από 7000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan-with-fuzzy/generator_10000.png}
-  \caption{Επίπεδο μετά από 10000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, με προσθήκη θορύβου στα δεδομένα εισόδου.}
-\label{fig:fig}
-\end{figure}
-
-\subsection{Αποτελέσματα του Generator του Dense δικτύου, χωρίς προσθήκη θορύβου}
+\subsection{Αποτελέσματα του Generator του Dense δικτύου}
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
   \centering
@@ -499,11 +450,28 @@ Dense(1, activation="sigmoid")
   \caption{Επίπεδο μετά από 10000 εποχές}
   \label{fig:sfig2}
 \end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, χωρίς προσθήκη θορύβου στα δεδομένα εισόδου.}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator.}
 \label{fig:fig}
 \end{figure}
 
-\subsection{Αποτελέσματα του Generator και του Discriminator του Dense δικτύου, με προσθήκη θορύβου}
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
+1000		   & 0.318830        & 0.00\%            \\ \hline
+2000		   & 0.326284        & 0.00\%            \\ \hline
+3000		   & 0.305329        & 0.00\%            \\ \hline
+4000		   & 0.323011        & 0.02\%            \\ \hline
+5000		   & 0.317226        & 0.02\%            \\ \hline
+6000		   & 0.320843        & 0.00\%            \\ \hline
+7000		   & 0.300491        & 0.02\%            \\ \hline
+8000		   & 0.312807        & 0.02\%            \\ \hline
+9000		   & 0.321793        & 0.02\%            \\ \hline
+10000		   & 0.321045        & 0.02\%            \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Generator} \label{tab:title}
+
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
   \centering
@@ -533,7 +501,7 @@ Dense(1, activation="sigmoid")
 \label{fig:fig}
 \end{figure}
 
-\subsection{Αποτελέσματα του Generator και του Discriminator του Dense δικτύου, χωρίς προσθήκη θορύβου}
+\subsection{Αποτελέσματα του Generator και του Discriminator του Dense δικτύου}
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
   \centering
@@ -559,7 +527,24 @@ Dense(1, activation="sigmoid")
   \caption{Επίπεδο μετά από 10000 εποχές}
   \label{fig:sfig2}
 \end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, χωρίς προσθήκη θορύβου στα δεδομένα εισόδου.}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator με το μοντέλο του Discriminator.}
 \label{fig:fig}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
+1000		   & 0.000000        & 1.00\%            \\ \hline
+2000		   & 0.000000        & 1.00\%            \\ \hline
+3000		   & 0.000000        & 1.00\%            \\ \hline
+4000		   & 0.000000        & 1.00\%            \\ \hline
+5000		   & 0.000000        & 1.00\%            \\ \hline
+6000		   & 0.000000        & 1.00\%            \\ \hline
+7000		   & 0.000000        & 1.00\%            \\ \hline
+8000		   & 0.000000        & 1.00\%            \\ \hline
+9000		   & 0.000000        & 1.00\%            \\ \hline
+10000		   & 0.000000        & 1.00\%            \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Generator με το μοντέλο του Discriminator.} \label{tab:title}
