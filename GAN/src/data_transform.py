@@ -5,9 +5,9 @@ import numpy as np
 
 class DataTransformation:
 
-    def __init__(self):
-        self.transform_value_enabled = True
-        self.fuzzy_logic_enabled = False
+    def __init__(self, fuzzy=False, transform=True):
+        self.transform_value_enabled = transform
+        self.fuzzy_logic_enabled = fuzzy
 
     def transform_single(self, data):
         for i in range(0, len(data)):

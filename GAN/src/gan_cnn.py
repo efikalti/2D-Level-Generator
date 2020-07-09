@@ -21,17 +21,15 @@ class GAN_CNN():
     def __init__(self, epochs=50000, batch_size=128, sample_interval=1000,
                  output_folder=None, create_models=True,
                  d_trainable=False, output_images=False,
-                 gen_loss='mean_squared_error',
-                 dis_loss='mean_squared_error',
-                 com_loss='mean_squared_error'):
+                 fuzzy=False, transform=True):
         # Define training parameters
         self.epochs = epochs
         self.batch_size = batch_size
         self.sample_interval = sample_interval
 
-        self.dis_loss = dis_loss
-        self.gen_loss = gen_loss
-        self.com_loss = com_loss
+        self.dis_loss = 'mean_squared_error'
+        self.gen_loss = 'mean_squared_error'
+        self.com_loss = 'mean_squared_error'
 
         self.latent_size = DUNGEON_DIMENSION * DUNGEON_DIMENSION
 
@@ -43,7 +41,7 @@ class GAN_CNN():
 
         self.d_trainable = d_trainable
 
-        self.file_writer = FileWriter()
+        self.file_writer = FileWriter(fuzzy=fuzzy, transform=transform)
         self.file_writer.create_output_folder(folder_name="cnn_gan-")
         tr = self.file_writer.data_transformation.transform_value_enabled
         fl = self.file_writer.data_transformation.fuzzy_logic_enabled
@@ -88,7 +86,6 @@ class GAN_CNN():
         z = Input(shape=(self.latent_size,))
 
         validity = self.discriminator(self.generator(z))
-        print(validity)
         self.combined = Model(z, validity)
         self.combined.compile(loss=self.com_loss,
                               optimizer=self.optimizer,

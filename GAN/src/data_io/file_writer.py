@@ -11,7 +11,7 @@ import data_info
 
 
 class FileWriter:
-    def __init__(self):
+    def __init__(self, transform=True, fuzzy=False):
         # Set input path from global settings - data_info
         self.results_folder = data_info.RESULTS_FOLDER
 
@@ -24,7 +24,7 @@ class FileWriter:
         self.setup_position_array()
 
         # Instantiate DataTransformation object
-        self.data_transformation = DataTransformation()
+        self.data_transformation = DataTransformation(transform=transform, fuzzy=fuzzy)
 
     # Create the output folder and subfolder to store all the result files
     def create_output_folder(self, folder_name="folder-"):

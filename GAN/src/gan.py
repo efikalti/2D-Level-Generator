@@ -4,6 +4,9 @@ from keras.layers import Input, Dense, BatchNormalization, Dropout
 from keras.models import Sequential, Model
 from tensorflow.keras.optimizers import Adam
 from keras.layers.advanced_activations import LeakyReLU
+from keras.utils import np_utils
+
+from tensorflow import keras
 
 import matplotlib.pyplot as plt
 
@@ -15,31 +18,31 @@ from data_info import NOISE, DUNGEON_DIMENSION
 class DENSE_GAN():
     def __init__(self, epochs=50000, batch_size=128, sample_interval=1000,
                  output_folder=None, create_models=True,
-                 train_discriminator=False, output_images=False,
-                 gen_loss='mean_squared_error',
-                 dis_loss='mean_squared_error',
-                 com_loss='mean_squared_error'):
+                 d_trainable=True, output_images=False,
+                 fuzzy=False, transform=True):
         # Define training parameters
         self.epochs = epochs
         self.batch_size = batch_size
         self.sample_interval = sample_interval
 
         # Define loss parameters
-        self.dis_loss = dis_loss
-        self.gen_loss = gen_loss
-        self.com_loss = com_loss
+        self.dis_loss = "binary_crossentropy"
+        self.gen_loss = "mean_squared_error"
+        self.com_loss = "mean_squared_error"
+
+        self.main_metric = 'accuracy'
 
         # Array to keep information to print in results file
         self.str_outputs = []
 
         # Define dungeon dimensions for dense model
         self.dungeon_dimension = DUNGEON_DIMENSION * DUNGEON_DIMENSION
-        self.dungeon_shape = (self.dungeon_dimension, )
+        self.dungeon_shape = (self.dungeon_dimension)
 
         # Boolean value defining whether the discriminator will be trained
-        self.train_discriminator = train_discriminator
+        self.d_trainable = d_trainable
 
-        self.file_writer = FileWriter()
+        self.file_writer = FileWriter(transform=transform, fuzzy=fuzzy)
         self.file_writer.create_output_folder(folder_name="dense_gan-")
 
         tr = self.file_writer.data_transformation.transform_value_enabled
@@ -59,39 +62,38 @@ class DENSE_GAN():
         # Create descriminator object
         self.discriminator = self.build_discriminator()
 
-        self.discriminator.trainable = self.train_discriminator
+        self.discriminator.trainable = self.d_trainable
         self.str_outputs.append("\nDiscriminator trainable = "
-                                + str(self.train_discriminator))
+                                + str(self.d_trainable))
 
         # Parameterize descriminator
         self.discriminator.compile(loss=self.dis_loss,
                                    optimizer=self.optimizer,
-                                   metrics=['accuracy'])
-        self.str_outputs.append("\nDiscriminator loss     : " + self.dis_loss)
-        self.str_outputs.append("Discriminator metrics  : accuracy")
-        self.str_outputs.append("Discriminator optimizer: Adam(0.0002, 0.5)")
+                                   metrics=[self.main_metric])
+        self.str_outputs.append("\nDiscriminator loss     : " + str(self.dis_loss))
+        self.str_outputs.append("Discriminator metrics    : " + str(self.main_metric))
+        self.str_outputs.append("Discriminator optimizer  : Adam(0.0002, 0.5)")
 
         # Create generator object
         self.generator = self.build_generator()
         # Parameterize Generator
         self.generator.compile(loss=self.gen_loss,
                                optimizer=self.optimizer,
-                               metrics=['accuracy'])
-        self.str_outputs.append("\nGenerator loss      : " + self.gen_loss)
-        self.str_outputs.append("Generator metrics   : accuracy")
-        self.str_outputs.append("Generator optimizer : Adam(0.0002, 0.5)")
+                               metrics=[self.main_metric])
+        self.str_outputs.append("\nGenerator loss      : " + str(self.dis_loss))
+        self.str_outputs.append("Generator metrics     : " + str(self.main_metric))
+        self.str_outputs.append("Generator optimizer   : Adam(0.0002, 0.5)")
 
         # Initialize noise input
         z = Input(shape=self.dungeon_shape)
         validity = self.discriminator(self.generator(z))
 
-        print(validity)
         self.combined = Model(z, validity)
         self.combined.compile(loss=self.com_loss,
                               optimizer=self.optimizer,
-                              metrics=['accuracy'])
-        self.str_outputs.append("\nCombined loss    : " + self.com_loss)
-        self.str_outputs.append("Combined metrics   : accuracy")
+                              metrics=[self.main_metric])
+        self.str_outputs.append("\nCombined loss    : " + str(self.dis_loss))
+        self.str_outputs.append("Combined metrics   : " + str(self.main_metric))
         self.str_outputs.append("Combined optimizer : Adam(0.0002, 0.5)")
 
     def build_generator(self):
@@ -168,7 +170,6 @@ class DENSE_GAN():
 
     def train(self, data):
         self.add_train_info("\nCombined training.")
-        X_train = np.array(data)
         batch_size = self.batch_size
 
         valid = np.ones((batch_size, 1))
@@ -176,14 +177,14 @@ class DENSE_GAN():
         fake = np.zeros((batch_size, 1))
 
         for epoch in range(1, self.epochs + 1):
-            idx = np.random.randint(0, len(X_train), batch_size)
-            sample = X_train[idx]
+            idx = np.random.randint(0, len(data), batch_size)
+            sample = self.get_sample(data, idx)
 
             noise = self.get_noise(batch_size)
 
-            gen_imgs = self.generator.predict(noise)
+            dungeon = self.generator.predict(noise)
             self.discriminator.train_on_batch(sample, valid)
-            self.discriminator.train_on_batch(gen_imgs, fake)
+            self.discriminator.train_on_batch(dungeon, fake)
 
             noise = self.get_noise(batch_size)
 
@@ -195,15 +196,16 @@ class DENSE_GAN():
 
     def train_generator(self, data):
         self.add_train_info("\nGenerator training.")
-        X_train = np.array(data)
 
         for epoch in range(1, self.epochs + 1):
-            idx = np.random.randint(0, len(X_train), self.batch_size)
-            sample = X_train[idx]
+            idx = np.random.randint(0, len(data), self.batch_size)
+            
+            sample = self.get_sample(data, idx)
+            labels = sample
 
             noise = self.get_noise(self.batch_size)
 
-            g_loss = self.generator.train_on_batch(noise, sample)
+            g_loss = self.generator.train_on_batch(noise, labels)
 
             if epoch % self.sample_interval == 0:
                 self.print_epoch_result(epoch, g_loss)
@@ -233,6 +235,14 @@ class DENSE_GAN():
         return np.random.randint(NOISE["min"], NOISE["max"] + 1,
                                  size=(number_of_samples,
                                        self.dungeon_dimension))
+    
+    def get_sample(self, data, ids):
+        sample_data = np.ndarray(shape=(len(ids), len(data[0])))
+        index = 0
+        for id in ids:
+            sample_data[index] = data[id]
+        return sample_data
+
 
     # Sample functions
     def sample_epoch(self, epoch, file_prefix=""):
