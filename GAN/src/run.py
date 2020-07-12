@@ -23,7 +23,7 @@ np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
 # FileParser object to load input data and write results
 file_reader = FileReader()
 
-TRANFORM = False
+TRANFORM = True
 FUZZY = False
 
 
