@@ -13,12 +13,15 @@ import matplotlib.pyplot as plt
 from data_io.file_writer import FileWriter
 
 from data_info import NOISE, DUNGEON_DIMENSION
+import data_info as di
+
+from data_transform import DataTransformation
 
 
 class DENSE_GAN():
     def __init__(self, epochs=10000, batch_size=64, sample_interval=1000,
                  output_folder=None, create_models=True,
-                 d_trainable=True, output_images=False,
+                 d_trainable=True, output_images=True,
                  fuzzy=False, transform=True):
         # Define training parameters
         self.epochs = epochs
@@ -26,11 +29,11 @@ class DENSE_GAN():
         self.sample_interval = sample_interval
 
         # Define loss parameters
-        self.dis_loss = "binary_crossentropy"
-        self.gen_loss = "mean_squared_error"
-        self.com_loss = "mean_squared_error"
+        self.dis_loss = di.DIS_LOSS
+        self.gen_loss = di.GEN_LOSS
+        self.com_loss = di.COM_LOSS
 
-        self.main_metric = 'accuracy'
+        self.main_metric = di.METRIC
 
         # Array to keep information to print in results file
         self.str_outputs = []
@@ -57,7 +60,7 @@ class DENSE_GAN():
 
     def setup_new_models(self):
         # Define optimizer with parameters
-        self.optimizer = Adam(0.0002, 0.5)
+        self.optimizer = di.optimizers[di.OPTIMIZER]
 
         # Create descriminator object
         self.discriminator = self.build_discriminator()
@@ -72,7 +75,7 @@ class DENSE_GAN():
                                    metrics=[self.main_metric])
         self.str_outputs.append("\nDiscriminator loss     : " + str(self.dis_loss))
         self.str_outputs.append("Discriminator metrics    : " + str(self.main_metric))
-        self.str_outputs.append("Discriminator optimizer  : Adam(0.0002, 0.5)")
+        self.str_outputs.append("Discriminator optimizer  : " + str(self.optimizer))
 
         # Create generator object
         self.generator = self.build_generator()
@@ -80,9 +83,9 @@ class DENSE_GAN():
         self.generator.compile(loss=self.gen_loss,
                                optimizer=self.optimizer,
                                metrics=[self.main_metric])
-        self.str_outputs.append("\nGenerator loss      : " + str(self.dis_loss))
+        self.str_outputs.append("\nGenerator loss      : " + str(self.gen_loss))
         self.str_outputs.append("Generator metrics     : " + str(self.main_metric))
-        self.str_outputs.append("Generator optimizer   : Adam(0.0002, 0.5)")
+        self.str_outputs.append("Generator optimizer   : " + str(self.optimizer))
 
         # Initialize noise input
         z = Input(shape=self.dungeon_shape)
@@ -92,9 +95,9 @@ class DENSE_GAN():
         self.combined.compile(loss=self.com_loss,
                               optimizer=self.optimizer,
                               metrics=[self.main_metric])
-        self.str_outputs.append("\nCombined loss    : " + str(self.dis_loss))
+        self.str_outputs.append("\nCombined loss    : " + str(self.com_loss))
         self.str_outputs.append("Combined metrics   : " + str(self.main_metric))
-        self.str_outputs.append("Combined optimizer : Adam(0.0002, 0.5)")
+        self.str_outputs.append("Combined optimizer : " + str(self.optimizer))
 
     def build_generator(self):
         self.str_outputs.append("\nGenerator model - Sequential")
@@ -172,13 +175,16 @@ class DENSE_GAN():
         self.add_train_info("\nCombined training.")
         batch_size = self.batch_size
 
+        X_train = np.array(data)
+
         valid = np.ones((batch_size, 1))
 
         fake = np.zeros((batch_size, 1))
 
         for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(data), batch_size)
-            sample = self.get_sample(data, idx)
+
+            sample = X_train[idx]
 
             noise = self.get_noise(batch_size)
 
@@ -196,16 +202,17 @@ class DENSE_GAN():
 
     def train_generator(self, data):
         self.add_train_info("\nGenerator training.")
+        
+        X_train = np.array(data)
 
         for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(data), self.batch_size)
-            
-            sample = self.get_sample(data, idx)
-            labels = sample
+
+            sample = X_train[idx]
 
             noise = self.get_noise(self.batch_size)
 
-            g_loss = self.generator.train_on_batch(noise, labels)
+            g_loss = self.generator.train_on_batch(noise, sample)
 
             if epoch % self.sample_interval == 0:
                 self.print_epoch_result(epoch, g_loss)
@@ -235,20 +242,10 @@ class DENSE_GAN():
         return np.random.randint(NOISE["min"], NOISE["max"] + 1,
                                  size=(number_of_samples,
                                        self.dungeon_dimension))
-    
-    def get_sample(self, data, ids):
-        sample_data = np.ndarray(shape=(len(ids), len(data[0])))
-        index = 0
-        for id in ids:
-            sample_data[index] = data[id]
-        return sample_data
-
 
     # Sample functions
     def sample_epoch(self, epoch, file_prefix=""):
         self.sample_dungeon(epoch, file_prefix)
-        if self.output_images:
-            self.sample_images(epoch, file_prefix)
 
     def sample_dungeon(self, epoch, file_prefix=""):
         noise = self.get_noise(1)
@@ -256,30 +253,33 @@ class DENSE_GAN():
         gen_data = self.generator.predict(noise)
         prefix = str(file_prefix + str(epoch) + "_")
         self.file_writer.write_to_csv(gen_data.flatten(), file_prefix=prefix)
+        if self.output_images:
+            self.sample_image(gen_data, epoch, file_prefix=prefix)
 
-    def sample_images(self, epoch, file_prefix=""):
-        r, c = 2, 2
-        noise = self.get_noise(r * c)
-        gen = self.generator.predict(noise)
-        gen = 0.5 * gen + 1
+    def sample_image(self, data, epoch, file_prefix=""):
+        dt = DataTransformation()
+        gen = dt.transform_single_to_original(data.flatten())
+        dungeon = dt.transform_to_matrix(gen)
 
-        imgs = np.empty(shape=(r * c, 30, 30))
-        for count in range(r * c):
-            index = 0
-            for i in range(30):
-                for j in range(30):
-                    imgs[count][i][j] = gen[count][index]
-                    index += 1
+        img = np.empty(shape=(30, 30, 3))
+        for i in range(30):
+            for j in range(30):
+                value = dungeon[i][j]
+                if value == 0:
+                    value = di.colors['white']['float']
+                elif value == 1:
+                    value = di.colors['brown']['float']
+                elif value == 2:
+                    value = di.colors['orange']['float']
+                else:
+                    value = di.colors['black']['float']
+                img[i][j] = value
+    
+        image_name = self.file_writer.image_folder + file_prefix + "%d.png" % epoch
 
-        fig, axs = plt.subplots(r, c)
-        cnt = 0
-        for i in range(r):
-            for j in range(c):
-                axs[i, j].imshow(imgs[cnt, :, :], cmap='gray')
-                axs[i, j].axis('off')
-                cnt += 1
-        fig.savefig(self.file_writer.image_folder + file_prefix
-                                                  + "%d.png" % epoch)
+        plt.imshow(img)
+        plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
+        plt.savefig(image_name, dpi=100)
         plt.close()
 
     def print_epoch_result(self, epoch, result):

@@ -12,6 +12,8 @@ from data_io.file_writer import FileWriter
 
 from data_info import NOISE, DUNGEON_DIMENSION
 
+import data_info as di
+from data_transform import DataTransformation
 
 def relu_advanced(x):
     return K.relu(x, max_value=2)
@@ -27,9 +29,9 @@ class GAN_CNN():
         self.batch_size = batch_size
         self.sample_interval = sample_interval
 
-        self.dis_loss = 'mean_squared_error'
-        self.gen_loss = 'mean_squared_error'
-        self.com_loss = 'mean_squared_error'
+        self.dis_loss = di.DIS_LOSS
+        self.gen_loss = di.GEN_LOSS
+        self.com_loss = di.COM_LOSS
 
         self.latent_size = DUNGEON_DIMENSION * DUNGEON_DIMENSION
 
@@ -55,7 +57,7 @@ class GAN_CNN():
 
     def setup_new_models(self):
         # Define optimizer with parameters
-        self.optimizer = Adam(0.0002, 0.5)
+        self.optimizer = di.optimizers[di.OPTIMIZER]
 
         # Create descriminator object
         self.discriminator = self.build_discriminator()
@@ -70,7 +72,7 @@ class GAN_CNN():
                                    metrics=['accuracy'])
         self.str_outputs.append("\nDiscriminator loss     : " + self.dis_loss)
         self.str_outputs.append("Discriminator metrics  : accuracy")
-        self.str_outputs.append("Discriminator optimizer: Adam(0.0002, 0.5)")
+        self.str_outputs.append("Discriminator optimizer: " + str(self.optimizer))
 
         # Create generator object
         self.generator = self.build_generator()
@@ -80,7 +82,7 @@ class GAN_CNN():
                                metrics=['accuracy'])
         self.str_outputs.append("\nGenerator loss      : " + self.gen_loss)
         self.str_outputs.append("Generator metrics   : accuracy")
-        self.str_outputs.append("Generator optimizer : Adam(0.0002, 0.5)")
+        self.str_outputs.append("Generator optimizer : " + str(self.optimizer))
 
         # Initialize noise input
         z = Input(shape=(self.latent_size,))
@@ -92,7 +94,7 @@ class GAN_CNN():
                               metrics=['accuracy'])
         self.str_outputs.append("\nCombined loss    : " + self.com_loss)
         self.str_outputs.append("Combined metrics   : accuracy")
-        self.str_outputs.append("Combined optimizer : Adam(0.0002, 0.5)")
+        self.str_outputs.append("Combined optimizer : " + str(self.optimizer))
 
     def build_generator(self):
         self.str_outputs.append("\nGenerator model - Sequential")
@@ -243,30 +245,35 @@ class GAN_CNN():
         prefix = str(file_prefix + str(epoch) + "_")
         self.file_writer.write_to_csv(gen_data.flatten(), file_prefix=prefix)
 
-    def sample_images(self, epoch, file_prefix=""):
-        r, c = 2, 2
-        noise = self.get_noise(r * c)
-        gen = self.generator.predict(noise)
-        gen = 0.5 * gen + 1
+        if self.output_images:
+            self.sample_image(gen_data, epoch, file_prefix=prefix)
 
-        imgs = np.empty(shape=(r * c, 30, 30))
-        for count in range(r * c):
-            index = 0
-            for i in range(30):
-                for j in range(30):
-                    imgs[count][i][j] = gen[count][index]
-                    index += 1
+    def sample_image(self, data, epoch, file_prefix=""):
+        dt = DataTransformation()
+        gen = dt.transform_single_to_original(data.flatten())
+        dungeon = dt.transform_to_matrix(gen)
 
-        fig, axs = plt.subplots(r, c)
-        cnt = 0
-        for i in range(r):
-            for j in range(c):
-                axs[i, j].imshow(imgs[cnt, :, :], cmap='gray')
-                axs[i, j].axis('off')
-                cnt += 1
-        fig.savefig(self.file_writer.image_folder + file_prefix
-                                                  + "%d.png" % epoch)
+        img = np.empty(shape=(30, 30, 3))
+        for i in range(30):
+            for j in range(30):
+                value = dungeon[i][j]
+                if value == 0:
+                    value = di.colors['white']['float']
+                elif value == 1:
+                    value = di.colors['brown']['float']
+                elif value == 2:
+                    value = di.colors['orange']['float']
+                else:
+                    value = di.colors['black']['float']
+                img[i][j] = value
+    
+        image_name = self.file_writer.image_folder + file_prefix + "%d.png" % epoch
+
+        plt.imshow(img)
+        plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
+        plt.savefig(image_name, dpi=100)
         plt.close()
+
 
     def print_epoch_result(self, epoch, result):
         str_results = "%d [Loss: %f, Acc.: %.2f%%]" % (epoch,
