@@ -22,7 +22,7 @@ def relu_advanced(x):
 class GAN_CNN():
     def __init__(self, epochs=10000, batch_size=64, sample_interval=1000,
                  output_folder=None, create_models=True,
-                 d_trainable=False, output_images=False,
+                 d_trainable=False, output_images=True,
                  fuzzy=False, transform=True):
         # Define training parameters
         self.epochs = epochs
@@ -32,6 +32,8 @@ class GAN_CNN():
         self.dis_loss = di.DIS_LOSS
         self.gen_loss = di.GEN_LOSS
         self.com_loss = di.COM_LOSS
+
+        self.main_metric = di.METRIC
 
         self.latent_size = DUNGEON_DIMENSION * DUNGEON_DIMENSION
 
@@ -69,9 +71,9 @@ class GAN_CNN():
         # Parameterize descriminator
         self.discriminator.compile(loss=self.dis_loss,
                                    optimizer=self.optimizer,
-                                   metrics=['accuracy'])
-        self.str_outputs.append("\nDiscriminator loss     : " + self.dis_loss)
-        self.str_outputs.append("Discriminator metrics  : accuracy")
+                                   metrics=[self.main_metric])
+        self.str_outputs.append("\nDiscriminator loss     : " + str(self.dis_loss))
+        self.str_outputs.append("Discriminator metrics    : " + str(self.main_metric))
         self.str_outputs.append("Discriminator optimizer: " + str(self.optimizer))
 
         # Create generator object
@@ -79,9 +81,9 @@ class GAN_CNN():
         # Parameterize Generator
         self.generator.compile(loss=self.gen_loss,
                                optimizer=self.optimizer,
-                               metrics=['accuracy'])
+                               metrics=[self.main_metric])
         self.str_outputs.append("\nGenerator loss      : " + self.gen_loss)
-        self.str_outputs.append("Generator metrics   : accuracy")
+        self.str_outputs.append("Generator metrics   : " + str(self.main_metric))
         self.str_outputs.append("Generator optimizer : " + str(self.optimizer))
 
         # Initialize noise input
@@ -91,9 +93,9 @@ class GAN_CNN():
         self.combined = Model(z, validity)
         self.combined.compile(loss=self.com_loss,
                               optimizer=self.optimizer,
-                              metrics=['accuracy'])
+                              metrics=[self.main_metric])
         self.str_outputs.append("\nCombined loss    : " + self.com_loss)
-        self.str_outputs.append("Combined metrics   : accuracy")
+        self.str_outputs.append("Combined metrics   : " + str(self.main_metric))
         self.str_outputs.append("Combined optimizer : " + str(self.optimizer))
 
     def build_generator(self):
@@ -235,8 +237,6 @@ class GAN_CNN():
     # Sample functions
     def sample_epoch(self, epoch, file_prefix=""):
         self.sample_dungeon(epoch, file_prefix)
-        if self.output_images:
-            self.sample_images(epoch, file_prefix)
 
     def sample_dungeon(self, epoch, file_prefix=""):
         noise = self.get_noise(1)
@@ -246,7 +246,7 @@ class GAN_CNN():
         self.file_writer.write_to_csv(gen_data.flatten(), file_prefix=prefix)
 
         if self.output_images:
-            self.sample_image(gen_data, epoch, file_prefix=prefix)
+            self.sample_image(gen_data, epoch, file_prefix=file_prefix)
 
     def sample_image(self, data, epoch, file_prefix=""):
         dt = DataTransformation()

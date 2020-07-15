@@ -40,9 +40,9 @@ optimizers = {
 
 DIS_LOSS = "binary_crossentropy"
 GEN_LOSS = "mean_squared_error"
-COM_LOSS = "binary_crossentropy"
+COM_LOSS = "mean_squared_error"
 
-OPTIMIZER = "sgd"
+OPTIMIZER = "adam"
 
 METRIC = 'accuracy'
 
