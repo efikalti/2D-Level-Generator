@@ -40,11 +40,11 @@ optimizers = {
 
 DIS_LOSS = "binary_crossentropy"
 GEN_LOSS = "mean_squared_error"
-COM_LOSS = "mean_squared_error"
+COM_LOSS = "binary_crossentropy"
 
-OPTIMIZER = "adam"
+OPTIMIZER = "rmsprop"
 
-METRIC = 'accuracy'
+METRIC = 'mean_squared_error'
 
 # Plot variables
 colors = {

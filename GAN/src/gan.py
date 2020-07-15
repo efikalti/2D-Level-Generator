@@ -254,7 +254,7 @@ class DENSE_GAN():
         prefix = str(file_prefix + str(epoch) + "_")
         self.file_writer.write_to_csv(gen_data.flatten(), file_prefix=prefix)
         if self.output_images:
-            self.sample_image(gen_data, epoch, file_prefix=prefix)
+            self.sample_image(gen_data, epoch, file_prefix=file_prefix)
 
     def sample_image(self, data, epoch, file_prefix=""):
         dt = DataTransformation()
