@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Enums;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,22 +16,27 @@ namespace Assets.Scripts.Models.DataStructures
 
         public BoundsInt LeafBounds;
 
-        public double RoomPosibility;
+        public double RoomPossibility;
 
         public int Id;
 
-        public QuadTree(TileType type, BoundsInt bounds, int id, double roomPosibility = 0.5)
+        public int MinRoomSize = 3;
+
+        protected System.Random RandomGenerator;
+
+        public QuadTree(TileType type, BoundsInt bounds, int id, double roomPosibility, System.Random randomGenerator)
         {
             Type = type;
             Children = new List<QuadTree<T>>();
             LeafBounds = bounds;
-            RoomPosibility = roomPosibility;
+            RoomPossibility = roomPosibility;
             Id = id;
+            RandomGenerator = randomGenerator;
         }
 
         public QuadTree<T> AddChild(TileType child, BoundsInt bounds, int id)
         {
-            QuadTree<T> childNode = new QuadTree<T>(child, bounds, id) { Parent = this };
+            QuadTree<T> childNode = new QuadTree<T>(child, bounds, id, RoomPossibility, this.RandomGenerator) { Parent = this };
             Children.Add(childNode);
             return childNode;
         }
@@ -50,7 +56,7 @@ namespace Assets.Scripts.Models.DataStructures
             }
         }
 
-        public void Split(double possibility = 1)
+        public void Split(int minSize, double possibility = 0)
         {
             // Check if you can split this node into 4 leafs
             if (LeafBounds.size.x == 1 || LeafBounds.size.y == 1)
@@ -64,10 +70,21 @@ namespace Assets.Scripts.Models.DataStructures
                 return;
             }
 
-            var randomGenerator = new System.Random();
-            var possibilityToSplit = randomGenerator.NextDouble();
+            var possibilityToSplit = RandomGenerator.NextDouble();
 
-            if (possibilityToSplit < possibility)
+            bool ShouldSplit = false;
+
+            // We should split the node if any of the following conditions are true
+            // 1. The size of the side of this node is larger than the minimum side size
+            // 2. The random possibilityToSplit is greater than the possibility
+            if ( (LeafBounds.size.x >= minSize && LeafBounds.size.y >= minSize) ||
+                 (possibilityToSplit <= possibility) )
+            {
+                ShouldSplit = true;
+            }
+
+
+            if (ShouldSplit)
             {
                 int id = Id + 1;
                 var topLeftBounds = CalculateTopLeftBounds();
@@ -132,11 +149,11 @@ namespace Assets.Scripts.Models.DataStructures
             return bounds;
         }
 
-        public void AssignTile(double possibility)
+        public void AssignTile()
         {
             if (Children.Count == 0)
             {
-                if (possibility <= RoomPosibility)
+                if (RandomGenerator.NextDouble() <= RoomPossibility)
                 {
                     Type = TileType.ROOM;
                 }

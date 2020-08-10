@@ -24,7 +24,7 @@ namespace Assets.Scripts
 
         public int numberOfRooms = 5;
 
-        private readonly int sideSize = 30;
+        private readonly int sideSize = 100;
         private readonly int neighborOffset = 1;
         private readonly int neighborhoodSize = 3;
 

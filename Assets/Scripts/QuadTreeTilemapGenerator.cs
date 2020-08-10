@@ -2,7 +2,9 @@
 using Assets.Scripts.Enums;
 using Assets.Scripts.Models.DataStructures;
 using Assets.Scripts.Reporting;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -10,9 +12,14 @@ namespace Assets.Scripts
 {
     class QuadTreeTilemapGenerator : TilemapControllerBase
     {
+        public double RoomPossibility = 0.5d;
+        public double SplitPossibility = 0.5d;
+
         private BoundsInt tilemapBounds;
 
-        private readonly int sideSize = 30;
+        private readonly int sideSize = 100;
+
+        private int minSplitSize;
 
         private QuadTree<QuadTreeLeafType> quadTree;
 
@@ -34,11 +41,11 @@ namespace Assets.Scripts
                 transform.gameObject.AddComponent<TilemapRenderer>();
             }
 
-            // Set tilemap bounds object to the value of sideSize x  sideSize x 0
+            // Set tilemap bounds object to the value of sideSize x sideSize x 0
             tilemapBounds = new BoundsInt(Vector3Int.zero, new Vector3Int(sideSize, sideSize, 0));
 
             // Initialize QuadTree
-            quadTree = new QuadTree<QuadTreeLeafType>(TileType.WALL, tilemapBounds, 0);
+            quadTree = new QuadTree<QuadTreeLeafType>(TileType.WALL, tilemapBounds, 0, RoomPossibility, new System.Random());
 
             // Initialize queue for splitting the tree nodes, and add the root to the queue
             TreeQueue = new Queue<QuadTree<QuadTreeLeafType>>();
@@ -47,60 +54,53 @@ namespace Assets.Scripts
             // Create DataParser object
             fileParser = new DataParser();
 
-            GenerateLevel();
+            minSplitSize = sideSize / 8;
         }
 
 
         public override void GenerateLevel()
         {
-            // Step 1. Create quad tree representing the dungeon
+            // Step 1. Turn dungeon bounds to walls
+            TilemapTransformHelper.TransformBounds(tilemap, tilemap.cellBounds, TilemapHelper.GetTileByType(TileType.WALL));
+
+            // Step 2. Create quad tree representing the dungeon
             CreateDungeonTree();
 
-            // Step 2. Assign tile types to leafs of the Quad Tree
+            // Step 3. Assign tile types to leafs of the Quad Tree
             AssignTileTypesToLeafs();
 
-            // Step 3. Create tilemap from tree
+            // Step 4. Create tilemap from tree
             CreateTilemapFromTree();
 
-            // Step 4. Write tilemap to file
+            // Step 5. Write tilemap to file
             fileParser.WriteTilemap(tilemap);
 
         }
 
         public void CreateDungeonTree()
         {
-            int count = 0;
-            int maxCount = 10;
-
-            double possibility = 1d;
-
             while (TreeQueue.Count > 0)
             {
                 var node = TreeQueue.Dequeue();
-                node.Split(possibility);
-                foreach (var child in node.Children)
+                node.Split(minSplitSize, SplitPossibility);
+                if (node.Children.Any())
                 {
-                    TreeQueue.Enqueue(child);
-                }
-                count++;
-                if (count == maxCount)
-                {
-                    possibility = 0.5;
+                    foreach (var child in node.Children)
+                    {
+                        TreeQueue.Enqueue(child);
+                    }
                 }
             }
         }
 
         public void AssignTileTypesToLeafs()
         {
-
-            var randomGenerator = new System.Random();
-
             TreeQueue.Enqueue(quadTree);
 
             while (TreeQueue.Count > 0)
             {
                 var node = TreeQueue.Dequeue();
-                node.AssignTile(randomGenerator.NextDouble());
+                node.AssignTile();
                 foreach (var child in node.Children)
                 {
                     TreeQueue.Enqueue(child);

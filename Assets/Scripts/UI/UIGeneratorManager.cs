@@ -13,10 +13,17 @@ public class UIGeneratorManager : MonoBehaviour
         var tilemapControllers = FindObjectsOfType<TilemapControllerBase>();
         if (tilemapControllers.Length > 0)
         {
-            TilemapGenerator = tilemapControllers[0];
+            foreach(var controller in tilemapControllers)
+            {
+                if (controller.enabled)
+                {
+                    TilemapGenerator = controller;
+                    StartButton = GetComponent<Button>();
+                    StartButton.onClick.AddListener(StartGeneratingOnClick);
+                    break;
+                }
+            }
         }
-        StartButton = GetComponent<Button>();
-        StartButton.onClick.AddListener(StartGeneratingOnClick);
     }
 
     void StartGeneratingOnClick()
