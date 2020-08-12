@@ -74,10 +74,8 @@ class FileWriter:
     def write_to_csv(self, data, transform=True, file_prefix="output-"):
         if transform:
             data = self.data_transformation.transform_single_to_original(data)
-
+        data = self.data_transformation.transform_to_array(data)
         file = self.get_new_file(file_prefix)
-        print(self.positions_array.shape)
-        print(data.shape)
         data_with_positions = np.insert(self.positions_array, 2, data, axis=1)
         pd.DataFrame(data_with_positions).to_csv(path_or_buf=file, index=None,
                                                  header=False)

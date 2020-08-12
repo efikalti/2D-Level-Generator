@@ -250,7 +250,6 @@ class GAN_CNN():
 
         gen_data = self.generator.predict(noise)
         dungeon = gen_data[0]
-        print("")
         prefix = str(file_prefix + str(epoch) + "_")
         self.file_writer.write_to_csv(dungeon, file_prefix=prefix)
 
@@ -258,8 +257,8 @@ class GAN_CNN():
             self.sample_image(dungeon, epoch, file_prefix=file_prefix)
 
     def sample_image(self, data, epoch, file_prefix=""):
-        gen = self.data_transformation.transform_single_to_original(data.flatten())
-        dungeon = self.data_transformation.transform_to_matrix(gen)
+        dungeon = self.data_transformation.transform_single_to_original(data)
+        #dungeon = self.data_transformation.transform_to_matrix(gen)
 
         img = np.empty(shape=(DUNGEON_DIMENSION, DUNGEON_DIMENSION, 3))
         for i in range(DUNGEON_DIMENSION):
