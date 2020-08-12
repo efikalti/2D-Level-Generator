@@ -4,6 +4,7 @@ using Assets.Scripts.Models.DataStructures;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -259,6 +260,11 @@ namespace Assets.Scripts.Reporting
                 files = Directory.GetFiles(inputPath, "*.csv");
             }
 
+        }
+
+        public List<string> GetAllFoldersInBasePath()
+        {
+            return Directory.GetDirectories(BaseInputPath).Select(x => x.Remove(0, BaseInputPath.Length)).ToList();
         }
 
         public List<TileObject> LoadTilesFromFile(string filename)

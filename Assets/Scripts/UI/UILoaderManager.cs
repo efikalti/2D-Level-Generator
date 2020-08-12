@@ -1,6 +1,10 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Reporting;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.Dropdown;
 
 public class UILoaderManager : MonoBehaviour
 {
@@ -11,6 +15,8 @@ public class UILoaderManager : MonoBehaviour
     private InputField FolderInputField;
 
     private TilemapLoader TilemapLoader;
+
+    private Dropdown Dropdown;
 
     public void Start()
     {
@@ -66,6 +72,26 @@ public class UILoaderManager : MonoBehaviour
             }
         }
 
+        var dropdownObjects = FindObjectsOfType<Dropdown>();
+        if (dropdownObjects.Length > 0)
+        {
+            foreach (var dropdown in dropdownObjects)
+            {
+                if (dropdown.name == "DungeonDropdown")
+                {
+                    Dropdown = dropdown;
+                }
+            }
+        }
+
+        if (Dropdown != null)
+        {
+
+            // Create GraphParser object
+            var directories = new DataParser().GetAllFoldersInBasePath();
+            Dropdown.AddOptions(directories.Select(x => new OptionData(x)).ToList());
+            Dropdown.onValueChanged.AddListener(delegate { LoadInputFilesFromDropdown(); });
+        }
         if (FolderInputField != null)
         {
             FolderInputField.onEndEdit.AddListener(delegate { LoadInputFiles(); });
@@ -95,5 +121,14 @@ public class UILoaderManager : MonoBehaviour
     {
         Debug.Log(FolderInputField.text);
         TilemapLoader.LoadInputFiles(FolderInputField.text);
+    }
+    void LoadInputFilesFromDropdown()
+    {
+        Debug.Log(Dropdown.options[Dropdown.value].text);
+        if (Dropdown.value != 0)
+        {
+            TilemapLoader.LoadInputFiles(Dropdown.options[Dropdown.value].text);
+            FolderInputField.text = Dropdown.options[Dropdown.value].text;
+        }
     }
 }

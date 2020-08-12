@@ -302,5 +302,4 @@ class GAN_CNN():
         self.file_writer.save_model(self.discriminator, "discriminator")
 
     def load_models(self, path):
-        self.generator = self.file_writer.load_model(path, "generator")
-        self.discriminator = self.file_writer.load_model(path, "discriminator")
+        pass

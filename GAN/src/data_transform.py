@@ -3,7 +3,7 @@ import numpy as np
 
 from numpy import argmax
 from keras.utils import to_categorical
-from data_info import DUNGEON_DIMENSION
+from data_info import DUNGEON_DIMENSION, DUNGEON_LABELS
 
 
 class DataTransformation:
@@ -51,7 +51,7 @@ class DataTransformation:
 
     def transform_to_matrix(self, array):
         dimension = di.DUNGEON_DIMENSION
-        matrix = np.zeros((dimension, dimension, 3))
+        matrix = np.zeros((dimension, dimension, DUNGEON_LABELS))
         index = 0
         for y in range(dimension-1, -1, -1):
             for x in range(0, dimension, 1):
