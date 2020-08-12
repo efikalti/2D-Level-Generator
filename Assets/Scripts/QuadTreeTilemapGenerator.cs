@@ -44,24 +44,23 @@ namespace Assets.Scripts
             // Set tilemap bounds object to the value of sideSize x sideSize x 0
             tilemapBounds = new BoundsInt(Vector3Int.zero, new Vector3Int(sideSize, sideSize, 0));
 
-            // Initialize QuadTree
-            quadTree = new QuadTree<QuadTreeLeafType>(TileType.WALL, tilemapBounds, 0, RoomPossibility, new System.Random());
-
-            // Initialize queue for splitting the tree nodes, and add the root to the queue
-            TreeQueue = new Queue<QuadTree<QuadTreeLeafType>>();
-            TreeQueue.Enqueue(quadTree);
 
             // Create DataParser object
             fileParser = new DataParser();
 
+            // Set minimum split size to 1/8 of the dungeon side size
+            // This is a condition parameter, if the child node has a side bigger than this, the node is split into subnodes
             minSplitSize = sideSize / 8;
         }
 
 
         public override void GenerateLevel()
         {
-            // Step 1. Turn dungeon bounds to walls
-            TilemapTransformHelper.TransformBounds(tilemap, tilemap.cellBounds, TilemapHelper.GetTileByType(TileType.WALL));
+            // Step 1. Initialize data structures for new dungeon level
+            InitializeData();
+
+            // Step 1. Turn dungeon bounds to walls TODO ?
+            //TilemapTransformHelper.TransformBounds(tilemap, tilemap.cellBounds, TilemapHelper.GetTileByType(TileType.WALL));
 
             // Step 2. Create quad tree representing the dungeon
             CreateDungeonTree();
@@ -75,6 +74,16 @@ namespace Assets.Scripts
             // Step 5. Write tilemap to file
             fileParser.WriteTilemap(tilemap);
 
+        }
+
+        public void InitializeData()
+        {
+            // Initialize QuadTree
+            quadTree = new QuadTree<QuadTreeLeafType>(TileType.WALL, tilemapBounds, 0, RoomPossibility, new System.Random());
+
+            // Initialize queue for splitting the tree nodes, and add the root to the queue
+            TreeQueue = new Queue<QuadTree<QuadTreeLeafType>>();
+            TreeQueue.Enqueue(quadTree);
         }
 
         public void CreateDungeonTree()

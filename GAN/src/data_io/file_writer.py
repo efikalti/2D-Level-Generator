@@ -11,7 +11,7 @@ import data_info
 
 
 class FileWriter:
-    def __init__(self, transform=True, fuzzy=False):
+    def __init__(self, transform=True):
         # Set input path from global settings - data_info
         self.results_folder = data_info.RESULTS_FOLDER
 
@@ -24,7 +24,7 @@ class FileWriter:
         self.setup_position_array()
 
         # Instantiate DataTransformation object
-        self.data_transformation = DataTransformation(transform=transform, fuzzy=fuzzy)
+        self.data_transformation = DataTransformation(transform=transform)
 
     # Create the output folder and subfolder to store all the result files
     def create_output_folder(self, folder_name="folder-"):
@@ -76,6 +76,8 @@ class FileWriter:
             data = self.data_transformation.transform_single_to_original(data)
 
         file = self.get_new_file(file_prefix)
+        print(self.positions_array.shape)
+        print(data.shape)
         data_with_positions = np.insert(self.positions_array, 2, data, axis=1)
         pd.DataFrame(data_with_positions).to_csv(path_or_buf=file, index=None,
                                                  header=False)

@@ -1,48 +1,43 @@
-import random
 import data_info as di
 import numpy as np
+
+from numpy import argmax
+from keras.utils import to_categorical
+from data_info import DUNGEON_DIMENSION
 
 
 class DataTransformation:
 
-    def __init__(self, fuzzy=False, transform=True):
+    def __init__(self, transform=True, one_hot_enabled=True):
         self.transform_value_enabled = transform
-        self.fuzzy_logic_enabled = fuzzy
+        self.one_hot_enabled = one_hot_enabled
 
     def transform_single(self, data):
         for i in range(0, len(data)):
             original_value = data[i]
+            # Transform label value to one hot encoding
+            if self.one_hot_enabled:
+                data[i] = to_categorical(original_value, num_classes=3)
             if self.transform_value_enabled:
                 if original_value in di.DATA_TRANSFORMATIONS:
                     data[i] = di.DATA_TRANSFORMATIONS[original_value]
-            if self.fuzzy_logic_enabled:
-                if original_value in di.FUZZY_LOGIC_TRANSFORMATIONS:
-                    data[i] = self.fuzzy_logic_transform(
-                        data[i],
-                        di.FUZZY_LOGIC_TRANSFORMATIONS[original_value])
         # Return transformed data
         return data
 
-    def fuzzy_logic_transform(self, value, fuzzy_range):
-        new_value = value + random.uniform(fuzzy_range[0], fuzzy_range[1])
-        return new_value
-
-    def fuzzy_logic_transform_to_original(self, value):
-        for original_range in di.FUZZY_LOGIC_TO_ORIGINAL:
-            if value >= original_range[0] and value < original_range[1]:
-                return original_range[2]
-        return value
-
     def transform_single_to_original(self, data):
+        transformed_data = np.zeros((DUNGEON_DIMENSION, DUNGEON_DIMENSION, 1))
+
         for i in range(0, len(data)):
-            value = round(data[i])
-            if self.fuzzy_logic_enabled:
-                data[i] = self.fuzzy_logic_transform_to_original(value)
-            if self.transform_value_enabled:
-                if value in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
-                    data[i] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[value]
+            for j in range (0, len(data[i])):
+                # Transform from categorical to single value
+                if self.one_hot_enabled:
+                    transformed_data[i][j] = argmax(data[i][j])
+                if self.transform_value_enabled:
+                    value = round(data[i][j])
+                    if value in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
+                        data[i][j] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[value]
         # Return data in original format
-        return data
+        return transformed_data
 
     def transform_multiple(self, data):
         for i in range(0, len(data)):
@@ -56,7 +51,7 @@ class DataTransformation:
 
     def transform_to_matrix(self, array):
         dimension = di.DUNGEON_DIMENSION
-        matrix = np.zeros((dimension, dimension))
+        matrix = np.zeros((dimension, dimension, 3))
         index = 0
         for y in range(dimension-1, -1, -1):
             for x in range(0, dimension, 1):

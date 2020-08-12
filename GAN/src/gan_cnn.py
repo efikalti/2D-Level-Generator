@@ -1,19 +1,20 @@
 import numpy as np
+import tensorflow as tf
+import matplotlib.pyplot as plt
+
 from keras.layers import Input, Dense, Dropout, Flatten, BatchNormalization
 from keras.layers import Conv2D, Reshape
 from keras.models import Sequential, Model
-from tensorflow.keras.optimizers import Adam
 from keras import backend as K
 from keras.layers.advanced_activations import LeakyReLU
+from tensorflow.keras.optimizers import Adam
 
-import matplotlib.pyplot as plt
-
-from data_io.file_writer import FileWriter
-
-from data_info import NOISE, DUNGEON_DIMENSION
-
+# Local libraries
 import data_info as di
 from data_transform import DataTransformation
+from data_io.file_writer import FileWriter
+from data_info import NOISE, DUNGEON_DIMENSION, DUNGEON_LABELS
+
 
 def relu_advanced(x):
     return K.relu(x, max_value=2)
@@ -22,8 +23,8 @@ def relu_advanced(x):
 class GAN_CNN():
     def __init__(self, epochs=10000, batch_size=64, sample_interval=1000,
                  output_folder=None, create_models=True,
-                 d_trainable=False, output_images=True,
-                 fuzzy=False, transform=True):
+                 d_trainable=False, output_images=True, 
+                 transform=True, one_hot_enabled=True):
         # Define training parameters
         self.epochs = epochs
         self.batch_size = batch_size
@@ -35,24 +36,23 @@ class GAN_CNN():
 
         self.main_metric = di.METRIC
 
-        self.latent_size = DUNGEON_DIMENSION * DUNGEON_DIMENSION
+        self.latent_size = DUNGEON_DIMENSION * DUNGEON_DIMENSION * DUNGEON_LABELS
 
         self.str_outputs = []
 
         # Define dungeon dimensions
         self.dungeon_dimension = DUNGEON_DIMENSION
-        self.dungeon_shape = (DUNGEON_DIMENSION, DUNGEON_DIMENSION, 1)
+        self.dungeon_shape = (DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS)
 
         self.d_trainable = d_trainable
 
-        self.file_writer = FileWriter(fuzzy=fuzzy, transform=transform)
+        self.file_writer = FileWriter(transform=transform)
         self.file_writer.create_output_folder(folder_name="cnn_gan-")
         tr = self.file_writer.data_transformation.transform_value_enabled
-        fl = self.file_writer.data_transformation.fuzzy_logic_enabled
         self.str_outputs.append("Data transformation : " + str(tr))
-        self.str_outputs.append("Fuzzy Logic         : " + str(fl))
 
         self.output_images = output_images
+        self.data_transformation = DataTransformation(transform=transform, one_hot_enabled=one_hot_enabled)
 
         if create_models:
             self.setup_new_models()
@@ -87,7 +87,7 @@ class GAN_CNN():
         self.str_outputs.append("Generator optimizer : " + str(self.optimizer))
 
         # Initialize noise input
-        z = Input(shape=(self.latent_size,))
+        z = Input(shape=self.dungeon_shape)
 
         validity = self.discriminator(self.generator(z))
         self.combined = Model(z, validity)
@@ -103,37 +103,43 @@ class GAN_CNN():
         self.model = None
         self.model = Sequential()
 
-        self.add_layer(Dense(units=900, input_shape=(self.latent_size,)))
-        self.add_layer(Reshape(target_shape=self.dungeon_shape))
+        #self.add_layer(Dense(units=self.latent_size, input_shape=(self.latent_size,)))
+        #self.add_layer(Reshape(target_shape=self.dungeon_shape))
+
+        self.add_layer(Conv2D(16, 3, padding='same', strides=2,
+                              input_shape=self.dungeon_shape))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(Dropout(0.3))
+
+        '''
+        self.add_layer(Conv2D(32, 3, padding='same', strides=1))
+        self.add_layer(LeakyReLU(0.2))
+        self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(Dropout(0.3))
 
         self.add_layer(Conv2D(32, 3, padding='same', strides=2))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(64, 3, padding='same', strides=1))
-        self.add_layer(LeakyReLU(0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
-        self.add_layer(Dropout(0.3))
-
-        self.add_layer(Conv2D(128, 3, padding='same', strides=2))
-        self.add_layer(LeakyReLU(0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
-        self.add_layer(Dropout(0.3))
-
-        self.add_layer(Conv2D(256, 3, padding='same', strides=1))
+        self.add_layer(Conv2D(32, 3, padding='same', strides=1))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
         self.add_layer(Flatten())
-        self.add_layer(Dense(units=900))
+        self.add_layer(Dense(units=self.latent_size))
         self.add_layer(BatchNormalization(momentum=0.8))
 
+        self.add_layer(Flatten())
+        self.add_layer(Dense(units=self.latent_size))
+        '''
+        self.add_layer(Dense(units=12))
         self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
         # this is the z space commonly referred to in GAN papers
-        noise = Input(shape=(self.latent_size,))
+        noise = Input(shape=self.dungeon_shape)
         dungeon = self.model(noise)
 
         return Model(noise, dungeon)
@@ -143,12 +149,12 @@ class GAN_CNN():
         self.model = None
         self.model = Sequential()
 
-        self.add_layer(Conv2D(32, 3, padding='same', strides=2,
+        self.add_layer(Conv2D(8, 3, padding='same', strides=2,
                               input_shape=self.dungeon_shape))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(64, 3, padding='same', strides=1))
+        self.add_layer(Conv2D(8, 3, padding='same', strides=1))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(Dropout(0.3))
 
@@ -220,6 +226,7 @@ class GAN_CNN():
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
             noise = self.get_noise(self.batch_size)
+            print(noise.shape)
 
             gen_output = self.generator.predict(noise)
             d_loss_real = self.discriminator.train_on_batch(sample, valid)
@@ -232,7 +239,7 @@ class GAN_CNN():
 
     def get_noise(self, number_of_samples):
         return np.random.randint(NOISE["min"], NOISE["max"] + 1,
-                                 size=(number_of_samples, self.latent_size))
+                                 size=(number_of_samples, DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS))
 
     # Sample functions
     def sample_epoch(self, epoch, file_prefix=""):
@@ -242,20 +249,21 @@ class GAN_CNN():
         noise = self.get_noise(1)
 
         gen_data = self.generator.predict(noise)
+        dungeon = gen_data[0]
+        print("")
         prefix = str(file_prefix + str(epoch) + "_")
-        self.file_writer.write_to_csv(gen_data.flatten(), file_prefix=prefix)
+        self.file_writer.write_to_csv(dungeon, file_prefix=prefix)
 
         if self.output_images:
-            self.sample_image(gen_data, epoch, file_prefix=file_prefix)
+            self.sample_image(dungeon, epoch, file_prefix=file_prefix)
 
     def sample_image(self, data, epoch, file_prefix=""):
-        dt = DataTransformation()
-        gen = dt.transform_single_to_original(data.flatten())
-        dungeon = dt.transform_to_matrix(gen)
+        gen = self.data_transformation.transform_single_to_original(data.flatten())
+        dungeon = self.data_transformation.transform_to_matrix(gen)
 
-        img = np.empty(shape=(30, 30, 3))
-        for i in range(30):
-            for j in range(30):
+        img = np.empty(shape=(DUNGEON_DIMENSION, DUNGEON_DIMENSION, 3))
+        for i in range(DUNGEON_DIMENSION):
+            for j in range(DUNGEON_DIMENSION):
                 value = dungeon[i][j]
                 if value == 0:
                     value = di.colors['white']['float']

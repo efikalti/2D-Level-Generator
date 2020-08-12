@@ -1,31 +1,24 @@
 import numpy as np
 import sys
 import getopt
+import tensorflow as tf
 
-from data_io.file_reader import FileReader
 from gan import DENSE_GAN
 from gan_cnn import GAN_CNN
 from data_transform import DataTransformation
+from data_io.file_reader import FileReader
 
-class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-#print(f"{bcolors.HEADER}HEADER{bcolors.ENDC}")
+from data_info import ONE_HOT, TRANFORM, bcolors
 
+# Assert that GPU training with CUDA is enabled otherwise end with error
+assert tf.test.is_gpu_available()
+assert tf.test.is_built_with_cuda()
+
+# Console output color setup
 np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
 
 # FileParser object to load input data and write results
 file_reader = FileReader()
-
-TRANFORM = True
-FUZZY = False
-
 
 # Function to create and train a cnn gan network
 def train_cnn(data, args):
@@ -39,6 +32,7 @@ def train_cnn(data, args):
     gan = GAN_CNN(epochs=args["epochs"], batch_size=args["batch"],
                   sample_interval=args["sample"], d_trainable=True,
                   transform=TRANFORM)
+    #return
     gan.train_generator(transformed_data)
 
     gan.train(transformed_data)
@@ -66,7 +60,7 @@ def train_dense(data, args):
 # Function used to parse the cmd arguments
 def parse_args(argv):
     args_dict = {
-        "model": "dense",
+        "model": "cnn",
         "epochs": 10000,
         "batch": 64,
         "sample": 1000
@@ -107,7 +101,7 @@ def main(argv):
     data = file_reader.get_csv_data()
 
     # Transform data
-    data_transformation = DataTransformation(transform=TRANFORM, fuzzy=FUZZY)
+    data_transformation = DataTransformation(transform=TRANFORM, one_hot_enabled=ONE_HOT)
     data = data_transformation.transform_multiple(data)
 
     if (args["model"] == "dense"):

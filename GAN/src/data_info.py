@@ -4,24 +4,17 @@ from tensorflow.keras.optimizers import Adam, SGD, RMSprop
 # Dungeon specific data
 TILE_TYPE_COLUMN = 'Tile Type'
 HEADER_LINE = 1
-DUNGEON_DIMENSION = 30
+DUNGEON_DIMENSION = 100
 TILE_TYPES = {"CORRIDOR": 0, "WALL": 1, "ROOM": 2}
+DUNGEON_LABELS = 3
 
 # Data transformation
 DATA_TRANSFORMATIONS = {0: -1, 1: 0, 2: 1}
 DATA_TRANSFORMATIONS_TO_ORIGINAL = {-1: 0, 0: 1, 1: 2}
 
-# Fuzzy logic data
-FUZZY_LOGIC_TRANSFORMATIONS = {0: [0, 0.75], 1: [-0.24, 0.25],
-                               2: [-0.75, 0]}
-FUZZY_LOGIC_TO_ORIGINAL = [
-    [-1, -0.24, 0],
-    [-0.24, 0.25, 1],
-    [0.25, 1, 2]
-]
-
-# Noise data
-NOISE = {"min": -1, "max": 1}
+# Data transformation variables
+TRANFORM = False
+ONE_HOT = True
 
 # Folder paths
 INPUT_FOLDER = '../../Data/GAN_Input/'
@@ -31,20 +24,23 @@ RESULTS_FOLDER = '/Results/'
 
 MODEL_FOLDER = 'model_data/'
 
+# Noise data
+NOISE = {"min": 0, "max": 2}
+
 # GAN Variables
 optimizers = {
-    "adam": Adam(0.0002),
+    "adam": Adam(0.0002, beta_1=0.5),
     "sgd": SGD(0.0002),
     "rmsprop": RMSprop(0.0002),
 }
 
 DIS_LOSS = "binary_crossentropy"
-GEN_LOSS = "mean_squared_error"
+GEN_LOSS = "categorical_crossentropy"
 COM_LOSS = "binary_crossentropy"
 
-OPTIMIZER = "rmsprop"
+OPTIMIZER = "adam"
 
-METRIC = 'mean_squared_error'
+METRIC = 'categorical_accuracy'
 
 # Plot variables
 colors = {
@@ -69,3 +65,14 @@ colors = {
         'float': [0, 0, 0]
     },
 }
+
+# Console output colors
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'

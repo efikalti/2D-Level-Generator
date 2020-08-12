@@ -22,7 +22,7 @@ class DENSE_GAN():
     def __init__(self, epochs=10000, batch_size=64, sample_interval=1000,
                  output_folder=None, create_models=True,
                  d_trainable=True, output_images=True,
-                 fuzzy=False, transform=True):
+                 transform=True):
         # Define training parameters
         self.epochs = epochs
         self.batch_size = batch_size
@@ -45,13 +45,11 @@ class DENSE_GAN():
         # Boolean value defining whether the discriminator will be trained
         self.d_trainable = d_trainable
 
-        self.file_writer = FileWriter(transform=transform, fuzzy=fuzzy)
+        self.file_writer = FileWriter(transform=transform)
         self.file_writer.create_output_folder(folder_name="dense_gan-")
 
         tr = self.file_writer.data_transformation.transform_value_enabled
-        fl = self.file_writer.data_transformation.fuzzy_logic_enabled
         self.str_outputs.append("Data transformation : " + str(tr))
-        self.str_outputs.append("Fuzzy Logic         : " + str(fl))
 
         self.output_images = output_images
 
