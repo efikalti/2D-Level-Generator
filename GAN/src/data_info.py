@@ -25,7 +25,7 @@ RESULTS_FOLDER = '/Results/'
 MODEL_FOLDER = 'model_data/'
 
 # Noise data
-NOISE = {"min": 0, "max": 2}
+NOISE = {"min": 0, "max": 3}
 
 # GAN Variables
 optimizers = {

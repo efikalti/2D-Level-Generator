@@ -25,6 +25,8 @@ class DataTransformation:
         return data
 
     def transform_single_to_original(self, data):
+        print(data)
+        print("TRANSFORM: " + str(data[0]))
         transformed_data = np.zeros((DUNGEON_DIMENSION, DUNGEON_DIMENSION, 1))
 
         for i in range(0, len(data)):
@@ -37,6 +39,8 @@ class DataTransformation:
                     if value in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
                         data[i][j] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[value]
         # Return data in original format
+
+        print("TO: " + str(transformed_data[0]))
         return transformed_data
 
     def transform_multiple(self, data):

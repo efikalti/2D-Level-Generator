@@ -109,21 +109,21 @@ class GAN_CNN():
         self.add_layer(Conv2D(16, 3, padding='same', strides=2,
                               input_shape=self.dungeon_shape))
         self.add_layer(LeakyReLU(0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
+        #self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
-        '''
-        self.add_layer(Conv2D(32, 3, padding='same', strides=1))
+        self.add_layer(Conv2D(16, 3, padding='same', strides=1))
         self.add_layer(LeakyReLU(0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
+        #self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
         self.add_layer(Conv2D(32, 3, padding='same', strides=2))
         self.add_layer(LeakyReLU(0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
+        #self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(32, 3, padding='same', strides=1))
+        '''
+        self.add_layer(Conv2D(16, 3, padding='same', strides=2))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
         self.add_layer(Dropout(0.3))
@@ -135,7 +135,7 @@ class GAN_CNN():
         self.add_layer(Flatten())
         self.add_layer(Dense(units=self.latent_size))
         '''
-        self.add_layer(Dense(units=12))
+        self.add_layer(Dense(units=48, activation='softmax'))
         self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
         # this is the z space commonly referred to in GAN papers
@@ -149,12 +149,12 @@ class GAN_CNN():
         self.model = None
         self.model = Sequential()
 
-        self.add_layer(Conv2D(8, 3, padding='same', strides=2,
+        self.add_layer(Conv2D(16, 3, padding='same', strides=2,
                               input_shape=self.dungeon_shape))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(8, 3, padding='same', strides=1))
+        self.add_layer(Conv2D(16, 3, padding='same', strides=1))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(Dropout(0.3))
 
@@ -226,7 +226,6 @@ class GAN_CNN():
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
             noise = self.get_noise(self.batch_size)
-            print(noise.shape)
 
             gen_output = self.generator.predict(noise)
             d_loss_real = self.discriminator.train_on_batch(sample, valid)
@@ -238,8 +237,19 @@ class GAN_CNN():
                 self.sample_epoch(epoch, file_prefix="discriminator_")
 
     def get_noise(self, number_of_samples):
-        return np.random.randint(NOISE["min"], NOISE["max"] + 1,
-                                 size=(number_of_samples, DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS))
+
+        noise_data = np.empty(shape=(number_of_samples, DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS))
+        for s in range(0, number_of_samples):
+            noise_data[s] = np.eye(DUNGEON_LABELS)[np.random.choice(DUNGEON_LABELS, DUNGEON_DIMENSION)]
+            '''
+            for i in range(0, DUNGEON_DIMENSION):
+                for j in range(0, DUNGEON_DIMENSION):
+                    noise_position = np.random.randint(NOISE["min"], NOISE["max"])
+                    noise_labels = np.zeros(shape=(3))
+                    noise_labels[noise_position] = 1
+                    noise_data[s][i][j] = noise_labels
+            '''
+        return noise_data
 
     # Sample functions
     def sample_epoch(self, epoch, file_prefix=""):
