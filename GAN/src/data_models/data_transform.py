@@ -71,7 +71,7 @@ class DataTransformation:
             for x in range(0, dimension, 1):
                 matrix[x][y] = array[index]
                 index += 1
-        matrix = np.expand_dims(matrix, axis=-1)
+        #matrix = np.expand_dims(matrix, axis=-1)
         return matrix
 
     def transform_to_array(self, matrix):

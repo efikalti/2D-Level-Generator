@@ -126,7 +126,7 @@ class GAN():
             g_loss = self.combined.train_on_batch(noise, valid)
 
             if epoch % self.sample_interval == 0:
-                self.print_epoch_result(epoch, g_loss)
+                self.print_epoch_result(epoch, g_loss, self.combined.metrics_names)
                 self.sample_epoch(epoch, file_prefix="combined_")
 
     def train_generator(self, data):
@@ -141,7 +141,7 @@ class GAN():
             g_loss = self.generator.train_on_batch(noise, sample)
 
             if epoch % self.sample_interval == 0:
-                self.print_epoch_result(epoch, g_loss)
+                self.print_epoch_result(epoch, g_loss, self.generator.metrics_names)
                 self.sample_epoch(epoch, file_prefix="generator_")
 
     def train_discriminator(self, data):
@@ -161,7 +161,7 @@ class GAN():
             d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
 
             if epoch % self.sample_interval == 0:
-                self.print_epoch_result(epoch, d_loss)
+                self.print_epoch_result(epoch, d_loss, self.discriminator.metrics_names)
                 self.sample_epoch(epoch, file_prefix="discriminator_")
 
     def get_noise(self, number_of_samples):
@@ -212,9 +212,10 @@ class GAN():
         plt.close()
 
 
-    def print_epoch_result(self, epoch, result):
-        str_results = "%d [Loss: %f, Acc.: %.2f%%]" % (epoch,
-                                                       result[0], result[1])
+    def print_epoch_result(self, epoch, result, metrics_names):
+        str_results = "%d [%s: %f, %s: %.2f%%]" % (epoch, 
+            metrics_names[0], result[0], 
+            metrics_names[1], result[1])
         print(str_results)
         self.str_outputs.append(str_results)
 
