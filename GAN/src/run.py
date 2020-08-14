@@ -3,12 +3,12 @@ import sys
 import getopt
 import tensorflow as tf
 
-from gan import DENSE_GAN
-from gan_cnn import GAN_CNN
-from data_transform import DataTransformation
+from gan.dense_gan import DENSE_GAN
+from gan.cnn_gan import CNN_GAN
+from data_models.data_transform import DataTransformation
 from data_io.file_reader import FileReader
 
-from data_info import ONE_HOT, TRANFORM, bcolors
+from data_models.data_info import ONE_HOT, TRANFORM, bcolors
 
 # Assert that GPU training with CUDA is enabled otherwise end with error
 assert tf.test.is_gpu_available()
@@ -29,9 +29,9 @@ def train_cnn(data, args):
         transformed_data.append(matrix)
 
     # Create network with the provided parameters
-    gan = GAN_CNN(epochs=args["epochs"], batch_size=args["batch"],
+    gan = CNN_GAN("cnn", epochs=args["epochs"], batch_size=args["batch"],
                   sample_interval=args["sample"], d_trainable=True,
-                  transform=TRANFORM)
+                  transform=TRANFORM, one_hot_enabled=ONE_HOT)
     #return
     gan.train_generator(transformed_data)
 
@@ -45,7 +45,7 @@ def train_cnn(data, args):
 # Function to create and train a dense gan network
 def train_dense(data, args):
     # Create network with the provided parameters
-    gan = DENSE_GAN(epochs=args["epochs"], batch_size=args["batch"],
+    gan = DENSE_GAN("dense", epochs=args["epochs"], batch_size=args["batch"],
                     sample_interval=args["sample"], d_trainable=True,
                     transform=TRANFORM)
     gan.train_generator(data)

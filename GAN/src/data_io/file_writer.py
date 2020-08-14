@@ -2,21 +2,20 @@ import os
 import random
 import string
 from datetime import datetime
-from data_transform import DataTransformation
-
 import pandas as pd
 import numpy as np
 
-import data_info
+import data_models.data_info as di
+from data_models.data_transform import DataTransformation
 
 
 class FileWriter:
     def __init__(self, transform=True):
         # Set input path from global settings - data_info
-        self.results_folder = data_info.RESULTS_FOLDER
+        self.results_folder = di.RESULTS_FOLDER
 
         # Variables used to write the generated results in files
-        self.dungeon_dimension = data_info.DUNGEON_DIMENSION
+        self.dungeon_dimension = di.DUNGEON_DIMENSION
         self.number_of_lines = self.dungeon_dimension * self.dungeon_dimension
         self.positions_array = np.empty([self.number_of_lines, 2], dtype=int)
 
@@ -33,7 +32,7 @@ class FileWriter:
         dt_string = now.strftime("%d_%m_%Y_%H_%M_%S")
 
         # Create and store the path of the output folder
-        self.output_path = str(data_info.OUTPUT_FOLDER + folder_name
+        self.output_path = str(di.OUTPUT_FOLDER + folder_name
                                + dt_string + "/")
         self.create_folder(self.output_path)
 
@@ -42,11 +41,11 @@ class FileWriter:
         self.create_folder(self.image_folder)
 
         # Create folder to store the trained models
-        model_path = self.output_path + data_info.MODEL_FOLDER
+        model_path = self.output_path + di.MODEL_FOLDER
         self.create_folder(model_path)
 
         # Create folder to store the generated dungeon files
-        results_path = self.output_path + data_info.RESULTS_FOLDER
+        results_path = self.output_path + di.RESULTS_FOLDER
         self.create_folder(results_path)
 
     # Function to create a folder if id does not exist
@@ -93,9 +92,9 @@ class FileWriter:
 
     # Function to save a gan model to files
     def save_model(self, model, filename):
-        model_filename = str(self.output_path + data_info.MODEL_FOLDER
+        model_filename = str(self.output_path + di.MODEL_FOLDER
                              + filename + ".json")
-        weights_filename = str(self.output_path + data_info.MODEL_FOLDER
+        weights_filename = str(self.output_path + di.MODEL_FOLDER
                                + filename + ".h5")
         # serialize model to JSON
         model_json = model.to_json()
