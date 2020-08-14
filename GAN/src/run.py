@@ -1,7 +1,7 @@
-import numpy as np
 import sys
 import getopt
 import tensorflow as tf
+import numpy as np
 
 from gan.dense_gan import DENSE_GAN
 from gan.cnn_gan import CNN_GAN
@@ -17,37 +17,8 @@ assert tf.test.is_built_with_cuda()
 # Console output color setup
 np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
 
-# FileParser object to load input data and write results
-file_reader = FileReader()
 
-# Function to create and train a cnn gan network
-def train_cnn(data, args):
-    # Transform data to matrix, cnn expects a ndim matrix of data not an array
-    transformed_data = []
-    for sample in data:
-        matrix = file_reader.data_transformation.transform_to_matrix(sample)
-        transformed_data.append(matrix)
-
-    # Create network with the provided parameters
-    gan = CNN_GAN("cnn", epochs=args["epochs"], batch_size=args["batch"],
-                  sample_interval=args["sample"], d_trainable=True,
-                  transform=TRANFORM, one_hot_enabled=ONE_HOT)
-    #return
-    gan.train_generator(transformed_data)
-
-    gan.train(transformed_data)
-
-    # Save results including the trained model and weights
-    gan.write_results()
-    gan.save_models()
-
-
-# Function to create and train a dense gan network
-def train_dense(data, args):
-    # Create network with the provided parameters
-    gan = DENSE_GAN("dense", epochs=args["epochs"], batch_size=args["batch"],
-                    sample_interval=args["sample"], d_trainable=True,
-                    transform=TRANFORM)
+def train_gan(gan, data):
     gan.train_generator(data)
 
     gan.train(data)
@@ -55,6 +26,26 @@ def train_dense(data, args):
     # Save results including the trained model and weights
     gan.write_results()
     gan.save_models()
+
+# Function to create and train a cnn gan network
+def train_cnn(data, args):
+    # Create network with the provided parameters
+    gan = CNN_GAN("cnn", epochs=args["epochs"], batch_size=args["batch"],
+                  sample_interval=args["sample"], d_trainable=True,
+                  transform=TRANFORM, one_hot_enabled=ONE_HOT)
+    #return
+    
+    train_gan(gan, data)
+
+
+# Function to create and train a dense gan network
+def train_dense(data, args):
+    # Create network with the provided parameters
+    gan = DENSE_GAN("dense", epochs=args["epochs"], batch_size=args["batch"],
+                    sample_interval=args["sample"], d_trainable=True,
+                    transform=TRANFORM, one_hot_enabled=ONE_HOT)
+    
+    train_gan(gan, data)
 
 
 # Function used to parse the cmd arguments
@@ -97,6 +88,8 @@ def main(argv):
     # Parse cmd arguments
     args = parse_args(argv)
 
+    # FileParser object to load input data and write results
+    file_reader = FileReader()
     # Load csv data into array
     data = file_reader.get_csv_data()
 
@@ -104,12 +97,18 @@ def main(argv):
     data_transformation = DataTransformation(transform=TRANFORM, one_hot_enabled=ONE_HOT)
     data = data_transformation.transform_multiple(data)
 
+    # Transform data to matrix, cnn expects a ndim matrix of data not an array
+    transformed_data = []
+    for sample in data:
+        matrix = file_reader.data_transformation.transform_to_matrix(sample)
+        transformed_data.append(matrix)
+
     if (args["model"] == "dense"):
         # Train dense model
-        train_dense(data, args)
+        train_dense(transformed_data, args)
     elif (args["model"] == "cnn"):
         # Train cnn model
-        train_cnn(data, args)
+        train_cnn(transformed_data, args)
 
 
 if __name__ == "__main__":

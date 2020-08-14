@@ -36,6 +36,7 @@ class GAN():
         # Define dungeon dimensions
         self.dungeon_dimension = DUNGEON_DIMENSION
         self.dungeon_shape = (DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS)
+        self.dungeon_units = DUNGEON_DIMENSION * DUNGEON_DIMENSION * DUNGEON_LABELS
 
         self.d_trainable = d_trainable
 
@@ -135,7 +136,6 @@ class GAN():
         for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
-
             noise = self.get_noise(self.batch_size)
 
             g_loss = self.generator.train_on_batch(noise, sample)
@@ -169,14 +169,6 @@ class GAN():
         noise_data = np.empty(shape=(number_of_samples, DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS))
         for s in range(0, number_of_samples):
             noise_data[s] = np.eye(DUNGEON_LABELS)[np.random.choice(DUNGEON_LABELS, DUNGEON_DIMENSION)]
-            '''
-            for i in range(0, DUNGEON_DIMENSION):
-                for j in range(0, DUNGEON_DIMENSION):
-                    noise_position = np.random.randint(NOISE["min"], NOISE["max"])
-                    noise_labels = np.zeros(shape=(3))
-                    noise_labels[noise_position] = 1
-                    noise_data[s][i][j] = noise_labels
-            '''
         return noise_data
 
     # Sample functions
