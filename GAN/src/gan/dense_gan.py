@@ -7,6 +7,8 @@ from keras.layers.advanced_activations import LeakyReLU
 # Local libraries
 from gan.gan import GAN
 
+from data_models.data_info import DUNGEON_LABELS
+
 
 class DENSE_GAN(GAN):
     def build_generator(self):
@@ -18,17 +20,21 @@ class DENSE_GAN(GAN):
 
         self.add_layer(Dense(units=128))
         self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
+        #self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(Dropout(rate=0.3))
 
         self.add_layer(Dense(units=256))
         self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(Dropout(rate=0.3))
-
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
+        #self.add_layer(Dropout(rate=0.3))
 
         '''
+
+        self.add_layer(Dense(units=256))
+        self.add_layer(LeakyReLU(alpha=0.2))
+        self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(Dropout(rate=0.3))
+
         self.add_layer(Dense(units=1024))
         self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
@@ -51,8 +57,7 @@ class DENSE_GAN(GAN):
         '''
 
         #self.add_layer(Dense(np.prod(self.dungeon_shape), activation="softmax"))
-        self.add_layer(Dense(units=3, activation='linear'))
-        #self.add_layer(Reshape(target_shape=self.dungeon_shape))
+        self.add_layer(Dense(units=self.dungeon_labels, activation='relu'))
 
         noise = Input(shape=self.dungeon_shape)
         dungeon = self.model(noise)

@@ -55,7 +55,7 @@ class CNN_GAN(GAN):
         self.add_layer(Flatten())
         self.add_layer(Dense(units=self.latent_size))
         '''
-        self.add_layer(Dense(units=12, activation='softmax'))
+        self.add_layer(Dense(units=4, activation='relu'))
         self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
         # this is the z space commonly referred to in GAN papers

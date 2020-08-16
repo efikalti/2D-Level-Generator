@@ -18,7 +18,7 @@ class DataTransformation:
             original_value = data[i]
             # Transform label value to one hot encoding
             if self.one_hot_enabled:
-                data[i] = to_categorical(original_value, num_classes=3)
+                data[i] = to_categorical(original_value, num_classes=DUNGEON_LABELS)
             if self.transform_value_enabled:
                 if original_value in di.DATA_TRANSFORMATIONS:
                     data[i] = di.DATA_TRANSFORMATIONS[original_value]
@@ -26,6 +26,7 @@ class DataTransformation:
         return data
 
     def transform_single_to_original(self, data):
+        #print(data[0])
         #print("TRANSFORM: " + str(data[0][:10]))
         transformed_data = np.zeros((DUNGEON_DIMENSION, DUNGEON_DIMENSION, 1))
 

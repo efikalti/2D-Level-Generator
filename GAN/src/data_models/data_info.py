@@ -5,16 +5,17 @@ from tensorflow.keras.optimizers import Adam, SGD, RMSprop
 TILE_TYPE_COLUMN = 'Tile Type'
 HEADER_LINE = 1
 DUNGEON_DIMENSION = 100
-TILE_TYPES = {"CORRIDOR": 0, "WALL": 1, "ROOM": 2}
-DUNGEON_LABELS = 3
+TILE_TYPES = {"WALL": 0, "ROOM": 1, "CORRIDOR": 2}
+DUNGEON_LABELS = 1
+
+# Data transformation variables
+TRANFORM = False
+ONE_HOT = False
 
 # Data transformation
 DATA_TRANSFORMATIONS = {0: -1, 1: 0, 2: 1}
 DATA_TRANSFORMATIONS_TO_ORIGINAL = {-1: 0, 0: 1, 1: 2}
 
-# Data transformation variables
-TRANFORM = False
-ONE_HOT = True
 
 # Folder paths
 INPUT_FOLDER = '../../Data/GAN_Input/'
@@ -25,7 +26,7 @@ RESULTS_FOLDER = '/Results/'
 MODEL_FOLDER = 'model_data/'
 
 # Noise data
-NOISE = {"min": 0, "max": 3}
+NOISE = {"min": 0, "max": 2}
 
 # GAN Variables
 optimizers = {
@@ -35,13 +36,13 @@ optimizers = {
 }
 
 DIS_LOSS = "binary_crossentropy"
-GEN_LOSS = "categorical_crossentropy"
+GEN_LOSS = "binary_crossentropy"
 COM_LOSS = "binary_crossentropy"
 
 OPTIMIZER = "adam"
 
 DIS_METRIC = 'accuracy'
-GEN_METRIC = 'categorical_accuracy'
+GEN_METRIC = 'accuracy'
 COM_METRIC = 'accuracy'
 
 # Plot variables
