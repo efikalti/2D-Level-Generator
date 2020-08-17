@@ -36,9 +36,12 @@ class DataTransformation:
                 if self.one_hot_enabled:
                     transformed_data[i][j] = self.from_categorical(data[i][j])
                 if self.transform_value_enabled:
-                    value = round(data[i][j])
+                    value = round(data[i][j][0])
                     if value in di.DATA_TRANSFORMATIONS_TO_ORIGINAL:
-                        data[i][j] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[value]
+                        transformed_data[i][j] = di.DATA_TRANSFORMATIONS_TO_ORIGINAL[value]
+                if self.one_hot_enabled == False and self.transform_value_enabled == False:
+                    value = round(data[i][j][0])
+                    transformed_data[i][j] = value
         # Return data in original format
 
         #print("TO: " + str(transformed_data[0][:10]))

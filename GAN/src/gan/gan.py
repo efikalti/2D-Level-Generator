@@ -16,6 +16,9 @@ class GAN():
                  output_folder=None, create_models=True,
                  d_trainable=True, output_images=True, 
                  transform=True, one_hot_enabled=True):
+        # Define data variables
+        self.one_hot_enabled = one_hot_enabled
+
         # Define training parameters
         self.epochs = epochs
         self.batch_size = batch_size
@@ -28,6 +31,8 @@ class GAN():
         self.dis_metric = di.DIS_METRIC
         self.gen_metric = di.GEN_METRIC
         self.com_metric = di.COM_METRIC
+
+        self.gen_activation = di.GEN_ACTIVATION
 
         self.latent_size = DUNGEON_DIMENSION * DUNGEON_DIMENSION * DUNGEON_LABELS
 
@@ -77,9 +82,7 @@ class GAN():
         # Create generator object
         self.generator = self.build_generator()
         # Parameterize Generator
-        self.generator.compile(loss=self.gen_loss,
-                               optimizer=self.optimizer,
-                               metrics=[self.gen_metric])
+        self.generator.compile(loss=self.gen_loss, optimizer=self.optimizer, metrics=[self.gen_metric])
         self.str_outputs.append("\nGenerator loss      : " + self.gen_loss)
         self.str_outputs.append("Generator metrics   : " + str(self.gen_metric))
         self.str_outputs.append("Generator optimizer : " + str(self.optimizer))
@@ -100,7 +103,7 @@ class GAN():
         self.model.add(layer)
 
         layer_info = str("Class_name: " + str(layer.__class__.__name__)
-                            + "\tConfig: " + str(layer.get_config()))
+                       + "\tConfig: " + str(layer.get_config()))
         self.str_outputs.append(layer_info)
 
     def train(self, data):
@@ -133,7 +136,6 @@ class GAN():
     def train_generator(self, data):
         self.add_train_info("\nGenerator training.")
         X_train = np.array(data)
-        print(len(X_train))
 
         for epoch in range(1, self.epochs + 1):
             idx = np.random.randint(0, len(X_train), self.batch_size)
@@ -168,10 +170,12 @@ class GAN():
                 self.sample_epoch(epoch, file_prefix="discriminator_")
 
     def get_noise(self, number_of_samples):
-
-        noise_data = np.empty(shape=(number_of_samples, DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS))
-        for s in range(0, number_of_samples):
-            noise_data[s] = np.eye(DUNGEON_LABELS)[np.random.choice(DUNGEON_LABELS, DUNGEON_DIMENSION)]
+        if self.one_hot_enabled:
+            noise_data = np.empty(shape=(number_of_samples, DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS))
+            for s in range(0, number_of_samples):
+                noise_data[s] = np.eye(DUNGEON_LABELS)[np.random.choice(DUNGEON_LABELS, DUNGEON_DIMENSION)]
+        else:
+            noise_data = np.random.randint(NOISE["min"], NOISE["max"], size=(number_of_samples, DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS))
         #self.sample_image(noise_data[0], np.random.randint(0,1000), "noise-" + str(np.random.randint(0,1000)))
         return noise_data
 
@@ -184,6 +188,7 @@ class GAN():
 
         gen_data = self.generator.predict(noise)
         dungeon = gen_data[0]
+        print(dungeon)
         prefix = str(file_prefix + str(epoch) + "_")
         self.file_writer.write_to_csv(dungeon, file_prefix=prefix)
 
@@ -197,7 +202,7 @@ class GAN():
         img = np.empty(shape=(DUNGEON_DIMENSION, DUNGEON_DIMENSION, 3))
         for i in range(DUNGEON_DIMENSION):
             for j in range(DUNGEON_DIMENSION):
-                value = dungeon[i][j]
+                value = dungeon[i][j][0]
                 if value == 0:
                     value = di.colors['white']['float']
                 elif value == 1:

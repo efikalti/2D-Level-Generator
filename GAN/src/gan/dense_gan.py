@@ -1,6 +1,11 @@
 import numpy as np
 
-from keras.layers import Input, Dense, BatchNormalization, Dropout, Reshape, Flatten
+#from keras.layers import Input, Dense, BatchNormalization, Dropout, Reshape, Flatten
+
+from keras.layers import Input, BatchNormalization
+from keras.layers.core import Dense, Dropout, Reshape, Flatten
+#from keras.layers.convolutional import Conv2D, MaxPooling2D, SeparableConv2D
+
 from keras.models import Sequential, Model
 from keras.layers.advanced_activations import LeakyReLU
 
@@ -16,48 +21,25 @@ class DENSE_GAN(GAN):
         self.model = None
         self.model = Sequential()
         
-        self.model.add(Input(shape=self.dungeon_shape))
+        self.add_layer(Flatten(input_shape=self.dungeon_shape))
 
-        self.add_layer(Dense(units=128))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        #self.add_layer(BatchNormalization(momentum=0.8))
-        self.add_layer(Dropout(rate=0.3))
-
-        self.add_layer(Dense(units=256))
+        self.add_layer(Dense(units=128, activation='relu'))
         self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
         #self.add_layer(Dropout(rate=0.3))
 
-        '''
-
-        self.add_layer(Dense(units=256))
+        self.add_layer(Dense(units=128, activation='relu'))
         self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        self.add_layer(Dropout(rate=0.3))
+        #self.add_layer(Dropout(rate=0.3))
 
-        self.add_layer(Dense(units=1024))
+        self.add_layer(Dense(units=128, activation='relu'))
         self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
+        #self.add_layer(Dropout(rate=0.3))
 
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(Dropout(rate=0.3))
-
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
-
-        self.add_layer(Dense(units=1024))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(Dropout(rate=0.3))
-
-        self.add_layer(Dense(units=256))
-        self.add_layer(LeakyReLU(alpha=0.2))
-        self.add_layer(BatchNormalization(momentum=0.8))
-        '''
-
-        #self.add_layer(Dense(np.prod(self.dungeon_shape), activation="softmax"))
-        self.add_layer(Dense(units=self.dungeon_labels, activation='relu'))
+        self.add_layer(Dense(np.prod(self.dungeon_shape), activation=self.gen_activation))
+        self.add_layer(Reshape(self.dungeon_shape))
 
         noise = Input(shape=self.dungeon_shape)
         dungeon = self.model(noise)
@@ -72,15 +54,15 @@ class DENSE_GAN(GAN):
         self.model = None
         self.model = Sequential()
 
-        self.model.add(Input(shape=self.dungeon_shape))
+        self.add_layer(Flatten(input_shape=self.dungeon_shape))
 
-        self.add_layer(Dense(units=512))
+        self.add_layer(Dense(units=64))
 
         self.add_layer(LeakyReLU(alpha=0.2))
 
         # model.add(Dropout(0.3))
 
-        self.add_layer(Dense(units=256))
+        self.add_layer(Dense(units=64))
 
         self.add_layer(LeakyReLU(alpha=0.2))
 

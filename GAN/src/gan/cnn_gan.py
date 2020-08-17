@@ -1,6 +1,7 @@
-from keras.layers import Input, Dense, Dropout, Flatten, BatchNormalization
-from keras.layers import Conv2D, Reshape
+from keras.layers import Input, Dense, Dropout, Flatten, BatchNormalization, Embedding
+from keras.layers import Conv2D, Reshape, Activation, Conv2DTranspose, Concatenate
 from keras.models import Sequential, Model
+from keras.initializers import RandomNormal
 from keras import backend as K
 from keras.layers.advanced_activations import LeakyReLU
 
@@ -21,20 +22,20 @@ class CNN_GAN(GAN):
         #self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
         self.add_layer(Conv2D(32, 3, padding='same', strides=2,
-                              input_shape=self.dungeon_shape, activation='linear'))
+                              input_shape=self.dungeon_shape, activation='relu'))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        self.add_layer(Dropout(0.3))
+        #self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(32, 3, padding='same', strides=1, activation='linear'))
+        self.add_layer(Conv2D(32, 3, padding='same', strides=1, activation='relu'))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        self.add_layer(Dropout(0.3))
+        #self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(32, 3, padding='same', strides=1, activation='linear'))
+        self.add_layer(Conv2D(32, 3, padding='same', strides=1, activation='relu'))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        self.add_layer(Dropout(0.5))
+        #self.add_layer(Dropout(0.5))
 
         '''
 
@@ -55,7 +56,9 @@ class CNN_GAN(GAN):
         self.add_layer(Flatten())
         self.add_layer(Dense(units=self.latent_size))
         '''
-        self.add_layer(Dense(units=4, activation='relu'))
+        #self.add_layer(Dense(units=4, activation=self.gen_activation))
+        
+        self.add_layer(Dense(np.prod(self.dungeon_shape), activation=self.gen_activation))
         self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
         # this is the z space commonly referred to in GAN papers
@@ -85,6 +88,4 @@ class CNN_GAN(GAN):
         validity = self.model(dungeon)
 
         return Model(dungeon, validity)
-
-
 

@@ -1,16 +1,14 @@
 from tensorflow.keras.optimizers import Adam, SGD, RMSprop
 # DATA
+DUNGEON_LABELS = 1
+TRANFORM = False
+ONE_HOT = False
 
 # Dungeon specific data
 TILE_TYPE_COLUMN = 'Tile Type'
 HEADER_LINE = 1
 DUNGEON_DIMENSION = 100
 TILE_TYPES = {"WALL": 0, "ROOM": 1, "CORRIDOR": 2}
-DUNGEON_LABELS = 1
-
-# Data transformation variables
-TRANFORM = False
-ONE_HOT = False
 
 # Data transformation
 DATA_TRANSFORMATIONS = {0: -1, 1: 0, 2: 1}
@@ -31,8 +29,21 @@ NOISE = {"min": 0, "max": 2}
 # GAN Variables
 optimizers = {
     "adam": Adam(0.0002),
-    "sgd": SGD(0.0002),
+    "sgd": SGD(0.01),
     "rmsprop": RMSprop(0.0002),
+}
+
+losses = {
+    "mean_squared_error",
+    "binary_crossentropy",
+
+    "categorical_crossentropy",
+}
+
+accuracy = {
+    "categorical_accuracy",
+    "accuracy"
+
 }
 
 DIS_LOSS = "binary_crossentropy"
@@ -44,6 +55,8 @@ OPTIMIZER = "adam"
 DIS_METRIC = 'accuracy'
 GEN_METRIC = 'accuracy'
 COM_METRIC = 'accuracy'
+
+GEN_ACTIVATION = 'sigmoid'
 
 # Plot variables
 colors = {
