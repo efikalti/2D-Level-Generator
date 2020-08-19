@@ -1,8 +1,8 @@
 from tensorflow.keras.optimizers import Adam, SGD, RMSprop
 # DATA
-DUNGEON_LABELS = 1
+DUNGEON_LABELS = 2
 TRANFORM = False
-ONE_HOT = False
+ONE_HOT = True
 
 # Dungeon specific data
 TILE_TYPE_COLUMN = 'Tile Type'

@@ -2,9 +2,9 @@
 {
     public enum TileType
     {
-        CORRIDOR,
         WALL,
         ROOM,
+        CORRIDOR,
         STAIRS,
     }
 }

@@ -271,8 +271,8 @@ MonoBehaviour:
   Walls: {fileID: 0}
   Floors: {fileID: 0}
   Corridors: {fileID: 0}
-  numberOfDungeonsToGenerate: 63
-  secondsToWaitingBetweenDungeons: 3
+  numberOfDungeonsToGenerate: 1
+  secondsToWaitingBetweenDungeons: 1
   RoomPossibility: 0.5
   SplitPossibility: 0.2
 --- !u!1 &170076733

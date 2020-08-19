@@ -7,12 +7,12 @@ using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.Models.DataStructures
 {
-    class QuadTree<T> : IEnumerable<QuadTree<T>>
+    public class QuadTree<T> : IEnumerable<QuadTree<T>>
     {
 
         public TileType Type { get; set; }
         public QuadTree<T> Parent { get; set; }
-        public ICollection<QuadTree<T>> Children { get; set; }
+        public List<QuadTree<T>> Children { get; set; }
 
         public BoundsInt LeafBounds;
 
@@ -155,7 +155,10 @@ namespace Assets.Scripts.Models.DataStructures
             {
                 if (RandomGenerator.NextDouble() <= RoomPossibility)
                 {
-                    Type = TileType.ROOM;
+                    if (!IsLastNodeWithLeftAndTopWalls())
+                    {
+                        Type = TileType.ROOM;
+                    }
                 }
             }
         }
@@ -175,6 +178,21 @@ namespace Assets.Scripts.Models.DataStructures
                     child.CreateTilemapFromLeafs(tilemap);
                 }
             }
+        }
+
+        public bool IsLastNodeWithLeftAndTopWalls()
+        {
+            // Check if the left and top neighbors are walls and the diagonal room
+            if (Parent.Children[3].Id == Id)
+            {
+                if (Parent.Children[0].Type == TileType.ROOM &&
+                    Parent.Children[1].Type == TileType.WALL &&
+                    Parent.Children[2].Type == TileType.WALL)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void Print()

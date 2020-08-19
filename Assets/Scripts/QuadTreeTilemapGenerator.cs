@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Controllers.TilemapController;
 using Assets.Scripts.Enums;
 using Assets.Scripts.Models.DataStructures;
+using Assets.Scripts.Models.Evaluation.RoomFindingEvaluation;
 using Assets.Scripts.Reporting;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -59,9 +59,6 @@ namespace Assets.Scripts
             // Step 1. Initialize data structures for new dungeon level
             InitializeData();
 
-            // Step 1. Turn dungeon bounds to walls TODO ?
-            //TilemapTransformHelper.TransformBounds(tilemap, tilemap.cellBounds, TilemapHelper.GetTileByType(TileType.WALL));
-
             // Step 2. Create quad tree representing the dungeon
             CreateDungeonTree();
 
@@ -70,6 +67,9 @@ namespace Assets.Scripts
 
             // Step 4. Create tilemap from tree
             CreateTilemapFromTree();
+
+            // Step 6. Evaluate tilemap
+            Evaluate();
 
             // Step 5. Write tilemap to file
             fileParser.WriteTilemap(tilemap);
@@ -120,6 +120,12 @@ namespace Assets.Scripts
         public void CreateTilemapFromTree()
         {
             quadTree.CreateTilemapFromLeafs(tilemap);
+        }
+
+        public void Evaluate()
+        {
+            RoomFindingEvaluation evaluation = new RoomFindingEvaluation(tilemap);
+            evaluation.Evaluate();
         }
     }
 }
