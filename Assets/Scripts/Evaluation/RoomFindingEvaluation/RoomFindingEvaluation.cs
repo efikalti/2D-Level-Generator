@@ -33,7 +33,6 @@ namespace Assets.Scripts.Evaluation.RoomFindingEvaluation
 
             searchedTiles = new Hashtable();
 
-            Debug.Log($"{bounds}");
             for (int y = bounds.yMin; y<bounds.yMax; y++)
 
             {

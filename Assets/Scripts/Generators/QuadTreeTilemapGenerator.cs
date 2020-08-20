@@ -16,7 +16,7 @@ namespace Assets.Scripts.Generators
 
         private BoundsInt tilemapBounds;
 
-        private readonly int sideSize = 20;
+        private readonly int sideSize = 100;
 
         private int minSplitSize;
 
