@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Controllers.TilemapController;
+﻿using Assets.Scripts.Generators;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,11 +6,11 @@ public class UIGeneratorManager : MonoBehaviour
 {
     private Button StartButton;
 
-    private TilemapControllerBase TilemapGenerator;
+    private TilemapGeneratorBase TilemapGenerator;
 
     public void Start()
     {
-        var tilemapControllers = FindObjectsOfType<TilemapControllerBase>();
+        var tilemapControllers = FindObjectsOfType<TilemapGeneratorBase>();
         if (tilemapControllers.Length > 0)
         {
             foreach(var controller in tilemapControllers)
