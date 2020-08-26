@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  15 JUL 2020 22:56
+This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  26 AUG 2020 18:59
  restricted system commands enabled.
 **thesis.tex
 (./thesis.tex
@@ -1115,6 +1115,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip55
 ) (./thesis.aux (./blank_page.aux) (./blank_page.aux)
+
+LaTeX Warning: Label `fig:fig' multiply defined.
+
 (./blank_page.aux)
 
 LaTeX Warning: Label `fig:sfig1' multiply defined.
@@ -1139,6 +1142,9 @@ LaTeX Warning: Label `fig:sfig2' multiply defined.
 
 
 LaTeX Warning: Label `sub@fig:sfig2' multiply defined.
+
+
+LaTeX Warning: Label `fig:fig' multiply defined.
 
 (./blank_page.aux) (./blank_page.aux)
 
@@ -1466,7 +1472,7 @@ LaTeX Info: Redefining \nameref on input line 64.
 
 \openout3 = thesis.out
  (./thesis_title.tex
-<../images/aristotle_logo.png, id=343, 278.54062pt x 209.28188pt>
+<../images/aristotle_logo.png, id=339, 278.54062pt x 209.28188pt>
 File: ../images/aristotle_logo.png Graphic file (type png)
 <use ../images/aristotle_logo.png>
 Package luatex.def Info: ../images/aristotle_logo.png  used on input line 7.
@@ -1597,7 +1603,7 @@ Overfull \hbox (0.77124pt too wide) in paragraph at lines 20--21
 τισμούς. 
  []
 
-<../images/graphs/Data_Cycle.png, id=478, 963.6pt x 722.7pt>
+<../images/graphs/Data_Cycle.png, id=473, 963.6pt x 722.7pt>
 File: ../images/graphs/Data_Cycle.png Graphic file (type png)
 <use ../images/graphs/Data_Cycle.png>
 Package luatex.def Info: ../images/graphs/Data_Cycle.png  used on input line 28.
@@ -1685,7 +1691,7 @@ Overfull \hbox (29.3272pt too wide) in paragraph at lines 11--12
 [11
 
 ]
-<../images/no-mans-sky.jpg, id=499, 712.52113pt x 400.02972pt>
+<../images/no-mans-sky.jpg, id=494, 712.52113pt x 400.02972pt>
 File: ../images/no-mans-sky.jpg Graphic file (type jpg)
 <use ../images/no-mans-sky.jpg>
 Package luatex.def Info: ../images/no-mans-sky.jpg  used on input line 15.
@@ -2062,409 +2068,440 @@ Overfull \hbox (32.73917pt too wide) in paragraph at lines 131--132
  []
 
 [20]
-Overfull \hbox (23.69528pt too wide) in paragraph at lines 136--137
+Overfull \hbox (8.71912pt too wide) in paragraph at lines 138--139
+[]\TU/LinLibertine(0)/m/n/12 Για τον αλγόριθμο του Quadtree 
+χρησιμοποιείται
+ []
+
+
+Overfull \hbox (9.79584pt too wide) in paragraph at lines 138--139
+\TU/LinLibertine(0)/m/n/12 Η λειτουργία του είναι αντί
+στοιχη με αυτήν του BSP αλγορίθμου. Σε αντίθ
+εση
+ []
+
+
+Overfull \hbox (35.05923pt too wide) in paragraph at lines 138--139
+\TU/LinLibertine(0)/m/n/12 τμήματα ίσου μεγέθους εκτελ
+ώντας κάθετη και οριζόντια διχοτόμηση ταυ
+τόχρονα.
+ []
+
+
+Overfull \hbox (6.60722pt too wide) in paragraph at lines 138--139
+\TU/LinLibertine(0)/m/n/12 Με αυτόν τον τρόπο ένα επίπε
+δο χωρίζεται σε τέσσερα υποεπίπεδα, συνήθω
+ς
+ []
+
+<../images/other/quadtree.png, id=572, 1439.97975pt x 714.56963pt>
+File: ../images/other/quadtree.png Graphic file (type png)
+<use ../images/other/quadtree.png>
+Package luatex.def Info: ../images/other/quadtree.png  used on input line 143.
+(luatex.def)             Requested size: 317.9892pt x 157.79459pt.
+
+Underfull \hbox (badness 7576) in paragraph at lines 144--144
+[]\TU/LinLibertine(0)/m/n/12 Σχήμα 2.2: |Παράδειγμα αναπα
+ράστασης ενός Quadtree (δεξιά) και η
+ []
+
+
+Overfull \hbox (23.69528pt too wide) in paragraph at lines 148--149
 \TU/LinLibertine(0)/m/n/12 ενός μεγαλύτερου δωματίου σ
 ε συγκεκριμένα τμήματα, το κάθε ένα εντελώ
 ς ξεχωριστό
  []
 
 
-Overfull \hbox (9.4574pt too wide) in paragraph at lines 139--140
+Overfull \hbox (9.4574pt too wide) in paragraph at lines 154--155
 []\TU/LinLibertine(0)/m/n/12 Όπως αναφέρει και το όνομα 
 αυτής της οικογένειας, η δημιουργία του επ
 ιπέδου
  []
 
-
-Overfull \hbox (10.1213pt too wide) in paragraph at lines 141--142
+[21<../images/other/quadtree.png>]
+Overfull \hbox (10.1213pt too wide) in paragraph at lines 156--157
 []\TU/LinLibertine(0)/m/n/12 Σε αντίθεση με το Space Par-ti-tion-i
 ng, οι Agent-Based προσεγγίσεις δεν βλέπουν
  []
 
 
-Overfull \hbox (14.07338pt too wide) in paragraph at lines 143--144
+Overfull \hbox (14.07338pt too wide) in paragraph at lines 158--159
 []\TU/LinLibertine(0)/m/n/12 Για την δημιουργία ενός τέ
 τοιου αλγόριθμου πρέπει να οριστεί μια συμ
 περιφορά
  []
 
 
-Overfull \hbox (32.67522pt too wide) in paragraph at lines 143--144
+Overfull \hbox (32.67522pt too wide) in paragraph at lines 158--159
 \TU/LinLibertine(0)/m/n/12 και με βάση παραμέτρους της 
 συμπεριφορά του θα το αλλάζει με σκοπό να δ
 ημιουργήσει
  []
 
 
-Overfull \hbox (5.98537pt too wide) in paragraph at lines 145--146
+Overfull \hbox (5.98537pt too wide) in paragraph at lines 160--161
 []\TU/LinLibertine(0)/m/n/12 Για παράδειγμα μπορούμε να 
 ορίσουμε ένα State Ma-chine ως την συμπεριφορά
  []
 
 
-Overfull \hbox (27.48717pt too wide) in paragraph at lines 148--149
+Overfull \hbox (27.48717pt too wide) in paragraph at lines 163--164
 []\TU/LinLibertine(0)/m/n/12 Μόλις βρεθεί σε αυτό το State, 
 ο πράκτορας επιλέγει μια καινούργια
  []
 
-[21]
-Overfull \hbox (3.27124pt too wide) in paragraph at lines 151--152
+
+Overfull \hbox (3.27124pt too wide) in paragraph at lines 166--167
 \TU/LinLibertine(0)/m/n/12 μεταβάσεις και το μέγεθος τ
 ων δωματίων έχουμε ορίσει έναν πράκτορα πο
 υ μπορεί
  []
 
 
-Overfull \hbox (75.86531pt too wide) in paragraph at lines 153--154
+Overfull \hbox (75.86531pt too wide) in paragraph at lines 168--169
 []\TU/LinLibertine(0)/m/n/12 Ένα μεγάλο πλεονέκτημα των 
 Agent-based αλγορίθμων είναι ότι είναι παραλληλ
 οποιήσιμοι.
  []
 
 
-Overfull \hbox (3.64717pt too wide) in paragraph at lines 153--154
+Overfull \hbox (3.64717pt too wide) in paragraph at lines 168--169
 \TU/LinLibertine(0)/m/n/12 να έχουμε πιο γρήγορη δημιο
 υργία και διαφορετικό αποτέλεσμα καθώς η ε
 κτέλεση
  []
 
-
-Overfull \hbox (4.42125pt too wide) in paragraph at lines 156--157
+[22]
+Overfull \hbox (4.42125pt too wide) in paragraph at lines 171--172
 []\TU/LinLibertine(0)/m/n/12 Τα Cel-lu-lar Au-tomata (ενικός: Cel-lu-lar
  Au-toma-ton) [[]] έχουν χρησιμοποιηθεί
  []
 
 
-Overfull \hbox (18.8832pt too wide) in paragraph at lines 160--161
+Overfull \hbox (18.8832pt too wide) in paragraph at lines 175--176
 \TU/LinLibertine(0)/m/n/12 γίνετε μόλις φτάσει σε κάπο
 ια τερματική συνθήκη ή μόλις σταματήσει να 
 καταγράφει
  []
 
-[22]
-Overfull \hbox (5.19919pt too wide) in paragraph at lines 163--164
+
+Overfull \hbox (5.19919pt too wide) in paragraph at lines 178--179
 \TU/LinLibertine(0)/m/n/12 κανόνες, σε συνδυασμό με την 
 ”γειτονιά” του cell αποφασίζετε αν θα αλλάξ
 ει
  []
 
 
-Overfull \hbox (28.47516pt too wide) in paragraph at lines 164--165
+Overfull \hbox (28.47516pt too wide) in paragraph at lines 179--180
 []\TU/LinLibertine(0)/m/n/12 Περιλαμβάνει όλες τις δυνα
 τές καταστάσεις
  []
 
-
-Overfull \hbox (10.40211pt too wide) in paragraph at lines 169--170
+[23]
+Overfull \hbox (10.40211pt too wide) in paragraph at lines 184--185
 []\TU/LinLibertine(0)/m/n/12 Η Moore Neigh-bor-hood μοιάζει με στ
 αυρό, περιλαμβάνει
  []
 
 
-Overfull \hbox (2.12306pt too wide) in paragraph at lines 170--171
+Overfull \hbox (2.12306pt too wide) in paragraph at lines 185--186
 []\TU/LinLibertine(0)/m/n/12 Αυτή η γειτονιά περιλαμβάν
 ει όλα τα cells που
  []
 
 
-Overfull \hbox (17.10321pt too wide) in paragraph at lines 172--173
+Overfull \hbox (17.10321pt too wide) in paragraph at lines 187--188
 \TU/LinLibertine(0)/m/n/12 Και οι δύο γειτονιές, αντίστ
 οιχα με τη μονοδιάστατη γειτονιά μπορούν ν
 α εκτείνονται
  []
 
 
-Overfull \hbox (15.04492pt too wide) in paragraph at lines 172--173
+Overfull \hbox (15.04492pt too wide) in paragraph at lines 187--188
 \TU/LinLibertine(0)/m/n/12 κατά X cells μακρυά από το cell πο
 υ εξετάζουμε. Δεν είναι κανόνας αλλά συνηθ
 ίζεται
  []
 
 
-Overfull \hbox (23.24527pt too wide) in paragraph at lines 174--175
-[]\TU/LinLibertine(0)/m/n/12 Σε αυτή την εργασία χρησιμ
-οποιήθηκαν μέθοδοι Cel-lu-lar Au-tomata σε συνδυασμ
-ό
- []
-
-
-Overfull \hbox (27.84938pt too wide) in paragraph at lines 178--179
+Overfull \hbox (27.84938pt too wide) in paragraph at lines 190--191
 []\TU/LinLibertine(0)/m/n/12 Οι γραμματικές όπως ορίζον
 ται στον τομέα του Game De-vel-op-ment και γενικότε
 ρα
  []
 
 
-Overfull \hbox (7.48721pt too wide) in paragraph at lines 178--179
+Overfull \hbox (7.48721pt too wide) in paragraph at lines 190--191
 \TU/LinLibertine(0)/m/n/12 στην επιστήμη της Πληροφορι
 κής [[]], αποτελούνται από μεταβλητές και κα
 νόνες.
  []
 
 
-Overfull \hbox (22.82314pt too wide) in paragraph at lines 178--179
+Overfull \hbox (22.82314pt too wide) in paragraph at lines 190--191
 \TU/LinLibertine(0)/m/n/12 κεφαλαίων συμβόλων σε μια α
 κολουθία από μικρά και κεφαλαία σύμβολα αν
 τίστοιχα. 
  []
 
-[23]
-Overfull \hbox (1.73686pt too wide) in paragraph at lines 180--181
+
+Overfull \hbox (1.73686pt too wide) in paragraph at lines 192--193
 \TU/LinLibertine(0)/m/n/12 την κατάσταση ΑΒ -> aΑb. Αντίσ
 τοιχα μπορούμε να συνεχίσουμε να εφαρμόζο
 υμε
  []
 
 
-Overfull \hbox (8.26941pt too wide) in paragraph at lines 182--183
+Overfull \hbox (8.26941pt too wide) in paragraph at lines 194--195
 []\TU/LinLibertine(0)/m/n/12 Αυτού του είδους οι γραμμα
 τικές είναι πολύ αποτελεσματικές στην δημ
 ιουργία
  []
 
 
-Overfull \hbox (13.1192pt too wide) in paragraph at lines 182--183
+Overfull \hbox (13.1192pt too wide) in paragraph at lines 194--195
 \TU/LinLibertine(0)/m/n/12 στον κόσμο του game de-vel-op-ment αν
 τίστοιχα με τους προηγούμενους αλγόριθμου
 ς.
  []
 
 
-Overfull \hbox (1.17514pt too wide) in paragraph at lines 184--189
+Overfull \hbox (1.17514pt too wide) in paragraph at lines 196--201
 \TU/LinLibertine(0)/m/n/12 Νίκησε τον εχθρό στο δωμάτι
 ο 1 -> Πάρε το κλειδί που κουβαλούσε -> Ξεκλεί
 δωσε
  []
 
 
-Overfull \hbox (18.57817pt too wide) in paragraph at lines 184--189
+Overfull \hbox (18.57817pt too wide) in paragraph at lines 196--201
 \TU/LinLibertine(0)/m/n/12 Η χρήση γραμματικών για την 
 δημιουργία γράφων που αντιπροσωπεύουν απο
 στολές
  []
 
-
-Overfull \hbox (16.83789pt too wide) in paragraph at lines 190--191
+[24]
+Overfull \hbox (16.83789pt too wide) in paragraph at lines 202--203
 \TU/LinLibertine(0)/m/n/12 το οποίο έχει διάφορα πλεον
 εκτήματα. Συγκεκριμένα δίνει μια μεγαλύτε
 ρη ελευθερία
  []
 
 
-Overfull \hbox (10.93518pt too wide) in paragraph at lines 190--191
+Overfull \hbox (10.93518pt too wide) in paragraph at lines 202--203
 \TU/LinLibertine(0)/m/n/12 για τυχαιότητα αλλά επειδή 
 υπάρχει μια συγκεκριμένη ιεραρχία κάποιων 
 δωματίων
  []
 
 
-Overfull \hbox (9.70189pt too wide) in paragraph at lines 190--191
+Overfull \hbox (9.70189pt too wide) in paragraph at lines 202--203
 \TU/LinLibertine(0)/m/n/12 δεν φαίνεται εντελώς τυχαίο 
 στον παίκτη. Αντίθετα μπορεί να υποθέσει ό
 τι κάποιος
  []
 
 
-Overfull \hbox (17.1094pt too wide) in paragraph at lines 192--193
+Overfull \hbox (17.1094pt too wide) in paragraph at lines 204--205
 []\TU/LinLibertine(0)/m/n/12 Επιπλέον επειδή οι αναπαρα
 στάσεις δεν είναι στενά συνδεδεμένες με το 
 παιχνίδι
  []
 
-[24]
-Overfull \hbox (8.1422pt too wide) in paragraph at lines 196--197
+
+Overfull \hbox (8.1422pt too wide) in paragraph at lines 208--209
 \TU/LinLibertine(0)/m/n/12 περιεχόμενο, το δύσκολο κομ
 μάτι του PCG είναι η δημιουργία \TU/LinLibertine(0)/b/n/
 12 καλού \TU/LinLibertine(0)/m/n/12 περιεχομένου.
  []
 
 
-Overfull \hbox (3.04219pt too wide) in paragraph at lines 196--197
+Overfull \hbox (3.04219pt too wide) in paragraph at lines 208--209
 \TU/LinLibertine(0)/m/n/12 Σε αυτή την ενότητα θα αναλύ
 σουμε πως γίνετε την αξιολόγηση PCG συστημά
 των
  []
 
 
-Overfull \hbox (23.55383pt too wide) in paragraph at lines 199--200
+Overfull \hbox (23.55383pt too wide) in paragraph at lines 211--212
 \TU/LinLibertine(0)/m/n/12 τελευταία του αλλαγή. Αποδί
 δουν την ιστορικότητα και την βελτίωση ή χ
 ειροτέρευση
  []
 
 
-Overfull \hbox (10.70326pt too wide) in paragraph at lines 199--200
+Overfull \hbox (10.70326pt too wide) in paragraph at lines 211--212
 \TU/LinLibertine(0)/m/n/12 μιας κατάστασης με πολύ συμ
 πυκνωμένο και κατανοητό τρόπο για τους ανθ
 ρώπους
  []
 
 
-Overfull \hbox (3.58617pt too wide) in paragraph at lines 199--200
+Overfull \hbox (3.58617pt too wide) in paragraph at lines 211--212
 \TU/LinLibertine(0)/m/n/12 μέσα στην σχεδίαση ενός καλ
 ού PCG συστήματος περιλαμβάνετε και η υλοπο
 ίηση
  []
 
-
-Overfull \hbox (17.10329pt too wide) in paragraph at lines 202--203
+[25]
+Overfull \hbox (17.10329pt too wide) in paragraph at lines 214--215
 []\TU/LinLibertine(0)/m/n/12 Να κατανοήσουμε καλύτερα τ
 ις δυνατότητες του PCG. Μπορούμε να εφαρμόσο
 υμε
  []
 
 
-Overfull \hbox (6.25922pt too wide) in paragraph at lines 202--203
+Overfull \hbox (6.25922pt too wide) in paragraph at lines 214--215
 \TU/LinLibertine(0)/m/n/12 διάφορες μετρικές πάνω στο 
 παραγόμενο περιεχόμενο και να αξιολογήσου
 με
  []
 
 
-Overfull \hbox (5.96184pt too wide) in paragraph at lines 203--204
+Overfull \hbox (5.96184pt too wide) in paragraph at lines 215--216
 []\TU/LinLibertine(0)/m/n/12 Να δημιουργήσουμε playable περ
 ιεχόμενα. Ορίζοντας κανόνες και περιορισμ
 ούς
  []
 
 
-Overfull \hbox (30.5753pt too wide) in paragraph at lines 203--204
+Overfull \hbox (30.5753pt too wide) in paragraph at lines 215--216
 \TU/LinLibertine(0)/m/n/12 που πρέπει να εφαρμόζει το π
 αραγόμενο περιεχόμενο, μπορούμε να υλοποι
 ήσουμε
  []
 
 
-Overfull \hbox (8.06613pt too wide) in paragraph at lines 204--205
+Overfull \hbox (8.06613pt too wide) in paragraph at lines 216--217
 []\TU/LinLibertine(0)/m/n/12 Να βελτιώσουμε την διαδικα
 σία υλοποίησης του συστήματος PCG. Η υλοποίη
 ση
  []
 
-[25]
-Overfull \hbox (31.91788pt too wide) in paragraph at lines 205--206
+
+Overfull \hbox (31.91788pt too wide) in paragraph at lines 217--218
 \TU/LinLibertine(0)/m/n/12 ίδιου συστήματος. Έχοντας έ
 να κοινό σύστημα σύγκρισης, υπάρχει η δυνα
 τότητα
  []
 
 
-Overfull \hbox (27.71344pt too wide) in paragraph at lines 208--209
+Overfull \hbox (27.71344pt too wide) in paragraph at lines 220--221
 []\TU/LinLibertine(0)/m/n/12 Σχετικά με το τελευταίο στ
 όχο που αναλύθηκε, η πολυπλοκότητα ενός αλ
 γορίθμου
  []
 
-
-Overfull \hbox (20.22542pt too wide) in paragraph at lines 211--212
+[26]
+Overfull \hbox (20.22542pt too wide) in paragraph at lines 223--224
 []\TU/LinLibertine(0)/m/n/12 Όπως ορίστηκε και παραπάνω 
 μπορούμε να κατηγοριοποιήσουμε το περιεχό
 μενο
  []
 
 
-Overfull \hbox (1.18723pt too wide) in paragraph at lines 211--212
+Overfull \hbox (1.18723pt too wide) in paragraph at lines 223--224
 \TU/LinLibertine(0)/m/n/12 άλλα χαρακτηριστικά πρέπει 
 να έχει το παραγόμενο περιεχόμενο για να θ
 εωρηθεί
  []
 
 
-Overfull \hbox (4.93123pt too wide) in paragraph at lines 213--214
+Overfull \hbox (4.93123pt too wide) in paragraph at lines 225--226
 \TU/LinLibertine(0)/m/n/12 αξιολόγησης που να μπορεί ν
 α αναγνωρίζει αυτά τα χαρακτηριστικά στα δ
 εκάδες,
  []
 
-[26]
-Overfull \hbox (4.34587pt too wide) in paragraph at lines 215--216
+
+Overfull \hbox (4.34587pt too wide) in paragraph at lines 227--228
 \TU/LinLibertine(0)/m/n/12 επίπεδο, σε σύγκριση με άλλα 
 επίπεδα. Είναι από τα πιο δύσκολα χαρακτηρ
 ιστικά
  []
 
 
-Overfull \hbox (25.11383pt too wide) in paragraph at lines 215--216
+Overfull \hbox (25.11383pt too wide) in paragraph at lines 227--228
 \TU/LinLibertine(0)/m/n/12 αλγοριθμική έκφραση για την 
 δημιουργικότητα και πως να την μετρήσουμε. 
 Υπάρχουν
  []
 
 
-Overfull \hbox (10.4312pt too wide) in paragraph at lines 215--216
+Overfull \hbox (10.4312pt too wide) in paragraph at lines 227--228
 \TU/LinLibertine(0)/m/n/12 οπότε η μεταφορά τους σε άλλ
 α συστήματα είναι δύσκολη και καμιά φορά α
 δύνατη.
  []
 
 
-Overfull \hbox (20.5702pt too wide) in paragraph at lines 217--218
+Overfull \hbox (20.5702pt too wide) in paragraph at lines 229--230
 \TU/LinLibertine(0)/m/n/12 περιορισμοί τους οποίους πρ
 έπει να ακολουθεί το σύστημα PCG . Αυτοί οι π
 εριορισμοί
  []
 
 
-Overfull \hbox (14.22987pt too wide) in paragraph at lines 217--218
+Overfull \hbox (14.22987pt too wide) in paragraph at lines 229--230
 \TU/LinLibertine(0)/m/n/12 παίκτη. Αυτόν τον περιορισμ
 ό μπορούμε να τον κωδικοποιήσουμε μέσα στο 
 σύστημα
  []
 
 
-Overfull \hbox (13.28624pt too wide) in paragraph at lines 217--218
+Overfull \hbox (13.28624pt too wide) in paragraph at lines 229--230
 \TU/LinLibertine(0)/m/n/12 Βάζοντας πολλούς περιορισμ
 ούς σε ένα PCG σύστημα μπορούμε να πιστοποιή
 σουμε
  []
 
 
-Overfull \hbox (16.4752pt too wide) in paragraph at lines 217--218
+Overfull \hbox (16.4752pt too wide) in paragraph at lines 229--230
 \TU/LinLibertine(0)/m/n/12 ότι τα αποτελέσματα είναι playa
 ble αλλά επίσης ταυτόχρονα μπορεί να περιορ
 ίζουμε
  []
 
-
-Overfull \hbox (20.93921pt too wide) in paragraph at lines 219--220
+[27]
+Overfull \hbox (20.93921pt too wide) in paragraph at lines 231--232
 \TU/LinLibertine(0)/m/n/12 μπορέσουμε να προβλέψουμε τ
 ην αντίδραση του πριν την κυκλοφορία του π
 αιχνιδιού,
  []
 
 
-Overfull \hbox (7.6702pt too wide) in paragraph at lines 219--220
+Overfull \hbox (7.6702pt too wide) in paragraph at lines 231--232
 \TU/LinLibertine(0)/m/n/12 ”κακό” PCG σύστημα, μπορεί ν
 α φέρει αρνητικές κριτικές για ολόκληρο το 
 παιχνίδι
  []
 
-[27]
-Overfull \hbox (29.97014pt too wide) in paragraph at lines 226--227
+
+Overfull \hbox (29.97014pt too wide) in paragraph at lines 238--239
 []\TU/LinLibertine(0)/m/n/12 Η \TU/LinLibertine(0)/b/n/12 top down \TU/LinLibe
 rtine(0)/m/n/12 αξιολόγηση είναι το σύστημα που π
 εριγράψαμε
  []
 
 
-Overfull \hbox (10.22607pt too wide) in paragraph at lines 227--228
+Overfull \hbox (10.22607pt too wide) in paragraph at lines 239--240
 []\TU/LinLibertine(0)/m/n/12 Η \TU/LinLibertine(0)/b/n/12 Bot-tom up \TU/LinLi
 bertine(0)/m/n/12 αξιολόγηση στηρίζεται στην αξιο
 λόγηση
  []
 
-
-Overfull \hbox (11.64531pt too wide) in paragraph at lines 232--233
+[28]
+Overfull \hbox (11.64531pt too wide) in paragraph at lines 244--245
 []\TU/LinLibertine(0)/m/n/12 Και οι δύο αξιολογήσεις εί
 ναι χρήσιμες για να υλοποιήσουμε ένα καλό 
 σύστημα
  []
 
-) [28]
+) [29]
 \openout2 = blank_page.aux
- (./blank_page.tex) [29
+ (./blank_page.tex) [30
 
-] (./pcg_unity.tex
+] (./pcg_quadtree_unity.tex
 Κεφάλαιο 3.
 
 Overfull \hbox (24.65335pt too wide) in paragraph at lines 3--4
@@ -2501,7 +2538,7 @@ Overfull \hbox (15.87918pt too wide) in paragraph at lines 9--10
 τηριστικά
  []
 
-[30
+[31
 
 
 ]
@@ -2568,7 +2605,7 @@ Overfull \hbox (13.58707pt too wide) in paragraph at lines 20--21
 0)/m/n/12 ) καθώς και διαφορετική γλώσσα
  []
 
-[31]
+[32]
 Overfull \hbox (24.48714pt too wide) in paragraph at lines 28--29
 \TU/LinLibertine(0)/m/n/12 διαθέσιμα Game En-gines και με τις 
 υποστηριζόμενες γλώσσες προγραμματισμού 
@@ -2601,7 +2638,7 @@ Overfull \hbox (21.5093pt too wide) in paragraph at lines 34--35
 e(0)/m/n/12 καθώς η συγγραφέας
  []
 
-[32]
+[33]
 Overfull \hbox (13.9672pt too wide) in paragraph at lines 52--53
 \TU/LinLibertine(0)/m/n/12 παρόλο που η βιβλιογραφία π
 άνω στους αλγόριθμους που μπορούν να εφαρμ
@@ -2637,161 +2674,163 @@ ne(0)/m/it/12 Ma-chine Learn-ing \TU/LinLibertine(0)/m/n/12 μοντέλου.
 Παράλληλα
  []
 
-[33]
-Overfull \hbox (5.10544pt too wide) in paragraph at lines 71--72
-[]\TU/LinLibertine(0)/m/n/12 Με αυτά τα τρία είδη tiles θέλ
+[34]
+Overfull \hbox (8.41743pt too wide) in paragraph at lines 70--71
+[]\TU/LinLibertine(0)/m/n/12 Με αυτά τα δύο ειδών tiles θέλ
 ουμε να κατασκευάσουμε επίπεδα που περιέχ
 ουν
  []
 
 
-Overfull \hbox (18.38121pt too wide) in paragraph at lines 71--72
-\TU/LinLibertine(0)/m/n/12 γενικός στόχος των συστημάτ
-ων PCG και MLPG που προσπαθούμε να υλοποιήσουμ
-ε. 
+Overfull \hbox (18.7612pt too wide) in paragraph at lines 70--71
+\TU/LinLibertine(0)/m/n/12 περιγραφή είναι ο γενικός σ
+τόχος των συστημάτων PCG και MLPG που προσπαθο
+ύμε
  []
 
 
-Overfull \hbox (28.16844pt too wide) in paragraph at lines 76--77
+Overfull \hbox (28.16844pt too wide) in paragraph at lines 75--76
 []\TU/LinLibertine(0)/m/n/12 Το σύστημα PCG αποτελείται α
 πό πολλά υποσυστήματα, τα οποία θα αναλύσο
 υμε
  []
 
-[34]
-Overfull \hbox (14.06316pt too wide) in paragraph at lines 82--83
+
+Overfull \hbox (14.06316pt too wide) in paragraph at lines 81--82
 []\TU/LinLibertine(0)/m/n/12 Παρέχει μεθόδους για την α
 ποθήκευση των δημιουργημένων επιπέδων
  []
 
-
-Overfull \hbox (2.62314pt too wide) in paragraph at lines 84--85
+[35]
+Overfull \hbox (2.62314pt too wide) in paragraph at lines 83--84
 []\TU/LinLibertine(0)/m/n/12 Είναι υπεύθυνο για την αξι
 ολόγηση ενός επιπέδου με βάση
  []
 
 
-Overfull \hbox (33.88834pt too wide) in paragraph at lines 88--89
+Overfull \hbox (33.88834pt too wide) in paragraph at lines 87--88
 []\TU/LinLibertine(0)/m/n/12 Ως βασικός αλγόριθμος για 
 το σύστημα δημιουργίας επιπέδων 2D χρησιμο
 ποιήθηκε
  []
 
 
-Overfull \hbox (31.61781pt too wide) in paragraph at lines 92--93
-\TU/LinLibertine(0)/m/n/12 κάποια εμφανή καθυστέρηση σ
-τον χρήστη. Για την δημιουργία του \TU/LinLibertine
-(0)/m/it/12 dataset \TU/LinLibertine(0)/m/n/12 υλοποιήθηκε
+Overfull \hbox (0.95389pt too wide) in paragraph at lines 89--90
+\TU/LinLibertine(0)/m/n/12 επιμέρους τμήματα με τετράγ
+ωνο σχήμα και ίσου μέγεθος. Εάν το στοιχείο 
+σπάσει
  []
 
 
-Overfull \hbox (26.8702pt too wide) in paragraph at lines 92--93
-\TU/LinLibertine(0)/m/n/12 η επιλογή ο αλγόριθμος PCG να 
-τρέξει για έναν αριθμό επαναλήψεων, προκαθ
-ορισμένο
+Overfull \hbox (6.55525pt too wide) in paragraph at lines 89--90
+\TU/LinLibertine(0)/m/n/12 σε επιμέρους τμήματα, αυτά α
+νατίθενται ως nodes παιδιά του στοιχείου στο 
+δέντρο
  []
 
-[35]
-Overfull \hbox (8.919pt too wide) in paragraph at lines 112--113
-[]\TU/LinLibertine(0)/m/n/12 Υλοποιήθηκαν δύο κατηγορί
-ες κανόνων. H πρώτη κατηγορία περιέχει κανό
-νες
+
+Overfull \hbox (4.03923pt too wide) in paragraph at lines 91--92
+\TU/LinLibertine(0)/m/n/12 Επιπλέον ορίζετε το ελάχιστ
+ο μέγεθος στοιχείου, το οποίο αποτρέπει το 
+”σπάσιμο”
+ []
+
+
+Overfull \hbox (8.33417pt too wide) in paragraph at lines 91--92
+\TU/LinLibertine(0)/m/n/12 Η πιθανότητα για σπάσιμο εν
+ός node (split pos-si-bil-ity) επίσης είναι μια παράμετ
+ρος
+ []
+
+
+Overfull \hbox (11.76929pt too wide) in paragraph at lines 93--94
+[]\TU/LinLibertine(0)/m/n/12 Μόλις ολοκληρωθεί το split-ting 
+του επιπέδου, μια δεύτερη διαδικασία διασχ
+ίζει
  []
 
 [36]
-Overfull \hbox (3.8631pt too wide) in paragraph at lines 122--123
-[]\TU/LinLibertine(0)/m/n/12 Κανόνας μετατροπής σε \TU/LinLi
-bertine(0)/b/n/12 Cor-ri-dor \TU/LinLibertine(0)/m/n/12 των tiles που ε
-ίναι
- []
-
-
-Overfull \hbox (18.00977pt too wide) in paragraph at lines 123--124
-\TU/LinLibertine(0)/b/n/12 Neu-mann Neigh-bor-hood\TU/LinLibertine(0)/m/n/12 . 
-Αυτός ο κανόνας ελέγχει όλα τα tiles της γειτ
-ονιάς
- []
-
-
-Overfull \hbox (0.8991pt too wide) in paragraph at lines 125--126
-[]\TU/LinLibertine(0)/m/n/12 Κανόνας μετατροπής σε \TU/LinLi
-bertine(0)/b/n/12 Room \TU/LinLibertine(0)/m/n/12 των tiles με βάση
- []
-
-
-Overfull \hbox (43.63524pt too wide) in paragraph at lines 129--130
-\TU/LinLibertine(0)/m/n/12 εφαρμογής τελικά αντικατασ
-τάθηκαν από τους άλλους κανόνες και δεν χρ
-ησιμοποιούνται
- []
-
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/b/it' will be
-(Font)              scaled to size 17.28pt on input line 131.
+(Font)              scaled to size 17.28pt on input line 104.
 
-Overfull \hbox (25.84988pt too wide) in paragraph at lines 132--133
+Overfull \hbox (25.84988pt too wide) in paragraph at lines 105--106
 \TU/LinLibertine(0)/m/n/12 στο \TU/LinLibertine(0)/m/it/12 Unity Game En-gine
 \TU/LinLibertine(0)/m/n/12 . Αυτό το επίπεδο πρέπει να α
 ναπαρασταθεί και να αποθηκευτεί
  []
 
+
+Overfull \hbox (27.03918pt too wide) in paragraph at lines 112--113
+[]\TU/LinLibertine(0)/m/n/12 Αντιπροσωπεύει ακέραιο θε
+τικό αριθμό ή μηδέν και δείχνει την συντετ
+αγμένη
+ []
+
+
+Overfull \hbox (25.9112pt too wide) in paragraph at lines 113--114
+[]\TU/LinLibertine(0)/m/n/12 Αντιπροσωπεύει ακέραιο θε
+τικό αριθμό ή μηδέν και δείχνει την συντετ
+αγμένη
+ []
+
+
+Overfull \hbox (19.50722pt too wide) in paragraph at lines 114--115
+[]\TU/LinLibertine(0)/m/n/12 Μπορεί να πάρει μία από τις 
+τιμές \TU/LinLibertine(0)/m/it/12 [0, 1] \TU/LinLibertine(0)/m/n/12 όπ
+ου ο κάθε αριθμός αντιστοιχεί
+ []
+
 [37]
-Overfull \hbox (27.03918pt too wide) in paragraph at lines 139--140
-[]\TU/LinLibertine(0)/m/n/12 Αντιπροσωπεύει ακέραιο θε
-τικό αριθμό ή μηδέν και δείχνει την συντετ
-αγμένη
- []
-
-
-Overfull \hbox (25.9112pt too wide) in paragraph at lines 140--141
-[]\TU/LinLibertine(0)/m/n/12 Αντιπροσωπεύει ακέραιο θε
-τικό αριθμό ή μηδέν και δείχνει την συντετ
-αγμένη
- []
-
-
-Overfull \hbox (10.39522pt too wide) in paragraph at lines 150--151
+Overfull \hbox (10.39522pt too wide) in paragraph at lines 123--124
 \TU/LinLibertine(0)/m/n/12 Ανάμεσα στα δωμάτια και του
 ς εξωτερικούς τοίχους, έχουμε τα tiles των δι
 αδρόμων,
  []
 
-<../images/pcg_images/pcg1.png, id=701, 430.60875pt x 429.10312pt>
-File: ../images/pcg_images/pcg1.png Graphic file (type png)
-<use ../images/pcg_images/pcg1.png>
-Package luatex.def Info: ../images/pcg_images/pcg1.png  used on input line 157.
-(luatex.def)             Requested size: 158.9946pt x 158.43828pt.
-<../images/pcg_images/pcg2.png, id=702, 438.13687pt x 429.85594pt>
-File: ../images/pcg_images/pcg2.png Graphic file (type png)
-<use ../images/pcg_images/pcg2.png>
-Package luatex.def Info: ../images/pcg_images/pcg2.png  used on input line 162.
-(luatex.def)             Requested size: 158.9946pt x 155.98767pt.
-<../images/pcg_images/pcg3.png, id=703, 442.65375pt x 429.85594pt>
-File: ../images/pcg_images/pcg3.png Graphic file (type png)
-<use ../images/pcg_images/pcg3.png>
-Package luatex.def Info: ../images/pcg_images/pcg3.png  used on input line 167.
-(luatex.def)             Requested size: 158.9946pt x 154.40039pt.
-<../images/pcg_images/pcg4.png, id=704, 433.62pt x 434.37282pt>
-File: ../images/pcg_images/pcg4.png Graphic file (type png)
-<use ../images/pcg_images/pcg4.png>
-Package luatex.def Info: ../images/pcg_images/pcg4.png  used on input line 172.
-(luatex.def)             Requested size: 158.9946pt x 159.27052pt.
-<../images/pcg_images/pcg5.png, id=705, 432.86719pt x 430.60875pt>
-File: ../images/pcg_images/pcg5.png Graphic file (type png)
-<use ../images/pcg_images/pcg5.png>
-Package luatex.def Info: ../images/pcg_images/pcg5.png  used on input line 177.
-(luatex.def)             Requested size: 158.9946pt x 158.16632pt.
-<../images/pcg_images/pcg6.png, id=706, 438.8897pt x 432.11438pt>
-File: ../images/pcg_images/pcg6.png Graphic file (type png)
-<use ../images/pcg_images/pcg6.png>
-Package luatex.def Info: ../images/pcg_images/pcg6.png  used on input line 182.
-(luatex.def)             Requested size: 158.9946pt x 156.54349pt.
-[38]) [39<../images/pcg_images/pcg1.png><../images/pcg_images/pcg2.png><../image
-s/pcg_images/pcg3.png><../images/pcg_images/pcg4.png><../images/pcg_images/pcg5.
-png><../images/pcg_images/pcg6.png>]
+<../images/pcg_quadtree/pcg1.png, id=694, 470.50781pt x 468.24937pt>
+File: ../images/pcg_quadtree/pcg1.png Graphic file (type png)
+<use ../images/pcg_quadtree/pcg1.png>
+Package luatex.def Info: ../images/pcg_quadtree/pcg1.png  used on input line 130
+.
+(luatex.def)             Requested size: 158.9946pt x 158.23096pt.
+<../images/pcg_quadtree/pcg2.png, id=695, 469.00218pt x 466.74374pt>
+File: ../images/pcg_quadtree/pcg2.png Graphic file (type png)
+<use ../images/pcg_quadtree/pcg2.png>
+Package luatex.def Info: ../images/pcg_quadtree/pcg2.png  used on input line 135
+.
+(luatex.def)             Requested size: 158.9946pt x 158.22784pt.
+<../images/pcg_quadtree/pcg3.png, id=696, 471.26062pt x 468.24937pt>
+File: ../images/pcg_quadtree/pcg3.png Graphic file (type png)
+<use ../images/pcg_quadtree/pcg3.png>
+Package luatex.def Info: ../images/pcg_quadtree/pcg3.png  used on input line 140
+.
+(luatex.def)             Requested size: 158.9946pt x 157.9809pt.
+<../images/pcg_quadtree/pcg4.png, id=697, 465.99094pt x 464.4853pt>
+File: ../images/pcg_quadtree/pcg4.png Graphic file (type png)
+<use ../images/pcg_quadtree/pcg4.png>
+Package luatex.def Info: ../images/pcg_quadtree/pcg4.png  used on input line 145
+.
+(luatex.def)             Requested size: 158.9946pt x 158.47574pt.
+<../images/pcg_quadtree/pcg5.png, id=698, 469.00218pt x 468.24937pt>
+File: ../images/pcg_quadtree/pcg5.png Graphic file (type png)
+<use ../images/pcg_quadtree/pcg5.png>
+Package luatex.def Info: ../images/pcg_quadtree/pcg5.png  used on input line 150
+.
+(luatex.def)             Requested size: 158.9946pt x 158.73825pt.
+<../images/pcg_quadtree/pcg6.png, id=699, 468.24937pt x 466.74374pt>
+File: ../images/pcg_quadtree/pcg6.png Graphic file (type png)
+<use ../images/pcg_quadtree/pcg6.png>
+Package luatex.def Info: ../images/pcg_quadtree/pcg6.png  used on input line 155
+.
+(luatex.def)             Requested size: 158.9946pt x 158.48424pt.
+[38]) [39<../images/pcg_quadtree/pcg1.png><../images/pcg_quadtree/pcg2.png><../i
+mages/pcg_quadtree/pcg3.png><../images/pcg_quadtree/pcg4.png><../images/pcg_quad
+tree/pcg5.png><../images/pcg_quadtree/pcg6.png>]
 \openout2 = blank_page.aux
  (./blank_page.tex) [40
 
-] (./ml.tex
+]
+(./ml.tex
 Κεφάλαιο 4.
 
 Overfull \hbox (19.44716pt too wide) in paragraph at lines 6--7
@@ -3490,7 +3529,7 @@ Overfull \hbox (6.99463pt too wide) in paragraph at lines 187--187
 ")[] 
  []
 
-<../images/graphs/Dense_generator.png, id=845, 1002.74625pt x 746.79pt>
+<../images/graphs/Dense_generator.png, id=838, 1002.74625pt x 746.79pt>
 File: ../images/graphs/Dense_generator.png Graphic file (type png)
 <use ../images/graphs/Dense_generator.png>
 Package luatex.def Info: ../images/graphs/Dense_generator.png  used on input lin
@@ -3509,7 +3548,7 @@ Overfull \hbox (88.91455pt too wide) in paragraph at lines 207--207
 on="sigmoid")[] 
  []
 
-<../images/graphs/Dense_discriminator.png, id=850, 1002.74625pt x 746.79pt>
+<../images/graphs/Dense_discriminator.png, id=843, 1002.74625pt x 746.79pt>
 File: ../images/graphs/Dense_discriminator.png Graphic file (type png)
 <use ../images/graphs/Dense_discriminator.png>
 Package luatex.def Info: ../images/graphs/Dense_discriminator.png  used on input
@@ -3544,7 +3583,7 @@ Overfull \hbox (0.46722pt too wide) in paragraph at lines 228--229
  []
 
 [62]
-<../images/graphs/CNN_generator.png, id=871, 1002.74625pt x 746.79pt>
+<../images/graphs/CNN_generator.png, id=864, 1002.74625pt x 746.79pt>
 File: ../images/graphs/CNN_generator.png Graphic file (type png)
 <use ../images/graphs/CNN_generator.png>
 Package luatex.def Info: ../images/graphs/CNN_generator.png  used on input line 
@@ -3570,14 +3609,14 @@ Overfull \hbox (145.2345pt too wide) in paragraph at lines 310--310
 e=self.dungeon_shape)[] 
  []
 
-<../images/graphs/CNN_discriminator.png, id=879, 1002.74625pt x 746.79pt>
+<../images/graphs/CNN_discriminator.png, id=872, 1002.74625pt x 746.79pt>
 File: ../images/graphs/CNN_discriminator.png Graphic file (type png)
 <use ../images/graphs/CNN_discriminator.png>
 Package luatex.def Info: ../images/graphs/CNN_discriminator.png  used on input l
 ine 314.
 (luatex.def)             Requested size: 317.9892pt x 236.824pt.
 [64]
-<../images/graphs/Abstract_functionality.png, id=886, 963.6pt x 722.7pt>
+<../images/graphs/Abstract_functionality.png, id=879, 963.6pt x 722.7pt>
 File: ../images/graphs/Abstract_functionality.png Graphic file (type png)
 <use ../images/graphs/Abstract_functionality.png>
 Package luatex.def Info: ../images/graphs/Abstract_functionality.png  used on in
@@ -3673,7 +3712,7 @@ Overfull \hbox (3.4872pt too wide) in paragraph at lines 357--358
 απάνω. 
  []
 
-<../images/result_images/cnn-gan/generator_1000.png, id=903, 435.12563pt x 432.8
+<../images/result_images/cnn-gan/generator_1000.png, id=896, 435.12563pt x 432.8
 6719pt>
 File: ../images/result_images/cnn-gan/generator_1000.png Graphic file (type png)
 
@@ -3683,7 +3722,7 @@ d on input line 368.
 (luatex.def)             Requested size: 158.9946pt x 158.17023pt.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
 (Font)              scaled to size 10.95pt on input line 369.
-<../images/result_images/cnn-gan/generator_3000.png, id=904, 428.35031pt x 428.3
+<../images/result_images/cnn-gan/generator_3000.png, id=897, 428.35031pt x 428.3
 5031pt>
 File: ../images/result_images/cnn-gan/generator_3000.png Graphic file (type png)
 
@@ -3691,7 +3730,7 @@ File: ../images/result_images/cnn-gan/generator_3000.png Graphic file (type png)
 Package luatex.def Info: ../images/result_images/cnn-gan/generator_3000.png  use
 d on input line 374.
 (luatex.def)             Requested size: 158.9946pt x 158.9904pt.
-<../images/result_images/cnn-gan/generator_7000.png, id=905, 430.60875pt x 429.8
+<../images/result_images/cnn-gan/generator_7000.png, id=898, 430.60875pt x 429.8
 5594pt>
 File: ../images/result_images/cnn-gan/generator_7000.png Graphic file (type png)
 
@@ -3699,7 +3738,7 @@ File: ../images/result_images/cnn-gan/generator_7000.png Graphic file (type png)
 Package luatex.def Info: ../images/result_images/cnn-gan/generator_7000.png  use
 d on input line 380.
 (luatex.def)             Requested size: 158.9946pt x 158.71625pt.
-<../images/result_images/cnn-gan/generator_10000.png, id=906, 432.11438pt x 426.
+<../images/result_images/cnn-gan/generator_10000.png, id=899, 432.11438pt x 426.
 84468pt>
 File: ../images/result_images/cnn-gan/generator_10000.png Graphic file (type png
 )
@@ -3725,28 +3764,28 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 410.
 See the caption package documentation for explanation.
 
-<../images/result_images/cnn-gan/combined_1000.png, id=920, 437.38406pt x 435.87
+<../images/result_images/cnn-gan/combined_1000.png, id=913, 437.38406pt x 435.87
 843pt>
 File: ../images/result_images/cnn-gan/combined_1000.png Graphic file (type png)
 <use ../images/result_images/cnn-gan/combined_1000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/combined_1000.png  used
  on input line 416.
 (luatex.def)             Requested size: 158.9946pt x 158.44583pt.
-<../images/result_images/cnn-gan/combined_3000.png, id=921, 428.35031pt x 426.84
+<../images/result_images/cnn-gan/combined_3000.png, id=914, 428.35031pt x 426.84
 468pt>
 File: ../images/result_images/cnn-gan/combined_3000.png Graphic file (type png)
 <use ../images/result_images/cnn-gan/combined_3000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/combined_3000.png  used
  on input line 422.
 (luatex.def)             Requested size: 158.9946pt x 158.43156pt.
-<../images/result_images/cnn-gan/combined_7000.png, id=922, 435.87843pt x 426.84
+<../images/result_images/cnn-gan/combined_7000.png, id=915, 435.87843pt x 426.84
 468pt>
 File: ../images/result_images/cnn-gan/combined_7000.png Graphic file (type png)
 <use ../images/result_images/cnn-gan/combined_7000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/combined_7000.png  used
  on input line 428.
 (luatex.def)             Requested size: 158.9946pt x 155.69606pt.
-<../images/result_images/cnn-gan/combined_10000.png, id=923, 433.62pt x 429.8559
+<../images/result_images/cnn-gan/combined_10000.png, id=916, 433.62pt x 429.8559
 4pt>
 File: ../images/result_images/cnn-gan/combined_10000.png Graphic file (type png)
 
@@ -3768,7 +3807,7 @@ See the caption package documentation for explanation.
 [71<../images/result_images/cnn-gan/combined_1000.png><../images/result_images/c
 nn-gan/combined_3000.png><../images/result_images/cnn-gan/combined_7000.png><../
 images/result_images/cnn-gan/combined_10000.png>]
-<../images/result_images/dense-gan/generator_1000.png, id=939, 428.35031pt x 426
+<../images/result_images/dense-gan/generator_1000.png, id=932, 428.35031pt x 426
 .84468pt>
 File: ../images/result_images/dense-gan/generator_1000.png Graphic file (type pn
 g)
@@ -3776,7 +3815,7 @@ g)
 Package luatex.def Info: ../images/result_images/dense-gan/generator_1000.png  u
 sed on input line 466.
 (luatex.def)             Requested size: 158.9946pt x 158.43156pt.
-<../images/result_images/dense-gan/generator_3000.png, id=940, 428.35031pt x 432
+<../images/result_images/dense-gan/generator_3000.png, id=933, 428.35031pt x 432
 .11438pt>
 File: ../images/result_images/dense-gan/generator_3000.png Graphic file (type pn
 g)
@@ -3784,7 +3823,7 @@ g)
 Package luatex.def Info: ../images/result_images/dense-gan/generator_3000.png  u
 sed on input line 472.
 (luatex.def)             Requested size: 158.9946pt x 160.38751pt.
-<../images/result_images/dense-gan/generator_7000.png, id=941, 428.35031pt x 426
+<../images/result_images/dense-gan/generator_7000.png, id=934, 428.35031pt x 426
 .09187pt>
 File: ../images/result_images/dense-gan/generator_7000.png Graphic file (type pn
 g)
@@ -3792,7 +3831,7 @@ g)
 Package luatex.def Info: ../images/result_images/dense-gan/generator_7000.png  u
 sed on input line 478.
 (luatex.def)             Requested size: 158.9946pt x 158.15215pt.
-<../images/result_images/dense-gan/generator_10000.png, id=942, 430.60875pt x 42
+<../images/result_images/dense-gan/generator_10000.png, id=935, 430.60875pt x 42
 6.84468pt>
 File: ../images/result_images/dense-gan/generator_10000.png Graphic file (type p
 ng)
@@ -3980,7 +4019,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 103.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 103.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 103.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 0EFB94294690DD98875D2EF414A7B670;19192.
+(rerunfilecheck)             Checksum: 6392D7CB2D28696E62EFEAACE5EB7455;18985.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -3989,13 +4028,13 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 103.
 )
 
 Here is how much of LuaTeX's memory you used:
- 26763 strings out of 480883
+ 26768 strings out of 480883
  100000,953878 words of node,token memory allocated
  661 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 1 dir, 3 glue, 4 kern, 1 penalty, 1 glyph, 33 attri
 bute, 55 glue_spec, 18 attribute_list, 1 write, 10 pdf_action nodes
-   avail lists: 2:799,3:137,4:96,5:284,6:35,7:3003,8:34,9:259,10:14,11:193
- 43206 multiletter control sequences out of 65536+200000
+   avail lists: 2:799,3:137,4:94,5:303,6:35,7:3543,8:34,9:259,10:14,11:193
+ 43210 multiletter control sequences out of 65536+200000
  86 fonts using 19411459 bytes
  62i,8n,106p,2067b,594s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/opentype/public/libertin
@@ -4008,9 +4047,9 @@ libertine/LinLibertine_R.otf><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/edour/AppData/Local/Programs/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/edour/AppData/Loca
 l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (84 pages, 1576364 bytes).
+Output written on thesis.pdf (84 pages, 1788962 bytes).
 
-PDF statistics: 1084 PDF objects out of 1200 (max. 8388607)
- 244 named destinations out of 1000 (max. 131072)
- 681 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1077 PDF objects out of 1200 (max. 8388607)
+ 239 named destinations out of 1000 (max. 131072)
+ 673 words of extra memory for PDF output out of 10000 (max. 100000000)
 
