@@ -26,17 +26,17 @@ class DENSE_GAN(GAN):
         self.add_layer(Dense(units=128, activation='relu'))
         self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        #self.add_layer(Dropout(rate=0.3))
+        self.add_layer(Dropout(rate=0.3))
 
         self.add_layer(Dense(units=128, activation='relu'))
         self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        #self.add_layer(Dropout(rate=0.3))
+        self.add_layer(Dropout(rate=0.3))
 
         self.add_layer(Dense(units=128, activation='relu'))
         self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        #self.add_layer(Dropout(rate=0.3))
+        self.add_layer(Dropout(rate=0.3))
 
         self.add_layer(Dense(np.prod(self.dungeon_shape), activation=self.gen_activation))
         self.add_layer(Reshape(self.dungeon_shape))

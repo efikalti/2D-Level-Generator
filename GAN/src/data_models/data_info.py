@@ -47,13 +47,13 @@ accuracy = {
 }
 
 DIS_LOSS = "binary_crossentropy"
-GEN_LOSS = "binary_crossentropy"
+GEN_LOSS = "categorical_crossentropy"
 COM_LOSS = "binary_crossentropy"
 
 OPTIMIZER = "adam"
 
 DIS_METRIC = 'accuracy'
-GEN_METRIC = 'accuracy'
+GEN_METRIC = 'categorical_accuracy'
 COM_METRIC = 'accuracy'
 
 GEN_ACTIVATION = 'sigmoid'

@@ -188,7 +188,6 @@ class GAN():
 
         gen_data = self.generator.predict(noise)
         dungeon = gen_data[0]
-        print(dungeon)
         prefix = str(file_prefix + str(epoch) + "_")
         self.file_writer.write_to_csv(dungeon, file_prefix=prefix)
 

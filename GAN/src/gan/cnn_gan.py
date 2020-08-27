@@ -5,6 +5,8 @@ from keras.initializers import RandomNormal
 from keras import backend as K
 from keras.layers.advanced_activations import LeakyReLU
 
+import numpy as np
+
 # Local libraries
 from gan.gan import GAN
 
@@ -25,17 +27,17 @@ class CNN_GAN(GAN):
                               input_shape=self.dungeon_shape, activation='relu'))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        #self.add_layer(Dropout(0.3))
+        self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(32, 3, padding='same', strides=1, activation='relu'))
+        self.add_layer(Conv2D(16, 3, padding='same', strides=1, activation='relu'))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        #self.add_layer(Dropout(0.3))
+        self.add_layer(Dropout(0.3))
 
-        self.add_layer(Conv2D(32, 3, padding='same', strides=1, activation='relu'))
+        self.add_layer(Conv2D(16, 3, padding='same', strides=1, activation='relu'))
         self.add_layer(LeakyReLU(0.2))
         self.add_layer(BatchNormalization(momentum=0.8))
-        #self.add_layer(Dropout(0.5))
+        self.add_layer(Dropout(0.5))
 
         '''
 
@@ -58,6 +60,7 @@ class CNN_GAN(GAN):
         '''
         #self.add_layer(Dense(units=4, activation=self.gen_activation))
         
+        self.add_layer(Flatten())
         self.add_layer(Dense(np.prod(self.dungeon_shape), activation=self.gen_activation))
         self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
