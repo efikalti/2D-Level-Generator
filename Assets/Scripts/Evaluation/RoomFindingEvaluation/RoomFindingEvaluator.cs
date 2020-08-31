@@ -63,7 +63,6 @@ namespace Assets.Scripts.Evaluation.RoomFindingEvaluation
             }
 
             Debug.Log($"Number of room areas for this tilemap: {rooms.Count}");
-            Debug.Log($"Searched: {searchedTiles.Count} tiles");
 
         }
 
