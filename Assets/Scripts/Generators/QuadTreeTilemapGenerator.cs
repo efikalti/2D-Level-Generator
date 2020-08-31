@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Evaluation.PathFindingEvaluation;
 using Assets.Scripts.Evaluation.RoomFindingEvaluation;
+using Assets.Scripts.Models;
 using Assets.Scripts.Models.DataStructures;
 using Assets.Scripts.Reporting;
 using System.Collections.Generic;
@@ -23,6 +25,8 @@ namespace Assets.Scripts.Generators
         private QuadTree<QuadTreeLeafType> quadTree;
 
         private Queue<QuadTree<QuadTreeLeafType>> TreeQueue;
+
+        private RoomFindingEvaluator evaluator;
 
         public void Start()
         {
@@ -67,10 +71,16 @@ namespace Assets.Scripts.Generators
             // Step 4. Create tilemap from tree
             CreateTilemapFromTree();
 
-            // Step 6. Evaluate tilemap
+            // Step 5. Evaluate tilemap before creating paths
             Evaluate();
 
-            // Step 5. Write tilemap to file
+            // Step 6. Create paths between rooms
+            CreatePaths();
+
+            // Step 7. Evaluate again, we expect to see only one room
+            Evaluate();
+
+            // Step 7. Write tilemap to file
             fileParser.WriteTilemap(tilemap);
 
         }
@@ -123,13 +133,88 @@ namespace Assets.Scripts.Generators
 
         public void Evaluate()
         {
-            RoomFindingEvaluation evaluation = new RoomFindingEvaluation(tilemap);
-            evaluation.Evaluate();
+            evaluator = new RoomFindingEvaluator(tilemap);
+            evaluator.Evaluate();
         }
 
-        public void CreateRoads()
+        public void CreatePaths()
         {
+            var rooms = evaluator.rooms;
 
+            RoomArea currentRoom;
+            RoomArea nextRoom;
+
+            TileBase roomTile = TilemapHelper.GetTileByType(TileType.ROOM);
+
+            for (int i=0; i<rooms.Count; i++)
+            {
+                currentRoom = rooms[i];
+                if (i+1 < rooms.Count)
+                {
+                    nextRoom = rooms[i+1];
+                    var path = CalculatePathBetweenRooms(currentRoom, nextRoom);
+                    foreach (var position in path)
+                    {
+                        tilemap.SetTile(position, roomTile);
+                    }
+                }
+            }
+        }
+
+        public List<Vector3Int> CalculatePathBetweenRooms(RoomArea roomA, RoomArea roomB)
+        {
+            // Find tiles with minimum distance between rooms
+            TileObject tileA = roomA.tiles[0];
+            TileObject tileB = roomB.tiles[0];
+            int minDistance = ManhatanDistance(tileA, tileB);
+            int distance;
+            foreach (var tilea in roomA.tiles)
+            {
+                foreach(var tileb in roomB.tiles)
+                {
+                    distance = ManhatanDistance(tilea, tileb);
+                    if (distance < minDistance)
+                    {
+                        tileA = tilea;
+                        tileB = tileb;
+                        minDistance = distance;
+                    }
+                }
+            }
+
+            TileObject startTile = tileA;
+            TileObject endTile = tileB;
+            if (tileA.Position.x > tileB.Position.x)
+            {
+                startTile = tileB;
+                endTile = tileA;
+            }
+
+            List<Vector3Int> path = new List<Vector3Int>();
+            while(startTile.Position.x != endTile.Position.x || startTile.Position.y != endTile.Position.y)
+            {
+                if (startTile.Position.x < endTile.Position.x)
+                {
+                    startTile.Position = new Vector3Int(startTile.Position.x + 1, startTile.Position.y, startTile.Position.z);
+                }
+                else if (startTile.Position.y < endTile.Position.y)
+                {
+                    startTile.Position = new Vector3Int(startTile.Position.x, startTile.Position.y + 1, startTile.Position.z);
+                }
+                else if (startTile.Position.y > endTile.Position.y)
+                {
+                    startTile.Position = new Vector3Int(startTile.Position.x, startTile.Position.y - 1, startTile.Position.z);
+                }
+                path.Add(startTile.Position);
+            }
+
+            return path;
+            
+        }
+
+        public int ManhatanDistance(TileObject tileA, TileObject tileB)
+        {
+            return Mathf.Abs(tileA.Position.x - tileB.Position.x) + Mathf.Abs(tileA.Position.y - tileB.Position.y);
         }
     }
 }

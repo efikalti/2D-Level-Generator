@@ -20,7 +20,7 @@ namespace Assets.Scripts.Models.DataStructures
 
         public int Id;
 
-        public int MinRoomSize = 3;
+        public int MinRoomSize = 5;
 
         protected System.Random RandomGenerator;
 
@@ -59,7 +59,7 @@ namespace Assets.Scripts.Models.DataStructures
         public void Split(int minSize, double possibility = 0)
         {
             // Check if you can split this node into 4 leafs
-            if (LeafBounds.size.x == 1 || LeafBounds.size.y == 1)
+            if (LeafBounds.size.x <= minSize || LeafBounds.size.y <= minSize)
             {
                 return;
             }

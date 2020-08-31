@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfDungeonsToGenerate: 1
   secondsToWaitingBetweenDungeons: 1
-  RoomPossibility: 0.6
+  RoomPossibility: 0.3
   SplitPossibility: 0.3
 --- !u!483693784 &31190922
 TilemapRenderer:

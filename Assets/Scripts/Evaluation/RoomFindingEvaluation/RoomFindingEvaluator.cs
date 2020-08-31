@@ -9,7 +9,7 @@ using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.Evaluation.RoomFindingEvaluation
 {
-    public class RoomFindingEvaluation
+    public class RoomFindingEvaluator
     {
         public Tilemap tilemap;
 
@@ -17,7 +17,7 @@ namespace Assets.Scripts.Evaluation.RoomFindingEvaluation
 
         public List<RoomArea> rooms;
 
-        public RoomFindingEvaluation(Tilemap t)
+        public RoomFindingEvaluator(Tilemap t)
         {
             tilemap = t;
 
@@ -25,7 +25,12 @@ namespace Assets.Scripts.Evaluation.RoomFindingEvaluation
             rooms = new List<RoomArea>();
         }
 
-        public void Evaluate()
+        public void Evaluate(bool colorRooms = false)
+        {
+            FindRooms();
+        }
+
+        public void FindRooms()
         {
             var position = Vector3Int.zero;
 
@@ -57,7 +62,6 @@ namespace Assets.Scripts.Evaluation.RoomFindingEvaluation
                 }
             }
 
-            PaintRooms();
             Debug.Log($"Number of room areas for this tilemap: {rooms.Count}");
             Debug.Log($"Searched: {searchedTiles.Count} tiles");
 
