@@ -48,6 +48,18 @@ class FileWriter:
         results_path = self.output_path + di.RESULTS_FOLDER
         self.create_folder(results_path)
 
+        # Create folder to store training logs
+        self.gen_logs_dir = self.output_path + di.GEN_TRAIN_FOLDER
+        self.com_logs_dir = self.output_path + di.COM_TRAIN_FOLDER
+        self.dis_logs_dir = self.output_path + di.DIS_TRAIN_FOLDER
+        if not os.path.exists(self.gen_logs_dir):
+            os.makedirs(self.gen_logs_dir)
+        if not os.path.exists(self.com_logs_dir):
+            os.makedirs(self.com_logs_dir)
+        if not os.path.exists(self.dis_logs_dir):
+            pass
+            #os.makedirs(self.dis_logs_dir)
+
     # Function to create a folder if id does not exist
     def create_folder(self, folder_path):
         if not os.path.exists(folder_path):

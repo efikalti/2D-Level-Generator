@@ -31,7 +31,7 @@ def train_gan(gan, data):
 def train_cnn(data, args):
     # Create network with the provided parameters
     gan = CNN_GAN("cnn", epochs=args["epochs"], batch_size=args["batch"],
-                  sample_interval=args["sample"], d_trainable=True,
+                  sample_interval=args["sample"],
                   transform=TRANFORM, one_hot_enabled=ONE_HOT)
     #return
     
@@ -42,7 +42,7 @@ def train_cnn(data, args):
 def train_dense(data, args):
     # Create network with the provided parameters
     gan = DENSE_GAN("dense", epochs=args["epochs"], batch_size=args["batch"],
-                    sample_interval=args["sample"], d_trainable=True,
+                    sample_interval=args["sample"],
                     transform=TRANFORM, one_hot_enabled=ONE_HOT)
     
     train_gan(gan, data)

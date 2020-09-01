@@ -20,6 +20,9 @@ INPUT_FOLDER = '../../Data/GAN_Input/'
 OUTPUT_FOLDER = '../../Data/GAN_Output/'
 IMAGE_FOLDER = '../../Data/Images/'
 RESULTS_FOLDER = '/Results/'
+GEN_TRAIN_FOLDER = '/gen_logs/'
+COM_TRAIN_FOLDER = '/com_logs/'
+DIS_TRAIN_FOLDER = '/dis_logs/'
 
 MODEL_FOLDER = 'model_data/'
 

@@ -2,6 +2,9 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
+import tensorboard
+from tensorflow import keras
+
 from keras.layers import Input
 from keras.models import Model
 
@@ -14,8 +17,7 @@ class GAN():
     def __init__(self, gan_type, 
                  epochs=10000, batch_size=64, sample_interval=1000,
                  output_folder=None, create_models=True,
-                 d_trainable=True, output_images=True, 
-                 transform=True, one_hot_enabled=True):
+                 output_images=True, transform=True, one_hot_enabled=True):
         # Define data variables
         self.one_hot_enabled = one_hot_enabled
 
@@ -44,8 +46,6 @@ class GAN():
         self.dungeon_shape = (DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS)
         self.dungeon_units = DUNGEON_DIMENSION * DUNGEON_DIMENSION * DUNGEON_LABELS
 
-        self.d_trainable = d_trainable
-
         self.gan_name = gan_type + "_gan-"
 
         self.file_writer = FileWriter(transform=transform)
@@ -67,9 +67,7 @@ class GAN():
         # Create descriminator object
         self.discriminator = self.build_discriminator()
 
-        self.discriminator.trainable = self.d_trainable
-        self.str_outputs.append("\nDiscriminator trainable = "
-                                + str(self.d_trainable))
+        self.discriminator.trainable = True
 
         # Parameterize descriminator
         self.discriminator.compile(loss=self.dis_loss,
@@ -111,42 +109,47 @@ class GAN():
         X_train = np.array(data)
         batch_size = self.batch_size
 
+        tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.com_logs_dir)
+
         valid = np.ones((batch_size, 1))
 
         fake = np.zeros((batch_size, 1))
 
-        for epoch in range(1, self.epochs + 1):
-            idx = np.random.randint(0, len(X_train), batch_size)
+        completed_epochs = 0
+        while(completed_epochs < self.epochs):
+            completed_epochs += self.sample_interval
+            idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
-
-            noise = self.get_noise(batch_size)
+            noise = self.get_noise(self.batch_size)
 
             dungeon = self.generator.predict(noise)
-            self.discriminator.train_on_batch(sample, valid)
-            self.discriminator.train_on_batch(dungeon, fake)
-
+            self.discriminator.fit(sample, valid, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
+            self.discriminator.fit(dungeon, fake, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
+            
+            
             noise = self.get_noise(batch_size)
-
-            g_loss = self.combined.train_on_batch(noise, valid)
-
-            if epoch % self.sample_interval == 0:
-                self.print_epoch_result(epoch, g_loss, self.combined.metrics_names)
-                self.sample_epoch(epoch, file_prefix="combined_")
+            c_loss = self.combined.fit(noise, valid, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
+            
+            self.print_epoch_result(completed_epochs, c_loss, self.combined.metrics_names)
+            self.sample_epoch(completed_epochs, file_prefix="combined_")
 
     def train_generator(self, data):
         self.add_train_info("\nGenerator training.")
         X_train = np.array(data)
 
-        for epoch in range(1, self.epochs + 1):
+        tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.gen_logs_dir)
+
+        completed_epochs = 0
+        while(completed_epochs < self.epochs):
+            completed_epochs += self.sample_interval
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
             noise = self.get_noise(self.batch_size)
+            
+            g_loss = self.generator.fit(noise, sample, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
 
-            g_loss = self.generator.train_on_batch(noise, sample)
-
-            if epoch % self.sample_interval == 0:
-                self.print_epoch_result(epoch, g_loss, self.generator.metrics_names)
-                self.sample_epoch(epoch, file_prefix="generator_")
+            self.print_epoch_result(completed_epochs, g_loss, self.generator.metrics_names)
+            self.sample_epoch(completed_epochs, file_prefix="generator_")
 
     def train_discriminator(self, data):
         self.add_train_info("\nDiscriminator training.")
@@ -154,20 +157,24 @@ class GAN():
         valid = np.ones((self.batch_size, 1))
         fake = np.zeros((self.batch_size, 1))
 
-        for epoch in range(1, self.epochs + 1):
+        tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.dis_logs_dir)
+
+        completed_epochs = 0
+        while(completed_epochs < self.epochs):
             idx = np.random.randint(0, len(X_train), self.batch_size)
             sample = X_train[idx]
-            
+
             noise = self.get_noise(self.batch_size)
 
             gen_output = self.generator.predict(noise)
-            d_loss_real = self.discriminator.train_on_batch(sample, valid)
-            d_loss_fake = self.discriminator.train_on_batch(gen_output, fake)
+            d_loss_real = self.discriminator.fit(sample, valid, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
+            d_loss_fake = self.discriminator.fit(gen_output, fake, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
             d_loss = 0.5 * np.add(d_loss_real, d_loss_fake)
+            
+            #g_loss = self.generator.fit(noise, sample, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
 
-            if epoch % self.sample_interval == 0:
-                self.print_epoch_result(epoch, d_loss, self.discriminator.metrics_names)
-                self.sample_epoch(epoch, file_prefix="discriminator_")
+            self.print_epoch_result(completed_epochs, d_loss, self.discriminator.metrics_names)
+            self.sample_epoch(completed_epochs, file_prefix="discriminator_")
 
     def get_noise(self, number_of_samples):
         if self.one_hot_enabled:
@@ -221,9 +228,11 @@ class GAN():
 
 
     def print_epoch_result(self, epoch, result, metrics_names):
+        #print(metrics_names)
+        #print(result.history)
         str_results = "%d [%s: %f, %s: %.2f%%]" % (epoch, 
-            metrics_names[0], result[0], 
-            metrics_names[1], result[1])
+            metrics_names[0], result.history[metrics_names[0]][0], 
+            metrics_names[1], result.history[metrics_names[1]][0])
         print(str_results)
         self.str_outputs.append(str_results)
 
