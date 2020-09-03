@@ -23,19 +23,24 @@ class DENSE_GAN(GAN):
         
         self.add_layer(Flatten(input_shape=self.dungeon_shape))
 
-        self.add_layer(Dense(units=128, activation='relu'))
-        self.add_layer(LeakyReLU(alpha=0.2))
+        self.add_layer(Dense(units=128))
         self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(Dropout(rate=0.3))
 
-        self.add_layer(Dense(units=128, activation='relu'))
-        self.add_layer(LeakyReLU(alpha=0.2))
+        self.add_layer(Dense(units=128))
         self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(Dropout(rate=0.3))
 
-        self.add_layer(Dense(units=128, activation='relu'))
-        self.add_layer(LeakyReLU(alpha=0.2))
+        self.add_layer(Dense(units=128))
         self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(LeakyReLU(alpha=0.2))
+        self.add_layer(Dropout(rate=0.3))
+
+        self.add_layer(Dense(units=128))
+        self.add_layer(BatchNormalization(momentum=0.8))
+        self.add_layer(LeakyReLU(alpha=0.2))
         self.add_layer(Dropout(rate=0.3))
 
         self.add_layer(Dense(np.prod(self.dungeon_shape), activation=self.gen_activation))
@@ -60,13 +65,13 @@ class DENSE_GAN(GAN):
 
         self.add_layer(LeakyReLU(alpha=0.2))
 
-        # model.add(Dropout(0.3))
+        self.add_layer(Dropout(rate=0.3))
 
         self.add_layer(Dense(units=64))
 
         self.add_layer(LeakyReLU(alpha=0.2))
 
-        # model.add(Dropout(0.3))
+        self.add_layer(Dropout(rate=0.3))
 
         self.add_layer(Flatten())
         self.add_layer(Dense(1, activation="relu"))

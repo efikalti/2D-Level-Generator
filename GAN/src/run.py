@@ -19,7 +19,7 @@ np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
 
 
 def train_gan(gan, data):
-    gan.train_generator(data)
+    #gan.train_generator(data)
 
     gan.train(data)
 
@@ -33,7 +33,6 @@ def train_cnn(data, args):
     gan = CNN_GAN("cnn", epochs=args["epochs"], batch_size=args["batch"],
                   sample_interval=args["sample"],
                   transform=TRANFORM, one_hot_enabled=ONE_HOT)
-    #return
     
     train_gan(gan, data)
 

@@ -32,6 +32,7 @@ NOISE = {"min": 0, "max": 2}
 # GAN Variables
 optimizers = {
     "adam": Adam(0.0002),
+    "slow_adam": Adam(0.0001),
     "sgd": SGD(0.01),
     "rmsprop": RMSprop(0.0002),
 }
@@ -54,6 +55,7 @@ GEN_LOSS = "categorical_crossentropy"
 COM_LOSS = "binary_crossentropy"
 
 OPTIMIZER = "adam"
+DIS_OPTIMIZER = "slow_adam"
 
 DIS_METRIC = 'accuracy'
 GEN_METRIC = 'categorical_accuracy'

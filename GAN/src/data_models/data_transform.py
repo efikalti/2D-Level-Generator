@@ -18,7 +18,9 @@ class DataTransformation:
             original_value = data[i]
             # Transform label value to one hot encoding
             if self.one_hot_enabled:
+                #print("Before: " + str(original_value))
                 data[i] = to_categorical(original_value, num_classes=DUNGEON_LABELS)
+                #print("After: " + str(data[i]))
             if self.transform_value_enabled:
                 if original_value in di.DATA_TRANSFORMATIONS:
                     data[i] = di.DATA_TRANSFORMATIONS[original_value]
@@ -50,11 +52,17 @@ class DataTransformation:
     def from_categorical(self, c_data):
         max = 0
         index = 0
+        #print("Before: " + str(c_data))
         for i in range(0, len(c_data)):
             if max < c_data[i]:
                 max = c_data[i]
                 index = i
+        #print("After: " + str(index))
         return index
+    
+    def to_categorical(self, data):
+        pass
+
 
 
     def transform_multiple(self, data):

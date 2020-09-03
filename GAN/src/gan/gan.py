@@ -117,21 +117,23 @@ class GAN():
 
         completed_epochs = 0
         while(completed_epochs < self.epochs):
-            completed_epochs += self.sample_interval
             idx = np.random.randint(0, len(X_train), self.batch_size)
+            
             sample = X_train[idx]
             noise = self.get_noise(self.batch_size)
 
-            dungeon = self.generator.predict(noise)
-            self.discriminator.fit(sample, valid, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
-            self.discriminator.fit(dungeon, fake, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
-            
-            
+            # First train the Discriminator
+            #dungeon = self.generator.predict(noise)
+            #self.discriminator.fit(sample, valid, batch_size=self.batch_size, epochs=self.epochs)
+            #self.discriminator.fit(dungeon, fake, batch_size=self.batch_size, epochs=self.epochs)
+
+            # Train the combined model
             noise = self.get_noise(batch_size)
-            c_loss = self.combined.fit(noise, valid, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
+            c_loss = self.combined.fit(noise, valid, batch_size=self.batch_size, epochs=completed_epochs + self.sample_interval, initial_epoch=completed_epochs, callbacks=[tensorboard_callback])
+            completed_epochs += self.sample_interval
             
             self.print_epoch_result(completed_epochs, c_loss, self.combined.metrics_names)
-            self.sample_epoch(completed_epochs, file_prefix="combined_")
+            self.sample_epoch(self.epochs, file_prefix="combined_")
 
     def train_generator(self, data):
         self.add_train_info("\nGenerator training.")
@@ -139,17 +141,18 @@ class GAN():
 
         tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.gen_logs_dir)
 
-        completed_epochs = 0
-        while(completed_epochs < self.epochs):
-            completed_epochs += self.sample_interval
-            idx = np.random.randint(0, len(X_train), self.batch_size)
-            sample = X_train[idx]
-            noise = self.get_noise(self.batch_size)
-            
-            g_loss = self.generator.fit(noise, sample, batch_size=self.batch_size, epochs=self.sample_interval, callbacks=[tensorboard_callback])
+        #completed_epochs = 0
+        #while(completed_epochs < self.epochs):
+            #completed_epochs += self.sample_interval
+        idx = np.random.randint(0, len(X_train), self.batch_size)
+        sample = X_train[idx]
+        noise = self.get_noise(self.batch_size)
+        
+        g_loss = self.generator.fit(noise, sample, batch_size=self.batch_size, epochs=self.epochs, callbacks=[tensorboard_callback])
 
-            self.print_epoch_result(completed_epochs, g_loss, self.generator.metrics_names)
-            self.sample_epoch(completed_epochs, file_prefix="generator_")
+        self.print_epoch_result(self.epochs, g_loss, self.generator.metrics_names)
+        for i in range(0, 5):
+            self.sample_epoch(i, file_prefix="generator_")
 
     def train_discriminator(self, data):
         self.add_train_info("\nDiscriminator training.")
@@ -210,9 +213,9 @@ class GAN():
             for j in range(DUNGEON_DIMENSION):
                 value = dungeon[i][j][0]
                 if value == 0:
-                    value = di.colors['white']['float']
-                elif value == 1:
                     value = di.colors['brown']['float']
+                elif value == 1:
+                    value = di.colors['white']['float']
                 elif value == 2:
                     value = di.colors['orange']['float']
                 else:
@@ -228,8 +231,8 @@ class GAN():
 
 
     def print_epoch_result(self, epoch, result, metrics_names):
-        #print(metrics_names)
-        #print(result.history)
+        print(metrics_names)
+        print(result.history)
         str_results = "%d [%s: %f, %s: %.2f%%]" % (epoch, 
             metrics_names[0], result.history[metrics_names[0]][0], 
             metrics_names[1], result.history[metrics_names[1]][0])
