@@ -119,7 +119,6 @@ class GAN():
 
         completed_epochs = 0
         while(completed_epochs < self.epochs):
-
             idx = np.random.randint(0, len(X_train), batch_size)
             sample = X_train[idx]
             noise = self.generate_latent_points(batch_size)
@@ -127,15 +126,17 @@ class GAN():
 
             X, y = vstack((sample, dungeon)), vstack((valid, fake))
             
-            self.discriminator.fit(X, y, batch_size=batch_size, epochs=self.sample_interval)
+            self.discriminator.fit(X, y, epochs=self.sample_interval)
             #self.discriminator.fit(dungeon, fake, batch_size=self.batch_size, epochs=self.epochs)
 
             #noise = self.get_noise(self.batch_size)
 
+            noise = self.generate_latent_points(batch_size)
             # Train the combined model
-            c_loss = self.combined.fit(noise, valid, batch_size=batch_size, 
-                epochs=completed_epochs + self.sample_interval, 
-                initial_epoch=completed_epochs, 
+            c_loss = self.combined.fit(noise, valid,
+                epochs=completed_epochs + self.sample_interval,
+                batch_size=batch_size,
+                initial_epoch=completed_epochs,
                 callbacks=[tensorboard_callback])
             
             completed_epochs += self.sample_interval
@@ -149,18 +150,22 @@ class GAN():
 
         tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.gen_logs_dir)
 
-        #completed_epochs = 0
-        #while(completed_epochs < self.epochs):
-            #completed_epochs += self.sample_interval
-        idx = np.random.randint(0, len(X_train), self.batch_size)
-        sample = X_train[idx]
-        noise = self.get_noise(self.batch_size)
-        
-        g_loss = self.generator.fit(noise, sample, batch_size=self.batch_size, epochs=self.epochs, callbacks=[tensorboard_callback])
+        completed_epochs = 0
+        while(completed_epochs < self.epochs):
+            idx = np.random.randint(0, len(X_train), self.batch_size)
+            sample = X_train[idx]
+            noise = self.generate_latent_points(self.batch_size)
+            
+            g_loss = self.generator.fit(noise, sample, 
+                batch_size=self.batch_size, 
+                epochs=completed_epochs + self.sample_interval, 
+                initial_epoch=completed_epochs, 
+                callbacks=[tensorboard_callback])
+            
+            completed_epochs += self.sample_interval
 
-        self.print_epoch_result(self.epochs, g_loss, self.generator.metrics_names)
-        for i in range(0, 5):
-            self.sample_epoch(i, file_prefix="generator_")
+            self.print_epoch_result(completed_epochs, g_loss, self.generator.metrics_names)
+            self.sample_epoch(completed_epochs, file_prefix="generator_")
 
     def train_discriminator(self, data):
         self.add_train_info("\nDiscriminator training.")

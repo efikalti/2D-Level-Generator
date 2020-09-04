@@ -71,7 +71,7 @@ class DENSE_GAN(GAN):
         self.add_layer(Dropout(rate=0.3))
 
         self.add_layer(Flatten())
-        self.add_layer(Dense(1, activation="relu"))
+        self.add_layer(Dense(1, activation="sigmoid"))
 
         
         dungeon = Input(shape=self.dungeon_shape)

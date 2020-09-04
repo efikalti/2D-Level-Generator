@@ -52,7 +52,7 @@ def parse_args(argv):
     args_dict = {
         "model": "cnn",
         "epochs": 10000,
-        "batch": 64,
+        "batch": 128,
         "sample": 1000
     }
     help_message = str(f"run.py -m {bcolors.OKBLUE}<dense/cnn>{bcolors.ENDC} -e {bcolors.OKBLUE}<epochs>{bcolors.ENDC} -b {bcolors.OKBLUE}<batch size>{bcolors.ENDC} "
