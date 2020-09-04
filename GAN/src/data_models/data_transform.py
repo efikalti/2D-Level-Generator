@@ -18,9 +18,7 @@ class DataTransformation:
             original_value = data[i]
             # Transform label value to one hot encoding
             if self.one_hot_enabled:
-                #print("Before: " + str(original_value))
                 data[i] = to_categorical(original_value, num_classes=DUNGEON_LABELS)
-                #print("After: " + str(data[i]))
             if self.transform_value_enabled:
                 if original_value in di.DATA_TRANSFORMATIONS:
                     data[i] = di.DATA_TRANSFORMATIONS[original_value]
@@ -28,8 +26,6 @@ class DataTransformation:
         return data
 
     def transform_single_to_original(self, data):
-        #print(data[0])
-        #print("TRANSFORM: " + str(data[0][:10]))
         transformed_data = np.zeros((DUNGEON_DIMENSION, DUNGEON_DIMENSION, 1))
 
         for i in range(0, len(data)):
@@ -45,25 +41,16 @@ class DataTransformation:
                     value = round(data[i][j][0])
                     transformed_data[i][j] = value
         # Return data in original format
-
-        #print("TO: " + str(transformed_data[0][:10]))
         return transformed_data
 
     def from_categorical(self, c_data):
         max = 0
         index = 0
-        #print("Before: " + str(c_data))
         for i in range(0, len(c_data)):
             if max < c_data[i]:
                 max = c_data[i]
                 index = i
-        #print("After: " + str(index))
         return index
-    
-    def to_categorical(self, data):
-        pass
-
-
 
     def transform_multiple(self, data):
         for i in range(0, len(data)):
@@ -83,7 +70,6 @@ class DataTransformation:
             for x in range(0, dimension, 1):
                 matrix[x][y] = array[index]
                 index += 1
-        #matrix = np.expand_dims(matrix, axis=-1)
         return matrix
 
     def transform_to_array(self, matrix):

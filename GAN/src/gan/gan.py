@@ -1,4 +1,6 @@
 import numpy as np
+from numpy.random import randn
+from numpy import vstack
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
@@ -6,7 +8,7 @@ import tensorboard
 from tensorflow import keras
 
 from keras.layers import Input
-from keras.models import Model
+from keras.models import Model, Sequential
 
 import data_models.data_info as di
 from data_io.file_writer import FileWriter
@@ -33,6 +35,8 @@ class GAN():
         self.dis_metric = di.DIS_METRIC
         self.gen_metric = di.GEN_METRIC
         self.com_metric = di.COM_METRIC
+
+        self.latent_dim = di.LATENT_DIM
 
         self.gen_activation = di.GEN_ACTIVATION
 
@@ -66,8 +70,8 @@ class GAN():
 
         # Create descriminator object
         self.discriminator = self.build_discriminator()
-
-        self.discriminator.trainable = True
+        self.discriminator.trainable = False
+        self.str_outputs.append("\nDiscriminator Trainable     : " + str(self.discriminator.trainable))
 
         # Parameterize descriminator
         self.discriminator.compile(loss=self.dis_loss,
@@ -80,16 +84,20 @@ class GAN():
         # Create generator object
         self.generator = self.build_generator()
         # Parameterize Generator
-        self.generator.compile(loss=self.gen_loss, optimizer=self.optimizer, metrics=[self.gen_metric])
-        self.str_outputs.append("\nGenerator loss      : " + self.gen_loss)
-        self.str_outputs.append("Generator metrics   : " + str(self.gen_metric))
-        self.str_outputs.append("Generator optimizer : " + str(self.optimizer))
+        #self.generator.compile(loss=self.gen_loss, optimizer=self.optimizer, metrics=[self.gen_metric])
+        #self.str_outputs.append("\nGenerator loss      : " + self.gen_loss)
+        #self.str_outputs.append("Generator metrics   : " + str(self.gen_metric))
+        #self.str_outputs.append("Generator optimizer : " + str(self.optimizer))
 
         # Initialize noise input
-        z = Input(shape=self.dungeon_shape)
+        #z = Input(shape=(self.latent_dim))
 
-        validity = self.discriminator(self.generator(z))
-        self.combined = Model(z, validity)
+        self.combined = Sequential()
+        self.combined.add(self.generator)
+        self.combined.add(self.discriminator)
+
+        #validity = self.discriminator(self.generator(z))
+        #self.combined = Model(z, validity)
         self.combined.compile(loss=self.com_loss,
                               optimizer=self.optimizer,
                               metrics=[self.com_metric])
@@ -97,12 +105,6 @@ class GAN():
         self.str_outputs.append("Combined metrics   : " + str(self.com_metric))
         self.str_outputs.append("Combined optimizer : " + str(self.optimizer))
 
-    def add_layer(self, layer):
-        self.model.add(layer)
-
-        layer_info = str("Class_name: " + str(layer.__class__.__name__)
-                       + "\tConfig: " + str(layer.get_config()))
-        self.str_outputs.append(layer_info)
 
     def train(self, data):
         self.add_train_info("\nCombined training.")
@@ -117,23 +119,29 @@ class GAN():
 
         completed_epochs = 0
         while(completed_epochs < self.epochs):
-            idx = np.random.randint(0, len(X_train), self.batch_size)
-            
-            sample = X_train[idx]
-            noise = self.get_noise(self.batch_size)
 
-            # First train the Discriminator
-            #dungeon = self.generator.predict(noise)
-            #self.discriminator.fit(sample, valid, batch_size=self.batch_size, epochs=self.epochs)
+            idx = np.random.randint(0, len(X_train), batch_size)
+            sample = X_train[idx]
+            noise = self.generate_latent_points(batch_size)
+            dungeon = self.generator.predict(noise)
+
+            X, y = vstack((sample, dungeon)), vstack((valid, fake))
+            
+            self.discriminator.fit(X, y, batch_size=batch_size, epochs=self.sample_interval)
             #self.discriminator.fit(dungeon, fake, batch_size=self.batch_size, epochs=self.epochs)
 
+            #noise = self.get_noise(self.batch_size)
+
             # Train the combined model
-            noise = self.get_noise(batch_size)
-            c_loss = self.combined.fit(noise, valid, batch_size=self.batch_size, epochs=completed_epochs + self.sample_interval, initial_epoch=completed_epochs, callbacks=[tensorboard_callback])
+            c_loss = self.combined.fit(noise, valid, batch_size=batch_size, 
+                epochs=completed_epochs + self.sample_interval, 
+                initial_epoch=completed_epochs, 
+                callbacks=[tensorboard_callback])
+            
             completed_epochs += self.sample_interval
             
             self.print_epoch_result(completed_epochs, c_loss, self.combined.metrics_names)
-            self.sample_epoch(self.epochs, file_prefix="combined_")
+            self.sample_epoch(completed_epochs, file_prefix="combined_")
 
     def train_generator(self, data):
         self.add_train_info("\nGenerator training.")
@@ -188,13 +196,29 @@ class GAN():
             noise_data = np.random.randint(NOISE["min"], NOISE["max"], size=(number_of_samples, DUNGEON_DIMENSION, DUNGEON_DIMENSION, DUNGEON_LABELS))
         #self.sample_image(noise_data[0], np.random.randint(0,1000), "noise-" + str(np.random.randint(0,1000)))
         return noise_data
+    
+    # generate points in latent space as input for the generator
+    def generate_latent_points(self, number_of_samples):
+        # generate points in the latent space
+        x_input = randn(self.latent_dim * number_of_samples)
+        # reshape into a batch of inputs for the network
+        x_input = x_input.reshape(number_of_samples, self.latent_dim)
+        return x_input
+
+    def add_layer(self, layer):
+        self.model.add(layer)
+
+        layer_info = str("Class_name: " + str(layer.__class__.__name__)
+                       + "\tConfig: " + str(layer.get_config()))
+        self.str_outputs.append(layer_info)
 
     # Sample functions
     def sample_epoch(self, epoch, file_prefix=""):
         self.sample_dungeon(epoch, file_prefix)
 
     def sample_dungeon(self, epoch, file_prefix=""):
-        noise = self.get_noise(1)
+        #noise = self.get_noise(1)
+        noise = self.generate_latent_points(1)
 
         gen_data = self.generator.predict(noise)
         dungeon = gen_data[0]
@@ -231,12 +255,14 @@ class GAN():
 
 
     def print_epoch_result(self, epoch, result, metrics_names):
-        print(metrics_names)
-        print(result.history)
+        #print(metrics_names)
+        #print(result.history)
+        metric_0 = np.sum(result.history[metrics_names[0]]) / self.sample_interval
+        metric_1 = np.sum(result.history[metrics_names[1]]) / self.sample_interval
         str_results = "%d [%s: %f, %s: %.2f%%]" % (epoch, 
-            metrics_names[0], result.history[metrics_names[0]][0], 
-            metrics_names[1], result.history[metrics_names[1]][0])
-        print(str_results)
+            metrics_names[0], metric_0,
+            metrics_names[1], metric_1)
+        #print(str_results)
         self.str_outputs.append(str_results)
 
     def add_train_info(self, train_info):

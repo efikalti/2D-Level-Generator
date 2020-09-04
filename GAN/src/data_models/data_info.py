@@ -14,6 +14,7 @@ TILE_TYPES = {"WALL": 0, "ROOM": 1, "CORRIDOR": 2}
 DATA_TRANSFORMATIONS = {0: -1, 1: 0, 2: 1}
 DATA_TRANSFORMATIONS_TO_ORIGINAL = {-1: 0, 0: 1, 1: 2}
 
+LATENT_DIM = 200
 
 # Folder paths
 INPUT_FOLDER = '../../Data/GAN_Input/'
@@ -31,8 +32,7 @@ NOISE = {"min": 0, "max": 2}
 
 # GAN Variables
 optimizers = {
-    "adam": Adam(0.0002),
-    "slow_adam": Adam(0.0001),
+    "adam": Adam(learning_rate=0.0002, beta_1=0.5),
     "sgd": SGD(0.01),
     "rmsprop": RMSprop(0.0002),
 }
