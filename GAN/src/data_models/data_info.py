@@ -1,7 +1,6 @@
 from tensorflow.keras.optimizers import Adam, SGD, RMSprop
 # DATA
 DUNGEON_LABELS = 2
-TRANFORM = False
 ONE_HOT = True
 
 # Dungeon specific data
@@ -21,47 +20,20 @@ INPUT_FOLDER = '../../Data/GAN_Input/'
 OUTPUT_FOLDER = '../../Data/GAN_Output/'
 IMAGE_FOLDER = '../../Data/Images/'
 RESULTS_FOLDER = '/Results/'
-GEN_TRAIN_FOLDER = '/gen_logs/'
-COM_TRAIN_FOLDER = '/com_logs/'
-DIS_TRAIN_FOLDER = '/dis_logs/'
-
 MODEL_FOLDER = 'model_data/'
-
-# Noise data
-NOISE = {"min": 0, "max": 2}
+COM_TRAIN_FOLDER = '/com_logs/'
 
 # GAN Variables
 optimizers = {
-    "adam": Adam(learning_rate=0.0002, beta_1=0.5),
+    "adam": Adam(learning_rate=0.0002, beta_1=0.8),
     "sgd": SGD(0.01),
     "rmsprop": RMSprop(0.0002),
 }
 
-losses = {
-    "mean_squared_error",
-    "binary_crossentropy",
-
-    "categorical_crossentropy",
-}
-
-accuracy = {
-    "categorical_accuracy",
-    "accuracy"
-
-}
-
-DIS_LOSS = "binary_crossentropy"
-GEN_LOSS = "categorical_crossentropy"
-COM_LOSS = "binary_crossentropy"
-
+LOSS = "binary_crossentropy"
 OPTIMIZER = "adam"
-DIS_OPTIMIZER = "slow_adam"
+METRIC = 'accuracy'
 
-DIS_METRIC = 'accuracy'
-GEN_METRIC = 'categorical_accuracy'
-COM_METRIC = 'accuracy'
-
-GEN_ACTIVATION = 'sigmoid'
 
 # Plot variables
 colors = {

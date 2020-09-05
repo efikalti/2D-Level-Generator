@@ -1,14 +1,15 @@
 import sys
 import getopt
-import tensorflow as tf
 import numpy as np
+import tensorflow as tf
 
-from gan.dense_gan import DENSE_GAN
 from gan.cnn_gan import CNN_GAN
-from data_models.data_transform import DataTransformation
-from data_io.file_reader import FileReader
+from gan.dense_gan import DENSE_GAN
 
-from data_models.data_info import ONE_HOT, TRANFORM, bcolors
+# Local libraries
+from data_models.data_info import ONE_HOT, bcolors
+from data_io.file_reader import FileReader
+from data_models.data_transform import DataTransformation
 
 # Assert that GPU training with CUDA is enabled otherwise end with error
 assert tf.test.is_gpu_available()
@@ -19,8 +20,6 @@ np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
 
 
 def train_gan(gan, data):
-    #gan.train_generator(data)
-
     gan.train(data)
 
     # Save results including the trained model and weights
@@ -32,7 +31,7 @@ def train_cnn(data, args):
     # Create network with the provided parameters
     gan = CNN_GAN("cnn", epochs=args["epochs"], batch_size=args["batch"],
                   sample_interval=args["sample"],
-                  transform=TRANFORM, one_hot_enabled=ONE_HOT)
+                  one_hot_enabled=ONE_HOT)
     
     train_gan(gan, data)
 
@@ -42,7 +41,7 @@ def train_dense(data, args):
     # Create network with the provided parameters
     gan = DENSE_GAN("dense", epochs=args["epochs"], batch_size=args["batch"],
                     sample_interval=args["sample"],
-                    transform=TRANFORM, one_hot_enabled=ONE_HOT)
+                    one_hot_enabled=ONE_HOT)
     
     train_gan(gan, data)
 
@@ -93,7 +92,7 @@ def main(argv):
     data = file_reader.get_csv_data()
 
     # Transform data
-    data_transformation = DataTransformation(transform=TRANFORM, one_hot_enabled=ONE_HOT)
+    data_transformation = DataTransformation(one_hot_enabled=ONE_HOT)
     data = data_transformation.transform_multiple(data)
 
     # Transform data to matrix, cnn expects a ndim matrix of data not an array

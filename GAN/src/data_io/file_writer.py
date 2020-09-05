@@ -10,7 +10,7 @@ from data_models.data_transform import DataTransformation
 
 
 class FileWriter:
-    def __init__(self, transform=True):
+    def __init__(self):
         # Set input path from global settings - data_info
         self.results_folder = di.RESULTS_FOLDER
 
@@ -23,7 +23,7 @@ class FileWriter:
         self.setup_position_array()
 
         # Instantiate DataTransformation object
-        self.data_transformation = DataTransformation(transform=transform)
+        self.data_transformation = DataTransformation()
 
     # Create the output folder and subfolder to store all the result files
     def create_output_folder(self, folder_name="folder-"):
@@ -49,16 +49,9 @@ class FileWriter:
         self.create_folder(results_path)
 
         # Create folder to store training logs
-        self.gen_logs_dir = self.output_path + di.GEN_TRAIN_FOLDER
         self.com_logs_dir = self.output_path + di.COM_TRAIN_FOLDER
-        self.dis_logs_dir = self.output_path + di.DIS_TRAIN_FOLDER
-        if not os.path.exists(self.gen_logs_dir):
-            os.makedirs(self.gen_logs_dir)
         if not os.path.exists(self.com_logs_dir):
             os.makedirs(self.com_logs_dir)
-        if not os.path.exists(self.dis_logs_dir):
-            pass
-            #os.makedirs(self.dis_logs_dir)
 
     # Function to create a folder if id does not exist
     def create_folder(self, folder_path):

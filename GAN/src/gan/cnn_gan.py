@@ -1,17 +1,12 @@
-from keras.layers import Input, Dense, Dropout, Flatten, BatchNormalization, Embedding
-from keras.layers import Conv2D, Reshape, Activation, Conv2DTranspose, Concatenate
-from keras.models import Sequential, Model
-from keras.initializers import RandomNormal
-from keras import backend as K
+import numpy as np
+
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten, BatchNormalization, Conv2D, Reshape
 from keras.layers.advanced_activations import LeakyReLU
 
-import numpy as np
 
 # Local libraries
 from gan.gan import GAN
-
-def relu_advanced(x):
-    return K.relu(x, max_value=2)
 
 
 class CNN_GAN(GAN):
@@ -64,11 +59,7 @@ class CNN_GAN(GAN):
         self.add_layer(Dense(np.prod(self.dungeon_shape), activation=self.gen_activation))
         self.add_layer(Reshape(target_shape=self.dungeon_shape))
 
-        # this is the z space commonly referred to in GAN papers
-        noise = Input(shape=self.dungeon_shape)
-        dungeon = self.model(noise)
-
-        return Model(noise, dungeon)
+        return self.model
 
     def build_discriminator(self):
         self.str_outputs.append("\nDiscriminator model - Sequential")
@@ -87,8 +78,5 @@ class CNN_GAN(GAN):
         self.add_layer(Flatten())
         self.add_layer(Dense(1, activation='relu'))
 
-        dungeon = Input(shape=self.dungeon_shape)
-        validity = self.model(dungeon)
-
-        return Model(dungeon, validity)
+        return self.model
 
