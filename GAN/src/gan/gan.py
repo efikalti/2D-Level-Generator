@@ -2,8 +2,8 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-#import tensorboard
-#from tensorflow import keras
+import tensorboard
+from tensorflow import keras
 
 from keras.models import Sequential, Model
 from keras.layers import Input
@@ -57,7 +57,7 @@ class GAN():
     def setup_new_models(self):
         # Create generator
         self.generator = self.build_generator()
-        self.generator.compile(loss=self.loss, optimizer=self.optimizer, metrics=[self.metric])
+        #self.generator.compile(loss=self.loss, optimizer=self.optimizer, metrics=[self.metric])
 
         # Create descriminator
         self.discriminator = self.build_discriminator()
@@ -68,18 +68,19 @@ class GAN():
                                    metrics=[self.metric])
 
         # Create combined model
-        '''
+        
         self.combined = Sequential()
         self.discriminator.trainable = False
         self.combined.add(self.generator)
         self.combined.add(self.discriminator)
+        
+
         '''
-
-
         z = Input(shape=(self.latent_dim))
         self.discriminator.trainable = False
         validity = self.discriminator(self.generator(z))
         self.combined = Model(z, validity)
+        '''
 
         self.combined.compile(loss=self.loss,
                               optimizer=self.optimizer,
@@ -87,7 +88,7 @@ class GAN():
 
 
     def train(self, data):
-        #tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.com_logs_dir)
+        tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.com_logs_dir)
 
         self.add_train_info("\nCombined training.")
 
@@ -106,7 +107,7 @@ class GAN():
                 epochs=completed_epochs + self.sample_interval,
                 batch_size=self.batch_size,
                 initial_epoch=completed_epochs,
-                #callbacks=[tensorboard_callback],
+                callbacks=[tensorboard_callback],
                 verbose=1)
             
             completed_epochs += self.sample_interval

@@ -92,11 +92,13 @@ class CNN_GAN(GAN):
         self.add_layer(Reshape(self.dungeon_shape))
         '''
 
+        '''
         noise = Input(shape=(self.latent_dim))
         dungeon = self.model(noise)
         return Model(noise, dungeon)
+        '''
 
-        #return self.model
+        return self.model
 
     def build_discriminator(self):
         self.str_outputs.append("\nDiscriminator model - Sequential")
@@ -115,8 +117,10 @@ class CNN_GAN(GAN):
         self.add_layer(Flatten())
         self.add_layer(Dense(1, activation='sigmoid'))
 
+        '''
         dungeon = Input(shape=self.dungeon_shape)
         validity = self.model(dungeon)
         return Model(dungeon, validity)
-        #return self.model
+        '''
+        return self.model
 
