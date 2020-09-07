@@ -2,10 +2,11 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-import tensorboard
-from tensorflow import keras
+#import tensorboard
+#from tensorflow import keras
 
-from keras.models import Sequential
+from keras.models import Sequential, Model
+from keras.layers import Input
 
 # Local libraries
 import data_models.data_info as di
@@ -56,6 +57,7 @@ class GAN():
     def setup_new_models(self):
         # Create generator
         self.generator = self.build_generator()
+        self.generator.compile(loss=self.loss, optimizer=self.optimizer, metrics=[self.metric])
 
         # Create descriminator
         self.discriminator = self.build_discriminator()
@@ -66,10 +68,18 @@ class GAN():
                                    metrics=[self.metric])
 
         # Create combined model
+        '''
         self.combined = Sequential()
         self.discriminator.trainable = False
         self.combined.add(self.generator)
         self.combined.add(self.discriminator)
+        '''
+
+
+        z = Input(shape=(self.latent_dim))
+        self.discriminator.trainable = False
+        validity = self.discriminator(self.generator(z))
+        self.combined = Model(z, validity)
 
         self.combined.compile(loss=self.loss,
                               optimizer=self.optimizer,
@@ -77,25 +87,26 @@ class GAN():
 
 
     def train(self, data):
-        tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.com_logs_dir)
+        #tensorboard_callback = keras.callbacks.TensorBoard(log_dir=self.file_writer.com_logs_dir)
 
         self.add_train_info("\nCombined training.")
-
-        # Train discriminator separetely
-        self.train_discriminator(data)
 
         valid = np.ones((self.batch_size, 1))
 
         # Train the combined model
         completed_epochs = 0
         while(completed_epochs < self.epochs):
+
             noise = self.get_noise(self.batch_size)
+
+            # Train discriminator separetely
+            self.train_discriminator(data, self.sample_interval, noise)
 
             c_loss = self.combined.fit(noise, valid,
                 epochs=completed_epochs + self.sample_interval,
                 batch_size=self.batch_size,
                 initial_epoch=completed_epochs,
-                callbacks=[tensorboard_callback],
+                #callbacks=[tensorboard_callback],
                 verbose=1)
             
             completed_epochs += self.sample_interval
@@ -123,7 +134,12 @@ class GAN():
             self.print_epoch_result(completed_epochs, g_loss, self.generator.metrics_names)
             self.sample_epoch(completed_epochs, file_prefix="generator_")
 
-    def train_discriminator(self, data):
+    def train_discriminator(self, data, epochs=None, noise=None):
+        if epochs is None:
+            epochs = self.epochs
+        if noise is None:
+            noise = self.get_noise(self.batch_size)
+
         self.add_train_info("\nDiscriminator training.")
         X_train = np.array(data)
         
@@ -132,12 +148,12 @@ class GAN():
 
         idx = np.random.randint(0, len(X_train), self.batch_size)
         sample = X_train[idx]
-        noise = self.get_noise(self.batch_size)
         dungeon = self.generator.predict(noise)
 
         X, y = np.vstack((sample, dungeon)), np.vstack((valid, fake))
         
-        self.discriminator.fit(X, y, epochs=self.epochs, verbose=1, batch_size=self.batch_size)
+
+        self.discriminator.fit(X, y, epochs=epochs, verbose=1, batch_size=self.batch_size)
     
     def get_noise(self, number_of_samples):
         # generate points in the latent space

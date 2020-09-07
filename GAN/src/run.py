@@ -32,7 +32,6 @@ def train_cnn(data, args):
     gan = CNN_GAN("cnn", epochs=args["epochs"], batch_size=args["batch"],
                   sample_interval=args["sample"],
                   one_hot_enabled=ONE_HOT)
-    
     train_gan(gan, data)
 
 
