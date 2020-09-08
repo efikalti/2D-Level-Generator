@@ -18,16 +18,27 @@ assert tf.test.is_built_with_cuda()
 # Console output color setup
 np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
 
+args = {
+    "model": "cnn",
+    "epochs": 10000,
+    "batch": 128,
+    "sample": 1000,
+    "generator": False
+}
 
 def train_gan(gan, data):
-    gan.train(data)
-
+    
+    if args["generator"] is True:
+        gan.train_generator(data)
+    else:
+        gan.train(data)
+    
     # Save results including the trained model and weights
     gan.write_results()
     gan.save_models()
 
 # Function to create and train a cnn gan network
-def train_cnn(data, args):
+def train_cnn(data):
     # Create network with the provided parameters
     gan = CNN_GAN("cnn", epochs=args["epochs"], batch_size=args["batch"],
                   sample_interval=args["sample"],
@@ -36,7 +47,7 @@ def train_cnn(data, args):
 
 
 # Function to create and train a dense gan network
-def train_dense(data, args):
+def train_dense(data):
     # Create network with the provided parameters
     gan = DENSE_GAN("dense", epochs=args["epochs"], batch_size=args["batch"],
                     sample_interval=args["sample"],
@@ -47,16 +58,10 @@ def train_dense(data, args):
 
 # Function used to parse the cmd arguments
 def parse_args(argv):
-    args_dict = {
-        "model": "cnn",
-        "epochs": 10000,
-        "batch": 128,
-        "sample": 1000
-    }
     help_message = str(f"run.py -m {bcolors.OKBLUE}<dense/cnn>{bcolors.ENDC} -e {bcolors.OKBLUE}<epochs>{bcolors.ENDC} -b {bcolors.OKBLUE}<batch size>{bcolors.ENDC} "
                        + f"-s {bcolors.OKBLUE}<sample interval>{bcolors.ENDC}")
     try:
-        opts, args = getopt.getopt(argv, "he:b:s:m:",
+        opts, args_list = getopt.getopt(argv, "he:b:s:m:",
                                    ["epochs=", "batch_size=",
                                     "sample_interval=", "model="])
     except getopt.GetoptError:
@@ -67,18 +72,20 @@ def parse_args(argv):
             print(help_message)
             sys.exit()
         elif opt in ("-m", "--model"):
-            args_dict["model"] = arg
+            args["model"] = arg
         elif opt in ("-e", "--epochs"):
-            args_dict["epochs"] = int(arg)
+            args["epochs"] = int(arg)
         elif opt in ("-b", "--batch"):
-            args_dict["batch"] = int(arg)
+            args["batch"] = int(arg)
         elif opt in ("-s", "--sample"):
-            args_dict["sample"] = int(arg)
+            args["sample"] = int(arg)
+        elif opt in ("--generator"):
+            args["generator"] = True
     print(str(f"Running model {bcolors.OKGREEN}%s{bcolors.ENDC} for {bcolors.OKGREEN}%s{bcolors.ENDC} epochs with batch size {bcolors.OKGREEN}%s{bcolors.ENDC} and "
               + f"sample interval {bcolors.OKGREEN}%s{bcolors.ENDC}") %
-          (args_dict["model"], args_dict["epochs"],
-           args_dict["batch"], args_dict["sample"]))
-    return args_dict
+          (args["model"], args["epochs"],
+           args["batch"], args["sample"]))
+    return args
 
 
 def main(argv):
@@ -102,10 +109,10 @@ def main(argv):
 
     if (args["model"] == "dense"):
         # Train dense model
-        train_dense(transformed_data, args)
+        train_dense(transformed_data)
     elif (args["model"] == "cnn"):
         # Train cnn model
-        train_cnn(transformed_data, args)
+        train_cnn(transformed_data)
 
 
 if __name__ == "__main__":
