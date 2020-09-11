@@ -81,7 +81,7 @@ namespace Assets.Scripts.Generators
             Evaluate();
 
             // Step 7. Write tilemap to file
-            fileParser.WriteTilemap(tilemap);
+            //fileParser.WriteTilemap(tilemap);
 
         }
 
@@ -131,10 +131,10 @@ namespace Assets.Scripts.Generators
             quadTree.CreateTilemapFromLeafs(tilemap);
         }
 
-        public void Evaluate()
+        public void Evaluate(bool paintRooms=false)
         {
             evaluator = new RoomFindingEvaluator(tilemap);
-            evaluator.Evaluate();
+            evaluator.Evaluate(paintRooms);
         }
 
         public void CreatePaths()

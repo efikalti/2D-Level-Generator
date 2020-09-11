@@ -28,6 +28,11 @@ namespace Assets.Scripts.Evaluation.RoomFindingEvaluation
         public void Evaluate(bool colorRooms = false)
         {
             FindRooms();
+
+            if (colorRooms)
+            {
+                PaintRooms();
+            }
         }
 
         public void FindRooms()
