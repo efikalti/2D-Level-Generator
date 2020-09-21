@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  15 SEP 2020 22:23
+This is LuaHBTeX, Version 1.12.0 (MiKTeX 2.9.7440 64-bit)  (format=lualatex 2020.6.4)  21 SEP 2020 14:14
  restricted system commands enabled.
 **thesis.tex
 (./thesis.tex
@@ -3461,10 +3461,10 @@ Overfull \hbox (7.00584pt too wide) in paragraph at lines 5--6
  []
 
 
-Overfull \hbox (32.77637pt too wide) in paragraph at lines 8--10
+Overfull \hbox (34.77637pt too wide) in paragraph at lines 8--10
 []\TU/LinLibertine(0)/m/n/12 Το σύστημα MLCG αναπτύχθηκε 
-στην γλώσσα\TU/LinLibertine(0)/m/it/12 Python\TU/LinLibertine(0)/m/n/
-12 , μια από τις πιο διαδεδομένες
+στην γλώσσα \TU/LinLibertine(0)/m/it/12 Python\TU/LinLibertine(0)/m/n
+/12 , μια από τις πιο διαδεδομένες
  []
 
 [55
@@ -3672,23 +3672,37 @@ Overfull \hbox (9.88725pt too wide) in paragraph at lines 93--94
  []
 
 
-Overfull \hbox (18.8378pt too wide) in paragraph at lines 97--98
-\TU/LinLibertine(0)/m/n/12 στην κατανόηση και υλοποίησ
-η. Αναφέρεται ως μοντέλο Dense επειδή η επεξε
-ργασία
+Overfull \hbox (24.82713pt too wide) in paragraph at lines 97--98
+\TU/LinLibertine(0)/m/n/12 κανονικοποίησης των τιμών π
+ου παράχθηκαν \TU/LinLibertine(0)/m/it/12 Batch-Nor-mal-iza-tion \T
+U/LinLibertine(0)/m/n/12 και φιλτραρίσματος
+ []
+
+
+Overfull \hbox (16.15114pt too wide) in paragraph at lines 101--102
+\TU/LinLibertine(0)/m/n/12 δημιουργήσει ως διάνυσμα (100, 1) 
+στοιχείων, παίρνει ως είσοδο, και εφαρμόζε
+ι
+ []
+
+
+Overfull \hbox (1.30083pt too wide) in paragraph at lines 101--102
+\TU/LinLibertine(0)/m/n/12 δημιουργήσει \TU/LinLibertine(0)/m/it/12
+ units \TU/LinLibertine(0)/m/n/12 καινούργιες διαστάσεις 
+με τα αποτελέσματα. Ο αριθμός
+ []
+
+
+Overfull \hbox (2.70584pt too wide) in paragraph at lines 101--102
+\TU/LinLibertine(0)/m/it/12 units \TU/LinLibertine(0)/m/n/12 ορίζετε σ
+ε κάθε Dense επίπεδο. Για παράδειγμα για το επ
+ίπεδο εισόδου
  []
 
 [60]
-Overfull \hbox (13.95465pt too wide) in paragraph at lines 106--106
- []\TU/LinLibertine(5)/m/n/12 Dense(units=256, input_dim=self.dungeon_dimension)
-[] 
- []
-
-
-Overfull \hbox (13.03923pt too wide) in paragraph at lines 108--109
-\TU/LinLibertine(0)/m/n/12 αρχικό επίπεδο του δικτύου, 
-τα επόμενα επίπεδα γνωρίζουν τι είσοδο δέχ
-ονται
+Overfull \hbox (52.35461pt too wide) in paragraph at lines 105--105
+ []\TU/LinLibertine(5)/m/n/12 self.add_layer(Dense(units, input_dim=self.latent_
+dim))[] 
  []
 
 
@@ -3698,281 +3712,281 @@ Overfull \hbox (28.23918pt too wide) in paragraph at lines 118--119
  []
 
 
-Overfull \hbox (9.21524pt too wide) in paragraph at lines 127--128
-[]\TU/LinLibertine(0)/m/n/12 To τελευταίο επίπεδο σε κάθ
-ε τριάδα, είναι είτε το επίπεδο
+Overfull \hbox (36.84988pt too wide) in paragraph at lines 128--129
+\TU/LinLibertine(0)/m/n/12 το όνομα κανονικοποιεί την 
+είσοδο που δέχεται. To επίπεδο Dropout απενεργο
+ποιεί
  []
 
 
-Overfull \hbox (0.70992pt too wide) in paragraph at lines 127--128
-\TU/LinLibertine(0)/m/n/12 δέχεται. To επίπεδο Dropout απεν
-εργοποιεί τυχαία κάποιες από τις εξόδους
- []
-
-
-Overfull \hbox (1.4272pt too wide) in paragraph at lines 134--135
+Overfull \hbox (1.4272pt too wide) in paragraph at lines 135--136
 \TU/LinLibertine(0)/m/n/12 την απόδοση του νευρωνικού 
 και να αυξήσει την ταχύτητα της εκπαίδευση
 ς
  []
 
+
+LaTeX Warning: Citation `reshape' on page 61 undefined on input line 151.
+
+
+Overfull \hbox (4.03116pt too wide) in paragraph at lines 151--152
+\TU/LinLibertine(0)/m/n/12 συνήθως για να προετοιμάσει 
+δεδομένα σε μορφή πίνακα ώστε να εισαχθούν
+ []
+
 [61]
-Overfull \hbox (36.99463pt too wide) in paragraph at lines 144--144
- []\TU/LinLibertine(5)/m/n/12 Dense(np.prod(self.dungeon_shape), activation="tan
-h")[] 
+
+LaTeX Warning: Citation `conv2dtranspose' on page 62 undefined on input line 160
+.
+
+
+Overfull \hbox (7.7992pt too wide) in paragraph at lines 165--166
+[]\TU/LinLibertine(0)/m/n/12 Το πρώτο όρισμα είναι ο αρι
+θμός των φίλτρων που θα παραχθούν, το δεύτε
+ρο
  []
 
 
-Overfull \hbox (18.6072pt too wide) in paragraph at lines 146--147
-[]\TU/LinLibertine(0)/m/n/12 Σε αντίθεση με τα υπόλοιπα 
-επίπεδα Dense που έχουν την γραμμική συνάρτη
-ση
+LaTeX Warning: Citation `upsampling2d' on page 62 undefined on input line 170.
+
+
+Overfull \hbox (32.76718pt too wide) in paragraph at lines 170--171
+[]\TU/LinLibertine(0)/m/n/12 Αυξάνει το μέγεθος των δεδ
+ομένων με το να επαναλαμβάνει
  []
 
-
-Overfull \hbox (6.74718pt too wide) in paragraph at lines 146--147
-\TU/LinLibertine(0)/m/n/12 ως συνάρτηση ενεργοποίησης, 
-το συγκεκριμένο επίπεδο έχει την υπερβολι
-κή
- []
-
-
-Overfull \hbox (6.99463pt too wide) in paragraph at lines 181--181
-[]\TU/LinLibertine(5)/m/n/12 Dense(np.prod(self.dungeon_shape), activation="tanh
-")[] 
- []
-
-<../images/graphs/Dense_generator.png, id=890, 1002.74625pt x 746.79pt>
+[62]
+<../images/graphs/Dense_generator.png, id=896, 1002.74625pt x 746.79pt>
 File: ../images/graphs/Dense_generator.png Graphic file (type png)
 <use ../images/graphs/Dense_generator.png>
 Package luatex.def Info: ../images/graphs/Dense_generator.png  used on input lin
-e 185.
+e 217.
 (luatex.def)             Requested size: 317.9892pt x 236.824pt.
-[62]
-Overfull \hbox (27.25922pt too wide) in paragraph at lines 192--193
+
+Overfull \hbox (27.25922pt too wide) in paragraph at lines 224--225
 \TU/LinLibertine(0)/m/n/12 και κάποιες δοκιμές με δύο ε
 πιπλέον επίπεδα Dropout αλλά στη συνέχεια αφα
 ιρέθηκαν.
  []
 
-
-Overfull \hbox (88.91455pt too wide) in paragraph at lines 201--201
+[63<../images/graphs/Dense_generator.png>]
+Overfull \hbox (88.91455pt too wide) in paragraph at lines 233--233
 []\TU/LinLibertine(5)/m/n/12 Dense(1, input_dim=self.dungeon_dimension, activati
 on="sigmoid")[] 
  []
 
-<../images/graphs/Dense_discriminator.png, id=895, 1002.74625pt x 746.79pt>
+<../images/graphs/Dense_discriminator.png, id=903, 1002.74625pt x 746.79pt>
 File: ../images/graphs/Dense_discriminator.png Graphic file (type png)
 <use ../images/graphs/Dense_discriminator.png>
 Package luatex.def Info: ../images/graphs/Dense_discriminator.png  used on input
- line 205.
+ line 237.
 (luatex.def)             Requested size: 317.9892pt x 236.824pt.
-[63<../images/graphs/Dense_generator.png>]
-Overfull \hbox (5.23924pt too wide) in paragraph at lines 211--212
+
+Overfull \hbox (5.23924pt too wide) in paragraph at lines 243--244
 \TU/LinLibertine(0)/m/n/12 δεν χρειάζεται να κρατήσουμ
 ε τις τιμές των εξόδων σε ένα συγκεκριμένο 
 διάστημα. 
  []
 
-
-Overfull \hbox (20.53043pt too wide) in paragraph at lines 217--218
+[64<../images/graphs/Dense_discriminator.png>]
+Overfull \hbox (20.53043pt too wide) in paragraph at lines 249--250
 []\TU/LinLibertine(0)/m/n/12 Το μοντέλο GAN που αναφέρετε 
 ως CNN είναι το μοντέλο GAN που αναπτύχθηκε
  []
 
-[64<../images/graphs/Dense_discriminator.png>]
-Overfull \hbox (8.1854pt too wide) in paragraph at lines 221--223
+
+Overfull \hbox (8.1854pt too wide) in paragraph at lines 253--255
 []\TU/LinLibertine(0)/m/n/12 εριγραφή επιπέδων Θα αναλύ
 σουμε περιληπτικά την χρήση του κάθε επιπέ
 δου
  []
 
 
-Overfull \hbox (1.4272pt too wide) in paragraph at lines 231--232
+Overfull \hbox (1.4272pt too wide) in paragraph at lines 263--264
 \TU/LinLibertine(0)/m/n/12 την απόδοση του νευρωνικού 
 και να αυξήσει την ταχύτητα της εκπαίδευση
 ς
  []
 
-
-Overfull \hbox (28.23918pt too wide) in paragraph at lines 251--252
+[65]
+Overfull \hbox (28.23918pt too wide) in paragraph at lines 283--284
 []\TU/LinLibertine(0)/m/n/12 To al-pha είναι μια παράμετρος 
 που μπορεί να οριστεί σε κάθε επίπεδο LeakyReLU.
  []
 
-[65]
-Overfull \hbox (6.04315pt too wide) in paragraph at lines 260--261
+
+Overfull \hbox (6.04315pt too wide) in paragraph at lines 292--293
 \TU/LinLibertine(0)/m/n/12 αλλά αλλάζει την διάταξη το
 υς ώστε να πάρουν άλλο σχήμα και διαστάσει
 ς.
  []
 
 
-Overfull \hbox (27.15916pt too wide) in paragraph at lines 267--268
+Overfull \hbox (27.15916pt too wide) in paragraph at lines 299--300
 \TU/LinLibertine(0)/m/n/12 εφαρμογή μιας συνάρτησης συ
 νέλιξης των δεδομένων με έναν πυρήνα συνέλ
 ιξης.
  []
 
-
-Overfull \hbox (35.24593pt too wide) in paragraph at lines 283--284
+[66]
+Overfull \hbox (35.24593pt too wide) in paragraph at lines 315--316
 \TU/LinLibertine(0)/m/n/12 επίπεδα, αλλά σε αυτό το μον
 τέλο υπάρχουν 7 διαφορετικά είδη επιπέδων. 
 Συγκεκριμένα
  []
 
-[66]
-<../images/graphs/CNN_generator.png, id=927, 1002.74625pt x 746.79pt>
+[67]
+<../images/graphs/CNN_generator.png, id=932, 1002.74625pt x 746.79pt>
 File: ../images/graphs/CNN_generator.png Graphic file (type png)
 <use ../images/graphs/CNN_generator.png>
 Package luatex.def Info: ../images/graphs/CNN_generator.png  used on input line 
-326.
+358.
 (luatex.def)             Requested size: 317.9892pt x 236.824pt.
- [67]
-Overfull \hbox (145.2345pt too wide) in paragraph at lines 347--347
+ [68<../images/graphs/CNN_generator.png>]
+Overfull \hbox (145.2345pt too wide) in paragraph at lines 379--379
 []\TU/LinLibertine(5)/m/n/12 Conv2D(32, 3, padding='same', strides=2, input_shap
 e=self.dungeon_shape)[] 
  []
 
-<../images/graphs/CNN_discriminator.png, id=932, 1002.74625pt x 746.79pt>
+<../images/graphs/CNN_discriminator.png, id=939, 1002.74625pt x 746.79pt>
 File: ../images/graphs/CNN_discriminator.png Graphic file (type png)
 <use ../images/graphs/CNN_discriminator.png>
 Package luatex.def Info: ../images/graphs/CNN_discriminator.png  used on input l
-ine 351.
+ine 383.
 (luatex.def)             Requested size: 317.9892pt x 236.824pt.
-[68<../images/graphs/CNN_generator.png>]
-<../images/graphs/Abstract_functionality.png, id=939, 963.6pt x 722.7pt>
+[69<../images/graphs/CNN_discriminator.png>]
+<../images/graphs/Abstract_functionality.png, id=946, 963.6pt x 722.7pt>
 File: ../images/graphs/Abstract_functionality.png Graphic file (type png)
 <use ../images/graphs/Abstract_functionality.png>
 Package luatex.def Info: ../images/graphs/Abstract_functionality.png  used on in
-put line 364.
+put line 396.
 (luatex.def)             Requested size: 317.9892pt x 238.49173pt.
- [69<../images/graphs/CNN_discriminator.png>]
-Overfull \hbox (27.74538pt too wide) in paragraph at lines 370--371
+
+Overfull \hbox (27.74538pt too wide) in paragraph at lines 402--403
 []\TU/LinLibertine(0)/m/n/12 Κατά την δημιουργία του μο
 ντέλου ορίζονται μεταβλητές που θα χρησιμ
 οποιηθούν
  []
 
 
-Overfull \hbox (10.90483pt too wide) in paragraph at lines 373--374
+Overfull \hbox (10.90483pt too wide) in paragraph at lines 405--406
 \TU/LinLibertine(0)/m/n/12 επαναληφθεί η εκπαίδευση. Η 
 προτεινόμενη τιμή του για αυτή την υλοποίη
 ση
  []
 
-
-Overfull \hbox (2.78723pt too wide) in paragraph at lines 375--376
+[70<../images/graphs/Abstract_functionality.png>]
+Overfull \hbox (2.78723pt too wide) in paragraph at lines 407--408
 []\TU/LinLibertine(0)/m/n/12 Θετικός ακέραιος αριθμός π
 ου ορίζει το διάστημα ανάμεσα στις εποχές
  []
 
 
-Overfull \hbox (40.4979pt too wide) in paragraph at lines 375--376
+Overfull \hbox (40.4979pt too wide) in paragraph at lines 407--408
 \TU/LinLibertine(0)/m/n/12 της εκπαίδευσης. Αυτή η μετα
 βλητή ορίστηκε για να μπορούμε να παρακολο
 υθούμε
  []
 
-[70<../images/graphs/Abstract_functionality.png>]
-Overfull \hbox (11.60985pt too wide) in paragraph at lines 376--377
+
+Overfull \hbox (11.60985pt too wide) in paragraph at lines 408--409
 \TU/LinLibertine(0)/m/n/12 διόρθωση βαρών ανά τις εποχ
 ές της εκπαίδευσης. Παρατηρήθηκαν καλύτερ
 α
  []
 
 
-Overfull \hbox (33.12093pt too wide) in paragraph at lines 376--377
+Overfull \hbox (33.12093pt too wide) in paragraph at lines 408--409
 \TU/LinLibertine(0)/m/n/12 αποτελέσματα όταν εκπαιδεύ
 αμε και το δίκτυο του Dis-crim-i-na-tor. Η προτεινό
 μενη
  []
 
 
-Overfull \hbox (39.37389pt too wide) in paragraph at lines 380--381
+Overfull \hbox (39.37389pt too wide) in paragraph at lines 412--413
 \TU/LinLibertine(0)/m/n/12 που περιέχουν ίδιο αριθμό δ
 ειγμάτων. Το κάθε δείγμα έχει την μορφή προ 
 επεξεργασμένου
  []
 
 
-Overfull \hbox (0.13736pt too wide) in paragraph at lines 382--383
+Overfull \hbox (0.13736pt too wide) in paragraph at lines 414--415
 []\TU/LinLibertine(0)/m/n/12 Τα στοιχεία των δύο πινάκω
 ν αντιστοιχίζονται ένα προς ένα καθώς ως σ
 τόχο
  []
 
 
-Overfull \hbox (17.07524pt too wide) in paragraph at lines 382--383
+Overfull \hbox (17.07524pt too wide) in paragraph at lines 414--415
 \TU/LinLibertine(0)/m/n/12 συγκρίνετε με το επιθυμητό 
 αποτέλεσμα, το επίπεδο από το dataset, και διορ
 θώνονται
  []
 
 
-Overfull \hbox (1.45343pt too wide) in paragraph at lines 385--386
+Overfull \hbox (1.45343pt too wide) in paragraph at lines 417--418
 []\TU/LinLibertine(0)/m/n/12 Για την λειτουργία του Gen-er-a-
 tor, εκτός του σταδίου της εκπαίδευσης, πρέπ
 ει
  []
 
 [71]
-Overfull \hbox (10.79782pt too wide) in paragraph at lines 390--391
+Overfull \hbox (10.79782pt too wide) in paragraph at lines 422--423
 \TU/LinLibertine(0)/m/n/12 διάνυσμα των πραγματικών τι
 μών. Ομοίως διορθώνει τα βάρη του στις περι
 πτώσεις
  []
 
 
-Overfull \hbox (40.09921pt too wide) in paragraph at lines 394--395
+Overfull \hbox (40.09921pt too wide) in paragraph at lines 426--427
 \TU/LinLibertine(0)/m/n/12 εκπαιδεύεται το μοντέλο του 
 Gen-er-a-tor με το υπάρχον dataset χωρίς την ανατροφ
 οδότηση
  []
 
 
-Overfull \hbox (3.4872pt too wide) in paragraph at lines 394--395
+Overfull \hbox (3.4872pt too wide) in paragraph at lines 426--427
 \TU/LinLibertine(0)/m/n/12 συγκεκριμένο ποσοστό ακρίβ
 ειας και σφάλματος χωρίς να βελτιώνετε παρ
 απάνω. 
  []
 
-<../images/result_images/cnn-gan/generator_1000.png, id=957, 435.12563pt x 432.8
+<../images/result_images/cnn-gan/generator_1000.png, id=958, 435.12563pt x 432.8
 6719pt>
 File: ../images/result_images/cnn-gan/generator_1000.png Graphic file (type png)
 
 <use ../images/result_images/cnn-gan/generator_1000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/generator_1000.png  use
-d on input line 405.
+d on input line 437.
 (luatex.def)             Requested size: 158.9946pt x 158.17023pt.
 LaTeX Font Info:    Font shape `TU/LinLibertine(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 406.
-<../images/result_images/cnn-gan/generator_3000.png, id=958, 428.35031pt x 428.3
+(Font)              scaled to size 10.95pt on input line 438.
+<../images/result_images/cnn-gan/generator_3000.png, id=959, 428.35031pt x 428.3
 5031pt>
 File: ../images/result_images/cnn-gan/generator_3000.png Graphic file (type png)
 
 <use ../images/result_images/cnn-gan/generator_3000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/generator_3000.png  use
-d on input line 411.
+d on input line 443.
 (luatex.def)             Requested size: 158.9946pt x 158.9904pt.
-<../images/result_images/cnn-gan/generator_7000.png, id=959, 430.60875pt x 429.8
+<../images/result_images/cnn-gan/generator_7000.png, id=960, 430.60875pt x 429.8
 5594pt>
 File: ../images/result_images/cnn-gan/generator_7000.png Graphic file (type png)
 
 <use ../images/result_images/cnn-gan/generator_7000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/generator_7000.png  use
-d on input line 417.
+d on input line 449.
 (luatex.def)             Requested size: 158.9946pt x 158.71625pt.
-<../images/result_images/cnn-gan/generator_10000.png, id=960, 432.11438pt x 426.
+<../images/result_images/cnn-gan/generator_10000.png, id=961, 432.11438pt x 426.
 84468pt>
 File: ../images/result_images/cnn-gan/generator_10000.png Graphic file (type png
 )
 <use ../images/result_images/cnn-gan/generator_10000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/generator_10000.png  us
-ed on input line 423.
+ed on input line 455.
 (luatex.def)             Requested size: 158.9946pt x 157.05078pt.
 
-Overfull \hbox (2.0pt too wide) in paragraph at lines 403--427
+Overfull \hbox (2.0pt too wide) in paragraph at lines 435--459
 []$ $[]$ 
  []
 
@@ -3981,91 +3995,91 @@ ages/cnn-gan/generator_3000.png><../images/result_images/cnn-gan/generator_7000.
 png><../images/result_images/cnn-gan/generator_10000.png>]
 
 Package caption Warning: \captionsetup{type*=...} or \captionof
-(caption)                outside box or environment on input line 447.
+(caption)                outside box or environment on input line 479.
 See the caption package documentation for explanation.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 447.
+(caption)                particular \caption on input line 479.
 See the caption package documentation for explanation.
 
-<../images/result_images/cnn-gan/combined_1000.png, id=974, 437.38406pt x 435.87
+<../images/result_images/cnn-gan/combined_1000.png, id=975, 437.38406pt x 435.87
 843pt>
 File: ../images/result_images/cnn-gan/combined_1000.png Graphic file (type png)
 <use ../images/result_images/cnn-gan/combined_1000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/combined_1000.png  used
- on input line 453.
+ on input line 485.
 (luatex.def)             Requested size: 158.9946pt x 158.44583pt.
-<../images/result_images/cnn-gan/combined_3000.png, id=975, 428.35031pt x 426.84
+<../images/result_images/cnn-gan/combined_3000.png, id=976, 428.35031pt x 426.84
 468pt>
 File: ../images/result_images/cnn-gan/combined_3000.png Graphic file (type png)
 <use ../images/result_images/cnn-gan/combined_3000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/combined_3000.png  used
- on input line 459.
+ on input line 491.
 (luatex.def)             Requested size: 158.9946pt x 158.43156pt.
-<../images/result_images/cnn-gan/combined_7000.png, id=976, 435.87843pt x 426.84
+<../images/result_images/cnn-gan/combined_7000.png, id=977, 435.87843pt x 426.84
 468pt>
 File: ../images/result_images/cnn-gan/combined_7000.png Graphic file (type png)
 <use ../images/result_images/cnn-gan/combined_7000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/combined_7000.png  used
- on input line 465.
+ on input line 497.
 (luatex.def)             Requested size: 158.9946pt x 155.69606pt.
-<../images/result_images/cnn-gan/combined_10000.png, id=977, 433.62pt x 429.8559
+<../images/result_images/cnn-gan/combined_10000.png, id=978, 433.62pt x 429.8559
 4pt>
 File: ../images/result_images/cnn-gan/combined_10000.png Graphic file (type png)
 
 <use ../images/result_images/cnn-gan/combined_10000.png>
 Package luatex.def Info: ../images/result_images/cnn-gan/combined_10000.png  use
-d on input line 471.
+d on input line 503.
 (luatex.def)             Requested size: 158.9946pt x 157.61432pt.
 
-Overfull \hbox (2.0pt too wide) in paragraph at lines 451--475
+Overfull \hbox (2.0pt too wide) in paragraph at lines 483--507
 []$ $[]$ 
  []
 
 [74]
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 495.
+(caption)                particular \caption on input line 527.
 See the caption package documentation for explanation.
 
 [75<../images/result_images/cnn-gan/combined_1000.png><../images/result_images/c
 nn-gan/combined_3000.png><../images/result_images/cnn-gan/combined_7000.png><../
 images/result_images/cnn-gan/combined_10000.png>]
-<../images/result_images/dense-gan/generator_1000.png, id=992, 428.35031pt x 426
+<../images/result_images/dense-gan/generator_1000.png, id=993, 428.35031pt x 426
 .84468pt>
 File: ../images/result_images/dense-gan/generator_1000.png Graphic file (type pn
 g)
 <use ../images/result_images/dense-gan/generator_1000.png>
 Package luatex.def Info: ../images/result_images/dense-gan/generator_1000.png  u
-sed on input line 503.
+sed on input line 535.
 (luatex.def)             Requested size: 158.9946pt x 158.43156pt.
-<../images/result_images/dense-gan/generator_3000.png, id=993, 428.35031pt x 432
+<../images/result_images/dense-gan/generator_3000.png, id=994, 428.35031pt x 432
 .11438pt>
 File: ../images/result_images/dense-gan/generator_3000.png Graphic file (type pn
 g)
 <use ../images/result_images/dense-gan/generator_3000.png>
 Package luatex.def Info: ../images/result_images/dense-gan/generator_3000.png  u
-sed on input line 509.
+sed on input line 541.
 (luatex.def)             Requested size: 158.9946pt x 160.38751pt.
-<../images/result_images/dense-gan/generator_7000.png, id=994, 428.35031pt x 426
+<../images/result_images/dense-gan/generator_7000.png, id=995, 428.35031pt x 426
 .09187pt>
 File: ../images/result_images/dense-gan/generator_7000.png Graphic file (type pn
 g)
 <use ../images/result_images/dense-gan/generator_7000.png>
 Package luatex.def Info: ../images/result_images/dense-gan/generator_7000.png  u
-sed on input line 515.
+sed on input line 547.
 (luatex.def)             Requested size: 158.9946pt x 158.15215pt.
-<../images/result_images/dense-gan/generator_10000.png, id=995, 430.60875pt x 42
+<../images/result_images/dense-gan/generator_10000.png, id=996, 430.60875pt x 42
 6.84468pt>
 File: ../images/result_images/dense-gan/generator_10000.png Graphic file (type p
 ng)
 <use ../images/result_images/dense-gan/generator_10000.png>
 Package luatex.def Info: ../images/result_images/dense-gan/generator_10000.png  
-used on input line 521.
+used on input line 553.
 (luatex.def)             Requested size: 158.9946pt x 157.6044pt.
 
-Overfull \hbox (2.0pt too wide) in paragraph at lines 501--525
+Overfull \hbox (2.0pt too wide) in paragraph at lines 533--557
 []$ $[]$ 
  []
 
@@ -4073,28 +4087,28 @@ File: ../images/result_images/dense-gan/generator_1000.png Graphic file (type pn
 g)
 <use ../images/result_images/dense-gan/generator_1000.png>
 Package luatex.def Info: ../images/result_images/dense-gan/generator_1000.png  u
-sed on input line 533.
+sed on input line 565.
 (luatex.def)             Requested size: 158.9946pt x 158.43156pt.
 File: ../images/result_images/dense-gan/generator_3000.png Graphic file (type pn
 g)
 <use ../images/result_images/dense-gan/generator_3000.png>
 Package luatex.def Info: ../images/result_images/dense-gan/generator_3000.png  u
-sed on input line 539.
+sed on input line 571.
 (luatex.def)             Requested size: 158.9946pt x 160.38751pt.
 File: ../images/result_images/dense-gan/generator_7000.png Graphic file (type pn
 g)
 <use ../images/result_images/dense-gan/generator_7000.png>
 Package luatex.def Info: ../images/result_images/dense-gan/generator_7000.png  u
-sed on input line 545.
+sed on input line 577.
 (luatex.def)             Requested size: 158.9946pt x 158.15215pt.
 File: ../images/result_images/dense-gan/generator_10000.png Graphic file (type p
 ng)
 <use ../images/result_images/dense-gan/generator_10000.png>
 Package luatex.def Info: ../images/result_images/dense-gan/generator_10000.png  
-used on input line 551.
+used on input line 583.
 (luatex.def)             Requested size: 158.9946pt x 157.6044pt.
 
-Overfull \hbox (2.0pt too wide) in paragraph at lines 531--555
+Overfull \hbox (2.0pt too wide) in paragraph at lines 563--587
 []$ $[]$ 
  []
 
@@ -4230,13 +4244,19 @@ as.io/api/lay-ers/nor-mal-iza-
  []
 
 
-Underfull \hbox (badness 4479) in paragraph at lines 129--131
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
+[]\TU/LinLibertine(0)/m/n/12 Keras Up-Sam-pling2D Layer. [][]https://keras.io/ap
+i/lay-ers/re-shap-ing_lay-
+ []
+
+
+Underfull \hbox (badness 4479) in paragraph at lines 139--141
 []\TU/LinLibertine(0)/m/n/12 How to De-velop a GAN. [][]https://ma-chine-learn-i
 ng-mas-tery.com/how-to-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 129--131
+Underfull \hbox (badness 10000) in paragraph at lines 139--141
 \TU/LinLibertine(0)/m/n/12 develop-a-generative-adversarial-network-for-an-mnist
 -handwritten-digits-
  []
@@ -4253,19 +4273,22 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: B5B6E8227C89DFFD3892F9C9C39C2FDD;19478.
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 103.
 )
 
 Here is how much of LuaTeX's memory you used:
- 26874 strings out of 480883
+ 26880 strings out of 480883
  100000,953878 words of node,token memory allocated
- 661 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 1 dir, 3 glue, 4 kern, 1 penalty, 1 glyph, 33 attri
-bute, 55 glue_spec, 18 attribute_list, 1 write, 10 pdf_action nodes
-   avail lists: 2:799,3:150,4:96,5:305,6:35,7:3543,8:34,9:259,10:14,11:193
- 43253 multiletter control sequences out of 65536+200000
+ 685 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 1 dir, 3 glue, 4 kern, 1 penalty, 1 glyph, 37 attri
+bute, 55 glue_spec, 20 attribute_list, 1 write, 12 pdf_action nodes
+   avail lists: 2:793,3:137,4:96,5:308,6:33,7:3543,8:34,9:259,10:14,11:193
+ 43256 multiletter control sequences out of 65536+200000
  86 fonts using 19411459 bytes
  62i,8n,106p,2067b,594s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/fonts/opentype/public/libertin
@@ -4278,9 +4301,9 @@ libertine/LinLibertine_R.otf><C:/Users/edour/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/edour/AppData/Local/Programs/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/edour/AppData/Loca
 l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on thesis.pdf (88 pages, 2093397 bytes).
+Output written on thesis.pdf (88 pages, 2096266 bytes).
 
-PDF statistics: 1137 PDF objects out of 1200 (max. 8388607)
- 254 named destinations out of 1000 (max. 131072)
+PDF statistics: 1147 PDF objects out of 1200 (max. 8388607)
+ 257 named destinations out of 1000 (max. 131072)
  697 words of extra memory for PDF output out of 10000 (max. 100000000)
 
