@@ -213,33 +213,37 @@ LeakyReLU(0.2)
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=.8\linewidth]{../images/graphs/Dense_generator.png}
-\caption{Απεικόνιση των επιπέδων του Dense Generator}
+\includegraphics[width=.8\linewidth]{../images/graphs/tb-model-graph.png}
 \label{fig:fig}
+\end{figure}
+
+\addtocounter{figure}{-1}
+\begin{figure} [H]
+\caption{Γραφική απεικόνιση των επιπέδων του Generator(αριστερά) και του Discriminator(δεξιά). Η εικόνα προέρχεται από το Tensorboard.}
 \end{figure}
 
 
 \subsection{Αρχιτεκτονική Discriminator}
-Το μοντέλο του Discriminator δικτύου, είναι πολύ πιο μικρό από το μοντέλο του Generator. Αποτελείται από μόλις 5 επίπεδα στην τελική του μορφή. Έγιναν και κάποιες δοκιμές με δύο επιπλέον επίπεδα Dropout αλλά στη συνέχεια αφαιρέθηκαν. Η είσοδος του δικτύου είναι ένα επίπεδο διανυσματικής μορφής με τις διαστάσεις και τις τιμές όπως τις έχουμε αναλύσει και έχει ως έξοδο μία τιμή στο διακριτό διάστημα [0, 1].
-\par
+Το μοντέλο του Discriminator δικτύου, είναι πολύ πιο μικρό από το μοντέλο του Generator. Αποτελείται από μόλις 11 επίπεδα. Η είσοδος του δικτύου είναι ένα επίπεδο διανυσματικής μορφής με τις διαστάσεις και τις τιμές ενός επιπέδου και έχει ως έξοδο μία τιμή στο διακριτό διάστημα [0, 1].
+\newline
 Τα επίπεδα του Discriminator όπως ορίζονται στην υλοποίηση:
 \begin{verbatim}
-Dense(units=512, input_dim=self.dungeon_dimension)
-LeakyReLU(alpha=0.2)
-Dense(units=256)
-LeakyReLU(alpha=0.2)
-Dense(1, input_dim=self.dungeon_dimension, activation="sigmoid")
+Conv2D(32, 3, padding='same', strides=2,input_shape=self.dungeon_shape)
+LeakyReLU(0.2)
+Dropout(0.3)
+
+Conv2D(32, 3, padding='same', strides=1)
+LeakyReLU(0.2)
+Dropout(0.3)
+
+Conv2D(32, 3, padding='same', strides=1)
+LeakyReLU(0.2)
+Dropout(0.3)
+
+Flatten()
+Dense(1, activation='sigmoid')
 \end{verbatim}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=.8\linewidth]{../images/graphs/Dense_discriminator.png}
-\caption{Απεικόνιση των επιπέδων του Dense Discriminator}
-\label{fig:fig}
-\end{figure}
-
-\par
-Μπορούμε να διακρίνουμε μια παρόμοια αρχιτεκτονική με τον Generator, έχουμε αρχικά ένα Dense επίπεδο και στη συνέχεια ένα επίπεδο LeakyReLU. Στον Discriminator παρόλαυτα δεν υπάρχει το επίπεδο του BatchNormalization καθώς δεν χρειάζεται να κρατήσουμε τις τιμές των εξόδων σε ένα συγκεκριμένο διάστημα.
 \par
 To επίπεδο της εξόδου παράγει μία τιμή με συνάρτηση ενεργοποίησης την σιγμοειδή (\textit{sigmoid}) συνάρτηση, ώστε να έχουμε το αποτέλεσμα μεταξύ 0 και 1. Όπου το 0 και τιμές κοντά στο 0 δηλώνουν ότι το επίπεδο αποτελεί δημιούργημα του Generator και όχι κάποιο από τα δείγματα εκπαίδευσης και το 1 δηλώνει ότι το επίπεδο είναι από τα δείγματα εκπαίδευσης ή μοιάζει τόσο πολύ που δεν μπορεί να το ξεχωρίσει από τα "πραγματικά".
 
@@ -247,8 +251,6 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 \section{Εκπαίδευση GAN}
 Για την εκπαίδευση των δύο GAN χρησιμοποιήθηκε το ίδιο dataset όπως αυτό δημιουργήθηκε από την υλοποίηση του PCG. Το dataset αποτελείται από 114 αρχεία όπου το κάθε αρχείο αντιστοιχεί σε ένα επίπεδο. Πριν ξεκινήσει η διαδικασία την εκπαίδευσης, φορτώνονται όλα τα επίπεδα στην μνήμη και περνάνε από το στάδιο της προ επεξεργασίας για να έρθουν σε μορφή που να μπορούν να επεξεργαστούν τα δύο μοντέλα GAN.
 \par
-Η διαδικασία της εκπαίδευσης είναι κοινή και για τα δύο μοντέλα.
-
 
 \begin{figure}[H]
 \centering
@@ -287,7 +289,7 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 Στο δεύτερο στάδιο, εκπαιδεύουμε και τα δύο μοντέλα, τον Generator και τον Discriminator μαζί σε συνεργασία και όπως φαίνεται από τον πίνακα 4.2 πετυχαίνουμε πολύ καλύτερα επίπεδα ακρίβειας και χαμηλότερο σφάλμα, όπως επιβεβαιώνουν και οι εικόνες από τα επίπεδα που παράχθηκαν από το δεύτερο στάδιο της εκπαίδευσης.
 
 
-\section{Αποτελέσματα μοντέλου CNN}
+\section{Αποτελέσματα}
 
 \subsection{Αποτελέσματα του Generator του CNN δικτύου}
 \begin{figure}[H]
@@ -385,67 +387,3 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 \end{center}
 \captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Generator και του Discriminator} \label{tab:title}
 
-\section{Αποτελέσματα μοντέλου Dense}
-
-\subsection{Αποτελέσματα του Generator του Dense δικτύου}
-\begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_1000.png}
-  \caption{Επίπεδο μετά από 1000 εποχές}
-  \label{fig:sfig1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_3000.png}
-  \caption{Επίπεδο μετά από 3000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_7000.png}
-  \caption{Επίπεδο μετά από 7000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_10000.png}
-  \caption{Επίπεδο μετά από 10000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator.}
-\label{fig:fig}
-\end{figure}
-
-\subsection{Αποτελέσματα του Generator και του Discriminator του Dense δικτύου}
-\begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_1000.png}
-  \caption{Επίπεδο μετά από 1000 εποχές}
-  \label{fig:sfig1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_3000.png}
-  \caption{Επίπεδο μετά από 3000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_7000.png}
-  \caption{Επίπεδο μετά από 7000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/dense-gan/generator_10000.png}
-  \caption{Επίπεδο μετά από 10000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator με το μοντέλο του Discriminator.}
-\label{fig:fig}
-\end{figure}
-
-\par
-Κατά την εκπαίδευση του Dense μοντέλου, όλες οι μετρήσεις που παράχθηκαν από το σύστημα ήταν λάθος το οποίο το αποδίδουμε σε λάθος επιλογή μετρικών (mean square error, accuracy) για το είδος της εφαρμογής και της αρχιτεκτονικής αυτού του δικτύου. Τα αποτελέσματα που παράχθηκαν από το δίκτυο με οπτική αξιολόγηση φαίνεται να βελτιώνονται ως ένα βαθμό αλλά να "κολλάνε" σε ένα συγκεκριμένο μοτίβο.
