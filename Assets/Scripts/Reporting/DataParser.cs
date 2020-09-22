@@ -20,7 +20,7 @@ namespace Assets.Scripts.Reporting
         private const string NullTile = "-1";
         private int CurrentFileIndex = -1;
 
-        private string[] files;
+        private List<DungeonFile> dungeonFiles;
 
         public DataParser()
         {
@@ -116,9 +116,25 @@ namespace Assets.Scripts.Reporting
             if (Directory.Exists(inputPath))
             {
                 // Get all csv files in that folder
-                files = Directory.GetFiles(inputPath, "*.csv");
+                var files = Directory.GetFiles(inputPath, "*.csv");
+                var dungeonFilesTemp = new List<DungeonFile>();
+                foreach(var file in files)
+                {
+                    dungeonFilesTemp.Add(new DungeonFile()
+                    {
+                        Name = file,
+                        CreatedAt = File.GetCreationTime(file)
+                    }) ;
+                }
+                dungeonFiles = dungeonFilesTemp.OrderBy(x => x.CreatedAt).ToList();
             }
 
+        }
+
+        public class DungeonFile
+        {
+            public string Name { get; set; }
+            public DateTime CreatedAt { get; set; }
         }
 
         public List<string> GetAllFoldersInBasePath()
@@ -155,18 +171,18 @@ namespace Assets.Scripts.Reporting
 
         public List<TileObject> LoadNextFile()
         {
-            if (files.Length == 0)
+            if (dungeonFiles.Count == 0)
             {
                 return new List<TileObject>();
             }
 
             CurrentFileIndex++;
-            if (CurrentFileIndex >= files.Length)
+            if (CurrentFileIndex >= dungeonFiles.Count)
             {
                 CurrentFileIndex = 0;
             }
             // Get current file from list
-            string file = files[CurrentFileIndex];
+            string file = dungeonFiles.ToArray()[CurrentFileIndex].Name;
 
             return LoadTilesFromFile(file);
         }
@@ -176,11 +192,11 @@ namespace Assets.Scripts.Reporting
             CurrentFileIndex--;
             if (CurrentFileIndex < 0)
             {
-                CurrentFileIndex = files.Length - 1;
+                CurrentFileIndex = dungeonFiles.Count - 1;
             }
 
             // Get current file from list
-            string file = files[CurrentFileIndex];
+            string file = dungeonFiles.ToArray()[CurrentFileIndex].Name;
 
             return LoadTilesFromFile(file);
         }

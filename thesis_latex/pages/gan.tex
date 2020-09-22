@@ -249,7 +249,7 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 
 
 \section{Εκπαίδευση GAN}
-Για την εκπαίδευση των δύο GAN χρησιμοποιήθηκε το ίδιο dataset όπως αυτό δημιουργήθηκε από την υλοποίηση του PCG. Το dataset αποτελείται από 114 αρχεία όπου το κάθε αρχείο αντιστοιχεί σε ένα επίπεδο. Πριν ξεκινήσει η διαδικασία την εκπαίδευσης, φορτώνονται όλα τα επίπεδα στην μνήμη και περνάνε από το στάδιο της προ επεξεργασίας για να έρθουν σε μορφή που να μπορούν να επεξεργαστούν τα δύο μοντέλα GAN.
+Το dataset που χρησιμοποιήθηκε κατά την εκπαίδευση αποτελείται από 1000 αρχεία όπου το κάθε αρχείο αντιστοιχεί σε ένα επίπεδο. Πριν ξεκινήσει η διαδικασία την εκπαίδευσης, φορτώνονται όλα τα επίπεδα στην μνήμη και περνάνε από το στάδιο της προ επεξεργασίας για να έρθουν σε μορφή που να μπορούν να επεξεργαστούν το GAN.
 \par
 
 \begin{figure}[H]
@@ -262,17 +262,15 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 \subsection{Μεταβλητές εκπαίδευσης}
 Κατά την δημιουργία του μοντέλου ορίζονται μεταβλητές που θα χρησιμοποιηθούν στο στάδιο της εκπαίδευσης. Όλες οι μεταβλητές έχουν προ ρυθμισμένες τιμές οι οποίες βγήκαν μέσα από δοκιμές. Μερικές από τις πιο σημαντικές είναι:
 
+
 \begin{description}
-\item[$\bullet$ epochs] Θετικός ακέραιος αριθμός που ορίζει τον αριθμό των εποχών που θα επαναληφθεί η εκπαίδευση. Η προτεινόμενη τιμή του για αυτή την υλοποίηση είναι 10000.
-\item[$\bullet$ batch\_size] Θετικός ακέραιος αριθμός που ορίζει τον αριθμό των δειγμάτων που θα δίνονται σε κάθε εποχή για εκπαίδευση. Εάν το batch\_size είναι μικρότερο του μεγέθους του dataset, τα δείγματα που θα συμμετέχουν στην εκπαίδευση επιλέγονται τυχαία με δειγματοληψία σε κάθε εποχή και χωρίς επανατοποθέτηση. Στην περίπτωση που το batch\_size είναι μεγαλύτερο του μεγέθους του dataset, ορίζετε ως batch\_size το μέγεθος του dataset. Η προτεινόμενη τιμή του για αυτή την υλοποίηση είναι 64.
-\item[$\bullet$ sample] Θετικός ακέραιος αριθμός που ορίζει το διάστημα ανάμεσα στις εποχές που λαμβάνουμε ένα δείγμα επιπέδου από το μοντέλο σε εκείνο το στάδιο της εκπαίδευσης. Αυτή η μεταβλητή ορίστηκε για να μπορούμε να παρακολουθούμε την πρόοδο του δικτύου όσο εκπαιδεύεται. Η προτεινόμενη τιμή του για αυτή την υλοποίηση είναι 1000.
-\item[$\bullet$ train\_discriminator] Μία δυαδική μεταβλητή που ορίζει εάν θα πρέπει να εκπαιδεύσουμε και το δίκτυο του Discriminator. Σε περίπτωση που οριστεί να μην εκπαιδευτεί, το δίκτυο του Discriminator δεν θα πραγματοποιεί διόρθωση βαρών ανά τις εποχές της εκπαίδευσης. Παρατηρήθηκαν καλύτερα αποτελέσματα όταν εκπαιδεύαμε και το δίκτυο του Discriminator. Η προτεινόμενη τιμή του για αυτή την υλοποίηση είναι \textit{True}.
+\item[$\bullet$ epochs] Θετικός ακέραιος αριθμός που ορίζει τον αριθμό των εποχών που θα επαναληφθεί η εκπαίδευση. Η προτεινόμενη τιμή του για αυτή την υλοποίηση είναι 2000.
+\item[$\bullet$ batch\_size] Θετικός ακέραιος αριθμός που ορίζει τον αριθμό των δειγμάτων που θα δίνονται σε κάθε εποχή για εκπαίδευση. Εάν το batch\_size είναι μικρότερο του μεγέθους του dataset, τα δείγματα που θα συμμετέχουν στην εκπαίδευση επιλέγονται τυχαία με δειγματοληψία σε κάθε εποχή και χωρίς επανατοποθέτηση. Στην περίπτωση που το batch\_size είναι μεγαλύτερο του μεγέθους του dataset, ορίζετε ως batch\_size το μέγεθος του dataset. Η προτεινόμενη τιμή του για αυτή την υλοποίηση είναι 700.
+\item[$\bullet$ sample] Θετικός ακέραιος αριθμός που ορίζει το διάστημα ανάμεσα στις εποχές που λαμβάνουμε ένα δείγμα επιπέδου από το μοντέλο σε εκείνο το στάδιο της εκπαίδευσης. Αυτή η μεταβλητή ορίστηκε για να μπορούμε να παρακολουθούμε την πρόοδο του δικτύου όσο εκπαιδεύεται. Η προτεινόμενη τιμή του για αυτή την υλοποίηση είναι 50.
 \end{description}
 
 \subsection{Είσοδος εκπαίδευσης Generator}
-Για την εκπαίδευση του Generator δίνουμε ως είσοδο στο δίκτυο, δύο πίνακες που περιέχουν ίδιο αριθμό δειγμάτων. Το κάθε δείγμα έχει την μορφή προ επεξεργασμένου επιπέδου. Ο αριθμός των δειγμάτων ορίζετε από το batch\_size. O ένας πίνακας περιέχει δείγματα από το dataset ενώ ο άλλος πίνακας περιέχει \textit{θόρυβο}, δηλαδή τυχαία δημιουργημένα δείγματα που έχουν τιμές στο διάστημα που ορίσαμε για τα δείγματα των επιπέδων. 
-\par
-Τα στοιχεία των δύο πινάκων αντιστοιχίζονται ένα προς ένα καθώς ως στόχο το δίκτυο έχει να μετατρέψει τα δείγματα του θορύβου στα αντίστοιχα δείγματα του dataset μέσα από τις μετατροπές που θα εφαρμόσει. Το τελικό αποτέλεσμα συγκρίνετε με το επιθυμητό αποτέλεσμα, το επίπεδο από το dataset, και διορθώνονται τα βάρη των επιπέδων αντίστοιχα.
+Το μοντέλο του Generator δέχεται ως είσοδο ένα διάνυσμα 100 στοιχείων θορύβου. Από αυτόν τον θόρυβο θα παράξει ένα επίπεδο (100, 100) στοιχείων. O Generator εκπαιδεύεται πάντα μαζί με τον Discriminator κατά την εκπαίδευση ολόκληρου του μοντέλου GAN.
 
 \subsection{Λειτουργία Generator}
 Για την λειτουργία του Generator, εκτός του σταδίου της εκπαίδευσης, πρέπει να του δώσουμε ως είσοδο ένα δείγμα θορύβου για να δημιουργήσει ένα δείγμα επιπέδου.
@@ -282,90 +280,307 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 \par
 Για να εκπαιδευτεί ο Discriminator παίρνει ως είσοδο τα επίπεδα και ελέγχει την έξοδο του εάν ταιριάζει με την αντίστοιχη τιμή για αυτό το επίπεδο με το διάνυσμα των πραγματικών τιμών. Ομοίως διορθώνει τα βάρη του στις περιπτώσεις λάθους εάν έχουμε ενεργοποιήσει την μεταβλητή train\_discriminator.
 
-\section{Εκπαίδευση μοντέλου}
+\section{Εκπαίδευση μοντέλου GAN}
 \par
-Η εκπαίδευση του GAN μοντέλου, γίνεται σε δύο στάδια. Στο πρώτο στάδιο εκπαιδεύεται το μοντέλο του Generator με το υπάρχον dataset χωρίς την ανατροφοδότηση από το μοντέλο του Discriminator. Όπως φαίνεται και από τον πίνακα 4.1, το μοντέλο του Generator με τις ορισμένες παραμέτρους μπορεί να φτάσει μέχρι ένα συγκεκριμένο ποσοστό ακρίβειας και σφάλματος χωρίς να βελτιώνετε παραπάνω.
+Η εκπαίδευση του GAN μοντέλου, γίνεται σε δύο στάδια. Στο πρώτο στάδιο εκπαιδεύεται το μοντέλο του Discriminator με το υπάρχον dataset και με επίπεδα που παράγει ο Generator όπως είναι σε εκείνο το στάδιο. Στο πρώτο στάδιο έχουμε επισημάνει τα επίπεδα ανάλογα με το εάν ανήκουν στο dataset ή είναι δημιουργημένα από τον Generator ώστε ο Discriminator να μπορέσει να διορθώσει τα βάρη του αντίστοιχα.
 \par
-Στο δεύτερο στάδιο, εκπαιδεύουμε και τα δύο μοντέλα, τον Generator και τον Discriminator μαζί σε συνεργασία και όπως φαίνεται από τον πίνακα 4.2 πετυχαίνουμε πολύ καλύτερα επίπεδα ακρίβειας και χαμηλότερο σφάλμα, όπως επιβεβαιώνουν και οι εικόνες από τα επίπεδα που παράχθηκαν από το δεύτερο στάδιο της εκπαίδευσης.
+Στο δεύτερο στάδιο, εκπαιδεύουμε το μοντέλο του GAN το οποίο περιέχει τον Generator και τον Discriminator μαζί αλλά τα επίπεδα του Discriminator δεν ανανεώνουν τα βάρη τους σε κάθε εποχή, αντίθετα γυρνάνε το λάθος κατευθείαν στον Generator ώστε να ενημερώσει μόνο αυτός τα βάρη του και να εκπαιδευτεί. Στο δεύτερο στάδιο προσομοιώνουμε έναν τέλειο Discriminator ο οποίος αναγνωρίζει όλα τα επίπεδα που έχουν δημιουργηθεί από τον Generator και κατά συνέπεια γίνετε συνέχεια διόρθωση βαρών για τον Generator.
+\par
+Το κάθε στάδιο επαναλαμβάνετε για ένα συγκεκριμένο αριθμό από εποχές κάθε φορά και στην συνέχεια το επόμενο στάδιο ξεκινάει και εκτελείται για τον ίδιο αριθμό από εποχές. Μόλις εκτελεστούν και τα δύο στάδια για τον συνολικό αριθμό εποχών που έχουμε ορίσει, η εκπαίδευση σταματάει.
+\par
+Παρατηρούμε ότι το μοντέλο του Generator δεν εκπαιδεύεται απευθείας και δεν λαμβάνει ποτέ ως ανατροφοδότηση κάποιο πραγματικό επίπεδο, αντίθετα όλη η πληροφορία που λαμβάνει προέρχεται από τον Discriminator και μέσω των μοτίβων που έχει μάθει να αναγνωρίζει περνάει η πληροφορία του επιπέδου και στον Generator.
 
 
 \section{Αποτελέσματα}
-
-\subsection{Αποτελέσματα του Generator του CNN δικτύου}
-\begin{figure}[H]
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/generator_1000.png}
-  \caption{Επίπεδο μετά από 1000 εποχές}
-  \label{fig:sfig1}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/generator_3000.png}
-  \caption{Επίπεδο μετά από 3000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/generator_7000.png}
-  \caption{Επίπεδο μετά από 7000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/generator_10000.png}
-  \caption{Επίπεδο μετά από 10000 εποχές}
-  \label{fig:sfig2}
-\end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator χωρίς σύνδεση με το μοντέλο του Discriminator, χωρίς προσθήκη θορύβου στα δεδομένα εισόδου.}
-\label{fig:fig}
-\end{figure}
-
-\begin{center}
-\begin{tabular}{|l|l|l|}
-\hline
-\textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
-1000		   & 1.112154        & 0.35\%            \\ \hline
-2000		   & 0.814016        & 0.40\%            \\ \hline
-3000		   & 0.572094        & 0.48\%            \\ \hline
-4000		   & 0.439945        & 0.56\%            \\ \hline
-5000		   & 0.378878        & 0.62\%            \\ \hline
-6000		   & 0.329374        & 0.67\%            \\ \hline
-7000		   & 0.320769        & 0.67\%            \\ \hline
-8000		   & 0.306775        & 0.67\%            \\ \hline
-9000		   & 0.311993        & 0.67\%            \\ \hline
-10000		   & 0.316760        & 0.67\%            \\ \hline
-\end{tabular}
-\end{center}
-\captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Generator} \label{tab:title}
 
 \subsection{Αποτελέσματα του Generator και του Discriminator του CNN δικτύου}
 \begin{figure}[H]
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/combined_1000.png}
-  \caption{Επίπεδο μετά από 1000 εποχές}
+  \includegraphics[width=.8\linewidth]{../images/generated/50.png}
+  \caption{Επίπεδο μετά από 50 εποχές}
   \label{fig:sfig1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/combined_3000.png}
-  \caption{Επίπεδο μετά από 3000 εποχές}
+  \includegraphics[width=.8\linewidth]{../images/generated/100.png}
+  \caption{Επίπεδο μετά από 100 εποχές}
   \label{fig:sfig2}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/combined_7000.png}
-  \caption{Επίπεδο μετά από 7000 εποχές}
+  \includegraphics[width=.8\linewidth]{../images/generated/150.png}
+  \caption{Επίπεδο μετά από 150 εποχές}
   \label{fig:sfig2}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{../images/result_images/cnn-gan/combined_10000.png}
-  \caption{Επίπεδο μετά από 10000 εποχές}
+  \includegraphics[width=.8\linewidth]{../images/generated/200.png}
+  \caption{Επίπεδο μετά από 200 εποχές}
   \label{fig:sfig2}
 \end{subfigure}
-\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση το μοντέλο του Generator με το μοντέλο του Discriminator}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 0 - 200 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/250.png}
+  \caption{Επίπεδο μετά από 250 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/300.png}
+  \caption{Επίπεδο μετά από 300 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/350.png}
+  \caption{Επίπεδο μετά από 350 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/400.png}
+  \caption{Επίπεδο μετά από 400 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 200 - 400 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/450.png}
+  \caption{Επίπεδο μετά από 450 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/500.png}
+  \caption{Επίπεδο μετά από 500 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/550.png}
+  \caption{Επίπεδο μετά από 550 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/600.png}
+  \caption{Επίπεδο μετά από 600 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 400 - 600 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/650.png}
+  \caption{Επίπεδο μετά από 650 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/700.png}
+  \caption{Επίπεδο μετά από 700 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/750.png}
+  \caption{Επίπεδο μετά από 750 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/800.png}
+  \caption{Επίπεδο μετά από 800 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 600 - 800 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/850.png}
+  \caption{Επίπεδο μετά από 850 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/900.png}
+  \caption{Επίπεδο μετά από 900 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/950.png}
+  \caption{Επίπεδο μετά από 950 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1000.png}
+  \caption{Επίπεδο μετά από 1000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 800 - 1000 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1050.png}
+  \caption{Επίπεδο μετά από 1050 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1100.png}
+  \caption{Επίπεδο μετά από 1100 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1150.png}
+  \caption{Επίπεδο μετά από 1150 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1200.png}
+  \caption{Επίπεδο μετά από 1200 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 1000 - 1200 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1250.png}
+  \caption{Επίπεδο μετά από 1250 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1300.png}
+  \caption{Επίπεδο μετά από 1300 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1350.png}
+  \caption{Επίπεδο μετά από 1350 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1400.png}
+  \caption{Επίπεδο μετά από 1400 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 1200 - 1400 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1450.png}
+  \caption{Επίπεδο μετά από 1450 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1500.png}
+  \caption{Επίπεδο μετά από 1500 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1550.png}
+  \caption{Επίπεδο μετά από 1550 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1600.png}
+  \caption{Επίπεδο μετά από 1600 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 1400 - 1600 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1650.png}
+  \caption{Επίπεδο μετά από 1650 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1700.png}
+  \caption{Επίπεδο μετά από 1700 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1750.png}
+  \caption{Επίπεδο μετά από 1750 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1800.png}
+  \caption{Επίπεδο μετά από 1800 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 1600 - 1800 το μοντέλο του GAN}
+\label{fig:fig}
+\end{figure}
+
+\begin{figure}[H]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1850.png}
+  \caption{Επίπεδο μετά από 1850 εποχές}
+  \label{fig:sfig1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1900.png}
+  \caption{Επίπεδο μετά από 1900 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/1950.png}
+  \caption{Επίπεδο μετά από 1950 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{../images/generated/2000.png}
+  \caption{Επίπεδο μετά από 2000 εποχές}
+  \label{fig:sfig2}
+\end{subfigure}
+\caption{Επίπεδα που δημιούργησε κατά την εκπαίδευση των εποχών 1800 - 2000 το μοντέλο του GAN}
 \label{fig:fig}
 \end{figure}
 
@@ -373,16 +588,32 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
-1000		   & 0.239428        & 0.67\%            \\ \hline
-2000		   & 0.225229        & 0.73\%            \\ \hline
-3000		   & 0.179896        & 0.89\%            \\ \hline
-4000		   & 0.190461        & 0.84\%            \\ \hline
-5000		   & 0.181195        & 0.91\%            \\ \hline
-6000		   & 0.181408        & 0.92\%            \\ \hline
-7000		   & 0.181004        & 0.91\%            \\ \hline
-8000		   & 0.191332        & 0.86\%            \\ \hline
-9000		   & 0.185095        & 0.89\%            \\ \hline
-10000		   & 0.190194        & 0.84\%            \\ \hline
+50		   	   & 0.018495		 & 0.99\%            \\ \hline
+250		       & 0.023892        & 0.98\%            \\ \hline
+500  		   & 0.012442        & 0.99\%            \\ \hline
+750	     	   & 0.002420        & 0.99\%            \\ \hline
+1000		   & 0.026383        & 0.98\%            \\ \hline
+1250		   & 0.012024        & 0.99\%            \\ \hline
+1500		   & 0.098894        & 0.91\%            \\ \hline
+1750		   & 0.011793        & 0.99\%            \\ \hline
+2000		   & 0.009822        & 0.99\%            \\ \hline
+\end{tabular}
+\end{center}
+\captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Discriminator} \label{tab:title}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
+50		   	   & 0.018495		 & 0.99\%            \\ \hline
+250		       & 2.526635        & 0.22\%            \\ \hline
+500  		   & 2.647155        & 0.09\%            \\ \hline
+750	     	   & 6.504004        & 0.00\%            \\ \hline
+1000		   & 4.416707        & 0.00\%            \\ \hline
+1250		   & 5.382795        & 0.00\%            \\ \hline
+1500		   & 1.574384        & 0.81\%            \\ \hline
+1750		   & 6.989993        & 0.00\%            \\ \hline
+2000		   & 9.392647        & 0.02\%            \\ \hline
 \end{tabular}
 \end{center}
 \captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Generator και του Discriminator} \label{tab:title}
