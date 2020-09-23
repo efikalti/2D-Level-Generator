@@ -588,15 +588,14 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
-50		   	   & 0.018495		 & 0.99\%            \\ \hline
-250		       & 0.023892        & 0.98\%            \\ \hline
-500  		   & 0.012442        & 0.99\%            \\ \hline
-750	     	   & 0.002420        & 0.99\%            \\ \hline
-1000		   & 0.026383        & 0.98\%            \\ \hline
-1250		   & 0.012024        & 0.99\%            \\ \hline
-1500		   & 0.098894        & 0.91\%            \\ \hline
-1750		   & 0.011793        & 0.99\%            \\ \hline
-2000		   & 0.009822        & 0.99\%            \\ \hline
+100		   	   & 0.059248		 & 0.96\%            \\ \hline
+300		       & 0.049172        & 0.98\%            \\ \hline
+600  		   & 0.020697        & 0.99\%            \\ \hline
+900	     	   & 0.009870        & 0.99\%            \\ \hline
+1200		   & 0.008700        & 0.99\%            \\ \hline
+1500		   & 0.017693        & 0.99\%            \\ \hline
+1800		   & 0.012152        & 0.99\%            \\ \hline
+2000		   & 0.025456        & 0.99\%            \\ \hline
 \end{tabular}
 \end{center}
 \captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Discriminator} \label{tab:title}
@@ -605,16 +604,27 @@ To επίπεδο της εξόδου παράγει μία τιμή με συν
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Εποχή} & \textbf{Σφάλμα} & \textbf{Ακρίβεια} \\ \hline
-50		   	   & 0.018495		 & 0.99\%            \\ \hline
-250		       & 2.526635        & 0.22\%            \\ \hline
-500  		   & 2.647155        & 0.09\%            \\ \hline
-750	     	   & 6.504004        & 0.00\%            \\ \hline
-1000		   & 4.416707        & 0.00\%            \\ \hline
-1250		   & 5.382795        & 0.00\%            \\ \hline
-1500		   & 1.574384        & 0.81\%            \\ \hline
-1750		   & 6.989993        & 0.00\%            \\ \hline
-2000		   & 9.392647        & 0.02\%            \\ \hline
+100		   	   & 0.065701		 & 0.99\%            \\ \hline
+300		       & 0.235866        & 0.95\%            \\ \hline
+600  		   & 0.777855        & 0.78\%            \\ \hline
+900	     	   & 1.944742        & 0.45\%            \\ \hline
+1200		   & 2.886082        & 0.04\%            \\ \hline
+1500		   & 0.863385        & 0.76\%            \\ \hline
+1800		   & 1.442145        & 0.51\%            \\ \hline
+2000		   & 0.712821        & 0.85\%            \\ \hline
 \end{tabular}
 \end{center}
-\captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του Generator και του Discriminator} \label{tab:title}
+\captionof{table}{Μετρήσεις σφάλματος και ακρίβειας για το μοντέλο του GAN} \label{tab:title}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{../images/graphs/epoch_accuracy.png}
+  \caption{Γράφημα της ακρίβειας του μοντέλου GAN κατά την εκπαίδευση}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics{../images/graphs/epoch_loss.png}
+  \caption{Γράφημα του σφάλματος του μοντέλου GAN κατά την εκπαίδευση}
+\end{figure}
 

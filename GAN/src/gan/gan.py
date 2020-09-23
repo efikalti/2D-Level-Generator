@@ -18,9 +18,12 @@ class GAN():
     def __init__(self, gan_type, 
                  epochs=10000, batch_size=64, sample_interval=1000,
                  output_folder=None, create_models=True,
-                 output_images=True, one_hot_enabled=True):
+                 output_images=True, one_hot_enabled=True,
+                 discriminator_intervals=100):
         # Define data variables
         self.one_hot_enabled = one_hot_enabled
+
+        self.discriminator_intervals = discriminator_intervals
 
         # Define training parameters
         self.epochs = epochs
@@ -97,13 +100,9 @@ class GAN():
         while(completed_epochs < self.epochs):
 
             noise = self.get_noise(self.batch_size)
-            
-            if self.shoud_train_dicriminator(completed_epochs) is True:
-                self.train_discriminator(data, 500, noise)
 
             # Train discriminator separetely
-            #self.train_discriminator(data, self.sample_interval, noise)
-            self.train_discriminator(data, 100, noise)
+            self.train_discriminator(data, self.discriminator_intervals, noise)
 
             c_loss = self.combined.fit(noise, valid,
                 epochs=completed_epochs + self.sample_interval,
@@ -115,7 +114,7 @@ class GAN():
             completed_epochs += self.sample_interval
             
             self.add_train_info("\nCombined training.")
-            self.print_epoch_result(completed_epochs, c_loss, self.combined.metrics_names)
+            self.print_epoch_result(completed_epochs, c_loss, self.combined.metrics_names, )
             self.sample_epoch(completed_epochs, file_prefix="combined_")
 
     def train_generator(self, data):
@@ -157,7 +156,7 @@ class GAN():
         X, y = np.vstack((sample, dungeon)), np.vstack((valid, fake))
         
         d_loss = self.discriminator.fit(X, y, epochs=epochs, verbose=1, batch_size=self.batch_size)
-        self.print_epoch_result(epochs, d_loss, self.discriminator.metrics_names)
+        self.print_epoch_result(epochs, d_loss, self.discriminator.metrics_names, epochs)
     
     def get_noise(self, number_of_samples):
         # generate points in the latent space
@@ -172,19 +171,6 @@ class GAN():
         layer_info = str("Class_name: " + str(layer.__class__.__name__)
                        + "\tConfig: " + str(layer.get_config()))
         self.str_outputs.append(layer_info)
-    
-    def shoud_train_dicriminator(self, epoch):
-        return False
-        if epoch == 0:
-            return True
-        if epoch == (self.epochs / 4):
-            return True
-        if epoch == (self.epochs / 2):
-            return True
-        if epoch == ((self.epochs / 2) + (self.epochs / 4)):
-            return True
-        if epoch + 1 == self.epochs:
-            return True
 
     # Sample functions
     def sample_epoch(self, epoch, file_prefix=""):
@@ -228,10 +214,13 @@ class GAN():
         plt.close()
 
 
-    def print_epoch_result(self, epoch, result, metrics_names):
-        metric_0 = np.sum(result.history[metrics_names[0]]) / self.sample_interval
-        metric_1 = np.sum(result.history[metrics_names[1]]) / self.sample_interval
-        str_results = "%d [%s: %f, %s: %.2f%%]" % (epoch, 
+    def print_epoch_result(self, epoch, result, metrics_names, epochs=None):
+        if epochs is None:
+            epochs = self.sample_interval
+
+        metric_0 = np.sum(result.history[metrics_names[0]]) / epochs
+        metric_1 = np.sum(result.history[metrics_names[1]]) / epochs
+        str_results = "%d [%s: %f, %s: %f]" % (epoch, 
             metrics_names[0], metric_0,
             metrics_names[1], metric_1)
         self.str_outputs.append(str_results)
