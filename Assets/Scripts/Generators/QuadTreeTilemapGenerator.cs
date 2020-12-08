@@ -72,16 +72,16 @@ namespace Assets.Scripts.Generators
             CreateTilemapFromTree();
 
             // Step 5. Evaluate tilemap before creating paths
-            Evaluate();
+            //Evaluate();
 
             // Step 6. Create paths between rooms
-            CreatePaths();
+            //CreatePaths();
 
             // Step 7. Evaluate again, we expect to see only one room
-            Evaluate();
+            //Evaluate();
 
             // Step 7. Write tilemap to file
-            //fileParser.WriteTilemap(tilemap);
+            fileParser.WriteTilemap(tilemap);
 
         }
 

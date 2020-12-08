@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec266a315f144d443b8f921664f963a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfDungeonsToGenerate: 1
+  numberOfDungeonsToGenerate: 1000
   secondsToWaitingBetweenDungeons: 1
   RoomPossibility: 0.3
   SplitPossibility: 0.3

@@ -15,44 +15,44 @@
 \contentsline {subsection}{\numberline {2.5.4}Παραμετροποίηση}{18}{subsection.2.5.4}%
 \contentsline {section}{\numberline {2.6}Procedural Content Generation για 2D επίπεδα}{18}{section.2.6}%
 \contentsline {subsection}{\numberline {2.6.1}Εισαγωγή}{19}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Space Partitioning}{20}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.2}Space Partitioning}{19}{subsection.2.6.2}%
 \contentsline {subsection}{\numberline {2.6.3}Agent-based}{21}{subsection.2.6.3}%
-\contentsline {subsection}{\numberline {2.6.4}Cellular Automata}{23}{subsection.2.6.4}%
+\contentsline {subsection}{\numberline {2.6.4}Cellular Automata}{22}{subsection.2.6.4}%
 \contentsline {subsection}{\numberline {2.6.5}Generative Grammars}{24}{subsection.2.6.5}%
 \contentsline {section}{\numberline {2.7}Αξιολόγηση (Evaluation)}{25}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Πόσο σημαντική είναι η αξιολόγηση}{26}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Χαρακτηριστικά Αξιολόγησης}{27}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.1}Πόσο σημαντική είναι η αξιολόγηση}{25}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Χαρακτηριστικά Αξιολόγησης}{26}{subsection.2.7.2}%
 \contentsline {subsection}{\numberline {2.7.3}Είδη Αξιολόγησης}{28}{subsection.2.7.3}%
-\contentsline {chapter}{\numberline {3}Υλοποίηση συστήματος Procedural Content Generation}{31}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Game Engines}{32}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Unity Game Engine}{33}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Τεχνικά χαρακτηριστικά}{33}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Βιβλιοθήκες Unity}{33}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Σχεδιασμός συστήματος PCG}{34}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Περιγραφή Επιπέδου}{35}{subsection.3.3.1}%
-\contentsline {section}{\numberline {3.4}Υλοποίηση συστήματος PCG}{35}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Υποσυστήματα}{35}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Αλγόριθμος PCG}{36}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Βήματα αλγορίθμου PCG}{37}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Δημιουργία Συνόλου Δεδομένων (\textit {Dataset})}{37}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Παραδείγματα επιπέδων}{38}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Διάνοιξη Διαδρόμων}{40}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Εύρεση δωματίων}{40}{subsection.3.7.1}%
-\contentsline {subsection}{\numberline {3.7.2}Διάνοιξη Διαδρόμων}{41}{subsection.3.7.2}%
-\contentsline {chapter}{\numberline {4}Machine Learning}{44}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Machine Learning \& Games}{45}{section.4.1}%
+\contentsline {chapter}{\numberline {3}Υλοποίηση συστήματος Procedural Content Generation}{30}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Game Engines}{31}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Unity Game Engine}{32}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Τεχνικά χαρακτηριστικά}{32}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Βιβλιοθήκες Unity}{32}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Σχεδιασμός συστήματος PCG}{33}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Περιγραφή Επιπέδου}{34}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Υλοποίηση συστήματος PCG}{34}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Υποσυστήματα}{34}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Αλγόριθμος PCG}{35}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Βήματα αλγορίθμου PCG}{36}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Δημιουργία Συνόλου Δεδομένων (\textit {Dataset})}{36}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Παραδείγματα επιπέδων}{37}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Διάνοιξη Διαδρόμων}{39}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Εύρεση δωματίων}{39}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}Διάνοιξη Διαδρόμων}{40}{subsection.3.7.2}%
+\contentsline {chapter}{\numberline {4}Machine Learning}{43}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Machine Learning \& Games}{44}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Machine Learning στα Video Games}{45}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Video Games που χρησιμοποιούν Μηχανική Μάθηση}{46}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Ορολογία Μηχανικής Μάθησης}{47}{section.4.2}%
+\contentsline {subsection}{\numberline {4.1.2}Video Games που χρησιμοποιούν Μηχανική Μάθηση}{45}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Ορολογία Μηχανικής Μάθησης}{46}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Κατηγορίες Μηχανικής Μάθησης}{47}{section.4.3}%
 \contentsline {subsection}{\numberline {4.3.1}Μέθοδοι Supervised learning}{48}{subsection.4.3.1}%
-\contentsline {section}{\numberline {4.4}Artificial Neural Networks (ANN)}{49}{section.4.4}%
+\contentsline {section}{\numberline {4.4}Artificial Neural Networks (ANN)}{48}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}Χαρακτηριστικά ενός ANN}{49}{subsection.4.4.1}%
 \contentsline {subsection}{\numberline {4.4.2}Επίπεδα}{50}{subsection.4.4.2}%
 \contentsline {subsection}{\numberline {4.4.3}Backpropagation}{51}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Generative Adversarial Networks (GANs)}{52}{section.4.5}%
+\contentsline {section}{\numberline {4.5}Generative Adversarial Networks (GANs)}{51}{section.4.5}%
 \contentsline {subsection}{\numberline {4.5.1}Μοντέλο GAN}{52}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Εκπαίδευση}{53}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.2}Εκπαίδευση}{52}{subsection.4.5.2}%
 \contentsline {subsection}{\numberline {4.5.3}Αποτελέσματα και αποδόσεις}{53}{subsection.4.5.3}%
 \contentsline {chapter}{\numberline {5}Υλοποίηση συστήματος Μηχανικής Μάθησης}{55}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Τεχνική περιγραφή}{55}{section.5.1}%

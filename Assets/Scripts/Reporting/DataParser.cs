@@ -11,7 +11,7 @@ namespace Assets.Scripts.Reporting
 {
     public class DataParser
     {
-        private const string BaseOutputPath = "Data/GAN_Input/";
+        private const string BaseOutputPath = "Data/GAN_Input_without_corridors/";
         private const string BaseInputPath = "Data/GAN_Output/";
         private const string ResultsFolder = "/Results/";
         private const string BaseFilename = "graph_";
